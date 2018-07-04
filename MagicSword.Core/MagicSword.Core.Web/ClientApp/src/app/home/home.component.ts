@@ -110,6 +110,8 @@ export class HomeComponent {
         this.controls.target = new THREE.Vector3(0, 0, 0);
         this.controls.maxDistance = 150;
 
+        //this.controls.panningMode = 1; //THREE.HorizontalPanning;
+
         // Prepare clock
         this.clock = new THREE.Clock();
 
@@ -138,10 +140,34 @@ export class HomeComponent {
           new THREE.MeshBasicMaterial({ color: 0xffffff, alphaTest: 0, visible: false }));
         this.scene.add(this.plane);
 
+        this.scene.add(new THREE.GridHelper(100, 10));
+
+        var aspect = 1.383238405207486;
+
+        var geometry = new THREE.BoxBufferGeometry(100, 1, 100 / aspect);
+
+        var mat = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+        var face = new THREE.MeshLambertMaterial({
+          map: new THREE.TextureLoader().load('/assets/img/World.png')
+        });
+
+        var materials = [
+          mat,
+          mat,
+          face,
+          mat,
+          mat,
+          mat
+        ];
+
+        var mesh = new THREE.Mesh(geometry, materials);
+        this.scene.add(mesh);
+
+
         // Add 100 random objects (spheres)
         var object, material, radius;
         var objGeometry = new THREE.SphereGeometry(1, 24, 24);
-        for (var i = 0; i < 50; i++) {
+        for (var i = 0; i < 10; i++) {
           material = new THREE.MeshPhongMaterial({ color: Math.random() * 0xffffff });
           material.transparent = true;
           object = new THREE.Mesh(objGeometry.clone(), material);
