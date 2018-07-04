@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import * as THREE from 'three';
 
-import orbit = require('three-orbit-controls');
-const OrbitControls = orbit(THREE);
+import * as THREE from 'three'; //standard import
+
+(window as any)._THREE = THREE; //create a global reference to the namespace
+
+import '../../assets/js/OrbitControls.js'; //run the actual code in the file
+
 
 @Component({
   selector: 'app-home',
@@ -12,6 +15,7 @@ export class HomeComponent {
 
   constructor() {
 
+    //loadOrbitControls666();
     /**
  *
  * WebGL With Three.js - Lesson 10 - Drag and Drop Objects
@@ -106,11 +110,11 @@ export class HomeComponent {
         document.addEventListener('mouseup', this.onDocumentMouseUp, false);
 
         // Prepare Orbit controls
-        this.controls = new OrbitControls(this.camera);
+        this.controls = new THREE.OrbitControls(this.camera);
         this.controls.target = new THREE.Vector3(0, 0, 0);
         this.controls.maxDistance = 150;
 
-        //this.controls.panningMode = 1; //THREE.HorizontalPanning;
+        this.controls.screenSpacePanning = false;
 
         // Prepare clock
         this.clock = new THREE.Clock();
@@ -295,3 +299,4 @@ export class HomeComponent {
   }
 
 }
+
