@@ -6,6 +6,8 @@
 import * as THREE from 'three';
 
 import { Skybox } from "./Skybox";
+import { BoxObject } from "./BoxObject"; 
+
 
 (window as any)._THREE = THREE; //create a global reference to the namespace
 import '../../assets/js/OrbitControls.js'; //run the actual code in the file
@@ -24,6 +26,8 @@ export class World {
   offset: THREE.Vector3;
   objects: any = [];
   raycaster: THREE.Raycaster;
+
+  mmBoard: BoxObject;
 
   constructor() {
 
@@ -97,33 +101,10 @@ export class World {
 
     //this.scene.add(new THREE.GridHelper(100, 10));
 
-    var aspect = 1.383238405207486;
-
-    var geometry = new THREE.BoxBufferGeometry(100, 1, 100 / aspect);
-
-    var mat = new THREE.MeshPhongMaterial({ color: 0x0000ff });
-
-    var tex = new THREE.TextureLoader().load('/assets/img/World.png');
-    tex.minFilter = THREE.LinearFilter;
-
-    var face = new THREE.MeshLambertMaterial({
-      map: tex,
-    });
-
-    var materials = [
-      mat,
-      mat,
-      face,
-      mat,
-      mat,
-      mat
-    ];
-
-    var mesh = new THREE.Mesh(geometry, materials);
-    this.scene.add(mesh);
+    this.mmBoard = new BoxObject("/assets/img/World.png", 100, 1.383238405207486, 1);
+    this.scene.add(this.mmBoard.mesh);
 
 
-    // Add 100 random objects (spheres)
     var object, material, radius;
     var objGeometry = new THREE.SphereGeometry(1, 24, 24);
     for (var i = 0; i < 10; i++) {

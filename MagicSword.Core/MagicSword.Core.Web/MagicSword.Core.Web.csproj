@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\Skybox.ts" />
     <None Remove="ClientApp\src\app\game\World.ts" />
   </ItemGroup>
@@ -33,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\game\BoxObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Skybox.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\World.ts" />
   </ItemGroup>
