@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-
-import * as THREE from 'three'; //standard import
+import * as THREE from 'three';
 
 (window as any)._THREE = THREE; //create a global reference to the namespace
-
 import '../../assets/js/OrbitControls.js'; //run the actual code in the file
 
 
@@ -15,7 +13,6 @@ export class HomeComponent {
 
   constructor() {
 
-    //loadOrbitControls666();
     /**
  *
  * WebGL With Three.js - Lesson 10 - Drag and Drop Objects
@@ -71,7 +68,7 @@ export class HomeComponent {
     }
 
     var lesson10 = {
-      scene: null, camera: null, renderer: null,
+      scene : null, camera: null, renderer: null,
       container: null, controls: null,
       clock: null, stats: null,
       plane: null, selection: null, offset: new THREE.Vector3(), objects: [],
@@ -114,8 +111,6 @@ export class HomeComponent {
         this.controls.target = new THREE.Vector3(0, 0, 0);
         this.controls.maxDistance = 150;
 
-        this.controls.screenSpacePanning = false;
-
         // Prepare clock
         this.clock = new THREE.Clock();
 
@@ -141,18 +136,23 @@ export class HomeComponent {
         // Plane, that helps to determinate an intersection position
         this.plane = new THREE.Mesh(
           new THREE.PlaneBufferGeometry(500, 500, 8, 8),
-          new THREE.MeshBasicMaterial({ color: 0xffffff, alphaTest: 0, visible: false }));
+          new THREE.MeshBasicMaterial({ color: 0x00ffff, visible: false, side: THREE.DoubleSide }));
+        this.plane.lookAt(new THREE.Vector3(0,1,0));
         this.scene.add(this.plane);
 
-        this.scene.add(new THREE.GridHelper(100, 10));
+        //this.scene.add(new THREE.GridHelper(100, 10));
 
         var aspect = 1.383238405207486;
 
         var geometry = new THREE.BoxBufferGeometry(100, 1, 100 / aspect);
 
         var mat = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+
+        var tex = new THREE.TextureLoader().load('/assets/img/World.png');
+        tex.minFilter = THREE.LinearFilter;
+
         var face = new THREE.MeshLambertMaterial({
-          map: new THREE.TextureLoader().load('/assets/img/World.png')
+          map: tex,
         });
 
         var materials = [
@@ -183,7 +183,7 @@ export class HomeComponent {
           object.scale.z = radius;
 
           object.position.x = Math.random() * 50 - 25;
-          object.position.y = Math.random() * 50 - 25;
+          object.position.y = 0;// Math.random() * 50 - 25;
           object.position.z = Math.random() * 50 - 25;
 
           this.scene.add(object);
@@ -254,7 +254,7 @@ export class HomeComponent {
           var intersects2 = lesson10.raycaster.intersectObjects(lesson10.objects);
           if (intersects2.length > 0) {
             lesson10.plane.position.copy(intersects2[0].object.position);
-            lesson10.plane.lookAt(lesson10.camera.position);
+            //lesson10.plane.lookAt(lesson10.camera.position);
           }
         }
       },
