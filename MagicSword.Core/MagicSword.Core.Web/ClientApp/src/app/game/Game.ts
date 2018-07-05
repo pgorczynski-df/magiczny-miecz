@@ -20,11 +20,11 @@ export class Game {
   container: any;
   controls: THREE.OrbitControls;
   clock: THREE.Clock;
-  stats: any;
+  //stats: any;
   plane: THREE.Mesh;
-  selection: any;
+  selection: THREE.Object3D;
   offset: THREE.Vector3;
-  objects: any = [];
+  objects: THREE.Object3D[] = [];
   raycaster: THREE.Raycaster;
 
   mmBoard: BoxObject;
@@ -34,7 +34,6 @@ export class Game {
     this.offset = new THREE.Vector3();
     this.raycaster = new THREE.Raycaster();
 
-    // Create main scene
     this.scene = new THREE.Scene();
     this.scene.fog = new THREE.FogExp2(0xcce0ff, 0.0003);
 
@@ -89,7 +88,6 @@ export class Game {
     this.camera.add(dirLight);
     this.camera.add(dirLight.target);
 
-    // Display skybox
     this.scene.add(new Skybox().mesh);
 
     // Plane, that helps to determinate an intersection position
@@ -97,34 +95,52 @@ export class Game {
       new THREE.PlaneBufferGeometry(500, 500, 8, 8),
       new THREE.MeshBasicMaterial({ color: 0x00ffff, visible: false, side: THREE.DoubleSide }));
     this.plane.lookAt(new THREE.Vector3(0, 1, 0));
+
     this.scene.add(this.plane);
 
     //this.scene.add(new THREE.GridHelper(100, 10));
 
     this.mmBoard = new BoxObject("/assets/img/World.png", 100, 1.383238405207486, 1);
-    this.scene.add(this.mmBoard.mesh);
+    this.mmBoard.register(this.scene);
 
+    //var objGeometry = new THREE.SphereGeometry(1, 24, 24);
 
-    var object, material, radius;
-    var objGeometry = new THREE.SphereGeometry(1, 24, 24);
     for (var i = 0; i < 10; i++) {
-      material = new THREE.MeshPhongMaterial({ color: Math.random() * 0xffffff });
-      material.transparent = true;
-      object = new THREE.Mesh(objGeometry.clone(), material);
-      this.objects.push(object);
 
-      radius = Math.random() * 4 + 2;
-      object.scale.x = radius;
-      object.scale.y = radius;
-      object.scale.z = radius;
+      //var material = new THREE.MeshPhongMaterial({ color: Math.random() * 0xffffff });
+      //material.transparent = true;
+      //var object = new THREE.Mesh(objGeometry.clone(), material);
+      //this.objects.push(object);
 
+      //var radius = Math.random() * 4 + 2;
+      //object.scale.x = radius;
+      //object.scale.y = radius;
+      //object.scale.z = radius;
+
+      //object.position.x = Math.random() * 50 - 25;
+      //object.position.y = 0; // Math.random() * 50 - 25;
+      //object.position.z = Math.random() * 50 - 25;
+
+      //this.scene.add(object);
+
+      var card = new BoxObject("/assets/img/Characters/Barbarzynca.png", 10, 1.241772151898734, 2);
+      card.register(this.scene);
+
+      var object = card.mesh;
       object.position.x = Math.random() * 50 - 25;
       object.position.y = 0; // Math.random() * 50 - 25;
       object.position.z = Math.random() * 50 - 25;
 
-      this.scene.add(object);
-
+      this.objects.push(card.mesh);
     }
+
+    //var composer = new THREE.EffectComposer(this.renderer);
+
+    //var renderPass = new THREE.RenderPass(this.scene, this.camera);
+    //composer.addPass(renderPass);
+
+    //var outlinePass = new THREE.OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
+    //composer.addPass(outlinePass);
 
     var animate = () => {
       requestAnimationFrame(animate);
@@ -136,56 +152,49 @@ export class Game {
     animate();
   }
 
-  onDocumentMouseDown = (event) => {
-    // Get mouse position
+  updateRaycaster = (event) => {
     var mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     var mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    // Get 3D vector from 3D mouse position using 'unproject' function
     var vector = new THREE.Vector3(mouseX, mouseY, 1);
     vector.unproject(this.camera);
 
-    // Set the raycaster position
     this.raycaster.set(this.camera.position, vector.sub(this.camera.position).normalize());
 
-    // Find all intersected objects
+    //this.raycaster.setFromCamera({ x: event.clientX,  y: event.clientY }, this.camera);
+  }
+
+  onDocumentMouseDown = (event) => {
+
+    this.updateRaycaster(event);
+
     var intersects = this.raycaster.intersectObjects(this.objects);
 
+    console.log(this.objects);
+    console.log(intersects);
+
     if (intersects.length > 0) {
-      // Disable the controls
       this.controls.enabled = false;
 
-      // Set the selection - first intersected object
       this.selection = intersects[0].object;
 
-      // Calculate the offset
       var intersects2 = this.raycaster.intersectObject(this.plane);
-
       this.offset.copy(intersects2[0].point).sub(this.plane.position);
+
     }
   };
 
   onDocumentMouseMove = (event) => {
     event.preventDefault();
 
-    // Get mouse position
-    var mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    var mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    // Get 3D vector from 3D mouse position using 'unproject' function
-    var vector = new THREE.Vector3(mouseX, mouseY, 1);
-    vector.unproject(this.camera);
-
-    // Set the raycaster position
-    this.raycaster.set(this.camera.position, vector.sub(this.camera.position).normalize());
+    this.updateRaycaster(event);
 
     if (this.selection) {
-      // Check the position where the plane is intersected
       var intersects = this.raycaster.intersectObject(this.plane);
-      // Reposition the object based on the intersection point with the plane
       this.selection.position.copy(intersects[0].point.sub(this.offset));
+
     } else {
-      // Update position of the plane if need
+
       var intersects2 = this.raycaster.intersectObjects(this.objects);
       if (intersects2.length > 0) {
         this.plane.position.copy(intersects2[0].object.position);

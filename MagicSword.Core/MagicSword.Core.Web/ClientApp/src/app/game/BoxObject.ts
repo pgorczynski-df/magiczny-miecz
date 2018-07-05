@@ -3,6 +3,7 @@ import * as THREE from 'three';
 export class BoxObject {
 
   private _mesh: THREE.Mesh;
+  private _box: THREE.BoxHelper;
 
   constructor(topTexture: string, width: number, aspect: number, height: number) {
 
@@ -28,7 +29,15 @@ export class BoxObject {
 
     this._mesh = new THREE.Mesh(geometry, materials);
 
+    this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xffffff));
+    this._box .visible = false;
+
   }
 
   get mesh(): THREE.Mesh { return this._mesh; }
+
+  public register(scene: THREE.Scene): void {
+    scene.add(this._mesh);
+    scene.add(this._box);
+  }
 }
