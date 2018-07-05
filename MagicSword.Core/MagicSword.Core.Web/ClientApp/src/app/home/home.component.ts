@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { World } from "../game/World";
+import { Game } from "../game/Game";
 
 @Component({
   selector: 'app-home',
@@ -8,11 +8,11 @@ import { World } from "../game/World";
 })
 export class HomeComponent {
 
-  private world: World;
+  private world: Game;
 
   constructor() {
 
-    this.world = new World();
+    this.world = new Game();
 
   }
 

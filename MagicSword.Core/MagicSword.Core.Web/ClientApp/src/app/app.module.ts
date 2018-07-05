@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 import { BoxObject } from "./game/BoxObject";
 import { Skybox } from "./game/Skybox";
-import { World } from "./game/World";
+import { Game } from "./game/Game";
 
 @NgModule({
   declarations: [

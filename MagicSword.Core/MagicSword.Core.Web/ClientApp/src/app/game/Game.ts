@@ -12,7 +12,7 @@ import { BoxObject } from "./BoxObject";
 (window as any)._THREE = THREE; //create a global reference to the namespace
 import '../../assets/js/OrbitControls.js'; //run the actual code in the file
 
-export class World {
+export class Game {
 
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
@@ -38,11 +38,11 @@ export class World {
     this.scene = new THREE.Scene();
     this.scene.fog = new THREE.FogExp2(0xcce0ff, 0.0003);
 
-    var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+    var screenWidth = window.innerWidth, screenHeight = window.innerHeight;
 
     // Prepare perspective camera
-    var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 1, FAR = 1000;
-    this.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+    var viewAngle = 45, aspect = screenWidth / screenHeight, near = 1, far = 1000;
+    this.camera = new THREE.PerspectiveCamera(viewAngle, aspect, near, far);
     this.camera.position.set(50, 50, 0);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -50,7 +50,7 @@ export class World {
 
     // Prepare webgl renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    this.renderer.setSize(screenWidth, screenHeight);
     this.renderer.setClearColor(this.scene.fog.color);
 
     // Prepare container
@@ -195,27 +195,22 @@ export class World {
   };
 
   onDocumentMouseUp = (event) => {
-    // Enable the controls
     this.controls.enabled = true;
     this.selection = null;
   };
 
-  threeXWindowResize(renderer, camera) {
-    var callback = function () {
-      // notify the renderer of the size change
+  threeXWindowResize = (renderer, camera) => {
+
+    var callback = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
-      // update the camera
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
     }
-    // bind the resize event
+
     window.addEventListener('resize', callback, false);
-    // return .stop() the function to stop watching window resize
+
     return {
-      /**
-       * Stop watching window resize
-      */
-      stop: function () {
+      stop: () => {
         window.removeEventListener('resize', callback);
       }
     };
