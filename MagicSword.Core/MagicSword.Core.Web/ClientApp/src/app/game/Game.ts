@@ -5,12 +5,12 @@
 
 import * as THREE from 'three';
 
+import "../../assets/js/EnableThreeExamples";
+import "three/examples/js/controls/OrbitControls";
+
 import { Skybox } from "./Skybox";
 import { BoxObject } from "./BoxObject"; 
 
-
-(window as any)._THREE = THREE; //create a global reference to the namespace
-import '../../assets/js/OrbitControls.js'; //run the actual code in the file
 
 export class Game {
 
@@ -126,12 +126,13 @@ export class Game {
       var card = new BoxObject("/assets/img/Characters/Barbarzynca.png", 10, 1.241772151898734, 2);
       card.register(this.scene);
 
-      var object = card.mesh;
+      var object = card.object3D;
       object.position.x = Math.random() * 50 - 25;
       object.position.y = 0; // Math.random() * 50 - 25;
       object.position.z = Math.random() * 50 - 25;
 
       this.objects.push(card.mesh);
+      //this.objects.push(card.boxMesh);
     }
 
     //var composer = new THREE.EffectComposer(this.renderer);
@@ -170,7 +171,6 @@ export class Game {
 
     var intersects = this.raycaster.intersectObjects(this.objects);
 
-    console.log(this.objects);
     console.log(intersects);
 
     if (intersects.length > 0) {
