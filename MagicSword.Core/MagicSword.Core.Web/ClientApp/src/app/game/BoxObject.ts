@@ -34,7 +34,7 @@ export class BoxObject {
     this._mesh.userData["parent"] = this;
 
     this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xffffff));
-    this._box .visible = true;
+    this._box .visible = false;
 
     this._group = new THREE.Group();
     this._group.add(this._mesh);

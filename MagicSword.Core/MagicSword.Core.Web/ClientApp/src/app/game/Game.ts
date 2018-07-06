@@ -9,7 +9,7 @@ import "../../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 
 import { Skybox } from "./Skybox";
-import { BoxObject } from "./BoxObject"; 
+import { BoxObject } from "./BoxObject";
 
 
 export class Game {
@@ -107,12 +107,12 @@ export class Game {
 
     for (var i = 0; i < 10; i++) {
 
-      var card = new BoxObject("/assets/img/Characters/Barbarzynca.png", 10, 1.241772151898734, 2);
+      var card = new BoxObject("/assets/img/Characters/Barbarzynca.png", 10, 1.241772151898734, 0.5);
       card.register(this.scene);
 
       var object = card.object3D;
       object.position.x = Math.random() * 50 - 25;
-      object.position.y = 0; // Math.random() * 50 - 25;
+      object.position.y = 0.5; // Math.random() * 50 - 25;
       object.position.z = Math.random() * 50 - 25;
 
       this.objects.push(card.mesh);
@@ -137,7 +137,7 @@ export class Game {
     animate();
   }
 
-  updateRaycaster = (event) => {
+  updateRaycaster = (event: MouseEvent) => {
     var mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     var mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 
@@ -149,13 +149,11 @@ export class Game {
     //this.raycaster.setFromCamera({ x: event.clientX,  y: event.clientY }, this.camera);
   }
 
-  onDocumentMouseDown = (event) => {
+  onDocumentMouseDown = (event: MouseEvent) => {
 
     this.updateRaycaster(event);
 
     var intersects = this.raycaster.intersectObjects(this.objects);
-
-    console.log(intersects);
 
     if (intersects.length > 0) {
       this.controls.enabled = false;
@@ -168,7 +166,7 @@ export class Game {
     }
   };
 
-  onDocumentMouseMove = (event) => {
+  onDocumentMouseMove = (event: MouseEvent) => {
     event.preventDefault();
 
     this.updateRaycaster(event);
@@ -179,8 +177,11 @@ export class Game {
       //var parent = <BoxObject> this.selection.userData["parent"];
       //parent.object3D.position.copy(intersects[0].point.sub(this.offset));
 
-      this.selection.position.copy(intersects[0].point.sub(this.offset));
-
+      if (event.buttons === 2) {
+        this.selection.rotateY((event.movementX) / 300);
+      } else {
+        this.selection.position.copy(intersects[0].point.sub(this.offset));
+      }
     } else {
 
       var intersects2 = this.raycaster.intersectObjects(this.objects);
@@ -191,7 +192,7 @@ export class Game {
     }
   };
 
-  onDocumentMouseUp = (event) => {
+  onDocumentMouseUp = (event: MouseEvent) => {
     this.controls.enabled = true;
     this.selection = null;
   };
