@@ -107,22 +107,6 @@ export class Game {
 
     for (var i = 0; i < 10; i++) {
 
-      //var material = new THREE.MeshPhongMaterial({ color: Math.random() * 0xffffff });
-      //material.transparent = true;
-      //var object = new THREE.Mesh(objGeometry.clone(), material);
-      //this.objects.push(object);
-
-      //var radius = Math.random() * 4 + 2;
-      //object.scale.x = radius;
-      //object.scale.y = radius;
-      //object.scale.z = radius;
-
-      //object.position.x = Math.random() * 50 - 25;
-      //object.position.y = 0; // Math.random() * 50 - 25;
-      //object.position.z = Math.random() * 50 - 25;
-
-      //this.scene.add(object);
-
       var card = new BoxObject("/assets/img/Characters/Barbarzynca.png", 10, 1.241772151898734, 2);
       card.register(this.scene);
 
@@ -191,6 +175,10 @@ export class Game {
 
     if (this.selection) {
       var intersects = this.raycaster.intersectObject(this.plane);
+
+      //var parent = <BoxObject> this.selection.userData["parent"];
+      //parent.object3D.position.copy(intersects[0].point.sub(this.offset));
+
       this.selection.position.copy(intersects[0].point.sub(this.offset));
 
     } else {

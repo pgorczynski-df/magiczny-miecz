@@ -8,11 +8,10 @@ export class BoxObject {
 
   constructor(topTexture: string, width: number, aspect: number, height: number) {
 
-    var geometry = new THREE.BoxBufferGeometry(width, height, width / aspect);
+    var geometry = new THREE.BoxGeometry(width, height, width / aspect);
 
     var mat = new THREE.MeshPhongMaterial({
       color: 0x0000ff,
-      side: THREE.DoubleSide, 
     });
 
     var tex = new THREE.TextureLoader().load(topTexture); //async
@@ -20,7 +19,6 @@ export class BoxObject {
 
     var face = new THREE.MeshLambertMaterial({
       map: tex,
-      side: THREE.DoubleSide, 
     });
 
     var materials = [
@@ -33,6 +31,7 @@ export class BoxObject {
     ];
 
     this._mesh = new THREE.Mesh(geometry, materials);
+    this._mesh.userData["parent"] = this;
 
     this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xffffff));
     this._box .visible = true;
