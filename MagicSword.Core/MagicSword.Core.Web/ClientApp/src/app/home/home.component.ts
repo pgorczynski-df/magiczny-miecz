@@ -16,5 +16,9 @@ export class HomeComponent {
 
   }
 
+  save = () => {
+    this.world.save();
+  };
+
 }
 

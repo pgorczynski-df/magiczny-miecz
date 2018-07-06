@@ -197,6 +197,16 @@ export class Game {
     this.selection = null;
   };
 
+  save = () => {
+    //var exporter = new THREE.SceneExporter();
+    //var sceneJson = JSON.stringify(exporter.parse(this.scene));
+
+    //var sceneLoader = new THREE.SceneLoader();
+    //sceneLoader.parse(JSON.parse(json), function (e) { this.scene = e.scene; }, '.');
+
+    console.log(this.scene.toJSON());
+  };
+
   threeXWindowResize = (renderer, camera) => {
 
     var callback = () => {
