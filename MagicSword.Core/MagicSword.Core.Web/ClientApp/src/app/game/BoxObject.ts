@@ -11,7 +11,7 @@ export class BoxObject {
     var geometry = new THREE.BoxGeometry(width, height, width / aspect);
 
     var mat = new THREE.MeshPhongMaterial({
-      color: 0x0000ff,
+      color: 0x7c858e,
     });
 
     var tex = new THREE.TextureLoader().load(topTexture); //async

@@ -4,15 +4,24 @@ import { Game } from "../Game";
 import {GameBoard} from "./GameBoard";
 import {Card} from "./Card";
 import {BoxObject} from "../BoxObject";
+import {CardStack} from "./CardStack";
 
 export class World {
 
   mmBoard: GameBoard;
 
+  zdarzenia: CardStack;
+
   constructor(game: Game) {
 
     this.mmBoard = new GameBoard("/assets/img/World.png", 100, 1.383238405207486, 1);
     this.mmBoard.register(game.scene);
+
+    this.zdarzenia = new CardStack("/assets/img/ZdarzenieRewers.png", 10, 1.618257261410788, 3);
+    this.zdarzenia.object3D.position.z = -50;
+    this.zdarzenia.object3D.position.y = 2;
+
+    this.zdarzenia.register(game.scene);
 
     for (var i = 0; i < 10; i++) {
 

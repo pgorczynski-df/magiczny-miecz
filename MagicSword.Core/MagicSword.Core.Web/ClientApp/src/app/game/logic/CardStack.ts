@@ -6,4 +6,8 @@ export class CardStack extends BoxObject {
     super(topTexture, width, aspect, height);
   }
 
+  public register(scene: THREE.Scene): void {
+    super.register(scene);
+  }
+
 }
