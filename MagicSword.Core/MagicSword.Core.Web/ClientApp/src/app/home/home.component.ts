@@ -10,20 +10,14 @@ export class HomeComponent implements AfterViewInit {
 
   @ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
 
-  private world: Game;
-
-  constructor() {
-  }
+  game: Game;
 
   ngAfterViewInit() {
-
-    //console.log(this.viewport.nativeElement);
-
-    this.world = new Game(this.viewport.nativeElement);
+    this.game = new Game(this.viewport.nativeElement);
   }
 
   save = () => {
-    this.world.save();
+    this.game.save();
   };
 
 }

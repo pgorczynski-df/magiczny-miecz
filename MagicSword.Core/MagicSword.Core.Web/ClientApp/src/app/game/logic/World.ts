@@ -22,6 +22,7 @@ export class World {
     this.zdarzenia.object3D.position.y = 2;
 
     this.zdarzenia.register(game.scene);
+    game.actors.push(this.zdarzenia.mesh);
 
     for (var i = 0; i < 10; i++) {
 

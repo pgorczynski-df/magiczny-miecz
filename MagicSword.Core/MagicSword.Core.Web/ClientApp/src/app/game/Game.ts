@@ -10,6 +10,7 @@ import "three/examples/js/controls/OrbitControls";
 
 import { Skybox } from "./Skybox";
 import {World} from "./logic/World";
+import {IActor} from "./logic/IActor";
 
 
 export class Game {
@@ -31,6 +32,8 @@ export class Game {
 
   world: World;
 
+  imgUrl: string;
+
   get width(): number { return this.container.clientWidth; }
   get height(): number { return this.container.clientHeight; }
 
@@ -42,8 +45,8 @@ export class Game {
       throw new Error("cannot find viewport");
     }
 
-    console.log(this.width);
-    console.log(this.height);
+    //console.log(this.width);
+    //console.log(this.height);
 
     this.offset = new THREE.Vector3();
     this.raycaster = new THREE.Raycaster();
@@ -131,6 +134,10 @@ export class Game {
     animate();
   }
 
+  registerActor = (actor: IActor) => {
+
+  }
+
   updateRaycaster = (event: MouseEvent) => {
 
     var mouseX = (event.offsetX / this.width) * 2 - 1;
@@ -152,12 +159,20 @@ export class Game {
 
     if (intersects.length > 0) {
 
-      this.draggedActor = intersects[0].object;
+      let hit = intersects[0].object;
+
+      var parent = hit.userData["parent"];
+      this.imgUrl = parent.faceUrl;
+
+      this.draggedActor = hit;
 
       var intersects2 = this.raycaster.intersectObject(this.plane);
       this.offset.copy(intersects2[0].point).sub(this.plane.position);
 
       this.controls.enabled = false;
+
+    } else {
+      //this.imgUrl = "";
     }
   };
 

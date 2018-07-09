@@ -35,6 +35,7 @@ export class BoxObject {
     ];
 
     this._mesh = new THREE.Mesh(geometry, materials);
+
     this._mesh.userData["parent"] = this;
 
     this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xffffff));
@@ -48,6 +49,8 @@ export class BoxObject {
   get object3D(): THREE.Object3D { return this._group; }
 
   get mesh(): THREE.Mesh { return this._mesh; }
+
+  get faceUrl(): THREE.Mesh { return this._topTexture; }
 
   public register(scene: THREE.Scene): void {
     scene.add(this._group);
