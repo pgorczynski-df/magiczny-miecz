@@ -33,8 +33,8 @@ export class World {
       object.position.y = 0.5; // Math.random() * 50 - 25;
       object.position.z = Math.random() * 50 - 25;
 
-      game.objects.push(card.mesh);
-      //this.objects.push(card.boxMesh);
+      game.actors.push(card.mesh);
+      //this.actors.push(card.boxMesh);
     }
   }
 

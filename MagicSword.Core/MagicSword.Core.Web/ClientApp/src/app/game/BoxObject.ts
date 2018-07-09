@@ -6,7 +6,11 @@ export class BoxObject {
   private _box: THREE.BoxHelper;
   private _group: THREE.Group;
 
+  private _topTexture;
+
   constructor(topTexture: string, width: number, aspect: number, height: number) {
+
+    this._topTexture = topTexture;
 
     var geometry = new THREE.BoxGeometry(width, height, width / aspect);
 

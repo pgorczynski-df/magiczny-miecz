@@ -14,22 +14,36 @@ import {World} from "./logic/World";
 
 export class Game {
 
+  container: HTMLElement;
+
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
   renderer: THREE.WebGLRenderer;
-  container: any;
   controls: THREE.OrbitControls;
   clock: THREE.Clock;
-  //stats: any;
   plane: THREE.Mesh;
-  selection: THREE.Object3D;
   offset: THREE.Vector3;
-  objects: THREE.Object3D[] = [];
   raycaster: THREE.Raycaster;
+  //stats: any;
+
+  actors: THREE.Object3D[] = [];
+  draggedActor: THREE.Object3D;
 
   world: World;
 
-  constructor() {
+  get width(): number { return this.container.clientWidth; }
+  get height(): number { return this.container.clientHeight; }
+
+  constructor(vieport: any) {
+
+    this.container = vieport;
+
+    if (!this.container) {
+      throw new Error("cannot find viewport");
+    }
+
+    console.log(this.width);
+    console.log(this.height);
 
     this.offset = new THREE.Vector3();
     this.raycaster = new THREE.Raycaster();
@@ -37,10 +51,9 @@ export class Game {
     this.scene = new THREE.Scene();
     this.scene.fog = new THREE.FogExp2(0xcce0ff, 0.0003);
 
-    var screenWidth = window.innerWidth, screenHeight = window.innerHeight;
 
     // Prepare perspective camera
-    var viewAngle = 45, aspect = screenWidth / screenHeight, near = 1, far = 1000;
+    var viewAngle = 45, aspect = this.width / this.height, near = 1, far = 1000;
     this.camera = new THREE.PerspectiveCamera(viewAngle, aspect, near, far);
     this.camera.position.set(50, 50, 0);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
@@ -49,23 +62,21 @@ export class Game {
 
     // Prepare webgl renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize(screenWidth, screenHeight);
+    this.renderer.setSize(this.width, this.height);
     this.renderer.setClearColor(this.scene.fog.color);
 
-    // Prepare container
-    this.container = document.createElement('div');
-    document.body.appendChild(this.container);
     this.container.appendChild(this.renderer.domElement);
+
+    this.container.addEventListener('mousedown', this.onDocumentMouseDown, false);
+    this.container.addEventListener('mousemove', this.onDocumentMouseMove, false);
+    this.container.addEventListener('mouseup', this.onDocumentMouseUp, false);
 
     // Events
     this.threeXWindowResize(this.renderer, this.camera);
 
-    document.addEventListener('mousedown', this.onDocumentMouseDown, false);
-    document.addEventListener('mousemove', this.onDocumentMouseMove, false);
-    document.addEventListener('mouseup', this.onDocumentMouseUp, false);
 
     // Prepare Orbit controls
-    this.controls = new THREE.OrbitControls(this.camera);
+    this.controls = new THREE.OrbitControls(this.camera, this.container);
     this.controls.target = new THREE.Vector3(0, 0, 0);
     this.controls.maxDistance = 150;
 
@@ -121,8 +132,9 @@ export class Game {
   }
 
   updateRaycaster = (event: MouseEvent) => {
-    var mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    var mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    var mouseX = (event.offsetX / this.width) * 2 - 1;
+    var mouseY = -(event.offsetY / this.height) * 2 + 1;
 
     var vector = new THREE.Vector3(mouseX, mouseY, 1);
     vector.unproject(this.camera);
@@ -136,16 +148,16 @@ export class Game {
 
     this.updateRaycaster(event);
 
-    var intersects = this.raycaster.intersectObjects(this.objects);
+    var intersects = this.raycaster.intersectObjects(this.actors);
 
     if (intersects.length > 0) {
-      this.controls.enabled = false;
 
-      this.selection = intersects[0].object;
+      this.draggedActor = intersects[0].object;
 
       var intersects2 = this.raycaster.intersectObject(this.plane);
       this.offset.copy(intersects2[0].point).sub(this.plane.position);
 
+      this.controls.enabled = false;
     }
   };
 
@@ -154,20 +166,20 @@ export class Game {
 
     this.updateRaycaster(event);
 
-    if (this.selection) {
+    if (this.draggedActor) {
       var intersects = this.raycaster.intersectObject(this.plane);
 
-      //var parent = <BoxObject> this.selection.userData["parent"];
+      //var parent = <BoxObject> this.draggedActor.userData["parent"];
       //parent.object3D.position.copy(intersects[0].point.sub(this.offset));
 
       if (event.buttons === 2) {
-        this.selection.rotateY((event.movementX) / 300);
+        this.draggedActor.rotateY((event.movementX) / 300);
       } else {
-        this.selection.position.copy(intersects[0].point.sub(this.offset));
+        this.draggedActor.position.copy(intersects[0].point.sub(this.offset));
       }
     } else {
 
-      var intersects2 = this.raycaster.intersectObjects(this.objects);
+      var intersects2 = this.raycaster.intersectObjects(this.actors);
       if (intersects2.length > 0) {
         this.plane.position.copy(intersects2[0].object.position);
         //this.plane.lookAt(this.camera.position);
@@ -176,8 +188,10 @@ export class Game {
   };
 
   onDocumentMouseUp = (event: MouseEvent) => {
+
+    this.draggedActor = null;
+
     this.controls.enabled = true;
-    this.selection = null;
   };
 
   save = () => {
@@ -193,8 +207,8 @@ export class Game {
   threeXWindowResize = (renderer, camera) => {
 
     var callback = () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
+      renderer.setSize(this.width, this.height);
+      camera.aspect = this.width / this.height;
       camera.updateProjectionMatrix();
     }
 

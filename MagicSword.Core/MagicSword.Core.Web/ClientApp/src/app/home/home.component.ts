@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 import { Game } from "../game/Game";
 
@@ -6,14 +6,20 @@ import { Game } from "../game/Game";
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
+
+  @ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
 
   private world: Game;
 
   constructor() {
+  }
 
-    this.world = new Game();
+  ngAfterViewInit() {
 
+    //console.log(this.viewport.nativeElement);
+
+    this.world = new Game(this.viewport.nativeElement);
   }
 
   save = () => {
