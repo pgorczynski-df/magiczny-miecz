@@ -9,7 +9,7 @@ import "../../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 
 import { Skybox } from "./Skybox";
-import { BoxObject } from "./BoxObject";
+import {World} from "./logic/World";
 
 
 export class Game {
@@ -27,7 +27,7 @@ export class Game {
   objects: THREE.Object3D[] = [];
   raycaster: THREE.Raycaster;
 
-  mmBoard: BoxObject;
+  world: World;
 
   constructor() {
 
@@ -100,24 +100,7 @@ export class Game {
 
     //this.scene.add(new THREE.GridHelper(100, 10));
 
-    this.mmBoard = new BoxObject("/assets/img/World.png", 100, 1.383238405207486, 1);
-    this.mmBoard.register(this.scene);
-
-    //var objGeometry = new THREE.SphereGeometry(1, 24, 24);
-
-    for (var i = 0; i < 10; i++) {
-
-      var card = new BoxObject("/assets/img/Characters/Barbarzynca.png", 10, 1.241772151898734, 0.5);
-      card.register(this.scene);
-
-      var object = card.object3D;
-      object.position.x = Math.random() * 50 - 25;
-      object.position.y = 0.5; // Math.random() * 50 - 25;
-      object.position.z = Math.random() * 50 - 25;
-
-      this.objects.push(card.mesh);
-      //this.objects.push(card.boxMesh);
-    }
+    this.world = new World(this);
 
     //var composer = new THREE.EffectComposer(this.renderer);
 

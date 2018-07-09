@@ -328,11 +328,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/Skybox.js
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/Skybox.js.map
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/World.js.map
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/World.js
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/BoxObject.js.map
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/BoxObject.js
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/Game.js.map
-/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/game/Game.js
+
+/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/**/*.js
+/MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/**/*.map
