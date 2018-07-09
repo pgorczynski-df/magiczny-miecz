@@ -58,7 +58,7 @@ export class Game {
     // Prepare perspective camera
     var viewAngle = 45, aspect = this.width / this.height, near = 1, far = 1000;
     this.camera = new THREE.PerspectiveCamera(viewAngle, aspect, near, far);
-    this.camera.position.set(50, 50, 0);
+    this.camera.position.set(0, 75, 75);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     this.scene.add(this.camera);

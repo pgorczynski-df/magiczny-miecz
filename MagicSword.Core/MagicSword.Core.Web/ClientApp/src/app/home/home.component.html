@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div class="row">
+    <div class="col-md-9" #viewport style="height: 800px"></div>
     <div class="col-md-3">
       <ul>
         <li>
           <button class="btn" (click)="save()">Save</button>
         </li>
         <li>
-          <img style="max-width: 200px" src="{{game? game.imgUrl : '' }}"/>
+          <img style="max-width: 200px" src="{{game? game.imgUrl : '' }}" />
         </li>
       </ul>
     </div>
-    <div class="col-md-9" #viewport style="height: 800px"></div>
   </div>
 </div>
