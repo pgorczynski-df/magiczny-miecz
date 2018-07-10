@@ -28,7 +28,7 @@ export class World {
     this.mmBoard = new GameBoard("/assets/img/World.png", 100, 1.383238405207486, 1);
     this.mmBoard.register(game.scene);
 
-    this.eventCardStack = new CardStack("/assets/img/ZdarzenieRewers.png", 10, 1.618257261410788, 3);
+    this.eventCardStack = new CardStack("/assets/img/Zdarzenia", "ZdarzenieRewers.png", 10, 1.618257261410788, 3);
     this.eventCardStack.object3D.position.x = -5;
     this.eventCardStack.object3D.position.y = 2;
     this.eventCardStack.name = "Stos kart Zdarzeń";

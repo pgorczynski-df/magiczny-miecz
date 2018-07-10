@@ -16,12 +16,14 @@ namespace CardHelper
 
             var targetDir = "F:\\ZdarzeniaOut";
 
-            if (Directory.Exists(targetDir))
-            {
-                Directory.Delete(targetDir);
-            }
+            //if (Directory.Exists(targetDir))
+            //{
+            //    Directory.Delete(targetDir, true);
+            //}
 
             var result = new List<object>();
+
+            var id = 1;
 
             foreach (var directory in Directory.GetDirectories(sourceDir))
             {
@@ -37,9 +39,10 @@ namespace CardHelper
                     Directory.CreateDirectory(td);
                 }
 
-                foreach (var file in Directory.GetFiles(directory))
+                var files = Directory.GetFiles(directory);
+                foreach (var file in files)
                 {
-                    //Log(RemoveDiacritics(file));
+//Log(RemoveDiacritics(file));
 
                     var name = Path.GetFileName(file).Replace(".png", String.Empty);
                     var multiplicity = 1;
@@ -58,6 +61,7 @@ namespace CardHelper
 
                     result.Add(new
                     {
+                        id = id,
                         name = name,
                         type = "Zdarzenie",
                         subtype = catName,
@@ -65,12 +69,12 @@ namespace CardHelper
                         multiplicity = multiplicity,
                     });
 
-                    File.Copy(file, targetDir + targetPath);
+                    id++;
                 }
             }
 
             var json = JsonConvert.SerializeObject(result, Formatting.Indented);
-            File.WriteAllText("out.json", json, Encoding.UTF8);
+            File.WriteAllText("Zdarzenia.json", json, Encoding.UTF8);
 
             Log(json);
         }

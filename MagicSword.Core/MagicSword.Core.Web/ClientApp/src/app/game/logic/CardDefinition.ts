@@ -1,6 +1,8 @@
 
 export class CardDefinition {
 
+  id: number;
+
   name: string;
 
   type: string;

@@ -15,8 +15,8 @@ export class CardStack extends BoxObject implements IActor  {
 
   cards: Card[] = [];
 
-  constructor(topTexture: string, width: number, aspect: number, height: number) {
-    super(topTexture, width, aspect, height);
+  constructor(private texturePath: string, topTexture: string, width: number, aspect: number, height: number) {
+    super(texturePath + "/" + topTexture, width, aspect, height);
   }
 
   buildStack = () => {
@@ -26,7 +26,7 @@ export class CardStack extends BoxObject implements IActor  {
 
     for (var def of this.cardDefinitions) {
       for (let i = 0; i < def.multiplicity; i++) {
-        var card = new Card("/assets/img/" + def.imageUrl, this.width, this.aspect, 0.5, true);
+        var card = new Card(this.texturePath + "/" + def.imageUrl, this.width, this.aspect, 0.5, true);
         card.definition = def;
         card.originStack = this;
         this.cards.push(card);

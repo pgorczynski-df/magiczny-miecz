@@ -1,5 +1,6 @@
 ﻿[
   {
+    "id": 1,
     "name": "Burza Siedmiu Słońc",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -7,6 +8,7 @@
     "multiplicity": 1
   },
   {
+    "id": 2,
     "name": "Danina",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -14,6 +16,7 @@
     "multiplicity": 1
   },
   {
+    "id": 3,
     "name": "Godzina Duchów",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -21,6 +24,7 @@
     "multiplicity": 1
   },
   {
+    "id": 4,
     "name": "Kometa",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -28,6 +32,7 @@
     "multiplicity": 1
   },
   {
+    "id": 5,
     "name": "Magiczna Tablica",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -35,6 +40,7 @@
     "multiplicity": 1
   },
   {
+    "id": 6,
     "name": "Mgła",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -42,6 +48,7 @@
     "multiplicity": 1
   },
   {
+    "id": 7,
     "name": "Posłańcy Bogów",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -49,6 +56,7 @@
     "multiplicity": 1
   },
   {
+    "id": 8,
     "name": "Południca",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -56,6 +64,7 @@
     "multiplicity": 1
   },
   {
+    "id": 9,
     "name": "Przesilenie",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -63,6 +72,7 @@
     "multiplicity": 1
   },
   {
+    "id": 10,
     "name": "Sabat Czarownic",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -70,6 +80,7 @@
     "multiplicity": 1
   },
   {
+    "id": 11,
     "name": "Straż",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -77,6 +88,7 @@
     "multiplicity": 1
   },
   {
+    "id": 12,
     "name": "Słup Ognia",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -84,6 +96,7 @@
     "multiplicity": 1
   },
   {
+    "id": 13,
     "name": "Turniej Rycerski",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -91,6 +104,7 @@
     "multiplicity": 1
   },
   {
+    "id": 14,
     "name": "Układ Planet",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -98,6 +112,7 @@
     "multiplicity": 1
   },
   {
+    "id": 15,
     "name": "Zaklęta Ścieżka",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -105,6 +120,7 @@
     "multiplicity": 1
   },
   {
+    "id": 16,
     "name": "Zaraza",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -112,6 +128,7 @@
     "multiplicity": 1
   },
   {
+    "id": 17,
     "name": "Zasadzka",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -119,6 +136,7 @@
     "multiplicity": 1
   },
   {
+    "id": 18,
     "name": "Zatrute Zioła",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -126,6 +144,7 @@
     "multiplicity": 1
   },
   {
+    "id": 19,
     "name": "Zaćmienie Słońc",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -133,6 +152,7 @@
     "multiplicity": 1
   },
   {
+    "id": 20,
     "name": "Zły Duch",
     "type": "Zdarzenie",
     "subtype": "Spotkanie",
@@ -140,6 +160,7 @@
     "multiplicity": 1
   },
   {
+    "id": 21,
     "name": "Cyklop",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -147,6 +168,7 @@
     "multiplicity": 1
   },
   {
+    "id": 22,
     "name": "Czarna Hybryda",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -154,6 +176,7 @@
     "multiplicity": 1
   },
   {
+    "id": 23,
     "name": "Czerwona Hybryda",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -161,6 +184,7 @@
     "multiplicity": 1
   },
   {
+    "id": 24,
     "name": "Fomoraig",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -168,6 +192,7 @@
     "multiplicity": 1
   },
   {
+    "id": 25,
     "name": "Hadron",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -175,6 +200,7 @@
     "multiplicity": 2
   },
   {
+    "id": 26,
     "name": "Lewiatan",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -182,6 +208,7 @@
     "multiplicity": 1
   },
   {
+    "id": 27,
     "name": "Niedźwiedź",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -189,6 +216,7 @@
     "multiplicity": 1
   },
   {
+    "id": 28,
     "name": "Nobbin",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -196,6 +224,7 @@
     "multiplicity": 2
   },
   {
+    "id": 29,
     "name": "Przybysz z Krainy Cieni",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -203,6 +232,7 @@
     "multiplicity": 1
   },
   {
+    "id": 30,
     "name": "Smok",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -210,6 +240,7 @@
     "multiplicity": 1
   },
   {
+    "id": 31,
     "name": "Sobowtór",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -217,6 +248,7 @@
     "multiplicity": 1
   },
   {
+    "id": 32,
     "name": "Trójgłowy Smok",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -224,6 +256,7 @@
     "multiplicity": 1
   },
   {
+    "id": 33,
     "name": "Wilk",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -231,6 +264,7 @@
     "multiplicity": 1
   },
   {
+    "id": 34,
     "name": "Wilkołak",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -238,6 +272,7 @@
     "multiplicity": 2
   },
   {
+    "id": 35,
     "name": "Wędrowiec",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -245,6 +280,7 @@
     "multiplicity": 1
   },
   {
+    "id": 36,
     "name": "Złoczyńca",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -252,6 +288,7 @@
     "multiplicity": 1
   },
   {
+    "id": 37,
     "name": "Łoś",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -259,6 +296,7 @@
     "multiplicity": 2
   },
   {
+    "id": 38,
     "name": "Śnieżne Monstrum",
     "type": "Zdarzenie",
     "subtype": "Wróg",
@@ -266,6 +304,7 @@
     "multiplicity": 1
   },
   {
+    "id": 39,
     "name": "Demon",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -273,6 +312,7 @@
     "multiplicity": 1
   },
   {
+    "id": 40,
     "name": "Duch Ciemności",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -280,6 +320,7 @@
     "multiplicity": 1
   },
   {
+    "id": 41,
     "name": "Duch Zagłady",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -287,6 +328,7 @@
     "multiplicity": 1
   },
   {
+    "id": 42,
     "name": "Książe Demonów",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -294,6 +336,7 @@
     "multiplicity": 2
   },
   {
+    "id": 43,
     "name": "Upiór",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -301,6 +344,7 @@
     "multiplicity": 2
   },
   {
+    "id": 44,
     "name": "Wampir",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -308,6 +352,7 @@
     "multiplicity": 1
   },
   {
+    "id": 45,
     "name": "Widmo",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -315,6 +360,7 @@
     "multiplicity": 1
   },
   {
+    "id": 46,
     "name": "Zjawa",
     "type": "Zdarzenie",
     "subtype": "Demon",
@@ -322,6 +368,7 @@
     "multiplicity": 1
   },
   {
+    "id": 47,
     "name": "0 0",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -329,6 +376,7 @@
     "multiplicity": 1
   },
   {
+    "id": 48,
     "name": "0 1",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -336,6 +384,7 @@
     "multiplicity": 1
   },
   {
+    "id": 49,
     "name": "1 0",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -343,6 +392,7 @@
     "multiplicity": 1
   },
   {
+    "id": 50,
     "name": "1 1",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -350,6 +400,7 @@
     "multiplicity": 1
   },
   {
+    "id": 51,
     "name": "2 0",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -357,6 +408,7 @@
     "multiplicity": 1
   },
   {
+    "id": 52,
     "name": "2 1",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -364,6 +416,7 @@
     "multiplicity": 1
   },
   {
+    "id": 53,
     "name": "3 0",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -371,6 +424,7 @@
     "multiplicity": 1
   },
   {
+    "id": 54,
     "name": "3 1",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -378,6 +432,7 @@
     "multiplicity": 1
   },
   {
+    "id": 55,
     "name": "4 0",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -385,6 +440,7 @@
     "multiplicity": 1
   },
   {
+    "id": 56,
     "name": "Cudotwórca",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -392,6 +448,7 @@
     "multiplicity": 1
   },
   {
+    "id": 57,
     "name": "Czarodziej",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -399,6 +456,7 @@
     "multiplicity": 1
   },
   {
+    "id": 58,
     "name": "Dobre Bóstwo",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -406,6 +464,7 @@
     "multiplicity": 1
   },
   {
+    "id": 59,
     "name": "Dziki Rumak",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -413,6 +472,7 @@
     "multiplicity": 1
   },
   {
+    "id": 60,
     "name": "Eremita",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -420,6 +480,7 @@
     "multiplicity": 1
   },
   {
+    "id": 61,
     "name": "Jednorożec",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -427,6 +488,7 @@
     "multiplicity": 1
   },
   {
+    "id": 62,
     "name": "Koszmar",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -434,6 +496,7 @@
     "multiplicity": 1
   },
   {
+    "id": 63,
     "name": "Król Lasu",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
@@ -441,6 +504,7 @@
     "multiplicity": 1
   },
   {
+    "id": 64,
     "name": "Arondight",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -448,6 +512,7 @@
     "multiplicity": 1
   },
   {
+    "id": 65,
     "name": "Czarodziejska Kość",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -455,6 +520,7 @@
     "multiplicity": 1
   },
   {
+    "id": 66,
     "name": "Eliksir Siły",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -462,6 +528,7 @@
     "multiplicity": 1
   },
   {
+    "id": 67,
     "name": "Excalibur",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -469,6 +536,7 @@
     "multiplicity": 1
   },
   {
+    "id": 68,
     "name": "Jabłko Natchnienia",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -476,6 +544,7 @@
     "multiplicity": 1
   },
   {
+    "id": 69,
     "name": "Kryształ Losu",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -483,6 +552,7 @@
     "multiplicity": 1
   },
   {
+    "id": 70,
     "name": "Kryształ Magów",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -490,6 +560,7 @@
     "multiplicity": 1
   },
   {
+    "id": 71,
     "name": "Magiczna Sakwa",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -497,6 +568,7 @@
     "multiplicity": 1
   },
   {
+    "id": 72,
     "name": "Magiczny Miecz",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -504,6 +576,7 @@
     "multiplicity": 2
   },
   {
+    "id": 73,
     "name": "Miecz Chaosu",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -511,6 +584,7 @@
     "multiplicity": 1
   },
   {
+    "id": 74,
     "name": "Owoc Jarzębiny Wiedzy",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -518,6 +592,7 @@
     "multiplicity": 1
   },
   {
+    "id": 75,
     "name": "Pierścień Mocy",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -525,6 +600,7 @@
     "multiplicity": 1
   },
   {
+    "id": 76,
     "name": "Relikwiarz",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -532,6 +608,7 @@
     "multiplicity": 1
   },
   {
+    "id": 77,
     "name": "Różdzka Zaklęć",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -539,6 +616,7 @@
     "multiplicity": 1
   },
   {
+    "id": 78,
     "name": "Różdżka Przeznaczenia",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -546,6 +624,7 @@
     "multiplicity": 1
   },
   {
+    "id": 79,
     "name": "Srebrna Strzała",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -553,6 +632,7 @@
     "multiplicity": 1
   },
   {
+    "id": 80,
     "name": "Tajemnicza Szkatuła",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -560,6 +640,7 @@
     "multiplicity": 1
   },
   {
+    "id": 81,
     "name": "Talizman Ognia",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -567,6 +648,7 @@
     "multiplicity": 1
   },
   {
+    "id": 82,
     "name": "Talizman Powietrza",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -574,6 +656,7 @@
     "multiplicity": 1
   },
   {
+    "id": 83,
     "name": "Tarcza Boga Tolimana",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -581,6 +664,7 @@
     "multiplicity": 2
   },
   {
+    "id": 84,
     "name": "Topór Światła i Ciemności",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -588,6 +672,7 @@
     "multiplicity": 1
   },
   {
+    "id": 85,
     "name": "Zwierciadło Zniszczenia",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -595,6 +680,7 @@
     "multiplicity": 1
   },
   {
+    "id": 86,
     "name": "Święta Włócznia",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -602,6 +688,7 @@
     "multiplicity": 1
   },
   {
+    "id": 87,
     "name": "Święty Graal",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -609,6 +696,7 @@
     "multiplicity": 1
   },
   {
+    "id": 88,
     "name": "1 Sztuka Złota",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -616,6 +704,7 @@
     "multiplicity": 15
   },
   {
+    "id": 89,
     "name": "2 Sztuki Złota",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -623,6 +712,7 @@
     "multiplicity": 3
   },
   {
+    "id": 90,
     "name": "Bojowy Rumak",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -630,6 +720,7 @@
     "multiplicity": 1
   },
   {
+    "id": 91,
     "name": "Diament Królów",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -637,6 +728,7 @@
     "multiplicity": 1
   },
   {
+    "id": 92,
     "name": "Gliniana Tabliczka",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -644,6 +736,7 @@
     "multiplicity": 1
   },
   {
+    "id": 93,
     "name": "Hełm",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -651,6 +744,7 @@
     "multiplicity": 1
   },
   {
+    "id": 94,
     "name": "Kij i Sznur",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -658,6 +752,7 @@
     "multiplicity": 1
   },
   {
+    "id": 95,
     "name": "Koń",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -665,6 +760,7 @@
     "multiplicity": 1
   },
   {
+    "id": 96,
     "name": "Latarnia",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -672,6 +768,7 @@
     "multiplicity": 1
   },
   {
+    "id": 97,
     "name": "Magiczny Manuskrypt",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -679,6 +776,7 @@
     "multiplicity": 1
   },
   {
+    "id": 98,
     "name": "Miecz",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -686,6 +784,7 @@
     "multiplicity": 2
   },
   {
+    "id": 99,
     "name": "Muł",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -693,6 +792,7 @@
     "multiplicity": 1
   },
   {
+    "id": 100,
     "name": "Rękawice",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -700,6 +800,7 @@
     "multiplicity": 1
   },
   {
+    "id": 101,
     "name": "Sztylet",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -707,6 +808,7 @@
     "multiplicity": 1
   },
   {
+    "id": 102,
     "name": "Tajemna Sakwa",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -714,6 +816,7 @@
     "multiplicity": 1
   },
   {
+    "id": 103,
     "name": "Tarcza",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -721,6 +824,7 @@
     "multiplicity": 1
   },
   {
+    "id": 104,
     "name": "Wierzchowiec",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -728,6 +832,7 @@
     "multiplicity": 1
   },
   {
+    "id": 105,
     "name": "Zaprzęg",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -735,6 +840,7 @@
     "multiplicity": 1
   },
   {
+    "id": 106,
     "name": "Zbroja",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -742,6 +848,7 @@
     "multiplicity": 1
   },
   {
+    "id": 107,
     "name": "Łódź",
     "type": "Zdarzenie",
     "subtype": "Przedmiot",
@@ -749,6 +856,7 @@
     "multiplicity": 1
   },
   {
+    "id": 108,
     "name": "Alchemik",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -756,6 +864,7 @@
     "multiplicity": 1
   },
   {
+    "id": 109,
     "name": "Chochlik",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -763,6 +872,7 @@
     "multiplicity": 1
   },
   {
+    "id": 110,
     "name": "Elflin",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -770,6 +880,7 @@
     "multiplicity": 1
   },
   {
+    "id": 111,
     "name": "Giermek",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -777,6 +888,7 @@
     "multiplicity": 1
   },
   {
+    "id": 112,
     "name": "Gnom",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -784,6 +896,7 @@
     "multiplicity": 1
   },
   {
+    "id": 113,
     "name": "Krzyżowiec",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -791,6 +904,7 @@
     "multiplicity": 1
   },
   {
+    "id": 114,
     "name": "Księżniczka",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -798,6 +912,7 @@
     "multiplicity": 1
   },
   {
+    "id": 115,
     "name": "Najemnik",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -805,6 +920,7 @@
     "multiplicity": 1
   },
   {
+    "id": 116,
     "name": "Opiekun",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -812,6 +928,7 @@
     "multiplicity": 2
   },
   {
+    "id": 117,
     "name": "Pasterz",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -819,6 +936,7 @@
     "multiplicity": 1
   },
   {
+    "id": 118,
     "name": "Poszukiwacz Przygód",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -826,6 +944,7 @@
     "multiplicity": 1
   },
   {
+    "id": 119,
     "name": "Przewodnik",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -833,6 +952,7 @@
     "multiplicity": 2
   },
   {
+    "id": 120,
     "name": "Przewoźnika",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -840,6 +960,7 @@
     "multiplicity": 1
   },
   {
+    "id": 121,
     "name": "Rusałka",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -847,6 +968,7 @@
     "multiplicity": 1
   },
   {
+    "id": 122,
     "name": "Rycerz",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -854,6 +976,7 @@
     "multiplicity": 1
   },
   {
+    "id": 123,
     "name": "Strzyga",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -861,6 +984,7 @@
     "multiplicity": 1
   },
   {
+    "id": 124,
     "name": "Tragarz",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -868,6 +992,7 @@
     "multiplicity": 1
   },
   {
+    "id": 125,
     "name": "Władca",
     "type": "Zdarzenie",
     "subtype": "Przyjaciel",
@@ -875,6 +1000,7 @@
     "multiplicity": 1
   },
   {
+    "id": 126,
     "name": "Drzewo Życia",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -882,6 +1008,7 @@
     "multiplicity": 1
   },
   {
+    "id": 127,
     "name": "Grota",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -889,6 +1016,7 @@
     "multiplicity": 1
   },
   {
+    "id": 128,
     "name": "Jezioro Magiczne",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -896,6 +1024,7 @@
     "multiplicity": 1
   },
   {
+    "id": 129,
     "name": "Kapliczka Nemed",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -903,6 +1032,7 @@
     "multiplicity": 1
   },
   {
+    "id": 130,
     "name": "Kapliczka Tolimana",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -910,6 +1040,7 @@
     "multiplicity": 1
   },
   {
+    "id": 131,
     "name": "Labirynt",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -917,6 +1048,7 @@
     "multiplicity": 1
   },
   {
+    "id": 132,
     "name": "Nieznana Świątynia",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -924,6 +1056,7 @@
     "multiplicity": 1
   },
   {
+    "id": 133,
     "name": "Sidh",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -931,6 +1064,7 @@
     "multiplicity": 1
   },
   {
+    "id": 134,
     "name": "Skalne Wrota",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -938,6 +1072,7 @@
     "multiplicity": 1
   },
   {
+    "id": 135,
     "name": "Spalona Ziemia",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -945,6 +1080,7 @@
     "multiplicity": 1
   },
   {
+    "id": 136,
     "name": "Tajemne Przejście",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -952,6 +1088,7 @@
     "multiplicity": 1
   },
   {
+    "id": 137,
     "name": "Targowisko",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
@@ -959,6 +1096,7 @@
     "multiplicity": 1
   },
   {
+    "id": 138,
     "name": "Zaklęte Źródło",
     "type": "Zdarzenie",
     "subtype": "Miejsce",
