@@ -6,4 +6,10 @@ export interface IActor {
 
   draggable: boolean;
 
+  isCardStack: boolean;
+
+  name: string;
+
+  faceUrl: string;
+
 }

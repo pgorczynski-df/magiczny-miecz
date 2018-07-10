@@ -3,11 +3,15 @@
     <div class="col-md-9" #viewport style="height: 800px"></div>
     <div class="col-md-3">
       <ul>
+        <!--<li>
+          <button class="btn" (click)="save()">Zapisz</button>
+        </li>-->
         <li>
-          <button class="btn" (click)="save()">Save</button>
+          <button class="btn" (click)="drawCard()" [hidden]="!(selectedActor && selectedActor.isCardStack)">Wyciągnij kartę</button>
         </li>
         <li>
-          <img style="max-width: 200px" src="{{game? game.imgUrl : '' }}" />
+          <span>{{selectedActor ? selectedActor.name : '' }}</span>
+          <img style="max-width: 200px" src="{{selectedActor ? selectedActor.faceUrl : '' }}"/>
         </li>
       </ul>
     </div>

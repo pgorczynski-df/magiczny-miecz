@@ -1,0 +1,968 @@
+﻿[
+  {
+    "name": "Burza Siedmiu Słońc",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/BurzaSiedmiuSlonc.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Danina",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Danina.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Godzina Duchów",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/GodzinaDuchow.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Kometa",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Kometa.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Magiczna Tablica",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/MagicznaTablica.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Mgła",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Mgla.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Posłańcy Bogów",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/PoslancyBogow.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Południca",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Poludnica.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Przesilenie",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Przesilenie.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Sabat Czarownic",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/SabatCzarownic.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Straż",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Straz.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Słup Ognia",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/SlupOgnia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Turniej Rycerski",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/TurniejRycerski.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Układ Planet",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/UkladPlanet.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zaklęta Ścieżka",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/ZakletaSciezka.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zaraza",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Zaraza.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zasadzka",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/Zasadzka.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zatrute Zioła",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/ZatruteZiola.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zaćmienie Słońc",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/ZacmienieSlonc.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zły Duch",
+    "type": "Zdarzenie",
+    "subtype": "Spotkanie",
+    "imageUrl": "/1-Spotkanie/ZlyDuch.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Cyklop",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Cyklop.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Czarna Hybryda",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/CzarnaHybryda.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Czerwona Hybryda",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/CzerwonaHybryda.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Fomoraig",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Fomoraig.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Hadron",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Hadron.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Lewiatan",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Lewiatan.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Niedźwiedź",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Niedzwiedz.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Nobbin",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Nobbin.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Przybysz z Krainy Cieni",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/PrzybyszzKrainyCieni.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Smok",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Smok.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Sobowtór",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Sobowtor.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Trójgłowy Smok",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/TrojglowySmok.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Wilk",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Wilk.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Wilkołak",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Wilkolak.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Wędrowiec",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Wedrowiec.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Złoczyńca",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Zloczynca.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Łoś",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/Łos.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Śnieżne Monstrum",
+    "type": "Zdarzenie",
+    "subtype": "Wróg",
+    "imageUrl": "/2-Wrog/SniezneMonstrum.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Demon",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/Demon.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Duch Ciemności",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/DuchCiemnosci.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Duch Zagłady",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/DuchZaglady.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Książe Demonów",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/KsiazeDemonow.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Upiór",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/Upior.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Wampir",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/Wampir.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Widmo",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/Widmo.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zjawa",
+    "type": "Zdarzenie",
+    "subtype": "Demon",
+    "imageUrl": "/3-Demon/Zjawa.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "0 0",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/00.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "0 1",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/01.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "1 0",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/10.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "1 1",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/11.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "2 0",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/20.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "2 1",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/21.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "3 0",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/30.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "3 1",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/31.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "4 0",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/40.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Cudotwórca",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/Cudotworca.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Czarodziej",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/Czarodziej.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Dobre Bóstwo",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/DobreBostwo.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Dziki Rumak",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/DzikiRumak.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Eremita",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/Eremita.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Jednorożec",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/Jednorozec.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Koszmar",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/Koszmar.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Król Lasu",
+    "type": "Zdarzenie",
+    "subtype": "Nieznajomy",
+    "imageUrl": "/4-Nieznajomy/KrolLasu.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Arondight",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/Arondight.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Czarodziejska Kość",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/CzarodziejskaKosc.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Eliksir Siły",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/EliksirSily.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Excalibur",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/Excalibur.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Jabłko Natchnienia",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/JablkoNatchnienia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Kryształ Losu",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/KrysztalLosu.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Kryształ Magów",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/KrysztalMagow.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Magiczna Sakwa",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/MagicznaSakwa.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Magiczny Miecz",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/MagicznyMiecz.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Miecz Chaosu",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/MieczChaosu.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Owoc Jarzębiny Wiedzy",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/OwocJarzebinyWiedzy.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Pierścień Mocy",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/PierscienMocy.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Relikwiarz",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/Relikwiarz.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Różdzka Zaklęć",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/RozdzkaZaklec.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Różdżka Przeznaczenia",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/RozdzkaPrzeznaczenia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Srebrna Strzała",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/SrebrnaStrzala.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Tajemnicza Szkatuła",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/TajemniczaSzkatula.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Talizman Ognia",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/TalizmanOgnia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Talizman Powietrza",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/TalizmanPowietrza.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Tarcza Boga Tolimana",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/TarczaBogaTolimana.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Topór Światła i Ciemności",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/ToporSwiatlaiCiemnosci.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zwierciadło Zniszczenia",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/ZwierciadloZniszczenia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Święta Włócznia",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/SwietaWlocznia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Święty Graal",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Magiczny/SwietyGraal.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "1 Sztuka Złota",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/1SztukaZlota.png",
+    "multiplicity": 15
+  },
+  {
+    "name": "2 Sztuki Złota",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/2SztukiZlota.png",
+    "multiplicity": 3
+  },
+  {
+    "name": "Bojowy Rumak",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/BojowyRumak.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Diament Królów",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/DiamentKrolow.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Gliniana Tabliczka",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/GlinianaTabliczka.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Hełm",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Helm.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Kij i Sznur",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/KijiSznur.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Koń",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Kon.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Latarnia",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Latarnia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Magiczny Manuskrypt",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/MagicznyManuskrypt.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Miecz",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Miecz.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Muł",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Mul.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Rękawice",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Rekawice.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Sztylet",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Sztylet.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Tajemna Sakwa",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/TajemnaSakwa.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Tarcza",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Tarcza.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Wierzchowiec",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Wierzchowiec.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zaprzęg",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Zaprzeg.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zbroja",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Zbroja.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Łódź",
+    "type": "Zdarzenie",
+    "subtype": "Przedmiot",
+    "imageUrl": "/5-Przedmiot-Zwykly/Łodz.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Alchemik",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Alchemik.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Chochlik",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Chochlik.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Elflin",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Elflin.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Giermek",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Giermek.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Gnom",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Gnom.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Krzyżowiec",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Krzyzowiec.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Księżniczka",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Ksiezniczka.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Najemnik",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Najemnik.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Opiekun",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Opiekun.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Pasterz",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Pasterz.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Poszukiwacz Przygód",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/PoszukiwaczPrzygod.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Przewodnik",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Przewodnik.png",
+    "multiplicity": 2
+  },
+  {
+    "name": "Przewoźnika",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Przewoznika.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Rusałka",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Rusalka.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Rycerz",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Rycerz.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Strzyga",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Strzyga.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Tragarz",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Tragarz.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Władca",
+    "type": "Zdarzenie",
+    "subtype": "Przyjaciel",
+    "imageUrl": "/5-Przyjaciel/Wladca.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Drzewo Życia",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/DrzewoZycia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Grota",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/Grota.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Jezioro Magiczne",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/JezioroMagiczne.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Kapliczka Nemed",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/KapliczkaNemed.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Kapliczka Tolimana",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/KapliczkaTolimana.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Labirynt",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/Labirynt.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Nieznana Świątynia",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/NieznanaSwiatynia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Sidh",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/Sidh.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Skalne Wrota",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/SkalneWrota.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Spalona Ziemia",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/SpalonaZiemia.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Tajemne Przejście",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/TajemnePrzejscie.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Targowisko",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/Targowisko.png",
+    "multiplicity": 1
+  },
+  {
+    "name": "Zaklęte Źródło",
+    "type": "Zdarzenie",
+    "subtype": "Miejsce",
+    "imageUrl": "/6-Miejsce/ZakleteZrodlo.png",
+    "multiplicity": 1
+  }
+]

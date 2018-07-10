@@ -6,19 +6,21 @@ export class BoxObject {
   private _box: THREE.BoxHelper;
   private _group: THREE.Group;
 
-  private _topTexture;
+  constructor(public topTexture: string, public width: number, public aspect: number, public height: number, delay = false) {
+    if (!delay) {
+      this.init();
+    }
+  }
 
-  constructor(topTexture: string, width: number, aspect: number, height: number) {
+  init = () => {
 
-    this._topTexture = topTexture;
-
-    var geometry = new THREE.BoxGeometry(width, height, width / aspect);
+    var geometry = new THREE.BoxGeometry(this.width, this.height, this.width / this.aspect);
 
     var mat = new THREE.MeshPhongMaterial({
       color: 0x7c858e,
     });
 
-    var tex = new THREE.TextureLoader().load(topTexture); //async
+    var tex = new THREE.TextureLoader().load(this.topTexture); //async
     tex.minFilter = THREE.LinearFilter;
 
     var face = new THREE.MeshLambertMaterial({
@@ -39,7 +41,7 @@ export class BoxObject {
     this._mesh.userData["parent"] = this;
 
     this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xffffff));
-    this._box .visible = false;
+    this._box.visible = false;
 
     this._group = new THREE.Group();
     this._group.add(this._mesh);
@@ -50,7 +52,7 @@ export class BoxObject {
 
   get mesh(): THREE.Mesh { return this._mesh; }
 
-  get faceUrl(): THREE.Mesh { return this._topTexture; }
+  get faceUrl(): string { return this.topTexture; }
 
   public register(scene: THREE.Scene): void {
     scene.add(this._group);

@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Game } from "../game/Game";
+import {IActor} from "../game/logic/IActor";
 
 @Component({
   selector: 'app-home',
@@ -12,13 +15,24 @@ export class HomeComponent implements AfterViewInit {
 
   game: Game;
 
+  get selectedActor(): IActor {
+    return this.game ? this.game.world.selectedActor : null;
+  }
+
+  constructor(private httpClient: HttpClient) {
+
+  }
+
   ngAfterViewInit() {
-    this.game = new Game(this.viewport.nativeElement);
+    this.game = new Game(this.viewport.nativeElement, this.httpClient);
   }
 
   save = () => {
     this.game.save();
   };
 
+  drawCard = () => {
+    this.game.world.drawCard();
+  };
 }
 

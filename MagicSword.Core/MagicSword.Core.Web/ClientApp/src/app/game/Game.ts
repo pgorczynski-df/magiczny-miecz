@@ -2,15 +2,16 @@
  * WebGL With Three.js - Lesson 10 - Drag and Drop Objects
  * http://www.script-tutorials.com/webgl-with-three-js-lesson-10/
  */
-
+import { HttpClient } from '@angular/common/http';
 import * as THREE from 'three';
 
 import "../../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 
-import { Skybox } from "./Skybox";
+import {Skybox} from "./Skybox";
 import {World} from "./logic/World";
 import {IActor} from "./logic/IActor";
+import {CardDefinition} from "./logic/CardDefinition";
 
 
 export class Game {
@@ -28,16 +29,14 @@ export class Game {
   //stats: any;
 
   actors: THREE.Object3D[] = [];
-  draggedActor: THREE.Object3D;
+  draggedObject: THREE.Object3D;
 
   world: World;
-
-  imgUrl: string;
 
   get width(): number { return this.container.clientWidth; }
   get height(): number { return this.container.clientHeight; }
 
-  constructor(vieport: any) {
+  constructor(vieport: any, private httpClient: HttpClient) {
 
     this.container = vieport;
 
@@ -114,7 +113,7 @@ export class Game {
 
     //this.scene.add(new THREE.GridHelper(100, 10));
 
-    this.world = new World(this);
+    this.world = new World(this, this.httpClient);
 
     //var composer = new THREE.EffectComposer(this.renderer);
 
@@ -133,6 +132,8 @@ export class Game {
 
     animate();
   }
+
+
 
   registerActor = (actor: IActor) => {
 
@@ -160,19 +161,16 @@ export class Game {
     if (intersects.length > 0) {
 
       let hit = intersects[0].object;
+      this.draggedObject = hit;
 
-      var parent = hit.userData["parent"];
-      this.imgUrl = parent.faceUrl;
+      this.world.selectedActor = <IActor> hit.userData["parent"];
 
-      this.draggedActor = hit;
 
       var intersects2 = this.raycaster.intersectObject(this.plane);
       this.offset.copy(intersects2[0].point).sub(this.plane.position);
 
       this.controls.enabled = false;
 
-    } else {
-      //this.imgUrl = "";
     }
   };
 
@@ -181,16 +179,16 @@ export class Game {
 
     this.updateRaycaster(event);
 
-    if (this.draggedActor) {
+    if (this.draggedObject) {
       var intersects = this.raycaster.intersectObject(this.plane);
 
-      //var parent = <BoxObject> this.draggedActor.userData["parent"];
+      //var parent = <BoxObject> this.draggedObject.userData["parent"];
       //parent.object3D.position.copy(intersects[0].point.sub(this.offset));
 
       if (event.buttons === 2) {
-        this.draggedActor.rotateY((event.movementX) / 300);
+        this.draggedObject.rotateY((event.movementX) / 300);
       } else {
-        this.draggedActor.position.copy(intersects[0].point.sub(this.offset));
+        this.draggedObject.position.copy(intersects[0].point.sub(this.offset));
       }
     } else {
 
@@ -204,18 +202,12 @@ export class Game {
 
   onDocumentMouseUp = (event: MouseEvent) => {
 
-    this.draggedActor = null;
+    this.draggedObject = null;
 
     this.controls.enabled = true;
   };
 
   save = () => {
-    //var exporter = new THREE.SceneExporter();
-    //var sceneJson = JSON.stringify(exporter.parse(this.scene));
-
-    //var sceneLoader = new THREE.SceneLoader();
-    //sceneLoader.parse(JSON.parse(json), function (e) { this.scene = e.scene; }, '.');
-
     console.log(this.scene.toJSON());
   };
 

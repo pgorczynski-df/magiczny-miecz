@@ -1,19 +1,27 @@
 import { BoxObject } from "../BoxObject";
 import {CardStack} from "./CardStack";
 import {CardDefinition} from "./CardDefinition";
+import {IActor} from "./IActor";
 
-export class Card extends BoxObject {
+export class Card extends BoxObject implements IActor {
 
-  private originStack: CardStack;
+  selectable: boolean = true;
+  draggable: boolean = true;
+  isCardStack: boolean = false;
+
+  originStack: CardStack;
 
   definition: CardDefinition;
 
-  constructor(topTexture: string, width: number, aspect: number, height: number) {
-    super(topTexture, width, aspect, height);
+  constructor(topTexture: string, width: number, aspect: number, height: number, delay = false) {
+    super(topTexture, width, aspect, height, delay);
   }
 
   public register(scene: THREE.Scene): void {
     super.register(scene);
   }
 
+  get name() {
+    return this.definition ? this.definition.name : "Karta";
+  } 
 }
