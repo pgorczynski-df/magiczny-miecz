@@ -3,11 +3,14 @@
     <div class="col-md-9" #viewport style="height: 800px"></div>
     <div class="col-md-3">
       <ul>
-        <!--<li>
-          <button class="btn" (click)="save()">Zapisz</button>
-        </li>-->
         <li>
-          <button class="btn" (click)="drawCard()" [hidden]="!(selectedActor && selectedActor.isCardStack)">Wyciągnij kartę</button>
+          <button class="btn" (click)="save()">Zapisz</button>
+          <button class="btn" (click)="load()">Wczytaj</button>
+        </li>
+        <li>
+          <div [hidden]="!(selectedActor && selectedActor.isCardStack)">
+            <button class="btn" (click)="drawCard()" >Wyciągnij kartę</button>
+          </div>
         </li>
         <li>
           <span>{{selectedActor ? selectedActor.name : '' }}</span>

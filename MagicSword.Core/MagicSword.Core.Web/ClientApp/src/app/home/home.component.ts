@@ -27,7 +27,11 @@ export class HomeComponent implements AfterViewInit {
   }
 
   save = () => {
-    this.game.save();
+    this.game.world.save();
+  };
+
+  load = () => {
+    this.game.world.load();
   };
 
   drawCard = () => {

@@ -11,6 +11,7 @@ import {Character} from "./Character";
 import {CardDefinition} from "./CardDefinition";
 import {HttpClient} from "@angular/common/http";
 import {IActor} from "./IActor";
+import {Serializer} from "../dto/Serializer";
 
 export class World {
 
@@ -79,5 +80,21 @@ export class World {
 
     card.register(this.game.scene);
     this.game.actors.push(card.mesh);
+  }
+
+  save = () => {
+
+    var serializer = new Serializer();
+    var c = serializer.serializeCard(this.characters[0]);
+    var ss = JSON.stringify(c);
+    localStorage.setItem("mmsave", ss);
+  }
+
+  load = () => {
+    var ss = localStorage.getItem("mmsave");
+    var serializer = new Serializer();
+    var c = JSON.parse(ss);
+    serializer.deserializeCard(c, this.characters[0]);
+
   }
 }

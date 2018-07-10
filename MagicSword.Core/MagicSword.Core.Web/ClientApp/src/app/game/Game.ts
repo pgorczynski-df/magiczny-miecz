@@ -202,6 +202,7 @@ export class Game {
 
   onDocumentMouseUp = (event: MouseEvent) => {
 
+
     this.draggedObject = null;
 
     this.controls.enabled = true;
