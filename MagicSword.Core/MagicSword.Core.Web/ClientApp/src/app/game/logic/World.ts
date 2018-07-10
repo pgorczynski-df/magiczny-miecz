@@ -9,7 +9,7 @@ import {BoxObject} from "../BoxObject";
 import {CardStack} from "./CardStack";
 import {Character} from "./Character";
 import {CardDefinition} from "./CardDefinition";
-import {HttpClient} from "@angular/common/http/src/client";
+import {HttpClient} from "@angular/common/http";
 import {IActor} from "./IActor";
 
 export class World {
@@ -74,7 +74,7 @@ export class World {
     let card = stack.drawCard();
 
     var object = card.object3D;
-    object.position.x = stack.object3D.position.x + stack.height + 1;
+    object.position.x = stack.object3D.position.x + stack.width + 1;
     object.position.y = 0.5; 
 
     card.register(this.game.scene);
