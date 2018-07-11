@@ -135,7 +135,7 @@ export class Game {
 
   addActor = (actor: IActor) => {
     this.scene.add(actor.object3D);
-    this.interectionObjects.push(actor.mesh);
+    this.interectionObjects.push(actor.object3D);
   }
 
   updateRaycaster = (event: MouseEvent) => {
@@ -155,7 +155,7 @@ export class Game {
 
     this.updateRaycaster(event);
 
-    var intersects = this.raycaster.intersectObjects(this.interectionObjects);
+    var intersects = this.raycaster.intersectObjects(this.interectionObjects, true);
 
     if (intersects.length > 0) {
 
@@ -167,9 +167,7 @@ export class Game {
       }
 
       if (hitActor.draggable) {
-        this.draggedObject = hitMesh;
-        var intersects2 = this.raycaster.intersectObject(this.plane);
-        this.offset.copy(intersects2[0].point).sub(this.plane.position);
+        this.draggedObject = hitActor.object3D;
         this.controls.enabled = false;
       }
 
@@ -184,29 +182,19 @@ export class Game {
     if (this.draggedObject) {
       var intersects = this.raycaster.intersectObject(this.plane);
 
-      //var parent = <BoxObject> this.draggedObject.userData["parent"];
-      //parent.object3D.position.copy(intersects[0].point.sub(this.offset));
-
       if (event.buttons === 2) {
         this.draggedObject.rotateY((event.movementX) / 300);
       } else {
-        this.draggedObject.position.copy(intersects[0].point.sub(this.offset));
+        var int = intersects[0].point;
+        this.draggedObject.position.x = int.x;
+        this.draggedObject.position.z = int.z;
       }
-    } else {
-
-      var intersects2 = this.raycaster.intersectObjects(this.interectionObjects);
-      if (intersects2.length > 0) {
-        this.plane.position.copy(intersects2[0].object.position);
-        //this.plane.lookAt(this.camera.position);
-      }
-    }
+    } 
   };
 
   onDocumentMouseUp = (event: MouseEvent) => {
 
-
     this.draggedObject = null;
-
     this.controls.enabled = true;
   };
 
