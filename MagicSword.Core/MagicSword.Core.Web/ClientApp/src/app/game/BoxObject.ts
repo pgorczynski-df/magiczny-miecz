@@ -6,6 +6,8 @@ export class BoxObject {
   private _box: THREE.BoxHelper;
   private _group: THREE.Group;
 
+  public loaded = false;
+
   constructor(public topTexture: string, public width: number, public aspect: number, public height: number, delay = false) {
     if (!delay) {
       this.init();
@@ -46,6 +48,8 @@ export class BoxObject {
     this._group = new THREE.Group();
     this._group.add(this._mesh);
     this._group.add(this._box);
+
+    this.loaded = true;
   }
 
   get object3D(): THREE.Object3D { return this._group; }

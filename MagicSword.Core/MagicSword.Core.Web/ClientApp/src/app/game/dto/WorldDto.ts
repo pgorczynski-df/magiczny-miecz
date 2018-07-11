@@ -1,7 +1,10 @@
 import {CardDto} from "./CardDto";
+import {CardStackDto} from "./CardStackDto";
 
 export class WorldDto {
 
-  eventCardStack: CardDto;
+  cardStacks: CardStackDto[] = [];
+
+  drawnCards: CardDto[] = [];
 
 }

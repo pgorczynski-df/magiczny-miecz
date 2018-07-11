@@ -15,7 +15,7 @@ export class CardStack extends BoxObject implements IActor  {
 
   cards: Card[] = [];
 
-  constructor(private definition: CardStackDefinition, width: number, aspect: number, height: number) {
+  constructor(public definition: CardStackDefinition, width: number, aspect: number, height: number) {
     super(definition.resourcePath + "/" + definition.imageUrl, width, aspect, height);
   }
 
@@ -24,10 +24,9 @@ export class CardStack extends BoxObject implements IActor  {
       throw new Error("cardDefinitions not set");
     }
 
-    for (var def of this.definition.cardDefinitions) {
-      for (let i = 0; i < def.multiplicity; i++) {
-        var card = new Card(this.definition.resourcePath + "/" + def.imageUrl, this.width, this.aspect, 0.5, true);
-        card.definition = def;
+    for (var cardDefinition of this.definition.cardDefinitions) {
+      for (let i = 0; i < cardDefinition.multiplicity; i++) {
+        var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, 0.5, true);
         card.originStack = this;
         this.cards.push(card);
       }

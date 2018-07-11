@@ -4,6 +4,8 @@ import {Game} from "../Game";
 import {GameDto} from "./GameDto";
 import {World} from "../logic/World";
 import {WorldDto} from "./WorldDto";
+import {CardStack} from "../logic/CardStack";
+import {CardStackDto} from "./CardStackDto";
 
 export class Serializer {
 
@@ -25,22 +27,57 @@ export class Serializer {
 
   serializeWorld = (world: World): WorldDto => {
     var dto = new WorldDto();
+    for (var cardStack of world.cardStacks) {
+      var cardStackDto = this.serializeCardStack(cardStack);
+      dto.cardStacks.push(cardStackDto);
+    }
+    for (var card of world.drawnCards) {
+      var cardDto = this.serializeCard(card);
+      dto.drawnCards.push(cardDto);
+    }
     return dto;
   }
 
   deserializeWorld = (source: WorldDto, target: World): void => {
   }
 
+  serializeCardStack = (cardStack: CardStack): CardStackDto => {
+    var dto = new CardStackDto();
+    dto.definitionId = cardStack.definition.id;
+    for (var card of cardStack.cards) {
+      var cardDto = this.serializeCard(card);
+      dto.cards.push(cardDto);
+    }
+    return dto;
+  }
+
+  deserializeCardStack = (source: CardStackDto, target: CardStack): void => {
+    //TODO
+
+  }
+
   serializeCard = (card: Card): CardDto => {
     var dto = new CardDto();
-    dto.position.copy(card.object3D.position);
-    dto.rotation.copy(card.object3D.rotation);
+    dto.definitionId = card.definition.id;
+    dto.loaded = card.loaded;
+    if (card.loaded) {
+      dto.position.copy(card.object3D.position);
+      dto.rotation.copy(card.object3D.rotation);
+    } else {
+      dto.position = null;
+      dto.rotation = null;
+    }
     return dto;
   }
 
   deserializeCard = (source: CardDto, target: Card): void => {
-    target.object3D.position.copy(source.position);
-    target.object3D.rotation.copy(source.rotation);
+    //TODO
+
+    if (source.loaded) {
+      target.object3D.position.copy(source.position);
+      target.object3D.rotation.copy(source.rotation);
+    }
+
   }
 
 }

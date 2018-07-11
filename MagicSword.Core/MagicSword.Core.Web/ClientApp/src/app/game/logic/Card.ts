@@ -11,10 +11,8 @@ export class Card extends BoxObject implements IActor {
 
   originStack: CardStack;
 
-  definition: CardDefinition;
-
-  constructor(topTexture: string, width: number, aspect: number, height: number, delay = false) {
-    super(topTexture, width, aspect, height, delay);
+  constructor(public definition: CardDefinition, resourcePath: string, width: number, aspect: number, height: number, delay = false) {
+    super(resourcePath + "/" + definition.imageUrl, width, aspect, height, delay);
   }
 
   get name() {

@@ -16,6 +16,7 @@ export class World {
     <CardStackDefinition>{
       id: 1,
       name: "Stos kart Zdarzeń",
+      type: "Zdarzenie",
       resourcePath: "/assets/img/Zdarzenia",
       imageUrl: "ZdarzenieRewers.png",
       cardDefinitionsUrl: "Zdarzenia.json",
@@ -51,20 +52,20 @@ export class World {
       this.game.addActor(cardStack);
     }
 
-    let playersCount = 3;
+    //let playersCount = 3;
 
-    for (var i = 0; i < playersCount; i++) {
+    //for (var i = 0; i < playersCount; i++) {
 
-      var card = new Character("/assets/img/Characters/Barbarzynca.png", 10, 0.8053007135575944, 0.5);
-      this.characters.push(card);
+    //  var card = new Character("/assets/img/Characters/Barbarzynca.png", 10, 0.8053007135575944, 0.5);
+    //  this.characters.push(card);
 
-      var object = card.object3D;
-      object.position.x = (playersCount / 2 - i) * 20;
-      object.position.y = 0.5;
-      object.position.z = 45;
+    //  var object = card.object3D;
+    //  object.position.x = (playersCount / 2 - i) * 20;
+    //  object.position.y = 0.5;
+    //  object.position.z = 45;
 
-      this.game.addActor(card);
-    }
+    //  this.game.addActor(card);
+    //}
 
     //this.beginGame();
   }
