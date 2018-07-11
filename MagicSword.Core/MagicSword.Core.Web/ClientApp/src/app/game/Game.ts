@@ -11,7 +11,7 @@ import "three/examples/js/controls/OrbitControls";
 import {Skybox} from "./Skybox";
 import {World} from "./logic/World";
 import {IActor} from "./logic/IActor";
-import {CardDefinition} from "./logic/CardDefinition";
+import {Serializer} from "./dto/Serializer";
 
 
 export class Game {
@@ -199,8 +199,19 @@ export class Game {
   };
 
   save = () => {
-    console.log(this.scene.toJSON());
-  };
+
+    var serializer = new Serializer();
+    var c = serializer.serializeGame(this);
+    var ss = JSON.stringify(c);
+    localStorage.setItem("mmsave", ss);
+  }
+
+  load = () => {
+    var ss = localStorage.getItem("mmsave");
+    var serializer = new Serializer();
+    var c = JSON.parse(ss);
+    serializer.deserializeGame(c, this);
+  }
 
   threeXWindowResize = (renderer, camera) => {
 

@@ -78,19 +78,5 @@ export class World {
     this.game.addActor(card);
   }
 
-  save = () => {
 
-    var serializer = new Serializer();
-    var c = serializer.serializeCard(this.characters[0]);
-    var ss = JSON.stringify(c);
-    localStorage.setItem("mmsave", ss);
-  }
-
-  load = () => {
-    var ss = localStorage.getItem("mmsave");
-    var serializer = new Serializer();
-    var c = JSON.parse(ss);
-    serializer.deserializeCard(c, this.characters[0]);
-
-  }
 }
