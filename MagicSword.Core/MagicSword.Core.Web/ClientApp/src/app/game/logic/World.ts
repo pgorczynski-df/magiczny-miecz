@@ -26,15 +26,14 @@ export class World {
   constructor(private game: Game, private httpClient: HttpClient) {
 
     this.mmBoard = new GameBoard("/assets/img/World.png", 100, 1.383238405207486, 1);
-    this.mmBoard.register(game.scene);
+    this.game.registerActor(this.mmBoard);
 
     this.eventCardStack = new CardStack("/assets/img/Zdarzenia", "ZdarzenieRewers.png", 10, 1.618257261410788, 3);
     this.eventCardStack.object3D.position.x = -5;
     this.eventCardStack.object3D.position.y = 2;
     this.eventCardStack.name = "Stos kart Zdarzeń";
 
-    this.eventCardStack.register(game.scene);
-    game.actors.push(this.eventCardStack.mesh);
+    this.game.registerActor(this.eventCardStack);
 
     let playersCount = 3;
 
@@ -42,15 +41,13 @@ export class World {
 
       var card = new Character("/assets/img/Characters/Barbarzynca.png", 10, 0.8053007135575944, 0.5);
       this.characters.push(card);
-      card.register(game.scene);
 
       var object = card.object3D;
       object.position.x =  (playersCount / 2 - i) * 20;
       object.position.y = 0.5; 
       object.position.z = 45;
 
-      game.actors.push(card.mesh);
-      //this.actors.push(card.boxMesh);
+      this.game.registerActor(card);
     }
 
     this.loadDefinitions();
@@ -78,8 +75,7 @@ export class World {
     object.position.x = stack.object3D.position.x + stack.width + 1;
     object.position.y = 0.5; 
 
-    card.register(this.game.scene);
-    this.game.actors.push(card.mesh);
+    this.game.registerActor(card);
   }
 
   save = () => {

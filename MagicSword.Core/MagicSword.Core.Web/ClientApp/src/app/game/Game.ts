@@ -28,7 +28,7 @@ export class Game {
   raycaster: THREE.Raycaster;
   //stats: any;
 
-  actors: THREE.Object3D[] = [];
+  interectionObjects: THREE.Object3D[] = [];
   draggedObject: THREE.Object3D;
 
   world: World;
@@ -133,10 +133,9 @@ export class Game {
     animate();
   }
 
-
-
   registerActor = (actor: IActor) => {
-
+    this.scene.add(actor.object3D);
+    this.interectionObjects.push(actor.mesh);
   }
 
   updateRaycaster = (event: MouseEvent) => {
@@ -156,20 +155,23 @@ export class Game {
 
     this.updateRaycaster(event);
 
-    var intersects = this.raycaster.intersectObjects(this.actors);
+    var intersects = this.raycaster.intersectObjects(this.interectionObjects);
 
     if (intersects.length > 0) {
 
-      let hit = intersects[0].object;
-      this.draggedObject = hit;
+      var hitMesh = intersects[0].object;
+      var hitActor = <IActor>hitMesh.userData["parent"];
 
-      this.world.selectedActor = <IActor> hit.userData["parent"];
+      if (hitActor.selectable) {
+        this.world.selectedActor = hitActor;
+      }
 
-
-      var intersects2 = this.raycaster.intersectObject(this.plane);
-      this.offset.copy(intersects2[0].point).sub(this.plane.position);
-
-      this.controls.enabled = false;
+      if (hitActor.draggable) {
+        this.draggedObject = hitMesh;
+        var intersects2 = this.raycaster.intersectObject(this.plane);
+        this.offset.copy(intersects2[0].point).sub(this.plane.position);
+        this.controls.enabled = false;
+      }
 
     }
   };
@@ -192,7 +194,7 @@ export class Game {
       }
     } else {
 
-      var intersects2 = this.raycaster.intersectObjects(this.actors);
+      var intersects2 = this.raycaster.intersectObjects(this.interectionObjects);
       if (intersects2.length > 0) {
         this.plane.position.copy(intersects2[0].object.position);
         //this.plane.lookAt(this.camera.position);

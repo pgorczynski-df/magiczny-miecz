@@ -49,8 +49,5 @@ export class CardStack extends BoxObject implements IActor  {
     return card;
   }
 
-  public register(scene: THREE.Scene): void {
-    super.register(scene);
-  }
 
 }

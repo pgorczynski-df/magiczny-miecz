@@ -54,7 +54,4 @@ export class BoxObject {
 
   get faceUrl(): string { return this.topTexture; }
 
-  public register(scene: THREE.Scene): void {
-    scene.add(this._group);
-  }
 }

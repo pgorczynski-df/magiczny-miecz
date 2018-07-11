@@ -6,8 +6,4 @@ export class Character extends Card {
     super(topTexture, width, aspect, height);
   }
 
-  public register(scene: THREE.Scene): void {
-    super.register(scene);
-  }
-
 }

@@ -17,10 +17,6 @@ export class Card extends BoxObject implements IActor {
     super(topTexture, width, aspect, height, delay);
   }
 
-  public register(scene: THREE.Scene): void {
-    super.register(scene);
-  }
-
   get name() {
     return this.definition ? this.definition.name : "Karta";
   }
