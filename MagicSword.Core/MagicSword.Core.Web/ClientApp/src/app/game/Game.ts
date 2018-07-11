@@ -133,7 +133,7 @@ export class Game {
     animate();
   }
 
-  registerActor = (actor: IActor) => {
+  addActor = (actor: IActor) => {
     this.scene.add(actor.object3D);
     this.interectionObjects.push(actor.mesh);
   }

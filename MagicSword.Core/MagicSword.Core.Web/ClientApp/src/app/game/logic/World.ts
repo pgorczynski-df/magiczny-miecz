@@ -26,14 +26,14 @@ export class World {
   constructor(private game: Game, private httpClient: HttpClient) {
 
     this.mmBoard = new GameBoard("/assets/img/World.png", 100, 1.383238405207486, 1);
-    this.game.registerActor(this.mmBoard);
+    this.game.addActor(this.mmBoard);
 
     this.eventCardStack = new CardStack("/assets/img/Zdarzenia", "ZdarzenieRewers.png", 10, 1.618257261410788, 3);
     this.eventCardStack.object3D.position.x = -5;
     this.eventCardStack.object3D.position.y = 2;
     this.eventCardStack.name = "Stos kart Zdarzeń";
 
-    this.game.registerActor(this.eventCardStack);
+    this.game.addActor(this.eventCardStack);
 
     let playersCount = 3;
 
@@ -47,7 +47,7 @@ export class World {
       object.position.y = 0.5; 
       object.position.z = 45;
 
-      this.game.registerActor(card);
+      this.game.addActor(card);
     }
 
     this.loadDefinitions();
@@ -75,7 +75,7 @@ export class World {
     object.position.x = stack.object3D.position.x + stack.width + 1;
     object.position.y = 0.5; 
 
-    this.game.registerActor(card);
+    this.game.addActor(card);
   }
 
   save = () => {
