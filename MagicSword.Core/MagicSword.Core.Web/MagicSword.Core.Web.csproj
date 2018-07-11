@@ -33,6 +33,7 @@
     <None Remove="ClientApp\src\app\game\logic\Card.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardStack.ts" />
+    <None Remove="ClientApp\src\app\game\logic\CardStackDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\Character.ts" />
     <None Remove="ClientApp\src\app\game\logic\GameBoard.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
@@ -47,6 +48,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\GameDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\WorldDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\Card.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStack.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\Character.ts" />

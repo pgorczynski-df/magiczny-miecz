@@ -36,6 +36,8 @@ export class Game {
   get width(): number { return this.container.clientWidth; }
   get height(): number { return this.container.clientHeight; }
 
+  static HttpClient: HttpClient;
+
   constructor(vieport: any, private httpClient: HttpClient) {
 
     this.container = vieport;
@@ -43,6 +45,8 @@ export class Game {
     if (!this.container) {
       throw new Error("cannot find viewport");
     }
+
+    Game.HttpClient = httpClient;
 
     //console.log(this.width);
     //console.log(this.height);
