@@ -78,11 +78,8 @@ export class Serializer {
 
   private deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[]) => {
     for (var cardDto of sourceCollection) {
-      var card = stack.createCard(cardDto.definitionId, !cardDto.loaded);
+      var card = this.deserializeCard(world, stack, cardDto);
       targetCollection.push(card);
-      if (cardDto.loaded) {
-        world.addNewCard(card);
-      }
     }
   }
 
@@ -98,13 +95,13 @@ export class Serializer {
     return dto;
   }
 
-  deserializeCard = (source: CardDto, target: Card): void => {
-    //TODO
-
-    if (source.loaded) {
-      this.deserializeObject3D(source.object3D, target.object3D);
+  deserializeCard = (world: World, stack: CardStack, cardDto: CardDto): Card => {
+    var card = stack.createCard(cardDto.definitionId, !cardDto.loaded);
+    if (cardDto.loaded) {
+      world.addNewCard(card);
+      this.deserializeObject3D(cardDto.object3D, card.object3D);
     }
-
+    return card;
   }
 
   serializeObject3D = (object3D: THREE.Object3D): Object3dDto => {

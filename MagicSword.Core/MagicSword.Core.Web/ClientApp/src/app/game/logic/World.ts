@@ -86,16 +86,19 @@ export class World {
 
   cleanup = () => {
 
-    this.selectedActor = null;
+    this.clearSelectedActor();
 
     for (var stack of this.cardStacks) {
       for (var card of stack.drawnCards) {
         this.disposeCardInternal(card);
       }
       stack.cleanup();
+
       stack.object3D.position.x = -5;
       stack.object3D.position.y = 2;
       stack.object3D.position.z = 0;
+
+      stack.object3D.rotation.set(0, 0, 0);
     }
   }
 
@@ -116,8 +119,21 @@ export class World {
 
   disposeCard = () => {
     let card = <Card>this.selectedActor;
-    this.selectedActor = null;
+    this.clearSelectedActor();
     this.disposeCardInternal(card);
+  }
+
+  selectActor(actor: IActor) {
+    this.clearSelectedActor();
+    this.selectedActor = actor;
+    this.selectedActor.isSelected = true;
+  }
+
+  clearSelectedActor = () => {
+    if (this.selectedActor) {
+      this.selectedActor.isSelected = false;
+    }
+    this.selectedActor = null;
   }
 
   private disposeCardInternal = (card: Card) => {
