@@ -20,7 +20,19 @@ export class World {
       resourcePath: "/assets/img/Zdarzenia",
       imageUrl: "ZdarzenieRewers.png",
       cardDefinitionsUrl: "Zdarzenia.json",
-    }
+      initialPosition: new THREE.Vector3(-5, 2, 0),
+      initialRotation: new THREE.Euler(),
+    },
+    <CardStackDefinition>{
+      id: 2,
+      name: "Stos kart Wyposażenia",
+      type: "Wyposażenie",
+      resourcePath: "/assets/img/Wyposazenie",
+      imageUrl: "00WyposazenieRewers.png",
+      cardDefinitionsUrl: "Wyposazenie.json",
+      initialPosition: new THREE.Vector3(0, 2, -50),
+      initialRotation: new THREE.Euler(),
+    },
   ];
 
   selectedActor: IActor;
@@ -30,8 +42,6 @@ export class World {
   cardStacks: CardStack[] = [];
 
   characters: Character[] = [];
-
-  //drawnCards: Card[] = [];
 
   constructor(private game: Game, private httpClient: HttpClient) {
 
@@ -43,13 +53,10 @@ export class World {
       this.loadCardDefinitions(definition);
 
       var cardStack = new CardStack(definition, 10, 1.618257261410788, 3);
+      cardStack.cleanup(); //set initial coordinates
 
       this.cardStacks.push(cardStack);
       this.game.addActor(cardStack);
-
-      cardStack.object3D.position.x = -5;
-      cardStack.object3D.position.y = 2;
-      cardStack.object3D.position.z = 0;
     }
 
     //let playersCount = 3;
@@ -73,8 +80,20 @@ export class World {
   public loadCardDefinitions = (stackDefinition: CardStackDefinition) => {
     Game.HttpClient.get(stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl).subscribe((res: CardDefinition[]) => {
       stackDefinition.cardDefinitions = res;
-      this.newGame();
+      if (this.ensureLoaded()) {
+        this.newGame();
+      }
     });
+  }
+
+  //TODO nicefy
+  private ensureLoaded = () : boolean => {
+    for (var stack of this.cardStacks) {
+      if (!stack.definition.cardDefinitions) {
+        return false;
+      }
+    }
+    return true;
   }
 
   newGame = () => {
@@ -93,12 +112,6 @@ export class World {
         this.disposeCardInternal(card);
       }
       stack.cleanup();
-
-      stack.object3D.position.x = -5;
-      stack.object3D.position.y = 2;
-      stack.object3D.position.z = 0;
-
-      stack.object3D.rotation.set(0, 0, 0);
     }
   }
 

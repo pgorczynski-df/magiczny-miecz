@@ -1,5 +1,6 @@
-import {CardDefinition} from "./CardDefinition";
-import {Game} from "../Game";
+import * as THREE from 'three';
+
+import { CardDefinition } from "./CardDefinition";
 
 export class CardStackDefinition {
 
@@ -17,5 +18,7 @@ export class CardStackDefinition {
 
   cardDefinitions: CardDefinition[];
 
+  initialPosition: THREE.Vector3 = new THREE.Vector3();
 
+  initialRotation: THREE.Euler = new THREE.Euler();
 }

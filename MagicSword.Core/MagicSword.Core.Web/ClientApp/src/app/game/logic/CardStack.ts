@@ -80,5 +80,8 @@ export class CardStack extends BoxObject implements IActor  {
     this.cards = [];
     this.drawnCards = [];
     this.disposedCards = [];
+
+    this.object3D.position.copy(this.definition.initialPosition);
+    this.object3D.rotation.copy(this.definition.initialRotation);
   }
 }

@@ -1,0 +1,98 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Hełm",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Helm.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 2,
+    "name": "Kij i Sznur",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/KijiSznur.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 3,
+    "name": "Koń",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Kon.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 4,
+    "name": "Latarnia",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Latarnia.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 5,
+    "name": "Magiczny Miecz",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/MagicznyMiecz.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 6,
+    "name": "Miecz",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Miecz.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 7,
+    "name": "Rękawice",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Rekawice.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 8,
+    "name": "Sztylet",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Sztylet.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 9,
+    "name": "Tarcza Tolimana",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/TarczaTolimana.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 10,
+    "name": "Tarcza",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Tarcza.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 11,
+    "name": "Zbroja",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Zbroja.png",
+    "multiplicity": 3
+  },
+  {
+    "id": 12,
+    "name": "Łódź",
+    "type": "Wyposażenie",
+    "subtype": "",
+    "imageUrl": "/Łodz.png",
+    "multiplicity": 3
+  }
+]

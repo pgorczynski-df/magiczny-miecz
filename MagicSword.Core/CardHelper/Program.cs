@@ -12,9 +12,9 @@ namespace CardHelper
     {
         static void Main(string[] args)
         {
-            var sourceDir = "F:\\Zdarzenia";
+            var sourceDir = "C:\\Users\\pawelgorczynski\\Downloads\\Wyposażenie";
 
-            var targetDir = "F:\\ZdarzeniaOut";
+            var targetDir = "C:\\Users\\pawelgorczynski\\Downloads\\Wyposazenie";
 
             //if (Directory.Exists(targetDir))
             //{
@@ -25,21 +25,21 @@ namespace CardHelper
 
             var id = 1;
 
-            foreach (var directory in Directory.GetDirectories(sourceDir))
+            //foreach (var directory in Directory.GetDirectories(sourceDir))
             {
-                var dirName = directory.Split(Path.DirectorySeparatorChar).Last();
+                //var dirName = directory.Split(Path.DirectorySeparatorChar).Last();
 
-                var catName = dirName.Split(' ')[1];
+                //var catName = dirName.Split(' ')[1];
 
-                var targetDirName = RemoveDiacritics(dirName.Replace(" ", "-"));
+                //var targetDirName = RemoveDiacritics(dirName.Replace(" ", "-"));
 
-                var td = targetDir + "\\" + targetDirName;
-                if (!Directory.Exists(td))
-                {
-                    Directory.CreateDirectory(td);
-                }
+                //var td = targetDir + "\\" + targetDirName;
+                //if (!Directory.Exists(td))
+                //{
+                //    Directory.CreateDirectory(td);
+                //}
 
-                var files = Directory.GetFiles(directory);
+                var files = Directory.GetFiles(sourceDir);
                 foreach (var file in files)
                 {
 //Log(RemoveDiacritics(file));
@@ -57,24 +57,26 @@ namespace CardHelper
 
                     var targetFileName = RemoveDiacritics(name.Replace(" ", String.Empty)) + ".png";
 
-                    var targetPath = "/" + targetDirName + "/" + targetFileName;
+                    var targetPath = /*"/" + targetDirName +*/ "/" + targetFileName;
 
                     result.Add(new
                     {
                         id = id,
                         name = name,
-                        type = "Zdarzenie",
-                        subtype = catName,
+                        type = "Wyposażenie",
+                        subtype = "",
                         imageUrl = targetPath,
-                        multiplicity = multiplicity,
+                        multiplicity = 3,
                     });
+
+                    File.Copy(file, targetDir + targetPath);
 
                     id++;
                 }
             }
 
             var json = JsonConvert.SerializeObject(result, Formatting.Indented);
-            File.WriteAllText("Zdarzenia.json", json, Encoding.UTF8);
+            File.WriteAllText(targetDir + "\\"  + "Wyposazenie.json", json, Encoding.UTF8);
 
             Log(json);
         }
