@@ -31,7 +31,7 @@ export class World {
 
   characters: Character[] = [];
 
-  drawnCards: Card[] = [];
+  //drawnCards: Card[] = [];
 
   constructor(private game: Game, private httpClient: HttpClient) {
 
@@ -67,17 +67,17 @@ export class World {
     //  this.game.addActor(card);
     //}
 
-    //this.beginGame();
+    //this.newGame();
   }
 
   public loadCardDefinitions = (stackDefinition: CardStackDefinition) => {
     Game.HttpClient.get(stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl).subscribe((res: CardDefinition[]) => {
       stackDefinition.cardDefinitions = res;
-      this.beginGame();
+      this.newGame();
     });
   }
 
-  beginGame = () => {
+  newGame = () => {
     for (var stack of this.cardStacks) {
       stack.buildStack();
     }
@@ -92,8 +92,13 @@ export class World {
     object.position.y = 0.5;
 
     this.game.addActor(card);
-    this.drawnCards.push(card);
+    //this.drawnCards.push(card);
   }
 
-
+  disposeCard = () => {
+    let card = <Card>this.selectedActor;
+    this.selectedActor = null;
+    card.dispose();
+    this.game.removeActor(card);
+  }
 }

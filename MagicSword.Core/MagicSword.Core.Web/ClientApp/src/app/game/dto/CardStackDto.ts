@@ -7,4 +7,8 @@ export class CardStackDto {
 
   cards: CardDto[] = [];
 
+  drawnCards: CardDto[] = [];
+
+  disposedCards: CardDto[] = [];
+
 }

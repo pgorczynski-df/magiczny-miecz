@@ -5,6 +5,6 @@ export class WorldDto {
 
   cardStacks: CardStackDto[] = [];
 
-  drawnCards: CardDto[] = [];
+  //drawnCards: CardDto[] = [];
 
 }

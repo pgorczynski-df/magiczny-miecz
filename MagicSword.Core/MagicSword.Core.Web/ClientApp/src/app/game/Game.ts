@@ -142,6 +142,18 @@ export class Game {
     this.interectionObjects.push(actor.object3D);
   }
 
+  removeActor = (actor: IActor) => {
+    var object3D = actor.object3D;
+
+    this.interectionObjects = this.interectionObjects.filter(obj => obj !== object3D);
+    //just in case
+    if (this.draggedObject === actor.object3D) { 
+      this.draggedObject = null;
+    }
+
+    this.scene.remove(object3D);
+  }
+
   updateRaycaster = (event: MouseEvent) => {
 
     var mouseX = (event.offsetX / this.width) * 2 - 1;

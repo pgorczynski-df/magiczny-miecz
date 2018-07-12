@@ -49,7 +49,7 @@ export class BoxObject {
 
     this._mesh = new THREE.Mesh(geometry, materials);
 
-    this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0x933ec4));
+    this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xd9ea23));
     this._box.visible = false;
 
     this._group = new THREE.Group();
@@ -59,6 +59,12 @@ export class BoxObject {
     this._mesh.userData["parent"] = this._box.userData["parent"] = this._group.userData["parent"] = this;
 
     this.loaded = true;
+  }
+
+  unload = () => {
+    //TODO?
+
+    this.loaded = false;
   }
 
   get object3D(): THREE.Object3D { return this._group; }

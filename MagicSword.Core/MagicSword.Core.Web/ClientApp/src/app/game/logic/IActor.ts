@@ -12,6 +12,8 @@ export interface IActor {
 
   draggable: boolean;
 
+  isCard: boolean;
+
   isCardStack: boolean;
 
   name: string;

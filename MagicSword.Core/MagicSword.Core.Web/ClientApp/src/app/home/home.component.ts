@@ -37,5 +37,9 @@ export class HomeComponent implements AfterViewInit {
   drawCard = () => {
     this.game.world.drawCard();
   };
+
+  disposeCard = () => {
+    this.game.world.disposeCard();
+  };
 }
 

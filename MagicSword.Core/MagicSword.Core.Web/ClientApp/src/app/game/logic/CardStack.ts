@@ -8,12 +8,17 @@ export class CardStack extends BoxObject implements IActor  {
 
   selectable: boolean = true;
   draggable: boolean = true;
+  isCard: boolean = false;
   isCardStack: boolean = true;
 
   get name() { return this.definition.name; }
   get type() { return this.definition.type; }
 
   cards: Card[] = [];
+
+  drawnCards: Card[] = [];
+
+  disposedCards: Card[] = [];
 
   constructor(public definition: CardStackDefinition, width: number, aspect: number, height: number) {
     super(definition.resourcePath + "/" + definition.imageUrl, width, aspect, height);
@@ -45,8 +50,14 @@ export class CardStack extends BoxObject implements IActor  {
     card.init();
     card.object3D.position.copy(this.object3D.position);
 
+    this.drawnCards.push(card);
+
     return card;
   }
 
-
+  public disposeCard = (card: Card) => {
+    this.drawnCards = this.drawnCards.filter(obj => obj !== card);
+    this.disposedCards.push(card);
+    card.unload();
+  }
 }

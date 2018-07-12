@@ -31,10 +31,10 @@ export class Serializer {
       var cardStackDto = this.serializeCardStack(cardStack);
       dto.cardStacks.push(cardStackDto);
     }
-    for (var card of world.drawnCards) {
-      var cardDto = this.serializeCard(card);
-      dto.drawnCards.push(cardDto);
-    }
+    //for (var card of world.drawnCards) {
+    //  var cardDto = this.serializeCard(card);
+    //  dto.drawnCards.push(cardDto);
+    //}
     return dto;
   }
 
@@ -44,10 +44,22 @@ export class Serializer {
   serializeCardStack = (cardStack: CardStack): CardStackDto => {
     var dto = new CardStackDto();
     dto.definitionId = cardStack.definition.id;
+
     for (var card of cardStack.cards) {
       var cardDto = this.serializeCard(card);
       dto.cards.push(cardDto);
     }
+
+    for (var card2 of cardStack.drawnCards) {
+      var cardDto2 = this.serializeCard(card2);
+      dto.drawnCards.push(cardDto2);
+    }
+
+    for (var card3 of cardStack.disposedCards) {
+      var cardDto3 = this.serializeCard(card3);
+      dto.disposedCards.push(cardDto3);
+    }
+
     return dto;
   }
 

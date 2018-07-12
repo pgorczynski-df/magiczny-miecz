@@ -11,6 +11,9 @@
           <div [hidden]="!(selectedActor && selectedActor.isCardStack)">
             <button class="btn" (click)="drawCard()" >Wyciągnij kartę</button>
           </div>
+          <div [hidden]="!(selectedActor && selectedActor.isCard)">
+            <button class="btn" (click)="disposeCard()" >Odłóż kartę</button>
+          </div>
         </li>
         <li>
           <span>{{selectedActor ? selectedActor.name : '' }}</span>

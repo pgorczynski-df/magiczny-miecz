@@ -7,6 +7,7 @@ export class Card extends BoxObject implements IActor {
 
   selectable: boolean = true;
   draggable: boolean = true;
+  isCard: boolean = true;
   isCardStack: boolean = false;
 
   originStack: CardStack;
@@ -18,5 +19,8 @@ export class Card extends BoxObject implements IActor {
   get name() {
     return this.definition ? this.definition.name : "Karta";
   }
-  
+
+  dispose = () => {
+    this.originStack.disposeCard(this);
+  }
 }
