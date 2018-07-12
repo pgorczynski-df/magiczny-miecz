@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {Object3dDto} from "./Object3dDto";
 
 export class CardDto {
 
@@ -6,8 +7,6 @@ export class CardDto {
 
   loaded: boolean;
 
-  position: THREE.Vector3 = new THREE.Vector3();
-
-  rotation: THREE.Euler = new THREE.Euler();
+  object3D = new Object3dDto();
 
 }

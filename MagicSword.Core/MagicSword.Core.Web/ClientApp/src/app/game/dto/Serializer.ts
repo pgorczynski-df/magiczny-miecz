@@ -6,22 +6,19 @@ import {World} from "../logic/World";
 import {WorldDto} from "./WorldDto";
 import {CardStack} from "../logic/CardStack";
 import {CardStackDto} from "./CardStackDto";
+import {Object3dDto} from "./Object3dDto";
 
 export class Serializer {
 
   serializeGame = (game: Game): GameDto => {
     var dto = new GameDto();
-    dto.cameraPosition.copy(game.camera.position);
-    dto.cameraRotation.copy(game.camera.rotation);
-
+    dto.camera = this.serializeObject3D(game.camera);
     dto.world = this.serializeWorld(game.world);
     return dto;
   }
 
   deserializeGame = (source: GameDto, target: Game): void => {
-    target.camera.position.copy(source.cameraPosition);
-    target.camera.rotation.copy(source.cameraRotation);
-
+    this.deserializeObject3D(source.camera, target.camera);
     this.deserializeWorld(source.world, target.world);
   }
 
@@ -44,6 +41,7 @@ export class Serializer {
   serializeCardStack = (cardStack: CardStack): CardStackDto => {
     var dto = new CardStackDto();
     dto.definitionId = cardStack.definition.id;
+    dto.object3D = this.serializeObject3D(cardStack.object3D);
 
     for (var card of cardStack.cards) {
       var cardDto = this.serializeCard(card);
@@ -73,11 +71,9 @@ export class Serializer {
     dto.definitionId = card.definition.id;
     dto.loaded = card.loaded;
     if (card.loaded) {
-      dto.position.copy(card.object3D.position);
-      dto.rotation.copy(card.object3D.rotation);
+      dto.object3D = this.serializeObject3D(card.object3D);
     } else {
-      dto.position = null;
-      dto.rotation = null;
+      dto.object3D = null;
     }
     return dto;
   }
@@ -86,10 +82,21 @@ export class Serializer {
     //TODO
 
     if (source.loaded) {
-      target.object3D.position.copy(source.position);
-      target.object3D.rotation.copy(source.rotation);
+      this.deserializeObject3D(source.object3D, target.object3D);
     }
 
+  }
+
+  serializeObject3D = (object3D: THREE.Object3D): Object3dDto => {
+    var dto = new Object3dDto();
+    dto.position.copy(object3D.position);
+    dto.rotation.copy(object3D.rotation);
+    return dto;
+  }
+
+  deserializeObject3D = (source: Object3dDto, object3D: THREE.Object3D) => {
+    object3D.position.copy(source.position);
+    object3D.rotation.copy(source.rotation);
   }
 
 }
