@@ -6,7 +6,7 @@ import {World} from "../logic/World";
 import {WorldDto} from "./WorldDto";
 import {CardStack} from "../logic/CardStack";
 import {CardStackDto} from "./CardStackDto";
-import {Object3dDto} from "./Object3dDto";
+import {Object3DDto as Object3dDto} from "./Object3DDto";
 
 export class Serializer {
 
@@ -31,10 +31,6 @@ export class Serializer {
       var cardStackDto = this.serializeCardStack(cardStack);
       dto.cardStacks.push(cardStackDto);
     }
-    //for (var card of world.drawnCards) {
-    //  var cardDto = this.serializeCard(card);
-    //  dto.drawnCards.push(cardDto);
-    //}
     return dto;
   }
 

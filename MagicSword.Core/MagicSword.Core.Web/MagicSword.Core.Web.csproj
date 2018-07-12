@@ -45,7 +45,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\game\BoxObject.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\Object3dDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\Object3DDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardStackDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\Serializer.ts" />

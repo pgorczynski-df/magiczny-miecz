@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {Object3dDto} from "./Object3dDto";
+import {Object3DDto as Object3dDto} from "./Object3DDto";
 
 export class CardDto {
 

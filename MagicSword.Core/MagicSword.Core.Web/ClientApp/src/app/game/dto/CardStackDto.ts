@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {CardDto} from "./CardDto";
-import {Object3dDto} from "./Object3dDto";
+import {Object3DDto as Object3dDto} from "./Object3DDto";
 
 export class CardStackDto {
 
