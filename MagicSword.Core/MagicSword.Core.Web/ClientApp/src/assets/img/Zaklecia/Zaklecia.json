@@ -1,0 +1,218 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Fatum",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Fatum.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 2,
+    "name": "Formuła Czasu",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/FormulaCzasu.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 3,
+    "name": "Formuła Przestrzeni",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/FormulaPrzestrzeni.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 4,
+    "name": "Golem",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Golem.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 5,
+    "name": "Homunculus",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Homunculus.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 6,
+    "name": "Kamień Filozoficzny",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/KamienFilozoficzny.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 7,
+    "name": "Krąg Płomieni",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/KragPlomieni.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 8,
+    "name": "Magia i Miecz",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/MagiaiMiecz.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 9,
+    "name": "Magiczna Wędrówka",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/MagicznaWedrowka.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 10,
+    "name": "Ocalony",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Ocalony.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 11,
+    "name": "Odmiana Losu",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/OdmianaLosu.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 12,
+    "name": "Odrodzenie",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Odrodzenie.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 13,
+    "name": "Olśnienie",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Olsnienie.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 14,
+    "name": "Pan Bogactwa",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/PanBogactwa.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 15,
+    "name": "Pan Przyjaciół",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/PanPrzyjaciol.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 16,
+    "name": "Pan Trzęsawisk",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/PanTrzesawisk.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 17,
+    "name": "Powiew Śmierci",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/PowiewSmierci.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 18,
+    "name": "Siedem Wichrów",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/SiedemWichrow.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 19,
+    "name": "Siewca Spustoszenia",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/SiewcaSpustoszenia.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 20,
+    "name": "Szaleństwo",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Szalenstwo.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 21,
+    "name": "Wojna Żywiołów",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/WojnaZywiolow.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 22,
+    "name": "Władca Czarów",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/WladcaCzarow.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 23,
+    "name": "Władca Gromu",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/WladcaGromu.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 24,
+    "name": "Władca Lodu",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/WladcaLodu.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 25,
+    "name": "Władca Zaklęć",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/WladcaZaklec.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 26,
+    "name": "Władca Zdarzeń",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/WladcaZdarzen.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 27,
+    "name": "Zwierciadło",
+    "type": "Zaklęcie",
+    "subtype": "",
+    "imageUrl": "/Zwierciadlo.png",
+    "multiplicity": 1
+  }
+]

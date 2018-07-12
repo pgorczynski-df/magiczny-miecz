@@ -33,6 +33,16 @@ export class World {
       initialPosition: new THREE.Vector3(0, 2, -50),
       initialRotation: new THREE.Euler(),
     },
+    <CardStackDefinition>{
+      id: 3,
+      name: "Stos kart Zaklęć",
+      type: "Zaklęcie",
+      resourcePath: "/assets/img/Zaklecia",
+      imageUrl: "00ZaklecieRewers.png",
+      cardDefinitionsUrl: "Zaklecia.json",
+      initialPosition: new THREE.Vector3(12, 2, -50),
+      initialRotation: new THREE.Euler(),
+    },
   ];
 
   selectedActor: IActor;
