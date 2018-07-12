@@ -40,7 +40,7 @@ export class World {
 
     for (var j = 0; j < this.cardStackDefinitions.length; j++) {
       var definition = this.cardStackDefinitions[j];
-      this.loadDefinitions(definition);
+      this.loadCardDefinitions(definition);
 
       var cardStack = new CardStack(definition, 10, 1.618257261410788, 3);
 
@@ -70,7 +70,7 @@ export class World {
     //this.beginGame();
   }
 
-  public loadDefinitions = (stackDefinition: CardStackDefinition) => {
+  public loadCardDefinitions = (stackDefinition: CardStackDefinition) => {
     Game.HttpClient.get(stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl).subscribe((res: CardDefinition[]) => {
       stackDefinition.cardDefinitions = res;
       this.beginGame();

@@ -7,6 +7,15 @@ export class BoxObject {
   private _group: THREE.Group;
 
   public loaded = false;
+  private _selected = false;
+
+  get isSelected(): boolean {
+     return this._selected;
+  }
+  set isSelected(value: boolean) {
+    this._selected = value;
+    this._box.visible = value;
+  }
 
   constructor(public topTexture: string, public width: number, public aspect: number, public height: number, delay = false) {
     if (!delay) {
@@ -40,14 +49,14 @@ export class BoxObject {
 
     this._mesh = new THREE.Mesh(geometry, materials);
 
-    this._mesh.userData["parent"] = this;
-
-    this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xffffff));
+    this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0x933ec4));
     this._box.visible = false;
 
     this._group = new THREE.Group();
     this._group.add(this._mesh);
     this._group.add(this._box);
+
+    this._mesh.userData["parent"] = this._box.userData["parent"] = this._group.userData["parent"] = this;
 
     this.loaded = true;
   }

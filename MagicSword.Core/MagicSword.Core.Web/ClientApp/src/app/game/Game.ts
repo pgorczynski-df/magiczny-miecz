@@ -167,7 +167,11 @@ export class Game {
       var hitActor = <IActor>hitMesh.userData["parent"];
 
       if (hitActor.selectable) {
+        if (this.world.selectedActor) {
+          this.world.selectedActor.isSelected = false;
+        }
         this.world.selectedActor = hitActor;
+        this.world.selectedActor.isSelected = true;
       }
 
       if (hitActor.draggable) {

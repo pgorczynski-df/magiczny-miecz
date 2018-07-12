@@ -1,9 +1,10 @@
 import {Card} from "./Card";
+import {CardDefinition} from "./CardDefinition";
 
 export class Character extends Card {
 
-  constructor(topTexture: string, width: number, aspect: number, height: number) {
-    super(topTexture, width, aspect, height);
+  constructor(definition: CardDefinition, resourcePath: string, width: number, aspect: number, height: number) {
+    super(definition, resourcePath, width, aspect, height);
   }
 
 }

@@ -8,6 +8,8 @@ export interface IActor {
 
   selectable: boolean;
 
+  isSelected: boolean;
+
   draggable: boolean;
 
   isCardStack: boolean;
@@ -15,5 +17,6 @@ export interface IActor {
   name: string;
 
   faceUrl: string;
+
 
 }
