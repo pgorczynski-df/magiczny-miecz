@@ -24,20 +24,35 @@ export class CardStack extends BoxObject implements IActor  {
     super(definition.resourcePath + "/" + definition.imageUrl, width, aspect, height);
   }
 
-  buildStack = () => {
+  public buildStack = () => {
     if (!this.definition.cardDefinitions) {
       throw new Error("cardDefinitions not set");
     }
 
     for (var cardDefinition of this.definition.cardDefinitions) {
       for (let i = 0; i < cardDefinition.multiplicity; i++) {
-        var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, 0.5, true);
-        card.originStack = this;
+        var card = this.createCardInternal(cardDefinition, true);
         this.cards.push(card);
       }
     }
 
     //TODO shuffle
+  }
+
+  public createCard = (definitionId: number, delay: boolean) => {
+    var definition = this.findDefinition(definitionId);
+    var card = this.createCardInternal(definition, delay);
+    return card;
+  }
+
+  private findDefinition = (definitionId: number) => {
+    return this.definition.cardDefinitions.find(s => s.id === definitionId);
+  }
+
+  private createCardInternal = (cardDefinition: CardDefinition, delay: boolean) => {
+    var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, 0.5, delay);
+    card.originStack = this;
+    return card;
   }
 
   public drawCard = (): Card => {
@@ -59,5 +74,11 @@ export class CardStack extends BoxObject implements IActor  {
     this.drawnCards = this.drawnCards.filter(obj => obj !== card);
     this.disposedCards.push(card);
     card.unload();
+  }
+
+  public cleanup = () => {
+    this.cards = [];
+    this.drawnCards = [];
+    this.disposedCards = [];
   }
 }

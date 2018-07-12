@@ -4,12 +4,18 @@
     <div class="col-md-3">
       <ul>
         <li>
+          <button class="btn" (click)="new()">Nowa gra</button>
           <button class="btn" (click)="save()">Zapisz</button>
           <button class="btn" (click)="load()">Wczytaj</button>
         </li>
         <li>
           <div [hidden]="!(selectedActor && selectedActor.isCardStack)">
             <button class="btn" (click)="drawCard()" >Wyciągnij kartę</button>
+            <ul>
+              <li>Kart na stosie: {{selectedActor && selectedActor.cards ? selectedActor.cards.length : ""}}</li>
+              <li>Kart na stole: {{selectedActor && selectedActor.drawnCards ? selectedActor.drawnCards.length : ""}}</li>
+              <li>Kart na odłożonych: {{selectedActor && selectedActor.disposedCards ? selectedActor.disposedCards.length : ""}}</li>
+            </ul>
           </div>
           <div [hidden]="!(selectedActor && selectedActor.isCard)">
             <button class="btn" (click)="disposeCard()" >Odłóż kartę</button>

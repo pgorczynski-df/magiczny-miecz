@@ -44,12 +44,12 @@ export class World {
 
       var cardStack = new CardStack(definition, 10, 1.618257261410788, 3);
 
+      this.cardStacks.push(cardStack);
+      this.game.addActor(cardStack);
+
       cardStack.object3D.position.x = -5;
       cardStack.object3D.position.y = 2;
-
-      this.cardStacks.push(cardStack);
-
-      this.game.addActor(cardStack);
+      cardStack.object3D.position.z = 0;
     }
 
     //let playersCount = 3;
@@ -78,8 +78,24 @@ export class World {
   }
 
   newGame = () => {
+    this.cleanup();
     for (var stack of this.cardStacks) {
       stack.buildStack();
+    }
+  }
+
+  cleanup = () => {
+
+    this.selectedActor = null;
+
+    for (var stack of this.cardStacks) {
+      for (var card of stack.drawnCards) {
+        this.disposeCardInternal(card);
+      }
+      stack.cleanup();
+      stack.object3D.position.x = -5;
+      stack.object3D.position.y = 2;
+      stack.object3D.position.z = 0;
     }
   }
 
@@ -91,14 +107,22 @@ export class World {
     object.position.x = stack.object3D.position.x + stack.width + 1;
     object.position.y = 0.5;
 
+    this.addNewCard(card);
+  }
+
+  addNewCard(card: Card) {
     this.game.addActor(card);
-    //this.drawnCards.push(card);
   }
 
   disposeCard = () => {
     let card = <Card>this.selectedActor;
     this.selectedActor = null;
+    this.disposeCardInternal(card);
+  }
+
+  private disposeCardInternal = (card: Card) => {
     card.dispose();
     this.game.removeActor(card);
   }
+
 }

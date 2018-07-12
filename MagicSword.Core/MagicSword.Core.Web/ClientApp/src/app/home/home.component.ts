@@ -26,6 +26,10 @@ export class HomeComponent implements AfterViewInit {
     this.game = new Game(this.viewport.nativeElement, this.httpClient);
   }
 
+  new = () => {
+    this.game.new();
+  }
+
   save = () => {
     this.game.save();
   };

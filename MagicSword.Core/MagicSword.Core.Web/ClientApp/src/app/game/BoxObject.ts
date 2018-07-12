@@ -62,6 +62,11 @@ export class BoxObject {
   }
 
   unload = () => {
+
+    if (!this.loaded) {
+      return;
+    }
+
     //TODO?
 
     this.loaded = false;

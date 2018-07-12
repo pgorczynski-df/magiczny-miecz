@@ -18,6 +18,9 @@ export class Serializer {
   }
 
   deserializeGame = (source: GameDto, target: Game): void => {
+
+    target.world.cleanup();
+
     this.deserializeObject3D(source.camera, target.camera);
     this.deserializeWorld(source.world, target.world);
   }
@@ -36,6 +39,14 @@ export class Serializer {
   }
 
   deserializeWorld = (source: WorldDto, target: World): void => {
+    for (var cardStack of target.cardStacks) {
+
+      var stackDto = source.cardStacks.find(s => s.definitionId === cardStack.definition.id);
+      if (stackDto) {
+        this.deserializeCardStack(target, stackDto, cardStack);
+      }
+
+    }
   }
 
   serializeCardStack = (cardStack: CardStack): CardStackDto => {
@@ -43,27 +54,36 @@ export class Serializer {
     dto.definitionId = cardStack.definition.id;
     dto.object3D = this.serializeObject3D(cardStack.object3D);
 
-    for (var card of cardStack.cards) {
-      var cardDto = this.serializeCard(card);
-      dto.cards.push(cardDto);
-    }
-
-    for (var card2 of cardStack.drawnCards) {
-      var cardDto2 = this.serializeCard(card2);
-      dto.drawnCards.push(cardDto2);
-    }
-
-    for (var card3 of cardStack.disposedCards) {
-      var cardDto3 = this.serializeCard(card3);
-      dto.disposedCards.push(cardDto3);
-    }
+    this.serializeCardCollection(cardStack.cards, dto.cards);
+    this.serializeCardCollection(cardStack.drawnCards, dto.drawnCards);
+    this.serializeCardCollection(cardStack.disposedCards, dto.disposedCards);
 
     return dto;
   }
 
-  deserializeCardStack = (source: CardStackDto, target: CardStack): void => {
-    //TODO
+  private serializeCardCollection = (sourceCollection: Card[], targetCollection: CardDto[]) => {
+    for (var card of sourceCollection) {
+      var cardDto = this.serializeCard(card);
+      targetCollection.push(cardDto);
+    }
+  }
 
+  deserializeCardStack = (world: World, source: CardStackDto, target: CardStack): void => {
+    this.deserializeObject3D(source.object3D, target.object3D);
+
+    this.deserializeCardCollection(world, target, source.cards, target.cards);
+    this.deserializeCardCollection(world, target, source.drawnCards, target.drawnCards);
+    this.deserializeCardCollection(world, target, source.disposedCards, target.disposedCards);
+  }
+
+  private deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[]) => {
+    for (var cardDto of sourceCollection) {
+      var card = stack.createCard(cardDto.definitionId, !cardDto.loaded);
+      targetCollection.push(card);
+      if (cardDto.loaded) {
+        world.addNewCard(card);
+      }
+    }
   }
 
   serializeCard = (card: Card): CardDto => {
