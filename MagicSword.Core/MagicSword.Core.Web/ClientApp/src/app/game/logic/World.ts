@@ -43,6 +43,16 @@ export class World {
       initialPosition: new THREE.Vector3(12, 2, -50),
       initialRotation: new THREE.Euler(),
     },
+    <CardStackDefinition>{
+      id: 4,
+      name: "Stos kart Postaci",
+      type: "Zaklęcie",
+      resourcePath: "/assets/img/Postacie",
+      imageUrl: "00PostacRewers.png",
+      cardDefinitionsUrl: "Postacie.json",
+      initialPosition: new THREE.Vector3(-12, 2, -50),
+      initialRotation: new THREE.Euler(),
+    },
   ];
 
   selectedActor: IActor;

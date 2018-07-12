@@ -12,9 +12,9 @@ namespace CardHelper
     {
         static void Main(string[] args)
         {
-            var sourceDir = "C:\\Users\\pawelgorczynski\\Downloads\\Zaklęcia";
+            var sourceDir = "C:\\Users\\pawelgorczynski\\Downloads\\Pionki";
 
-            var targetDir = "C:\\Users\\pawelgorczynski\\Downloads\\Zaklecia";
+            var targetDir = "C:\\Users\\pawelgorczynski\\Downloads\\Pionki2";
 
             //if (Directory.Exists(targetDir))
             //{
@@ -63,7 +63,7 @@ namespace CardHelper
                     {
                         id = id,
                         name = name,
-                        type = "Zaklęcie",
+                        type = "Postać",
                         subtype = "",
                         imageUrl = targetPath,
                         multiplicity = 1,
@@ -76,7 +76,7 @@ namespace CardHelper
             }
 
             var json = JsonConvert.SerializeObject(result, Formatting.Indented);
-            File.WriteAllText(targetDir + "\\"  + "Zaklecia.json", json, Encoding.UTF8);
+            File.WriteAllText(targetDir + "\\"  + "Postacie.json", json, Encoding.UTF8);
 
             Log(json);
         }

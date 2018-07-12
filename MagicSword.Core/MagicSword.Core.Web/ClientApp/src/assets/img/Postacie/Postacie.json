@@ -1,0 +1,218 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Awanturnik",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Awanturnik.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 2,
+    "name": "Barbarzyńca",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Barbarzynca.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 3,
+    "name": "Błedny Rycerz",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/BlednyRycerz.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 4,
+    "name": "Czarodziej",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Czarodziej.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 5,
+    "name": "Demon",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Demon.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 6,
+    "name": "Elf",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Elf.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 7,
+    "name": "Goblin",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Goblin.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 8,
+    "name": "Hobgoblin",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Hobgoblin.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 9,
+    "name": "Hummit",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Hummit.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 10,
+    "name": "Kapłan",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Kaplan.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 11,
+    "name": "Kapłanka",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Kaplanka.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 12,
+    "name": "Karzeł",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Karzel.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 13,
+    "name": "Kat",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Kat.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 14,
+    "name": "Krasnolud",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Krasnolud.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 15,
+    "name": "Książe",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Ksiaze.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 16,
+    "name": "Mag",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Mag.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 17,
+    "name": "Magog",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Magog.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 18,
+    "name": "Obbol",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Obbol.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 19,
+    "name": "Olbrzym",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Olbrzym.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 20,
+    "name": "Pustelnik",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Pustelnik.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 21,
+    "name": "Quark",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Quark.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 22,
+    "name": "Rycerz Ciemności",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/RycerzCiemnosci.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 23,
+    "name": "Spryciarz",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Spryciarz.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 24,
+    "name": "Troll",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Troll.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 25,
+    "name": "Wiedźma",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Wiedzma.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 26,
+    "name": "Zdobywca",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Zdobywca.png",
+    "multiplicity": 1
+  },
+  {
+    "id": 27,
+    "name": "Łotr",
+    "type": "Postać",
+    "subtype": "",
+    "imageUrl": "/Łotr.png",
+    "multiplicity": 1
+  }
+]
