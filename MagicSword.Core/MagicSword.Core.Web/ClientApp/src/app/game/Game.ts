@@ -14,6 +14,7 @@ import {Skybox} from "./Skybox";
 import {World} from "./logic/World";
 import {IActor} from "./logic/IActor";
 import { Serializer } from "./dto/Serializer";
+import {Dice} from "./Dice";
 
 export class Game {
 
@@ -34,13 +35,15 @@ export class Game {
 
   world: World;
 
+  physicsScene: CANNON.World;
+
+  dice: Dice;
+
   get width(): number { return this.container.clientWidth; }
   get height(): number { return this.container.clientHeight; }
 
   static HttpClient: HttpClient;
 
-  cube: THREE.Object3D;
-  sphere: CANNON.Body;
 
   constructor(vieport: any, private httpClient: HttpClient) {
 
@@ -62,14 +65,12 @@ export class Game {
     this.scene.fog = new THREE.FogExp2(0xcce0ff, 0.0003);
 
 
-    // Prepare perspective camera
     var viewAngle = 45, aspect = this.width / this.height, near = 1, far = 1000;
     this.camera = new THREE.PerspectiveCamera(viewAngle, aspect, near, far);
     this.resetCamera();
 
     this.scene.add(this.camera);
 
-    // Prepare webgl renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(this.width, this.height);
     this.renderer.setClearColor(this.scene.fog.color);
@@ -80,11 +81,9 @@ export class Game {
     this.container.addEventListener('mousemove', this.onDocumentMouseMove, false);
     this.container.addEventListener('mouseup', this.onDocumentMouseUp, false);
 
-    // Events
     this.threeXWindowResize(this.renderer, this.camera);
 
 
-    // Prepare Orbit controls
     this.controls = new THREE.OrbitControls(this.camera, this.container);
     this.controls.target = new THREE.Vector3(0, 0, 0);
     this.controls.maxDistance = 150;
@@ -118,43 +117,22 @@ export class Game {
 
     this.scene.add(this.plane);
 
+    this.physicsScene = new CANNON.World();
+    this.physicsScene.gravity.set(0, -9.82, 0); // m/s²
 
-
-    var loader = new THREE.GLTFLoader();
-    loader.load(
-      '/assets/3d/dice/scene.gltf',
-      gltf => {
-        this.cube = <THREE.Object3D>gltf.scene;
-        this.cube.scale.set(0.01, 0.01, 0.01);
-        this.scene.add(this.cube);
-      }
-    );
-
-    var world = new CANNON.World();
-    world.gravity.set(0, -9.82, 0); // m/s²
-
-    // Create a sphere
-    var radius = 1; // m
-    this.sphere = new CANNON.Body(<any>{
-      mass: 5, // kg
-      position: new CANNON.Vec3(0, 20, 0), // m
-      shape: new CANNON.Sphere(radius)
-    });
-    world.addBody(this.sphere);
-
-    // Create a plane
+    var groundShape = new CANNON.Plane();
     var groundBody = new CANNON.Body({
       mass: 0 // mass == 0 makes the body static
     });
-    var groundShape = new CANNON.Plane();
     groundBody.addShape(groundShape);
     groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
-    world.addBody(groundBody);
+
+    this.physicsScene.addBody(groundBody);
 
 
-
-
-    //this.scene.add(new THREE.GridHelper(100, 10));
+    this.dice = new Dice();
+    this.dice.init(this.scene);
+    this.physicsScene.addBody(this.dice.body);
 
     this.world = new World(this, this.httpClient);
 
@@ -166,24 +144,13 @@ export class Game {
     //var outlinePass = new THREE.OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
     //composer.addPass(outlinePass);
 
+    var dt = 1 / 60;
+
     var animate = () => {
       requestAnimationFrame(animate);
 
-      //var dt = (time - lastTime) / 1000;
-
-
-      world.step(1 / 60);
-
-      if (this.cube) {
-        this.cube.position.copy(<any>this.sphere.position);
-        this.cube.quaternion.copy(<any>this.sphere.quaternion);
-      }
-
-
-      //for (var i = 0; i !== meshes.length; i++) {
-      //  meshes[i].position.copy(bodies[i].position);
-      //  meshes[i].quaternion.copy(bodies[i].quaternion);
-      //}
+      this.physicsScene.step(dt);
+      this.dice.update();
 
       this.renderer.render(this.scene, this.camera);
       this.controls.update();

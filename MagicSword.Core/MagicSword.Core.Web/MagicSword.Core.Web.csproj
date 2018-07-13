@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
+    <None Remove="ClientApp\src\app\game\Dice.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardStackDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\GameDto.ts" />
@@ -51,6 +52,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\Serializer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\GameDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\WorldDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\Dice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\Card.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardDefinition.ts" />
