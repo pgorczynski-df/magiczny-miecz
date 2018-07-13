@@ -63,6 +63,14 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\Game.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClientApp\src\assets\img\Equipment\" />
+    <Folder Include="ClientApp\src\assets\img\Events\" />
+    <Folder Include="ClientApp\src\assets\img\Other\" />
+    <Folder Include="ClientApp\src\assets\img\Pawns\" />
+    <Folder Include="ClientApp\src\assets\img\Spells\" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
