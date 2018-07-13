@@ -13,16 +13,12 @@ export class Dice {
 
   constructor() {
 
-    // Create a sphere
     this.body = new CANNON.Body(<any>{
-      mass: 1, // kg
-      position: new CANNON.Vec3(-10, 20, 0), // m
+      mass: 1,
+      position: new CANNON.Vec3(-20, 3, 0),
       shape: new CANNON.Box(new CANNON.Vec3(1, 1, 1)),
     });
 
-    
-    //this.body.velocity.x = 20;
-    //this.body.angularVelocity.z = -10;
   }
 
   init = (scene: THREE.Scene) => {
