@@ -19,7 +19,7 @@ export class BoxObject {
     this._box.visible = value;
   }
 
-  constructor(public topTexture: string, public width: number, public aspect: number, public height: number, delay = false, private isBillboard = false) {
+  constructor(public topTexture: string, public width: number, public height: number, public depth: number, delay = false, private isBillboard = false) {
     if (!delay) {
       this.init();
     }
@@ -27,10 +27,7 @@ export class BoxObject {
 
   init = () => {
 
-    this.geometry = this.isBillboard
-      ? new THREE.BoxGeometry(this.width / this.aspect, this.width , this.height)
-      : new THREE.BoxGeometry(this.width, this.height, this.width / this.aspect);
-
+    this.geometry = new THREE.BoxGeometry(this.width, this.depth, this.height);
 
     var mat = new THREE.MeshPhongMaterial({
       color: 0x7c858e,
@@ -49,7 +46,7 @@ export class BoxObject {
       this.isBillboard ? mat: face,
       mat,
       this.isBillboard ? face : mat,
-      this.isBillboard ? face : mat,
+      this.isBillboard ? face : mat
     ];
 
     this._mesh = new THREE.Mesh(this.geometry, materials);

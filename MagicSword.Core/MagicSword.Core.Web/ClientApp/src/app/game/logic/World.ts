@@ -22,14 +22,14 @@ export class World {
 
   constructor(private game: Game) {
 
-    this.mmBoard = new GameBoard("/assets/img/World.png", 100, 1.383238405207486, 1);
+    this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
     this.game.addActor(this.mmBoard);
 
     for (var definition of CardStackDefinition.cardStackDefinitions) {
 
       this.loadCardDefinitions(definition);
 
-      var cardStack = new CardStack(definition, 10, 1.618257261410788, 3);
+      var cardStack = new CardStack(definition, 16.18257261410788, 10, 3);
       cardStack.cleanup(); //set initial coordinates
 
       this.cardStacks.push(cardStack);

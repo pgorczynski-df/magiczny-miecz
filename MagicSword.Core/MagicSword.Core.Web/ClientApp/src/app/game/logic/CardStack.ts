@@ -62,8 +62,27 @@ export class CardStack extends BoxObject implements IActor {
   }
 
   private createCardInternal = (cardDefinition: CardDefinition, delay: boolean) => {
-    var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, CardStack.cardWidth, delay,
-      this.definition.type === CardType.Pawn);
+
+    //for most cards we transpose width and height
+    var width = this.height; 
+    var height = this.width;
+    var depth = CardStack.cardWidth;
+
+    //for characters we preserve the orientation
+    if (this.definition.type === CardType.Character) {
+      width = this.width;
+      height = this.height;
+    }
+
+    //for pawns everything is switched
+    var isPawn = this.definition.type === CardType.Pawn;
+    if (isPawn) {
+      width = this.width;
+      height = this.height;
+      depth = CardStack.cardWidth;
+    }
+
+    var card = new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
 
     card.originStack = this;
     return card;
