@@ -36,7 +36,16 @@ export class CardStack extends BoxObject implements IActor  {
       }
     }
 
-    //TODO shuffle
+    if (this.definition.shuffle) {
+      this.shuffle();
+    }
+  }
+
+  public shuffle = () => {
+    this.cards = this.cards
+      .map((a) => ({ sort: Math.random(), value: a }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value);
   }
 
   public createCard = (definitionId: number, delay: boolean) => {

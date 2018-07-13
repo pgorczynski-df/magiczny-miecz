@@ -23,4 +23,6 @@ export class CardStackDefinition {
   initialRotation: THREE.Euler = new THREE.Euler();
 
   isPawnStack = false;
+
+  shuffle = false;
 }

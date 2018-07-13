@@ -22,6 +22,7 @@ export class World {
       cardDefinitionsUrl: "Zdarzenia.json",
       initialPosition: new THREE.Vector3(-5, 2, 0),
       initialRotation: new THREE.Euler(),
+      shuffle: true,
     },
     <CardStackDefinition>{
       id: 2,
@@ -32,6 +33,7 @@ export class World {
       cardDefinitionsUrl: "Wyposazenie.json",
       initialPosition: new THREE.Vector3(0, 2, -50),
       initialRotation: new THREE.Euler(),
+      shuffle: false,
     },
     <CardStackDefinition>{
       id: 3,
@@ -42,6 +44,7 @@ export class World {
       cardDefinitionsUrl: "Zaklecia.json",
       initialPosition: new THREE.Vector3(12, 2, -50),
       initialRotation: new THREE.Euler(),
+      shuffle: true,
     },
     <CardStackDefinition>{
       id: 4,
@@ -52,6 +55,7 @@ export class World {
       cardDefinitionsUrl: "Postacie.json",
       initialPosition: new THREE.Vector3(-12, 2, -50),
       initialRotation: new THREE.Euler(),
+      shuffle: false,
     },
     <CardStackDefinition>{
       id: 5,
@@ -63,6 +67,7 @@ export class World {
       initialPosition: new THREE.Vector3(-24, 2, -50),
       initialRotation: new THREE.Euler(),
       isPawnStack: true,
+      shuffle: false,
     },
   ];
 
