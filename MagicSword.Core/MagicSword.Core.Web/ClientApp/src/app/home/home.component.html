@@ -8,6 +8,10 @@
           <button class="btn" (click)="save()">Zapisz</button>
           <button class="btn" (click)="load()">Wczytaj</button>
           <button class="btn" (click)="game.dice.throw()">Rzuć kostką</button>
+          <!--<span>{{game && game.dice.object3D ? game.dice.object3D.rotation.x : ""}}</span>
+          <span>{{game && game.dice.object3D ? game.dice.object3D.rotation.y : ""}}</span>
+          <span>{{game && game.dice.object3D ? game.dice.object3D.rotation.z : ""}}</span>-->
+          <span>{{game && game.dice.object3D ? game.dice.result : ""}}</span>
         </li>
         <li>
           <div [hidden]="!(selectedActor && selectedActor.isCardStack)">
