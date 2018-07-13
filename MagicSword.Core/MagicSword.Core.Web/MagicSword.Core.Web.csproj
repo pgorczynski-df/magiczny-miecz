@@ -69,6 +69,7 @@
     <Folder Include="ClientApp\src\assets\img\Other\" />
     <Folder Include="ClientApp\src\assets\img\Pawns\" />
     <Folder Include="ClientApp\src\assets\img\Spells\" />
+    <Folder Include="ClientApp\src\assets\3d\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

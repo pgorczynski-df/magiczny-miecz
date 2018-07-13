@@ -4,15 +4,16 @@
  */
 import { HttpClient } from '@angular/common/http';
 import * as THREE from 'three';
+import * as CANNON from 'cannon';
 
 import "../../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
+import "three/examples/js/loaders/GLTFLoader";
 
 import {Skybox} from "./Skybox";
 import {World} from "./logic/World";
 import {IActor} from "./logic/IActor";
-import {Serializer} from "./dto/Serializer";
-
+import { Serializer } from "./dto/Serializer";
 
 export class Game {
 
@@ -37,6 +38,9 @@ export class Game {
   get height(): number { return this.container.clientHeight; }
 
   static HttpClient: HttpClient;
+
+  cube: THREE.Object3D;
+  sphere: CANNON.Body;
 
   constructor(vieport: any, private httpClient: HttpClient) {
 
@@ -114,6 +118,42 @@ export class Game {
 
     this.scene.add(this.plane);
 
+
+
+    var loader = new THREE.GLTFLoader();
+    loader.load(
+      '/assets/3d/dice/scene.gltf',
+      gltf => {
+        this.cube = <THREE.Object3D>gltf.scene;
+        this.cube.scale.set(0.01, 0.01, 0.01);
+        this.scene.add(this.cube);
+      }
+    );
+
+    var world = new CANNON.World();
+    world.gravity.set(0, -9.82, 0); // m/s²
+
+    // Create a sphere
+    var radius = 1; // m
+    this.sphere = new CANNON.Body(<any>{
+      mass: 5, // kg
+      position: new CANNON.Vec3(0, 20, 0), // m
+      shape: new CANNON.Sphere(radius)
+    });
+    world.addBody(this.sphere);
+
+    // Create a plane
+    var groundBody = new CANNON.Body({
+      mass: 0 // mass == 0 makes the body static
+    });
+    var groundShape = new CANNON.Plane();
+    groundBody.addShape(groundShape);
+    groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
+    world.addBody(groundBody);
+
+
+
+
     //this.scene.add(new THREE.GridHelper(100, 10));
 
     this.world = new World(this, this.httpClient);
@@ -128,6 +168,22 @@ export class Game {
 
     var animate = () => {
       requestAnimationFrame(animate);
+
+      //var dt = (time - lastTime) / 1000;
+
+
+      world.step(1 / 60);
+
+      if (this.cube) {
+        this.cube.position.copy(<any>this.sphere.position);
+        this.cube.quaternion.copy(<any>this.sphere.quaternion);
+      }
+
+
+      //for (var i = 0; i !== meshes.length; i++) {
+      //  meshes[i].position.copy(bodies[i].position);
+      //  meshes[i].quaternion.copy(bodies[i].quaternion);
+      //}
 
       this.renderer.render(this.scene, this.camera);
       this.controls.update();
