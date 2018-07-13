@@ -134,7 +134,7 @@ export class Game {
     this.dice.init(this.scene);
     this.physicsScene.addBody(this.dice.body);
 
-    this.world = new World(this, this.httpClient);
+    this.world = new World(this);
 
     //var composer = new THREE.EffectComposer(this.renderer);
 

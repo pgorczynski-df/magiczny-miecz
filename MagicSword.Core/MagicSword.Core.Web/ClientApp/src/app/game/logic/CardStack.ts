@@ -1,10 +1,13 @@
 import { BoxObject } from "../BoxObject";
-import {CardDefinition} from "./CardDefinition";
-import {Card} from "./Card";
-import {IActor} from "./IActor";
-import {CardStackDefinition} from "./CardStackDefinition";
+import { CardDefinition } from "./CardDefinition";
+import { Card } from "./Card";
+import { IActor } from "./IActor";
+import { CardStackDefinition } from "./CardStackDefinition";
+import { CardType } from "./CardType";
 
-export class CardStack extends BoxObject implements IActor  {
+export class CardStack extends BoxObject implements IActor {
+
+  static cardWidth = 0.5;
 
   selectable: boolean = true;
   draggable: boolean = true;
@@ -59,7 +62,9 @@ export class CardStack extends BoxObject implements IActor  {
   }
 
   private createCardInternal = (cardDefinition: CardDefinition, delay: boolean) => {
-    var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, 0.5, delay, this.definition.isPawnStack);
+    var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, CardStack.cardWidth, delay,
+      this.definition.type === CardType.Pawn);
+
     card.originStack = this;
     return card;
   }
@@ -75,7 +80,7 @@ export class CardStack extends BoxObject implements IActor  {
     card.object3D.position.copy(this.object3D.position);
 
     card.object3D.position.x += this.width + 1;
-    card.object3D.position.y = this.definition.isPawnStack ? this.width / 2 + 0.5 : 0.5;
+    card.object3D.position.y = this.definition.type === CardType.Pawn ? this.width / 2 + 0.5 : 0.5;
 
     this.drawnCards.push(card);
 

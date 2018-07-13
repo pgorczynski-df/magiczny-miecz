@@ -6,70 +6,11 @@ import { Card } from "./Card";
 import { CardStack } from "./CardStack";
 //import { Character } from "./Character";
 import { CardDefinition } from "./CardDefinition";
-import { HttpClient } from "@angular/common/http";
 import { IActor } from "./IActor";
 import { CardStackDefinition } from "./CardStackDefinition";
 
 export class World {
 
-  cardStackDefinitions: CardStackDefinition[] = [
-    <CardStackDefinition>{
-      id: 1,
-      name: "Stos kart Zdarzeń",
-      type: "Zdarzenie",
-      resourcePath: "/assets/img/Zdarzenia",
-      imageUrl: "ZdarzenieRewers.png",
-      cardDefinitionsUrl: "Zdarzenia.json",
-      initialPosition: new THREE.Vector3(-5, 2, 0),
-      initialRotation: new THREE.Euler(),
-      shuffle: true,
-    },
-    <CardStackDefinition>{
-      id: 2,
-      name: "Stos kart Wyposażenia",
-      type: "Wyposażenie",
-      resourcePath: "/assets/img/Wyposazenie",
-      imageUrl: "00WyposazenieRewers.png",
-      cardDefinitionsUrl: "Wyposazenie.json",
-      initialPosition: new THREE.Vector3(0, 2, -50),
-      initialRotation: new THREE.Euler(),
-      shuffle: false,
-    },
-    <CardStackDefinition>{
-      id: 3,
-      name: "Stos kart Zaklęć",
-      type: "Zaklęcie",
-      resourcePath: "/assets/img/Zaklecia",
-      imageUrl: "00ZaklecieRewers.png",
-      cardDefinitionsUrl: "Zaklecia.json",
-      initialPosition: new THREE.Vector3(12, 2, -50),
-      initialRotation: new THREE.Euler(),
-      shuffle: true,
-    },
-    <CardStackDefinition>{
-      id: 4,
-      name: "Stos kart Postaci",
-      type: "Postać",
-      resourcePath: "/assets/img/Postacie",
-      imageUrl: "00PostacRewers.png",
-      cardDefinitionsUrl: "Postacie.json",
-      initialPosition: new THREE.Vector3(-12, 2, -50),
-      initialRotation: new THREE.Euler(),
-      shuffle: false,
-    },
-    <CardStackDefinition>{
-      id: 5,
-      name: "Stos Pionków",
-      type: "Pionek",
-      resourcePath: "/assets/img/Postacie/Pionki",
-      imageUrl: "../00PostacRewers.png",
-      cardDefinitionsUrl: "../Postacie.json",
-      initialPosition: new THREE.Vector3(-24, 2, -50),
-      initialRotation: new THREE.Euler(),
-      isPawnStack: true,
-      shuffle: false,
-    },
-  ];
 
   selectedActor: IActor;
 
@@ -79,13 +20,13 @@ export class World {
 
   //characters: Character[] = [];
 
-  constructor(private game: Game, private httpClient: HttpClient) {
+  constructor(private game: Game) {
 
     this.mmBoard = new GameBoard("/assets/img/World.png", 100, 1.383238405207486, 1);
     this.game.addActor(this.mmBoard);
 
-    for (var j = 0; j < this.cardStackDefinitions.length; j++) {
-      var definition = this.cardStackDefinitions[j];
+    for (var definition of CardStackDefinition.cardStackDefinitions) {
+
       this.loadCardDefinitions(definition);
 
       var cardStack = new CardStack(definition, 10, 1.618257261410788, 3);

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.9</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
@@ -37,6 +37,7 @@
     <None Remove="ClientApp\src\app\game\logic\CardDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardStack.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardStackDefinition.ts" />
+    <None Remove="ClientApp\src\app\game\logic\CardType.ts" />
     <None Remove="ClientApp\src\app\game\logic\Character.ts" />
     <None Remove="ClientApp\src\app\game\logic\GameBoard.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
@@ -57,6 +58,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStack.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\Character.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\GameBoard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\IActor.ts" />
