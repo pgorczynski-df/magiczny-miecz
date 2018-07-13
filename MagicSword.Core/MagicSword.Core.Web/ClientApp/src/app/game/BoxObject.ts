@@ -2,6 +2,8 @@ import * as THREE from 'three';
 
 export class BoxObject {
 
+  private geometry: THREE.BoxGeometry;
+
   private _mesh: THREE.Mesh;
   private _box: THREE.BoxHelper;
   private _group: THREE.Group;
@@ -17,7 +19,7 @@ export class BoxObject {
     this._box.visible = value;
   }
 
-  constructor(public topTexture: string, public width: number, public aspect: number, public height: number, delay = false) {
+  constructor(public topTexture: string, public width: number, public aspect: number, public height: number, delay = false, private isBillboard = false) {
     if (!delay) {
       this.init();
     }
@@ -25,7 +27,10 @@ export class BoxObject {
 
   init = () => {
 
-    var geometry = new THREE.BoxGeometry(this.width, this.height, this.width / this.aspect);
+    this.geometry = this.isBillboard
+      ? new THREE.BoxGeometry(this.width / this.aspect, this.width , this.height)
+      : new THREE.BoxGeometry(this.width, this.height, this.width / this.aspect);
+
 
     var mat = new THREE.MeshPhongMaterial({
       color: 0x7c858e,
@@ -41,13 +46,13 @@ export class BoxObject {
     var materials = [
       mat,
       mat,
-      face,
+      this.isBillboard ? mat: face,
       mat,
-      mat,
-      mat
+      this.isBillboard ? face : mat,
+      this.isBillboard ? face : mat,
     ];
 
-    this._mesh = new THREE.Mesh(geometry, materials);
+    this._mesh = new THREE.Mesh(this.geometry, materials);
 
     this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xd9ea23));
     this._box.visible = false;

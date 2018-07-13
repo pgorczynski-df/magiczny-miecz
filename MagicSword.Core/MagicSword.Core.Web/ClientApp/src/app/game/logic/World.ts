@@ -4,7 +4,7 @@ import { Game } from "../Game";
 import { GameBoard } from "./GameBoard";
 import { Card } from "./Card";
 import { CardStack } from "./CardStack";
-import { Character } from "./Character";
+//import { Character } from "./Character";
 import { CardDefinition } from "./CardDefinition";
 import { HttpClient } from "@angular/common/http";
 import { IActor } from "./IActor";
@@ -46,12 +46,23 @@ export class World {
     <CardStackDefinition>{
       id: 4,
       name: "Stos kart Postaci",
-      type: "Zaklęcie",
+      type: "Postać",
       resourcePath: "/assets/img/Postacie",
       imageUrl: "00PostacRewers.png",
       cardDefinitionsUrl: "Postacie.json",
       initialPosition: new THREE.Vector3(-12, 2, -50),
       initialRotation: new THREE.Euler(),
+    },
+    <CardStackDefinition>{
+      id: 5,
+      name: "Stos Pionków",
+      type: "Pionek",
+      resourcePath: "/assets/img/Postacie/Pionki",
+      imageUrl: "../00PostacRewers.png",
+      cardDefinitionsUrl: "../Postacie.json",
+      initialPosition: new THREE.Vector3(-24, 2, -50),
+      initialRotation: new THREE.Euler(),
+      isPawnStack: true,
     },
   ];
 
@@ -61,7 +72,7 @@ export class World {
 
   cardStacks: CardStack[] = [];
 
-  characters: Character[] = [];
+  //characters: Character[] = [];
 
   constructor(private game: Game, private httpClient: HttpClient) {
 
@@ -138,11 +149,6 @@ export class World {
   drawCard = () => {
     let stack = <CardStack>this.selectedActor;
     let card = stack.drawCard();
-
-    var object = card.object3D;
-    object.position.x = stack.object3D.position.x + stack.width + 1;
-    object.position.y = 0.5;
-
     this.addNewCard(card);
   }
 

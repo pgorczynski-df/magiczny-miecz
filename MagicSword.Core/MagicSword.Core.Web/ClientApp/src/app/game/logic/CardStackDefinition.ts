@@ -21,4 +21,6 @@ export class CardStackDefinition {
   initialPosition: THREE.Vector3 = new THREE.Vector3();
 
   initialRotation: THREE.Euler = new THREE.Euler();
+
+  isPawnStack = false;
 }

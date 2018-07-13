@@ -50,7 +50,7 @@ export class CardStack extends BoxObject implements IActor  {
   }
 
   private createCardInternal = (cardDefinition: CardDefinition, delay: boolean) => {
-    var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, 0.5, delay);
+    var card = new Card(cardDefinition, this.definition.resourcePath, this.width, this.aspect, 0.5, delay, this.definition.isPawnStack);
     card.originStack = this;
     return card;
   }
@@ -64,6 +64,9 @@ export class CardStack extends BoxObject implements IActor  {
     var card = this.cards.pop();
     card.init();
     card.object3D.position.copy(this.object3D.position);
+
+    card.object3D.position.x += this.width + 1;
+    card.object3D.position.y = this.definition.isPawnStack ? this.width / 2 + 0.5 : 0.5;
 
     this.drawnCards.push(card);
 

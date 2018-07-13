@@ -66,11 +66,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\assets\img\Equipment\" />
-    <Folder Include="ClientApp\src\assets\img\Events\" />
-    <Folder Include="ClientApp\src\assets\img\Other\" />
-    <Folder Include="ClientApp\src\assets\img\Pawns\" />
-    <Folder Include="ClientApp\src\assets\img\Spells\" />
     <Folder Include="ClientApp\src\assets\3d\" />
   </ItemGroup>
 
