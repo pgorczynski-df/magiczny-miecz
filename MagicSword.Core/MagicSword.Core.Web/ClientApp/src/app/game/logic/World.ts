@@ -8,6 +8,7 @@ import { CardStack } from "./CardStack";
 import { CardDefinition } from "./CardDefinition";
 import { IActor } from "./IActor";
 import { CardStackDefinition } from "./CardStackDefinition";
+import {CardType} from "./CardType";
 
 export class World {
 
@@ -29,7 +30,16 @@ export class World {
 
       this.loadCardDefinitions(definition);
 
-      var cardStack = new CardStack(definition, 16.18257261410788, 10, 3);
+      var characterAspect = 1.241772151898734;
+      var width = 16.18257261410788;
+      var height = 10;
+
+      if (definition.type === CardType.Character) {
+        height = width;
+        width = characterAspect * width;
+      }
+
+      var cardStack = new CardStack(definition, width, height, 3);
       cardStack.cleanup(); //set initial coordinates
 
       this.cardStacks.push(cardStack);

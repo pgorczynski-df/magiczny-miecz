@@ -68,12 +68,6 @@ export class CardStack extends BoxObject implements IActor {
     var height = this.width;
     var depth = CardStack.cardWidth;
 
-    //for characters we preserve the orientation
-    if (this.definition.type === CardType.Character) {
-      width = this.width;
-      height = this.height;
-    }
-
     //for pawns everything is switched
     var isPawn = this.definition.type === CardType.Pawn;
     if (isPawn) {
