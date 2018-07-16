@@ -1,3 +1,5 @@
+import * as Logger from "js-logger";
+
 import { BoxObject } from "../BoxObject";
 import { CardDefinition } from "./CardDefinition";
 import { Card } from "./Card";

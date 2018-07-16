@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import * as Logger from "js-logger";
 
 import { Game } from "../Game";
 import { GameBoard } from "./GameBoard";
@@ -23,10 +24,14 @@ export class World {
 
   constructor(private game: Game) {
 
+    Logger.useDefaults({ logLevel: Logger.DEBUG });
+
     this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
     this.game.addActor(this.mmBoard);
 
     for (var definition of CardStackDefinition.cardStackDefinitions) {
+
+      Logger.debug("Loading card stack definition: " + definition.name);
 
       this.loadCardDefinitions(definition);
 
@@ -65,8 +70,11 @@ export class World {
   }
 
   public loadCardDefinitions = (stackDefinition: CardStackDefinition) => {
-    Game.HttpClient.get(stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl).subscribe((res: CardDefinition[]) => {
+    let url = stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl;
+    Logger.debug("Attempting to fetch: " + url);
+    Game.HttpClient.get(url).subscribe((res: CardDefinition[]) => {
       stackDefinition.cardDefinitions = res;
+      Logger.debug("Sucessfuly loaded: " + url);
       if (this.ensureLoaded()) {
         this.newGame();
       }

@@ -26,7 +26,6 @@ export class Dice {
     loader.load(
       '/assets/3d/dice/scene.gltf',
       gltf => {
-        console.log(gltf);
         this.object3D = <THREE.Object3D>gltf.scene;
         this.object3D.scale.set(0.01, 0.01, 0.01);
         scene.add(this.object3D);
