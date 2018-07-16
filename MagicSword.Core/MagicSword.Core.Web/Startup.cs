@@ -43,8 +43,14 @@ namespace MagicSword.Core.Web
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+
+            var fileOptions = new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true
+            };
+
+            app.UseStaticFiles(fileOptions);
+            app.UseSpaStaticFiles(fileOptions);
 
             app.UseMvc(routes =>
             {
