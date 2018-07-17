@@ -6,6 +6,7 @@ import { Card } from "./Card";
 import { IActor } from "./IActor";
 import { CardStackDefinition } from "./CardStackDefinition";
 import { CardType } from "./CardType";
+import {Collections} from "../utils/Collections";
 
 export class CardStack extends BoxObject implements IActor {
 
@@ -47,10 +48,7 @@ export class CardStack extends BoxObject implements IActor {
   }
 
   public shuffle = () => {
-    this.cards = this.cards
-      .map((a) => ({ sort: Math.random(), value: a }))
-      .sort((a, b) => a.sort - b.sort)
-      .map((a) => a.value);
+    this.cards = Collections.shuffle(this.cards);
   }
 
   public createCard = (definitionId: number, delay: boolean) => {

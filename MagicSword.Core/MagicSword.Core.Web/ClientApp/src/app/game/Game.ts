@@ -15,6 +15,7 @@ import {World} from "./logic/World";
 import {IActor} from "./logic/IActor";
 import { Serializer } from "./dto/Serializer";
 import {Dice} from "./Dice";
+import { Collections } from "./utils/Collections";
 
 export class Game {
 
@@ -34,6 +35,8 @@ export class Game {
   draggedObject: THREE.Object3D;
 
   world: World;
+
+  actors: IActor[] = [];
 
   physicsScene: CANNON.World;
 
@@ -165,20 +168,23 @@ export class Game {
   }
 
   addActor = (actor: IActor) => {
+    this.actors.push(actor);
     this.scene.add(actor.object3D);
     this.interectionObjects.push(actor.object3D);
   }
 
   removeActor = (actor: IActor) => {
-    var object3D = actor.object3D;
 
-    this.interectionObjects = this.interectionObjects.filter(obj => obj !== object3D);
+    var object3D = actor.object3D;
+    this.interectionObjects = Collections.remove(this.interectionObjects, object3D);
     //just in case
     if (this.draggedObject === actor.object3D) { 
       this.draggedObject = null;
     }
 
     this.scene.remove(object3D);
+
+    this.actors = Collections.remove(this.actors, object3D);
   }
 
   updateRaycaster = (event: MouseEvent) => {

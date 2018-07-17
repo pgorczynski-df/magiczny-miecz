@@ -43,6 +43,8 @@
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
     <None Remove="ClientApp\src\app\game\logic\World.ts" />
     <None Remove="ClientApp\src\app\game\Skybox.ts" />
+    <None Remove="ClientApp\src\app\game\utils\Collections.ts" />
+    <None Remove="ClientApp\src\app\game\utils\Guid.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,10 +67,21 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\World.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Skybox.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Game.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\utils\Guid.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\utils\Collections.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\src\assets\3d\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\app\game\utils\Guid.js">
+      <DependentUpon>Guid.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\app\game\utils\Guid.js.map">
+      <DependentUpon>Guid.js</DependentUpon>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

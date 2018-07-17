@@ -1,6 +1,9 @@
 import * as THREE from 'three';
+import { Guid } from "./utils/Guid";
 
 export class BoxObject {
+
+  public id: string;
 
   private geometry: THREE.BoxGeometry;
 
@@ -20,6 +23,7 @@ export class BoxObject {
   }
 
   constructor(public topTexture: string, public width: number, public height: number, public depth: number, delay = false, private isBillboard = false) {
+    this.id = Guid.uuidv4();
     if (!delay) {
       this.init();
     }

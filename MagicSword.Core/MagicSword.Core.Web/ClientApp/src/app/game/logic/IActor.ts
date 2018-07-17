@@ -2,6 +2,8 @@ import * as THREE from 'three';
 
 export interface IActor {
 
+  id: string;
+
   object3D: THREE.Object3D;
 
   mesh: THREE.Mesh;
