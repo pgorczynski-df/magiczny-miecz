@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Game } from "../game/Game";
+import { GameHubClient } from "../game/GameHubClient";
 import {IActor} from "../game/logic/IActor";
 
 @Component({
@@ -13,6 +14,7 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
 
   game: Game;
+  hub: GameHubClient;
 
   get selectedActor(): IActor {
     return this.game ? this.game.world.selectedActor : null;
@@ -23,6 +25,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.hub = new GameHubClient();
     this.game = new Game(this.viewport.nativeElement, this.httpClient);
   }
 
@@ -45,5 +48,9 @@ export class HomeComponent implements AfterViewInit {
   disposeCard = () => {
     this.game.world.disposeCard();
   };
+
+  sendMessage = () => {
+    this.hub.sendDirectMessage("dada", "userName");
+  }
 }
 

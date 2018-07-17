@@ -1,4 +1,4 @@
-import * as Logger from "js-logger";
+//import * as Logger from "js-logger";
 
 import { BoxObject } from "../BoxObject";
 import { CardDefinition } from "./CardDefinition";
