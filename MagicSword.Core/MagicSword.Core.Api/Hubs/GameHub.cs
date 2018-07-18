@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.SignalR;
 
 namespace MagicSword.Core.Api.Hubs
@@ -13,5 +14,9 @@ namespace MagicSword.Core.Api.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
+        public async Task Publish(Event @event)
+        {
+            await Clients.All.SendAsync("NewEvent", @event);
+        }
     }
 }

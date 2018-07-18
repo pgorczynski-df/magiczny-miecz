@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
+import {Services} from "./Services";
 //import { Store } from '@ngrx/store';
 //import * as directMessagesActions from './store/directmessages.action';
 //import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -19,6 +20,7 @@ export class GameHubClient {
   isAuthorized: boolean;
 
   constructor(
+    private services: Services
     //private store: Store<any>,
     //private oidcSecurityService: OidcSecurityService
   ) {
@@ -69,16 +71,20 @@ export class GameHubClient {
       .configureLogging(LogLevel.Information)
       .build();
 
-    this._hubConnection.start().catch(err => console.error(err.toString()));
+    this._hubConnection.start().catch(err =>
+      this.services.logger.error(err));
 
-    this._hubConnection.on("ReceiveMessage", (user, message) => {
+    this._hubConnection.on("NewEvent", (event) => {
       //const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
       //const encodedMsg = user + " says " + msg;
       //const li = document.createElement("li");
       //li.textContent = encodedMsg;
       //document.getElementById("messagesList").appendChild(li);
 
-      console.log(user + " " + message);
+      this.services.logger.debug(event);
+
+      this.services.inboundBus.publish(event);
+
     });
 
     //this._hubConnection.on('NewOnlineUser', (onlineUser: OnlineUser) => {

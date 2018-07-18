@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MagicSword.Core.Api.Hubs;
+﻿using MagicSword.Core.Api.Hubs;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace MagicSword.Core.Api
 {
@@ -26,7 +20,7 @@ namespace MagicSword.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var policy = new Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy();
+            var policy = new CorsPolicy();
             policy.Headers.Add("*");
             policy.Methods.Add("*");
             policy.Origins.Add("*");
@@ -50,13 +44,13 @@ namespace MagicSword.Core.Api
                 app.UseHsts();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
             app.UseCors("corsGlobalPolicy");
 
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<GameHub>("/gameHub");
-            });
+            app.UseSignalR(routes => { routes.MapHub<GameHub>("/gameHub"); });
 
             app.UseMvc();
         }

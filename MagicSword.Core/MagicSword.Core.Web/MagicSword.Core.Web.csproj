@@ -26,12 +26,16 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
+    <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardStackDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\GameDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\Object3dDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\Serializer.ts" />
     <None Remove="ClientApp\src\app\game\dto\WorldDto.ts" />
+    <None Remove="ClientApp\src\app\game\Event.ts" />
+    <None Remove="ClientApp\src\app\game\EventBus.ts" />
+    <None Remove="ClientApp\src\app\game\EventType.ts" />
     <None Remove="ClientApp\src\app\game\Game.ts" />
     <None Remove="ClientApp\src\app\game\logic\Card.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardDefinition.ts" />
@@ -42,13 +46,19 @@
     <None Remove="ClientApp\src\app\game\logic\GameBoard.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
     <None Remove="ClientApp\src\app\game\logic\World.ts" />
+    <None Remove="ClientApp\src\app\game\Services.ts" />
     <None Remove="ClientApp\src\app\game\Skybox.ts" />
     <None Remove="ClientApp\src\app\game\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\game\utils\Guid.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\game\Services.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\EventBus.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\Event.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\BoxObject.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\ActorDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\Object3DDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardStackDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardDto.ts" />

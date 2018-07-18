@@ -14,6 +14,8 @@ import { BoxObject } from "./game/BoxObject";
 import { Skybox } from "./game/Skybox";
 import { World } from "./game/logic/World";
 import { Game } from "./game/Game";
+import {EventBus} from "./game/EventBus";
+import {Services} from "./game/Services";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,10 @@ import { Game } from "./game/Game";
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    EventBus,
+    Services,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

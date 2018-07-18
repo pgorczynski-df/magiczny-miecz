@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Game } from "../game/Game";
 import { GameHubClient } from "../game/GameHubClient";
 import {IActor} from "../game/logic/IActor";
+import {Services} from "../game/Services";
 
 @Component({
   selector: 'app-home',
@@ -20,13 +21,13 @@ export class HomeComponent implements AfterViewInit {
     return this.game ? this.game.world.selectedActor : null;
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private services: Services) {
 
   }
 
   ngAfterViewInit() {
-    this.hub = new GameHubClient();
-    this.game = new Game(this.viewport.nativeElement, this.httpClient);
+    this.hub = new GameHubClient(this.services);
+    this.game = new Game(this.viewport.nativeElement, this.services);
   }
 
   new = () => {

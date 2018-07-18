@@ -2,7 +2,6 @@
  * WebGL With Three.js - Lesson 10 - Drag and Drop Objects
  * http://www.script-tutorials.com/webgl-with-three-js-lesson-10/
  */
-import { HttpClient } from '@angular/common/http';
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
 
@@ -16,6 +15,7 @@ import {IActor} from "./logic/IActor";
 import { Serializer } from "./dto/Serializer";
 import {Dice} from "./Dice";
 import { Collections } from "./utils/Collections";
+import {Services} from "./Services";
 
 export class Game {
 
@@ -45,18 +45,13 @@ export class Game {
   get width(): number { return this.container.clientWidth; }
   get height(): number { return this.container.clientHeight; }
 
-  static HttpClient: HttpClient;
-
-
-  constructor(vieport: any, private httpClient: HttpClient) {
+  constructor(vieport: any, public services: Services) {
 
     this.container = vieport;
 
     if (!this.container) {
       throw new Error("cannot find viewport");
     }
-
-    Game.HttpClient = httpClient;
 
     //console.log(this.width);
     //console.log(this.height);

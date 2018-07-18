@@ -1,12 +1,9 @@
-import * as THREE from 'three';
-import {Object3DDto as Object3dDto} from "./Object3DDto";
+import { ActorDto } from "./ActorDto";
 
-export class CardDto {
+export class CardDto extends ActorDto {
 
   definitionId: number;
 
   loaded: boolean;
-
-  object3D = new Object3dDto();
 
 }
