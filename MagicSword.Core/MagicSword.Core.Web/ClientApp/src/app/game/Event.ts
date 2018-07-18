@@ -2,6 +2,8 @@ import {EventType} from "./EventType";
 
 export class Event {
 
-  type: EventType
+  eventType: EventType;
+
+  data?: any;
 
 }

@@ -9,13 +9,16 @@ import "../../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 import "three/examples/js/loaders/GLTFLoader";
 
-import {Skybox} from "./Skybox";
-import {World} from "./logic/World";
-import {IActor} from "./logic/IActor";
+import { Skybox } from "./Skybox";
+import { World } from "./logic/World";
+import { IActor } from "./logic/IActor";
 import { Serializer } from "./dto/Serializer";
-import {Dice} from "./Dice";
+import { Dice } from "./Dice";
 import { Collections } from "./utils/Collections";
-import {Services} from "./Services";
+import { Services } from "./Services";
+
+import { Event } from "../game/Event";
+import { EventType } from "../game/EventType";
 
 export class Game {
 
@@ -55,8 +58,7 @@ export class Game {
       throw new Error("cannot find viewport");
     }
 
-    //console.log(this.width);
-    //console.log(this.height);
+    this.services.inboundBus.of().subscribe(e => this.processIncomingEvent(e));
 
     this.offset = new THREE.Vector3();
     this.raycaster = new THREE.Raycaster();
@@ -164,6 +166,25 @@ export class Game {
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
   }
 
+  private processIncomingEvent = (ev: Event) => {
+
+    switch (ev.eventType) {
+      case EventType.GameLoadRequest:
+        var dto = this.serialize();
+        this.services.outboundBus.publish(
+          {
+            eventType: EventType.GameLoadResponse,
+            data: dto,
+          } as Event);
+      case EventType.GameLoadResponse:
+        var dto2 = ev.data;
+        this.deserialize(dto2);
+      default:
+        this.services.logger.warn("Unknown event type: " + ev.eventType);
+    }
+
+  }
+
   addActor = (actor: IActor) => {
     this.actors.push(actor);
     this.scene.add(actor.object3D);
@@ -175,7 +196,7 @@ export class Game {
     var object3D = actor.object3D;
     this.interectionObjects = Collections.remove(this.interectionObjects, object3D);
     //just in case
-    if (this.draggedObject === actor.object3D) { 
+    if (this.draggedObject === actor.object3D) {
       this.draggedObject = null;
     }
 
@@ -235,7 +256,7 @@ export class Game {
         this.draggedObject.position.x = int.x;
         this.draggedObject.position.z = int.z;
       }
-    } 
+    }
   };
 
   onDocumentMouseUp = (event: MouseEvent) => {

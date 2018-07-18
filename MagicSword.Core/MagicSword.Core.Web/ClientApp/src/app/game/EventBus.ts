@@ -17,7 +17,7 @@ export class EventBus {
   }
 
   public of(messageType: string = null): Observable<Event> {
-    return messageType ? this.events.filter(m => m.type === messageType) : this.events;
+    return messageType ? this.events.filter(m => m.eventType === messageType) : this.events;
   }
 
 }

@@ -8,9 +8,11 @@ import {EventBus} from "./EventBus";
 @Injectable()
 export class Services {
 
-  logger: any;
+  public logger: any;
+  public inboundBus = new EventBus();
+  public outboundBus = new EventBus();
 
-  constructor(public httpClient: HttpClient, public inboundBus: EventBus, public outboundBus: EventBus) {
+  constructor(public httpClient: HttpClient) {
 
     Logger.useDefaults({ logLevel: Logger.DEBUG });
 

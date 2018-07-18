@@ -36,7 +36,10 @@ import {Services} from "./game/Services";
     ])
   ],
   providers: [
-    EventBus,
+    //{
+    //  provide: EventBus,
+    //  useFactory: () => new EventBus(),
+    //},
     Services,
   ],
   bootstrap: [AppComponent]

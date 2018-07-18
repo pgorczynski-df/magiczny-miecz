@@ -78,7 +78,7 @@ export class GameHubClient {
       //li.textContent = encodedMsg;
       //document.getElementById("messagesList").appendChild(li);
 
-      this.services.logger.debug("received inbound event: " + event.type);
+      this.services.logger.debug("received inbound event: " + event.eventType);
 
       this.services.inboundBus.publish(event);
 
@@ -88,8 +88,8 @@ export class GameHubClient {
       this.services.logger.error(err));
 
     this.services.outboundBus.of().subscribe(e => {
-      this.services.logger.debug("sending outbound event: " + event.type);
-      this._hubConnection.invoke("Publish", e);
+      this.services.logger.debug("sending outbound event: " + e.eventType);
+      this._hubConnection.send("Publish", e);
     });
 
     //this._hubConnection.on('NewOnlineUser', (onlineUser: OnlineUser) => {
