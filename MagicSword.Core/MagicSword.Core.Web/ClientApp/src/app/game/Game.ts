@@ -38,6 +38,10 @@ export class Game {
   interectionObjects: THREE.Object3D[] = [];
   draggedObject: THREE.Object3D;
 
+  dragInitialPosition = new THREE.Vector3();
+  dragInitialRotation = new THREE.Euler();
+
+
   world: World;
 
   actors: IActor[] = [];
@@ -246,6 +250,8 @@ export class Game {
 
       if (hitActor.draggable) {
         this.draggedObject = hitActor.object3D;
+        this.dragInitialPosition.copy(this.draggedObject.position);
+        this.dragInitialRotation.copy(this.draggedObject.rotation);
         this.controls.enabled = false;
       }
 
@@ -259,12 +265,8 @@ export class Game {
 
     if (this.draggedObject) {
 
-      var actor = this.draggedObject.userData["parent"];
-      var actorDto = this.serializer.serializeActor(actor);
-
       if (event.buttons === 2) {
         this.draggedObject.rotateY((event.movementX) / 300);
-        this.services.outboundBus.publish(EventType.ActorRotate, actorDto);
 
       } else {
         var intersects = this.raycaster.intersectObject(this.plane);
@@ -272,12 +274,30 @@ export class Game {
         this.draggedObject.position.x = intersect.x;
         this.draggedObject.position.z = intersect.z;
 
-        this.services.outboundBus.publish(EventType.ActorMove, actorDto);
       }
     }
   };
 
   onDocumentMouseUp = (event: MouseEvent) => {
+
+    if (!this.draggedObject) {
+      return;
+    }
+
+    var finalPosition = this.draggedObject.position;
+
+    if (finalPosition.distanceTo(this.dragInitialPosition) > 0.001) {
+      var actor = this.draggedObject.userData["parent"];
+      var actorDto = this.serializer.serializeActor(actor);
+      this.services.outboundBus.publish(EventType.ActorMove, actorDto);
+    }
+
+    var finalRotation = this.draggedObject.rotation;
+    if (finalRotation.toVector3().distanceTo(this.dragInitialRotation.toVector3()) > 0.001) {
+      var actor2 = this.draggedObject.userData["parent"];
+      var actorDto2 = this.serializer.serializeActor(actor2);
+      this.services.outboundBus.publish(EventType.ActorRotate, actorDto2);
+    }
 
     this.draggedObject = null;
     this.controls.enabled = true;
