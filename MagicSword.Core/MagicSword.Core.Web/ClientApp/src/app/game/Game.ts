@@ -151,6 +151,32 @@ export class Game {
     //var outlinePass = new THREE.OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
     //composer.addPass(outlinePass);
 
+    var loader = new THREE.FontLoader();
+
+    loader.load('/assets/fonts/helvetiker_regular.typeface.json', (font) => {
+
+      var geometry = new THREE.TextGeometry('Hello three.js!', {
+        font: font,
+        size: 80,
+        height: 5,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 10,
+        bevelSize: 8,
+        bevelSegments: 5
+      });
+
+      var materials = [
+        new THREE.MeshPhongMaterial({ color: 0xfff000, flatShading: true }), // front
+        new THREE.MeshPhongMaterial({ color: 0xffffff }) // side
+      ];
+
+      var mesh = new THREE.Mesh(geometry, materials);
+      mesh.scale.set(0.1, 0.1, 0.1);
+
+      //this.scene.add(mesh);
+    });
+
     var dt = 1 / 60;
 
     var animate = () => {
