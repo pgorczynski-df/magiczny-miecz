@@ -16,7 +16,14 @@ namespace MagicSword.Core.Api.Hubs
 
         public async Task Publish(Event @event)
         {
-            await Clients.All.SendAsync("NewEvent", @event);
+            //switch (@event.Type)
+            //{
+                    
+            //}
+
+            await Clients.Others.SendAsync("NewEvent", @event);
         }
+
+
     }
 }

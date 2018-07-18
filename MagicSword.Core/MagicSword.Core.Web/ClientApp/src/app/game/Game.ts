@@ -42,6 +42,8 @@ export class Game {
 
   dice: Dice;
 
+  serializer = new Serializer();
+
   get width(): number { return this.container.clientWidth; }
   get height(): number { return this.container.clientHeight; }
 
@@ -247,19 +249,25 @@ export class Game {
     this.world.newGame();
   }
 
+  serialize = (): any => {
+    return this.serializer.serializeGame(this);
+  }
+
+  deserialize = (dto: any): any => {
+    this.serializer.deserializeGame(dto, this);
+  }
+
   save = () => {
 
-    var serializer = new Serializer();
-    var c = serializer.serializeGame(this);
+    var c = this.serialize();
     var ss = JSON.stringify(c);
     localStorage.setItem("mmsave", ss);
   }
 
   load = () => {
     var ss = localStorage.getItem("mmsave");
-    var serializer = new Serializer();
     var c = JSON.parse(ss);
-    serializer.deserializeGame(c, this);
+    this.deserialize(c);
   }
 
   threeXWindowResize = (renderer, camera) => {
