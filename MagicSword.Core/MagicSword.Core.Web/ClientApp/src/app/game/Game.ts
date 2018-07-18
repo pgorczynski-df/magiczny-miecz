@@ -19,6 +19,7 @@ import { Services } from "./Services";
 
 import { Event } from "../game/Event";
 import { EventType } from "../game/EventType";
+import {ActorDto} from "./dto/ActorDto";
 
 export class Game {
 
@@ -167,18 +168,28 @@ export class Game {
   }
 
   private processIncomingEvent = (ev: Event) => {
-
     switch (ev.eventType) {
       case EventType.GameLoadRequest:
         var dto = this.serialize();
-        this.services.outboundBus.publish(
-          {
-            eventType: EventType.GameLoadResponse,
-            data: dto,
-          } as Event);
+        this.services.outboundBus.publish(EventType.GameLoadResponse, dto);
+        break;
+
       case EventType.GameLoadResponse:
         var dto2 = ev.data;
         this.deserialize(dto2);
+        break;
+
+      case EventType.ActorMove:
+      case EventType.ActorRotate:
+        var actorDto = ev.data as ActorDto;
+        var actor = this.actors.find(a => a.id === actorDto.id);
+        if (actor) {
+          this.serializer.deserializeActor(actorDto, actor);
+        } else {
+          this.services.logger.warn("Cannot find actor with id: " + actorDto.id);
+        }
+        break;
+
       default:
         this.services.logger.warn("Unknown event type: " + ev.eventType);
     }
@@ -247,14 +258,21 @@ export class Game {
     this.updateRaycaster(event);
 
     if (this.draggedObject) {
-      var intersects = this.raycaster.intersectObject(this.plane);
+
+      var actor = this.draggedObject.userData["parent"];
+      var actorDto = this.serializer.serializeActor(actor);
 
       if (event.buttons === 2) {
         this.draggedObject.rotateY((event.movementX) / 300);
+        this.services.outboundBus.publish(EventType.ActorRotate, actorDto);
+
       } else {
-        var int = intersects[0].point;
-        this.draggedObject.position.x = int.x;
-        this.draggedObject.position.z = int.z;
+        var intersects = this.raycaster.intersectObject(this.plane);
+        var intersect = intersects[0].point;
+        this.draggedObject.position.x = intersect.x;
+        this.draggedObject.position.z = intersect.z;
+
+        this.services.outboundBus.publish(EventType.ActorMove, actorDto);
       }
     }
   };

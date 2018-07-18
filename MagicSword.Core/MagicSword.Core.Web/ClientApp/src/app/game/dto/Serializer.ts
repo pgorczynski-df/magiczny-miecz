@@ -7,6 +7,8 @@ import {WorldDto} from "./WorldDto";
 import {CardStack} from "../logic/CardStack";
 import {CardStackDto} from "./CardStackDto";
 import {Object3DDto as Object3dDto} from "./Object3DDto";
+import {IActor} from "../logic/IActor";
+import {ActorDto} from "./ActorDto";
 
 export class Serializer {
 
@@ -47,6 +49,7 @@ export class Serializer {
 
   serializeCardStack = (cardStack: CardStack): CardStackDto => {
     var dto = new CardStackDto();
+    dto.id = cardStack.id;
     dto.definitionId = cardStack.definition.id;
     dto.object3D = this.serializeObject3D(cardStack.object3D);
 
@@ -65,6 +68,8 @@ export class Serializer {
   }
 
   deserializeCardStack = (world: World, source: CardStackDto, target: CardStack): void => {
+    target.id = source.id;
+
     this.deserializeObject3D(source.object3D, target.object3D);
 
     this.deserializeCardCollection(world, target, source.cards, target.cards);
@@ -81,6 +86,7 @@ export class Serializer {
 
   serializeCard = (card: Card): CardDto => {
     var dto = new CardDto();
+    dto.id = card.id;
     dto.definitionId = card.definition.id;
     dto.loaded = card.loaded;
     if (card.loaded) {
@@ -93,6 +99,7 @@ export class Serializer {
 
   deserializeCard = (world: World, stack: CardStack, cardDto: CardDto): Card => {
     var card = stack.createCard(cardDto.definitionId, !cardDto.loaded);
+    card.id = cardDto.id;
     if (cardDto.loaded) {
       world.addNewCard(card);
       this.deserializeObject3D(cardDto.object3D, card.object3D);
@@ -110,6 +117,18 @@ export class Serializer {
   deserializeObject3D = (source: Object3dDto, object3D: THREE.Object3D) => {
     object3D.position.copy(source.position);
     object3D.rotation.copy(source.rotation);
+  }
+
+  serializeActor = (actor: IActor): ActorDto => {
+    var dto = new ActorDto();
+    dto.id = actor.id;
+    dto.object3D = this.serializeObject3D(actor.object3D);
+    return dto;
+  }
+
+  deserializeActor = (source: ActorDto, target: IActor) => {
+    target.id = source.id;
+    this.deserializeObject3D(source.object3D, target.object3D);
   }
 
 }

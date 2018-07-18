@@ -41,9 +41,8 @@ export class HomeComponent implements AfterViewInit {
 
   load = () => {
     //this.game.load();
-    var type = EventType.GameLoadRequest;
-    var e = { eventType: type } as Event;
-    this.services.outboundBus.publish(e);
+
+    this.services.outboundBus.publish(EventType.GameLoadRequest);
   };
 
   drawCard = () => {
