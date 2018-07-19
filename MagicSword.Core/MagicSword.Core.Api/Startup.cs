@@ -40,7 +40,38 @@ namespace MagicSword.Core.Api
 
             services.AddCors(x => x.AddPolicy("corsGlobalPolicy", policy));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<MagicSwordCoreApiContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("MagicSwordCoreApiContextConnection")));
+
+            services.AddDefaultIdentity<Player>(o =>
+                {
+                    o.SignIn.RequireConfirmedEmail = false;
+                    o.Password.RequireNonAlphanumeric = false;
+                    o.Password.RequireUppercase = false;
+                    o.Password.RequireLowercase = false;
+                    o.Password.RequiredLength = 6;
+                })
+                .AddEntityFrameworkStores<MagicSwordCoreApiContext>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddRazorPagesOptions(options =>
+                {
+                    options.AllowAreas = true;
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            // using Microsoft.AspNetCore.Identity.UI.Services;
+            //services.AddSingleton<IEmailSender, EmailSender>();
+
             services.AddSignalR();
         }
 
