@@ -1,8 +1,10 @@
 ﻿using MagicSword.Core.Api.Hubs;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +22,9 @@ namespace MagicSword.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=.\SQLEXPRESS;Initial Catalog=MagicSword;Trusted_Connection=True;ConnectRetryCount=0;Integrated Security=True";
+            services.AddDbContext<GameServerContext>(options => options.UseSqlServer(connection));
+
             var policy = new CorsPolicy();
             policy.Headers.Add("*");
             policy.Methods.Add("*");
