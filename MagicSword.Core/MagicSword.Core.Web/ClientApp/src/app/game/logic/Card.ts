@@ -23,4 +23,8 @@ export class Card extends BoxObject implements IActor {
   dispose = () => {
     this.originStack.disposeCard(this);
   }
+
+  init(): void {
+     super.init();
+  }
 }

@@ -22,15 +22,17 @@ export class World {
 
   //characters: Character[] = [];
 
+  static font: THREE.Font = null;
+
   constructor(private game: Game) {
 
 
     this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
     this.game.addActor(this.mmBoard);
 
-    for (var definition of CardStackDefinition.cardStackDefinitions) {
+    this.loadFont();
 
-      game.services.logger.debug("Loading card stack definition: " + definition.name);
+    for (var definition of CardStackDefinition.cardStackDefinitions) {
 
       this.loadCardDefinitions(definition);
 
@@ -80,8 +82,20 @@ export class World {
     });
   }
 
+  private loadFont = () => {
+    var loader = new THREE.FontLoader();
+    loader.load('/assets/fonts/helvetiker_regular.typeface.json', (font) => {
+      World.font = font;
+    });
+  }
+
   //TODO nicefy
-  private ensureLoaded = () : boolean => {
+  private ensureLoaded = (): boolean => {
+
+    if (World.font === null) {
+      return false;
+    }
+
     for (var stack of this.cardStacks) {
       if (!stack.definition.cardDefinitions) {
         return false;

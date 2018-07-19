@@ -43,16 +43,20 @@
     <None Remove="ClientApp\src\app\game\logic\CardStackDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardType.ts" />
     <None Remove="ClientApp\src\app\game\logic\Character.ts" />
+    <None Remove="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\GameBoard.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
     <None Remove="ClientApp\src\app\game\logic\World.ts" />
     <None Remove="ClientApp\src\app\game\Services.ts" />
     <None Remove="ClientApp\src\app\game\Skybox.ts" />
+    <None Remove="ClientApp\src\app\game\TextObject.ts" />
     <None Remove="ClientApp\src\app\game\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\game\utils\Guid.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Services.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventBus.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />

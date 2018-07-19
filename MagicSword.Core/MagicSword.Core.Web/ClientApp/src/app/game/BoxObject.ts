@@ -29,7 +29,10 @@ export class BoxObject {
     }
   }
 
-  init = () => {
+  init() {
+
+    this._group = new THREE.Group();
+    this._group.userData["parent"] = this;
 
     this.geometry = new THREE.BoxGeometry(this.width, this.depth, this.height);
 
@@ -54,17 +57,22 @@ export class BoxObject {
     ];
 
     this._mesh = new THREE.Mesh(this.geometry, materials);
+    this.addChild(this._mesh);
 
     this._box = new THREE.BoxHelper(this._mesh, new THREE.Color(0xd9ea23));
     this._box.visible = false;
-
-    this._group = new THREE.Group();
-    this._group.add(this._mesh);
-    this._group.add(this._box);
-
-    this._mesh.userData["parent"] = this._box.userData["parent"] = this._group.userData["parent"] = this;
+    this.addChild(this._box);
 
     this.loaded = true;
+  }
+
+  addChild(mesh: THREE.Object3D) {
+    mesh.userData["parent"] = this;
+    this.object3D.add(mesh);
+  }
+
+  removeChild(mesh: THREE.Object3D) {
+    this.object3D.remove(mesh);
   }
 
   unload = () => {

@@ -6,7 +6,8 @@ import { Card } from "./Card";
 import { IActor } from "./IActor";
 import { CardStackDefinition } from "./CardStackDefinition";
 import { CardType } from "./CardType";
-import {Collections} from "../utils/Collections";
+import { Collections } from "../utils/Collections";
+import { Character } from "./Character";
 
 export class CardStack extends BoxObject implements IActor {
 
@@ -64,7 +65,7 @@ export class CardStack extends BoxObject implements IActor {
   private createCardInternal = (cardDefinition: CardDefinition, delay: boolean) => {
 
     //for most cards we transpose width and height
-    var width = this.height; 
+    var width = this.height;
     var height = this.width;
     var depth = CardStack.cardWidth;
 
@@ -76,7 +77,9 @@ export class CardStack extends BoxObject implements IActor {
       depth = CardStack.cardWidth;
     }
 
-    var card = new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
+    var card = this.definition.type === CardType.Character ?
+      new Character(cardDefinition, this.definition.resourcePath, width, height, depth, delay) :
+      new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
 
     card.originStack = this;
     return card;
