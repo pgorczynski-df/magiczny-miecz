@@ -49,11 +49,12 @@ namespace MagicSword.Core.Api
                 app.UseHsts();
             }
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-
             app.UseHttpsRedirection();
             app.UseCors("corsGlobalPolicy");
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseSignalR(routes => { routes.MapHub<GameHub>("/gameHub"); });
 
