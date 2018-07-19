@@ -1,22 +1,18 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MagicSword.Core.Api.Model;
+using MagicSword.Core.Api.Security;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 namespace MagicSword.Core.Api.Controllers
 {
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private static readonly SigningCredentials SigningCreds = new SigningCredentials(Startup.SecurityKey, SecurityAlgorithms.HmacSha256);
 
         private readonly SignInManager<Player> _signInManager;
         private readonly ILogger _logger;
-        private readonly JwtSecurityTokenHandler _tokenHandler = new JwtSecurityTokenHandler();
 
         public AccountController(SignInManager<Player> signInManager, ILogger<AccountController> logger)
         {
@@ -36,7 +32,6 @@ namespace MagicSword.Core.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Token(string email, string password)
         {
-
             // Check the password but don't "sign in" (which would set a cookie)
             var user = await _signInManager.UserManager.FindByEmailAsync(email);
             if (user == null)
@@ -50,16 +45,10 @@ namespace MagicSword.Core.Api.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, password, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                var principal = await _signInManager.CreateUserPrincipalAsync(user);
-                var token = new JwtSecurityToken(
-                    "SignalRAuthenticationSample",
-                    "SignalRAuthenticationSample",
-                    principal.Claims,
-                    expires: DateTime.UtcNow.AddDays(30),
-                    signingCredentials: SigningCreds);
+                var token = _signInManager.GetJwtToken(user);
                 return Json(new
                 {
-                    token = _tokenHandler.WriteToken(token)
+                    token = token,
                 });
             }
             else
