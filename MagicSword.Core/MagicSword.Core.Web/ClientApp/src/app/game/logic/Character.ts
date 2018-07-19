@@ -7,7 +7,7 @@ import { CharacterParameterDefinition } from "./CharacterParameterDefinition";
 
 export class Character extends Card {
 
-  static parameters: CharacterParameterDefinition[] = [
+  static parameterDefinitions: CharacterParameterDefinition[] = [
     {
       name: CharacterParameterDefinition.Strength,
       position: new THREE.Vector3(-12, 0, -5),
@@ -34,12 +34,12 @@ export class Character extends Card {
     },
   ];
 
-  parameterValues: number[] = new Array(Character.parameters.length);
-  textObjects: TextObject[] = new Array(Character.parameters.length);
+  parameterValues: number[] = new Array(Character.parameterDefinitions.length);
+  textObjects: TextObject[] = new Array(Character.parameterDefinitions.length);
 
   constructor(definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false) {
     super(definition, resourcePath, width, height, depth, delay);
-    for (var i = 0; i < Character.parameters.length; i++) {
+    for (var i = 0; i < Character.parameterDefinitions.length; i++) {
       this.parameterValues[i] = 0;
       this.textObjects[i] = null;
     }
@@ -51,7 +51,7 @@ export class Character extends Card {
 
     this.loaded = false;
 
-    for (var definition of Character.parameters) {
+    for (var definition of Character.parameterDefinitions) {
       this.increase(definition.name, definition.initialValue); 
     }
 
@@ -68,7 +68,7 @@ export class Character extends Card {
       this.removeChild(this.textObjects[index].mesh);
     }
 
-    var definition = Character.parameters[index];
+    var definition = Character.parameterDefinitions[index];
 
     var text = new TextObject(World.font, this.parameterValues[index].toString(), definition.color);
     text.mesh.position.copy(definition.position);
@@ -76,7 +76,7 @@ export class Character extends Card {
   }
 
   private findIndex(parameterName: string): number {
-    return Character.parameters.findIndex(p => p.name === parameterName);
+    return Character.parameterDefinitions.findIndex(p => p.name === parameterName);
   }
 
 }
