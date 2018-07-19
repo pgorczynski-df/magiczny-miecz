@@ -67,7 +67,7 @@ export class GameHubClient {
     const url = 'https://localhost:44320/';
 
     this._hubConnection = new HubConnectionBuilder()
-      .withUrl(`${url}/gamehub${tokenValue}`)
+      .withUrl(`${url}/gamehub`, { accessTokenFactory: () => "token" })
       .configureLogging(LogLevel.Information)
       .build();
 
