@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Authorization;
-using MagicSword.Core.Api.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,13 +16,13 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
-        private readonly SignInManager<MagicSwordCoreApiUser> _signInManager;
-        private readonly UserManager<MagicSwordCoreApiUser> _userManager;
+        private readonly SignInManager<Player> _signInManager;
+        private readonly UserManager<Player> _userManager;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
-            SignInManager<MagicSwordCoreApiUser> signInManager,
-            UserManager<MagicSwordCoreApiUser> userManager,
+            SignInManager<Player> signInManager,
+            UserManager<Player> userManager,
             ILogger<ExternalLoginModel> logger)
         {
             _signInManager = signInManager;
@@ -115,7 +115,7 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new MagicSwordCoreApiUser { UserName = Input.Email, Email = Input.Email };
+                var user = new Player { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

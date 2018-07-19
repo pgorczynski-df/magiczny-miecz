@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MagicSword.Core.Api.Areas.Identity.Data;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,13 +12,13 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<MagicSwordCoreApiUser> _userManager;
-        private readonly SignInManager<MagicSwordCoreApiUser> _signInManager;
+        UserManager<Player> _userManager;
+        private readonly SignInManager<Player> _signInManager;
         ILogger<ResetAuthenticatorModel> _logger;
 
         public ResetAuthenticatorModel(
-            UserManager<MagicSwordCoreApiUser> userManager,
-            SignInManager<MagicSwordCoreApiUser> signInManager,
+            UserManager<Player> userManager,
+            SignInManager<Player> signInManager,
             ILogger<ResetAuthenticatorModel> logger)
         {
             _userManager = userManager;

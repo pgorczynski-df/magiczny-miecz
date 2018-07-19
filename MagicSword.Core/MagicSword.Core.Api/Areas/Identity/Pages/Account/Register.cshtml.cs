@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Authorization;
-using MagicSword.Core.Api.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +16,14 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<MagicSwordCoreApiUser> _signInManager;
-        private readonly UserManager<MagicSwordCoreApiUser> _userManager;
+        private readonly SignInManager<Player> _signInManager;
+        private readonly UserManager<Player> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<MagicSwordCoreApiUser> userManager,
-            SignInManager<MagicSwordCoreApiUser> signInManager,
+            UserManager<Player> userManager,
+            SignInManager<Player> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -67,7 +67,7 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new MagicSwordCoreApiUser { UserName = Input.Email, Email = Input.Email };
+                var user = new Player { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

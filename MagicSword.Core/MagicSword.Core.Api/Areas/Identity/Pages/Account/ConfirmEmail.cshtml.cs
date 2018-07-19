@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Authorization;
-using MagicSword.Core.Api.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,9 +13,9 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<MagicSwordCoreApiUser> _userManager;
+        private readonly UserManager<Player> _userManager;
 
-        public ConfirmEmailModel(UserManager<MagicSwordCoreApiUser> userManager)
+        public ConfirmEmailModel(UserManager<Player> userManager)
         {
             _userManager = userManager;
         }

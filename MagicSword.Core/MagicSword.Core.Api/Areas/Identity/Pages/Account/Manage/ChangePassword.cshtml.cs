@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using MagicSword.Core.Api.Areas.Identity.Data;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,13 +12,13 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
-        private readonly UserManager<MagicSwordCoreApiUser> _userManager;
-        private readonly SignInManager<MagicSwordCoreApiUser> _signInManager;
+        private readonly UserManager<Player> _userManager;
+        private readonly SignInManager<Player> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public ChangePasswordModel(
-            UserManager<MagicSwordCoreApiUser> userManager,
-            SignInManager<MagicSwordCoreApiUser> signInManager,
+            UserManager<Player> userManager,
+            SignInManager<Player> signInManager,
             ILogger<ChangePasswordModel> logger)
         {
             _userManager = userManager;

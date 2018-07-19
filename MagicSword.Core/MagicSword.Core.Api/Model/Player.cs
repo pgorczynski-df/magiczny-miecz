@@ -1,14 +1,11 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace MagicSword.Core.Api.Model
 {
-    public class Player : Entity
+    // Add profile data for application users by adding properties to the MagicSwordCoreApiUser class
+    public class Player : IdentityUser<int>
     {
-        public string Email { get; set; }
-
-        public string Nickname { get; set; }
-
         public List<GamePlayer> ParticipatedGames { get; set; } = new List<GamePlayer>();
     }
 }

@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using MagicSword.Core.Api.Areas.Identity.Data
-@inject SignInManager<MagicSwordCoreApiUser> SignInManager
-@inject UserManager<MagicSwordCoreApiUser> UserManager
+@using Model
+@inject SignInManager<Player> SignInManager
+@inject UserManager<Player> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {

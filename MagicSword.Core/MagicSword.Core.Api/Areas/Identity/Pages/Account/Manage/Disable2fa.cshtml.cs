@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MagicSword.Core.Api.Areas.Identity.Data;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,11 +12,11 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account.Manage
 {
     public class Disable2faModel : PageModel
     {
-        private readonly UserManager<MagicSwordCoreApiUser> _userManager;
+        private readonly UserManager<Player> _userManager;
         private readonly ILogger<Disable2faModel> _logger;
 
         public Disable2faModel(
-            UserManager<MagicSwordCoreApiUser> userManager,
+            UserManager<Player> userManager,
             ILogger<Disable2faModel> logger)
         {
             _userManager = userManager;

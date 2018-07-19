@@ -1,4 +1,5 @@
-﻿@inject SignInManager<MagicSwordCoreApiUser> SignInManager
+﻿@using Model
+@inject SignInManager<Player> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

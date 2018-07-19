@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using MagicSword.Core.Api.Areas.Identity.Data;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,11 +9,11 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {
-        private readonly UserManager<MagicSwordCoreApiUser> _userManager;
+        private readonly UserManager<Player> _userManager;
         private readonly ILogger<PersonalDataModel> _logger;
 
         public PersonalDataModel(
-            UserManager<MagicSwordCoreApiUser> userManager,
+            UserManager<Player> userManager,
             ILogger<PersonalDataModel> logger)
         {
             _userManager = userManager;

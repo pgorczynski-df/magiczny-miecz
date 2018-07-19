@@ -1,6 +1,5 @@
 ﻿using System;
-using MagicSword.Core.Api.Areas.Identity.Data;
-using MagicSword.Core.Api.Models;
+using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -20,7 +19,7 @@ namespace MagicSword.Core.Api.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("MagicSwordCoreApiContextConnection")));
 
-                services.AddDefaultIdentity<MagicSwordCoreApiUser>()
+                services.AddDefaultIdentity<Player>()
                     .AddEntityFrameworkStores<MagicSwordCoreApiContext>();
             });
         }

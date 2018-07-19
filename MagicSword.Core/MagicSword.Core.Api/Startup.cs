@@ -22,8 +22,15 @@ namespace MagicSword.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=.\SQLEXPRESS;Initial Catalog=MagicSword;Trusted_Connection=True;ConnectRetryCount=0;Integrated Security=True";
-            services.AddDbContext<GameServerContext>(options => options.UseSqlServer(connection));
+            //var connection = @"Server=.\SQLEXPRESS;Initial Catalog=MagicSword;Trusted_Connection=True;ConnectRetryCount=0;Integrated Security=True";
+            //services.AddDbContext<GameServerContext>(options => options.UseSqlServer(connection));
+
+            //services.AddDbContext<MagicSwordCoreApiContext>(options =>
+            //    options.UseSqlServer(
+            //        context.Configuration.GetConnectionString("MagicSwordCoreApiContextConnection")));
+
+            //services.AddDefaultIdentity<MagicSwordCoreApiUser>()
+            //    .AddEntityFrameworkStores<MagicSwordCoreApiContext>();
 
             var policy = new CorsPolicy();
             policy.Headers.Add("*");
