@@ -27,6 +27,8 @@ export class GameComponent implements AfterViewInit {
   constructor(private route: ActivatedRoute, private services: Services) {
   }
 
+  events: Event[] = [];
+
   ngAfterViewInit() {
 
     this.route.paramMap.subscribe(d => {
@@ -60,7 +62,9 @@ export class GameComponent implements AfterViewInit {
   load = () => {
     //this.game.load();
 
-    this.services.outboundBus.publish(EventType.GameLoadRequest);
+    this.events.push({ eventType: "asdasda", data: "asdasd" } as Event);
+
+    //this.services.outboundBus.publish(EventType.GameLoadRequest);
   };
 
   drawCard = () => {

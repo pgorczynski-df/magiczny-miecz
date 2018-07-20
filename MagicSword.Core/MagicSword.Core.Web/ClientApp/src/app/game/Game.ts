@@ -41,7 +41,6 @@ export class Game {
   dragInitialPosition = new THREE.Vector3();
   dragInitialRotation = new THREE.Euler();
 
-
   world: World;
 
   actors: IActor[] = [];
@@ -52,8 +51,7 @@ export class Game {
 
   serializer = new Serializer();
 
-  get width(): number { return this.container.clientWidth; }
-  get height(): number { return this.container.clientHeight; }
+  events: Event[] = [];
 
   constructor(vieport: any, public services: Services) {
 
@@ -62,6 +60,8 @@ export class Game {
     if (!this.container) {
       throw new Error("cannot find viewport");
     }
+
+    //this.publishEvent("asdasd", "asdas");
 
     this.services.inboundBus.of().subscribe(e => this.processIncomingEvent(e));
 
@@ -293,19 +293,24 @@ export class Game {
     if (finalPosition.distanceTo(this.dragInitialPosition) > 0.001) {
       var actor = this.draggedObject.userData["parent"];
       var actorDto = this.serializer.serializeActor(actor);
-      this.services.outboundBus.publish(EventType.ActorMove, actorDto);
+      this.publishEvent(EventType.ActorMove, actorDto);
     }
 
     var finalRotation = this.draggedObject.rotation;
     if (finalRotation.toVector3().distanceTo(this.dragInitialRotation.toVector3()) > 0.001) {
       var actor2 = this.draggedObject.userData["parent"];
       var actorDto2 = this.serializer.serializeActor(actor2);
-      this.services.outboundBus.publish(EventType.ActorRotate, actorDto2);
+      this.publishEvent(EventType.ActorRotate, actorDto2);
     }
 
     this.draggedObject = null;
     this.controls.enabled = true;
   };
+
+  publishEvent(eventType: string, data: any = null) {
+    this.services.outboundBus.publish(eventType, data);
+    this.events.push({ eventType: eventType, data: data } as Event);
+  }
 
   new = () => {
     this.resetCamera();
@@ -349,5 +354,8 @@ export class Game {
       }
     };
   }
+
+  get width(): number { return this.container.clientWidth; }
+  get height(): number { return this.container.clientHeight; }
 
 }

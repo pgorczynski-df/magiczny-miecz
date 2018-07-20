@@ -23,3 +23,13 @@
   height: 300px;
   /*border: 3px solid #73AD21;*/
 }
+
+
+.events-panel {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 200px;
+  height: 300px;
+  border: 3px solid #73AD21;
+}

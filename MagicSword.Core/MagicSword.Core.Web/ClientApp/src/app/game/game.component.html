@@ -1,10 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-
-    <div class="viewport col-md-9" #viewport>
-      <div class="controls-panel">
-        <img class="card-display" src="{{selectedActor ? selectedActor.faceUrl : '' }}" alt="{{selectedActor ? selectedActor.name : '' }}"/>
-        <div [hidden]="!(selectedActor && selectedActor.isCardStack)">
+    <div class="col-md-9">
+      <div #viewport class="viewport">
+      </div>
+      <div class="controls-panel" [hidden]="!selectedActor">
+        <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}"/>
+        <div [hidden]="!(selectedActor?.isCardStack)">
           <button class="btn" (click)="drawCard()">Wyciągnij kartę</button>
           <!--<ul>
             <li>Kart na stosie: {{selectedActor && selectedActor.cards ? selectedActor.cards.length : ""}}</li>
@@ -16,7 +17,13 @@
           <button class="btn" (click)="disposeCard()">Odłóż kartę</button>
         </div>
       </div>
+      <div class="events-panel">
+        <ul>
+          <li *ngFor="let event of events; index as i;">{{event.eventType}}</li>
+        </ul>
+      </div>
     </div>
+
     <div class="col-md-3">
       <ul>
         <li>
