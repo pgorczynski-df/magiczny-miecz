@@ -246,6 +246,8 @@ export class Game {
 
       if (hitActor.selectable) {
         this.world.selectActor(hitActor);
+      } else {
+        this.world.clearSelectedActor();
       }
 
       if (hitActor.draggable) {
@@ -254,8 +256,10 @@ export class Game {
         this.dragInitialRotation.copy(this.draggedObject.rotation);
         this.controls.enabled = false;
       }
-
+    } else {
+      this.world.clearSelectedActor();
     }
+
   };
 
   onDocumentMouseMove = (event: MouseEvent) => {
