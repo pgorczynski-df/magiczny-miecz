@@ -13,7 +13,7 @@ import {EventType} from "../game/EventType";
 })
 export class HomeComponent implements AfterViewInit {
 
-  @ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
+  //@ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
 
   game: Game;
   hub: GameHubClient;
@@ -27,8 +27,8 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.hub = new GameHubClient(this.services);
-    this.game = new Game(this.viewport.nativeElement, this.services);
+    //this.hub = new GameHubClient(this.services);
+    //this.game = new Game(this.viewport.nativeElement, this.services);
   }
 
   new = () => {
