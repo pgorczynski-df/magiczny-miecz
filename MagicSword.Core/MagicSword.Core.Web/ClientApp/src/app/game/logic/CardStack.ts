@@ -71,10 +71,11 @@ export class CardStack extends BoxObject implements IActor {
 
     //for pawns everything is switched
     var isPawn = this.definition.type === CardType.Pawn;
+
     if (isPawn) {
-      width = this.width;
-      height = this.height;
-      depth = CardStack.cardWidth;
+      width = this.height;
+      height = CardStack.cardWidth;
+      depth = this.width;
     }
 
     var card = this.definition.type === CardType.Character ?
@@ -97,6 +98,8 @@ export class CardStack extends BoxObject implements IActor {
 
     card.object3D.position.x += this.width + 1;
     card.object3D.position.y = this.definition.type === CardType.Pawn ? this.width / 2 + 0.5 : 0.5;
+
+    console.log(card.width + " " + card.height + " " + card.depth);
 
     this.drawnCards.push(card);
 
