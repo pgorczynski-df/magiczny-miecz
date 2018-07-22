@@ -94,7 +94,7 @@ export class CardStack extends BoxObject implements IActor {
 
     var card = this.cards.pop();
     card.init();
-    card.isCovered = !uncover;
+    card.setCovered(!uncover);
 
     card.object3D.position.copy(this.object3D.position);
     card.object3D.position.x += this.width + 1;

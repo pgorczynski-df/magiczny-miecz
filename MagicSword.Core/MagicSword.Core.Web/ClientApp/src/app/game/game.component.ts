@@ -67,8 +67,8 @@ export class GameComponent implements AfterViewInit {
     //this.services.outboundBus.publish(EventType.GameLoadRequest);
   };
 
-  drawCard = () => {
-    this.game.world.drawCard();
+  drawCard = (uncover: boolean) => {
+    this.game.world.drawCard(uncover);
   };
 
   disposeCard = () => {
@@ -79,8 +79,8 @@ export class GameComponent implements AfterViewInit {
     this.hub.sendDirectMessage("dada", "userName");
   }
 
-  setCovered(isCovered: boolean) {
-    this.game.world.setCovered(isCovered);
+  toggleCovered() {
+    this.game.world.toggleCovered();
   }
 }
 

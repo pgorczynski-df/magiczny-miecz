@@ -7,9 +7,13 @@ export class BoxObject {
 
   private geometry: THREE.BoxGeometry;
 
+  private _face: THREE.MeshLambertMaterial;
+
   private _mesh: THREE.Mesh;
   private _box: THREE.BoxHelper;
   private _group: THREE.Group;
+
+  private static _textureCache: { [id: string]: THREE.Texture; } = {};
 
   public loaded = false;
   private _selected = false;
@@ -29,11 +33,13 @@ export class BoxObject {
     }
   }
 
-  private _face: THREE.MeshLambertMaterial;
-
-  changeTex(nexTex: string) {
-    var tex = new THREE.TextureLoader().load(nexTex); //async
-    tex.minFilter = THREE.LinearFilter;
+  changeTex(newTexture: string) {
+    var tex = BoxObject._textureCache[newTexture];
+    if (!tex) {
+      tex = new THREE.TextureLoader().load(newTexture); //async
+      tex.minFilter = THREE.LinearFilter;
+      BoxObject._textureCache[newTexture] = tex;
+    }
     this._face.map = tex;
   }
 
@@ -48,12 +54,8 @@ export class BoxObject {
       color: 0x7c858e,
     });
 
-    var tex = new THREE.TextureLoader().load(this.topTexture); //async
-    tex.minFilter = THREE.LinearFilter;
-
-    this._face = new THREE.MeshLambertMaterial({
-      map: tex,
-    });
+    this._face = new THREE.MeshLambertMaterial();
+    this.changeTex(this.topTexture);
 
     var materials = [
       mat,

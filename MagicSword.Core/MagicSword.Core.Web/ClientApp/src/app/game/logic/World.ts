@@ -159,7 +159,12 @@ export class World {
 
   setCovered(isCovered: boolean) {
     let card = <Card>this.selectedActor;
-    card.setCovered(true);
+    card.setCovered(isCovered);
+  }
+
+  toggleCovered() {
+    let card = <Card>this.selectedActor;
+    card.toggleCovered();
   }
 
 }

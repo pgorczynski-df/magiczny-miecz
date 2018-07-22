@@ -15,8 +15,7 @@
           </ul>-->
         </div>
         <div [hidden]="!(selectedActor?.isCard)">
-          <button class="btn" (click)="setCovered(true)">Zakryj kartę</button>
-          <button class="btn" (click)="setCovered(false)">Odkryj kartę</button>
+          <button class="btn" (click)="toggleCovered()">{{selectedActor?.isCovered ? "Odkryj ": "Zakryj " }}kartę</button>
           <button class="btn" (click)="disposeCard()">Odłóż kartę</button>
         </div>
       </div>

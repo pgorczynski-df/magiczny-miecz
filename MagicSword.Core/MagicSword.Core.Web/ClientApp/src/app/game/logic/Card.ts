@@ -38,4 +38,8 @@ export class Card extends BoxObject implements IActor {
     this.isCovered = isCovered;
     this.changeTex(this.faceUrl);
   }
+
+  toggleCovered() {
+    this.setCovered(!this.isCovered);
+  }
 }
