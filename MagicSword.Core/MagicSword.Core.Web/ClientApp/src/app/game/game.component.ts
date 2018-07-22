@@ -31,6 +31,18 @@ export class GameComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
+    var consoleHandler = this.services.logger.createDefaultHandler();
+    var myHandler = (messages, context) => {
+      if (context.level.value >= 2) { //INFO
+        this.events.push({ eventType: messages[0], data: "asdasd" } as Event);
+      }
+    };
+
+    this.services.logger.setHandler((messages, context) => {
+      consoleHandler(messages, context);
+      myHandler(messages, context);
+    });
+
     this.route.paramMap.subscribe(d => {
       var mode = d.get("mode");
       this.services.logger.info("Starting game in " + mode + " mode");
@@ -61,9 +73,6 @@ export class GameComponent implements AfterViewInit {
 
   load = () => {
     //this.game.load();
-
-    this.events.push({ eventType: "asdasda", data: "asdasd" } as Event);
-
     //this.services.outboundBus.publish(EventType.GameLoadRequest);
   };
 
