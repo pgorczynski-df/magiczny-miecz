@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-9">
+    <div>
       <div #viewport class="viewport">
       </div>
       <div class="controls-panel" [hidden]="!selectedActor">
@@ -24,53 +24,16 @@
           <li *ngFor="let event of events; index as i;">{{event.eventType}}</li>
         </ul>
       </div>
-    </div>
-
-    <div class="col-md-3">
-      <ul>
-        <li>
-          <button class="btn" (click)="new()">Nowa gra</button>
-          <button class="btn" (click)="save()">Zapisz</button>
-          <button class="btn" (click)="load()">Wczytaj</button>
-          <button class="btn" (click)="game.dice.throw()">Rzuć kostką</button>
-          <!--<span>{{game && game.dice.object3D ? game.dice.object3D.rotation.x : ""}}</span>
-          <span>{{game && game.dice.object3D ? game.dice.object3D.rotation.y : ""}}</span>
-          <span>{{game && game.dice.object3D ? game.dice.object3D.rotation.z : ""}}</span>-->
-          <span>{{game && game.dice.object3D ? game.dice.result : ""}}</span>
-        </li>
-        <li>
-
-
-        </li>
-        <li>
-
-        </li>
-        <!--<li>
-          <div class="container">
-            <div class="row">&nbsp;</div>
-            <div class="row">
-              <div class="col-6">&nbsp;</div>
-              <div class="col-6">
-                User..........<input type="text" id="userInput" />
-                <br />
-                Message...<input type="text" id="messageInput" />
-                <input type="button" (click)="sendMessage()" value="Send Message" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <hr />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">&nbsp;</div>
-              <div class="col-6">
-                <ul id="messagesList"></ul>
-              </div>
-            </div>
-          </div>
-        </li>-->
-      </ul>
+      <div class="menu-panel">
+        <button class="btn" (click)="new()">Nowa gra</button>
+        <button class="btn" (click)="save()">Zapisz</button>
+        <button class="btn" (click)="load()">Wczytaj</button>
+        <button class="btn" (click)="game.dice.throw()">Rzuć kostką</button>
+        <!--<span>{{game && game.dice.object3D ? game.dice.object3D.rotation.x : ""}}</span>
+        <span>{{game && game.dice.object3D ? game.dice.object3D.rotation.y : ""}}</span>
+        <span>{{game && game.dice.object3D ? game.dice.object3D.rotation.z : ""}}</span>-->
+        <span>{{game && game.dice.object3D ? game.dice.result : ""}}</span>
+      </div>
     </div>
   </div>
 </div>
