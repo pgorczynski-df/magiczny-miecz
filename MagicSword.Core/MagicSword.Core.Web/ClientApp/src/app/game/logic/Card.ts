@@ -12,6 +12,8 @@ export class Card extends BoxObject implements IActor {
 
   originStack: CardStack;
 
+  isCovered = true;
+
   constructor(public definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false, isPawn = false) {
     super(resourcePath + "/" + definition.imageUrl, width, height, depth, delay, isPawn);
   }
@@ -26,5 +28,14 @@ export class Card extends BoxObject implements IActor {
 
   init(): void {
      super.init();
+  }
+
+  get faceUrl(): string {
+    return this.isCovered ? this.originStack.faceUrl : this.topTexture;
+  }
+
+  setCovered(isCovered: boolean) {
+    this.isCovered = isCovered;
+    this.changeTex(this.faceUrl);
   }
 }

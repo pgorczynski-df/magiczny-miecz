@@ -78,5 +78,9 @@ export class GameComponent implements AfterViewInit {
   sendMessage = () => {
     this.hub.sendDirectMessage("dada", "userName");
   }
+
+  setCovered(isCovered: boolean) {
+    this.game.world.setCovered(isCovered);
+  }
 }
 

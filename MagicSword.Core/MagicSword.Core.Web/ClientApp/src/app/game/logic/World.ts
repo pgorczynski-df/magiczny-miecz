@@ -123,9 +123,9 @@ export class World {
     }
   }
 
-  drawCard = () => {
+  drawCard = (uncover = true) => {
     let stack = <CardStack>this.selectedActor;
-    let card = stack.drawCard();
+    let card = stack.drawCard(uncover);
     this.addNewCard(card);
   }
 
@@ -155,6 +155,11 @@ export class World {
   private disposeCardInternal = (card: Card) => {
     card.dispose();
     this.game.removeActor(card);
+  }
+
+  setCovered(isCovered: boolean) {
+    let card = <Card>this.selectedActor;
+    card.setCovered(true);
   }
 
 }

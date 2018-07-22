@@ -29,6 +29,14 @@ export class BoxObject {
     }
   }
 
+  private _face: THREE.MeshLambertMaterial;
+
+  changeTex(nexTex: string) {
+    var tex = new THREE.TextureLoader().load(nexTex); //async
+    tex.minFilter = THREE.LinearFilter;
+    this._face.map = tex;
+  }
+
   init() {
 
     this._group = new THREE.Group();
@@ -43,17 +51,17 @@ export class BoxObject {
     var tex = new THREE.TextureLoader().load(this.topTexture); //async
     tex.minFilter = THREE.LinearFilter;
 
-    var face = new THREE.MeshLambertMaterial({
+    this._face = new THREE.MeshLambertMaterial({
       map: tex,
     });
 
     var materials = [
       mat,
       mat,
-      this.isBillboard ? mat: face,
+      this.isBillboard ? mat: this._face,
       mat,
-      this.isBillboard ? face : mat,
-      this.isBillboard ? face : mat
+      this.isBillboard ? this._face : mat,
+      this.isBillboard ? this._face : mat
     ];
 
     this._mesh = new THREE.Mesh(this.geometry, materials);
