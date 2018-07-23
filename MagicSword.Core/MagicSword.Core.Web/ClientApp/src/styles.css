@@ -6,7 +6,7 @@
 }
 
 .viewport {
-  height: 99vh;
+  height: 99vh; width: 800px
 }
 
 .card-display {

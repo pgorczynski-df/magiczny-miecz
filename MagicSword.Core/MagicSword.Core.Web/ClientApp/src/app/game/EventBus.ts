@@ -1,4 +1,5 @@
 import { Observable, Subject } from "rxjs";
+import { filter } from 'rxjs/operators';
 import { Injectable } from "@angular/core";
 
 import { Event } from "./Event";
@@ -21,7 +22,7 @@ export class EventBus {
   }
 
   public of(messageType: string = null): Observable<Event> {
-    return messageType ? this.events.filter(m => m.eventType === messageType) : this.events;
+    return messageType ? this.events.pipe(filter(m => m.eventType === messageType)) : this.events;
   }
 
 }

@@ -2,7 +2,7 @@ import {EventType} from "./EventType";
 
 export class Event {
 
-  eventType: EventType;
+  eventType: string;
 
   data?: any;
 
