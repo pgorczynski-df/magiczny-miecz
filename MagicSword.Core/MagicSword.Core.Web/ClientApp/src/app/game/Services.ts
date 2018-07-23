@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import * as Logger from "js-logger";
 
 import {EventBus} from "./EventBus";
+import {AuthService} from "../AuthService";
 
 @Injectable()
 export class Services {
@@ -12,7 +13,7 @@ export class Services {
   public inboundBus = new EventBus();
   public outboundBus = new EventBus();
 
-  constructor(public httpClient: HttpClient) {
+  constructor(public httpClient: HttpClient, public authService: AuthService) {
 
     Logger.useDefaults({ logLevel: Logger.DEBUG });
 

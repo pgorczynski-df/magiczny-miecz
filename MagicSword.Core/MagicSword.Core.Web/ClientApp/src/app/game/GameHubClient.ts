@@ -1,9 +1,9 @@
-import { Subscription } from 'rxjs';
+import { Subscription } from "rxjs";
 
-import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
-import { HubConnection, HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import { Services } from "./Services";
 //import { Store } from '@ngrx/store';
 //import * as directMessagesActions from './store/directmessages.action';
@@ -25,25 +25,25 @@ export class GameHubClient {
     //private oidcSecurityService: OidcSecurityService
   ) {
     this.headers = new HttpHeaders();
-    this.headers = this.headers.set('Content-Type', 'application/json');
-    this.headers = this.headers.set('Accept', 'application/json');
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
 
     this.init();
   }
 
   sendDirectMessage(message: string, userId: string): string {
 
-    this._hubConnection.invoke('SendMessage', message, userId);
+    this._hubConnection.invoke("SendMessage", message, userId);
     return message;
   }
 
   leave(): void {
-    this._hubConnection.invoke('Leave');
+    this._hubConnection.invoke("Leave");
   }
 
   join(): void {
-    console.log('send join');
-    this._hubConnection.invoke('Join');
+    console.log("send join");
+    this._hubConnection.invoke("Join");
   }
 
   private init() {
@@ -58,13 +58,13 @@ export class GameHubClient {
   }
 
   private initHub() {
-    console.log('initHub');
+    console.log("initHub");
     const token = ""; // this.oidcSecurityService.getToken();
-    let tokenValue = '';
-    if (token !== '') {
-      tokenValue = '?token=' + token;
+    let tokenValue = "";
+    if (token !== "") {
+      tokenValue = "?token=" + token;
     }
-    const url = 'https://localhost:44320/';
+    const url = "https://localhost:44320/";
 
     this._hubConnection = new HubConnectionBuilder()
       .withUrl(`${url}/gamehub`, { accessTokenFactory: () => "token" })

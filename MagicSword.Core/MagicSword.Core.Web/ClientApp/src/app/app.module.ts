@@ -12,12 +12,8 @@ import { GameComponent } from "./game/game.component";
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
-import { BoxObject } from "./game/BoxObject";
-import { Skybox } from "./game/Skybox";
-import { World } from "./game/logic/World";
-import { Game } from "./game/Game";
-import {EventBus} from "./game/EventBus";
 import {Services} from "./game/Services";
+import {AuthService} from "app/AuthService";
 
 @NgModule({
   declarations: [
@@ -45,6 +41,7 @@ import {Services} from "./game/Services";
     //  provide: EventBus,
     //  useFactory: () => new EventBus(),
     //},
+    AuthService,
     Services,
   ],
   bootstrap: [AppComponent]

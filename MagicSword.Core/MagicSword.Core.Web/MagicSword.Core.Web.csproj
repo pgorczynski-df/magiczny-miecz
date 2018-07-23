@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
     <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
@@ -52,6 +53,7 @@
     <None Remove="ClientApp\src\app\game\TextObject.ts" />
     <None Remove="ClientApp\src\app\game\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\game\utils\Guid.ts" />
+    <None Remove="ClientApp\src\app\home\LoginResponse.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,6 +85,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\utils\Guid.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\utils\Collections.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\home\LoginResponse.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\AuthService.ts" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,11 @@
-import { Subscription } from 'rxjs';
+import { Subscription } from "rxjs";
 
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
 import { Services } from "../game/Services";
+import {LoginResponse} from "./LoginResponse";
 //import { Store } from '@ngrx/store';
 //import * as directMessagesActions from './store/directmessages.action';
 //import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -67,7 +68,7 @@ export class PlayerHubClient {
       .configureLogging(LogLevel.Information)
       .build();
 
-    this._hubConnection.on("TokenResponse", (res) => {
+    this._hubConnection.on("TokenResponse", (res : LoginResponse) => {
       console.log(res);
     });
 
