@@ -100,8 +100,7 @@ namespace MagicSword.Core.Api
 
                             // If the request is for our hub...
                             var path = context.HttpContext.Request.Path;
-                            if (!string.IsNullOrEmpty(accessToken) &&
-                                (path.StartsWithSegments("/gameHub")))
+                            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/gameHub"))
                             {
                                 // Read the token out of the query string
                                 context.Token = accessToken;
@@ -154,7 +153,11 @@ namespace MagicSword.Core.Api
             app.UseStaticFiles();
             app.UseAuthentication();
 
-            app.UseSignalR(routes => { routes.MapHub<GameHub>("/gameHub"); });
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<GameHub>("/gameHub");
+                routes.MapHub<PlayerHub>("/playerHub");
+            });
 
             app.UseMvc();
         }

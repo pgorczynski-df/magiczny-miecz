@@ -6,6 +6,7 @@ import { GameHubClient } from "../game/GameHubClient";
 import {IActor} from "../game/logic/IActor";
 import {Services} from "../game/Services";
 import {EventType} from "../game/EventType";
+import {PlayerHubClient} from "./PlayerHubClient";
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,25 @@ import {EventType} from "../game/EventType";
 })
 export class HomeComponent implements AfterViewInit {
 
-  constructor(private services: Services) {
+  email: string = "";
+  password: string = "";
 
+  loginResult = "";
+
+  playerHub: PlayerHubClient;
+
+  constructor(private services: Services) {
+   
   }
 
   ngAfterViewInit() {
 
+    this.playerHub = new PlayerHubClient(this.services);
+
+  }
+
+  login() {
+    this.playerHub.login(this.email, this.password);
   }
 
 }
