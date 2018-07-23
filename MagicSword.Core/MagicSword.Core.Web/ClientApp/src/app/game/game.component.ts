@@ -98,10 +98,8 @@ export class GameComponent implements AfterViewInit {
   pickCard(content) {
     var stack = this.selectedActor as CardStack;
     this.cardsToPick = stack.cards;
-    console.log(stack.cards.length);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.game.world.drawCard(result, true);
-      console.log(stack.cards.length);
     }, cancelReason => { });
   }
 
