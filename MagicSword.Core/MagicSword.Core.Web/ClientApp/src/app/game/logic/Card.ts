@@ -34,6 +34,10 @@ export class Card extends BoxObject implements IActor {
     return this.isCovered ? this.originStack.faceUrl : this.topTexture;
   }
 
+  get contentUrl() {
+    return this.topTexture;
+  }
+
   setCovered(isCovered: boolean) {
     this.isCovered = isCovered;
     this.changeTex(this.faceUrl);

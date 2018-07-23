@@ -42,3 +42,10 @@
   height: 100px;
   /*border: 3px solid #73AD21;*/
 }
+
+.card-picker-box {
+  width: 150px;
+  height: 200px;
+  float: left;
+  margin: 2px;
+}

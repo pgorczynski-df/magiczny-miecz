@@ -7,6 +7,8 @@
     <div [hidden]="!(selectedActor?.isCardStack)">
       <button class="btn" (click)="drawCard()">Wyciągnij kartę</button>
       <button class="btn" (click)="drawCard(false)">Zdejmij kartę</button>
+      <button class="btn" (click)="pickCard(content)">Wybierz kartę</button>
+
       <!--<ul>
         <li>Kart na stosie: {{selectedActor && selectedActor.cards ? selectedActor.cards.length : ""}}</li>
         <li>Kart na stole: {{selectedActor && selectedActor.drawnCards ? selectedActor.drawnCards.length : ""}}</li>
@@ -34,3 +36,22 @@
     <span>{{game && game.dice.object3D ? game.dice.result : ""}}</span>
   </div>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Wybierz kartę</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let card of cardsToPick; index as i;" class="card-picker-box">
+      <a href="#" (click)="c(card.id); false;">
+        <img class="card-display" alt="{{card.name}}" src="{{card.contentUrl}}"/>
+      </a>
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

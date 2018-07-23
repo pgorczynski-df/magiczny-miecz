@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Game } from "../game/Game";
 import { Event } from "../game/Event";
@@ -7,6 +8,8 @@ import { GameHubClient } from "../game/GameHubClient";
 import { IActor } from "../game/logic/IActor";
 import { Services } from "../game/Services";
 import { EventType } from "../game/EventType";
+import { CardStack } from "./logic/CardStack";
+import { Card } from "./logic/Card";
 
 @Component({
   selector: 'app-game',
@@ -23,10 +26,11 @@ export class GameComponent implements AfterViewInit {
     return this.game ? this.game.world.selectedActor : null;
   }
 
-  constructor(private route: ActivatedRoute, private services: Services) {
+  constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services) {
   }
 
   events: Event[] = [];
+  cardsToPick: Card[] = [];
 
   ngAfterViewInit() {
 
@@ -90,5 +94,14 @@ export class GameComponent implements AfterViewInit {
   toggleCovered() {
     this.game.world.toggleCovered();
   }
+
+  pickCard(content) {
+    var stack = this.selectedActor as CardStack;
+    this.cardsToPick = stack.cards;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      console.log(result);
+    }, cancelReason => { });
+  }
+
 }
 
