@@ -80,7 +80,7 @@ export class GameComponent implements AfterViewInit {
   };
 
   drawCard = (uncover: boolean) => {
-    this.game.world.drawCard(uncover);
+    this.game.world.drawCardTop(uncover);
   };
 
   disposeCard = () => {
@@ -98,8 +98,10 @@ export class GameComponent implements AfterViewInit {
   pickCard(content) {
     var stack = this.selectedActor as CardStack;
     this.cardsToPick = stack.cards;
+    console.log(stack.cards.length);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      console.log(result);
+      this.game.world.drawCard(result, true);
+      console.log(stack.cards.length);
     }, cancelReason => { });
   }
 

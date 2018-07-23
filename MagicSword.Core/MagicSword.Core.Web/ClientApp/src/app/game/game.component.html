@@ -47,7 +47,7 @@
   </div>
   <div class="modal-body">
     <div *ngFor="let card of cardsToPick; index as i;" class="card-picker-box">
-      <a href="#" (click)="c(card.id); false;">
+      <a href="#" (click)="c(card); false;">
         <img class="card-display" alt="{{card.name}}" src="{{card.contentUrl}}"/>
       </a>
     </div>
