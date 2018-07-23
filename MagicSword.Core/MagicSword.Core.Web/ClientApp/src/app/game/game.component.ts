@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from "rxjs/operators";
 
 import { Game } from "../game/Game";
 import { Event } from "../game/Event";
