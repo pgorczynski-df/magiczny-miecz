@@ -4,7 +4,7 @@ import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { HubConnection, HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
-import { Services } from "./Services";
+import { Services } from "app/Services";
 //import { Store } from '@ngrx/store';
 //import * as directMessagesActions from './store/directmessages.action';
 //import { OidcSecurityService } from 'angular-auth-oidc-client';

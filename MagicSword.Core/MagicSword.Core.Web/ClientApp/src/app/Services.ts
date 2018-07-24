@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
 import * as Logger from "js-logger";
 
-import {EventBus} from "./EventBus";
-import {AuthService} from "../AuthService";
+import { EventBus } from "app/game/EventBus";
+import { AuthService } from "app/AuthService";
 
 @Injectable()
 export class Services {

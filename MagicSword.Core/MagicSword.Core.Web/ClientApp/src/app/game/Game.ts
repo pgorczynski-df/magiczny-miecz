@@ -2,8 +2,8 @@
  * WebGL With Three.js - Lesson 10 - Drag and Drop Objects
  * http://www.script-tutorials.com/webgl-with-three-js-lesson-10/
  */
-import * as THREE from 'three';
-import * as CANNON from 'cannon';
+import * as THREE from "three";
+import * as CANNON from "cannon";
 
 import "../../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
@@ -15,7 +15,7 @@ import { IActor } from "./logic/IActor";
 import { Serializer } from "./dto/Serializer";
 import { Dice } from "./Dice";
 import { Collections } from "./utils/Collections";
-import { Services } from "./Services";
+import { Services } from "app/Services";
 
 import { Event } from "../game/Event";
 import { EventType } from "../game/EventType";
@@ -84,9 +84,9 @@ export class Game {
 
     this.container.appendChild(this.renderer.domElement);
 
-    this.container.addEventListener('mousedown', this.onDocumentMouseDown, false);
-    this.container.addEventListener('mousemove', this.onDocumentMouseMove, false);
-    this.container.addEventListener('mouseup', this.onDocumentMouseUp, false);
+    this.container.addEventListener("mousedown", this.onDocumentMouseDown, false);
+    this.container.addEventListener("mousemove", this.onDocumentMouseMove, false);
+    this.container.addEventListener("mouseup", this.onDocumentMouseUp, false);
 
     this.threeXWindowResize(this.renderer, this.camera);
 
@@ -346,11 +346,11 @@ export class Game {
       camera.updateProjectionMatrix();
     }
 
-    window.addEventListener('resize', callback, false);
+    window.addEventListener("resize", callback, false);
 
     return {
       stop: () => {
-        window.removeEventListener('resize', callback);
+        window.removeEventListener("resize", callback);
       }
     };
   }

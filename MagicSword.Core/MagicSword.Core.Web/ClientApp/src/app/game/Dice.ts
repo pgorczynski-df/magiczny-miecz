@@ -24,7 +24,7 @@ export class Dice {
   init = (scene: THREE.Scene) => {
     var loader = new THREE["GLTFLoader"](); //missing Typing for GLTFLoader
     loader.load(
-      '/assets/3d/dice/scene.gltf',
+      "/assets/3d/dice/scene.gltf",
       gltf => {
         this.object3D = <THREE.Object3D>gltf.scene;
         this.object3D.scale.set(0.01, 0.01, 0.01);

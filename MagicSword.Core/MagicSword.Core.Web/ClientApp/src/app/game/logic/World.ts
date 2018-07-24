@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 import * as Logger from "js-logger";
 
 import { Game } from "../Game";
@@ -84,7 +84,7 @@ export class World {
 
   private loadFont = () => {
     var loader = new THREE.FontLoader();
-    loader.load('/assets/fonts/helvetiker_regular.typeface.json', (font) => {
+    loader.load("/assets/fonts/helvetiker_regular.typeface.json", (font) => {
       World.font = font;
     });
   }

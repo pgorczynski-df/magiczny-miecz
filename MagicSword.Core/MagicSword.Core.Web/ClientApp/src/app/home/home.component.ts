@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 
-import {Services} from "../game/Services";
+import { Services } from "app/Services";
 import {PlayerHubClient} from "./PlayerHubClient";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: "app-home",
+  templateUrl: "./home.component.html",
 })
 export class HomeComponent implements AfterViewInit {
 

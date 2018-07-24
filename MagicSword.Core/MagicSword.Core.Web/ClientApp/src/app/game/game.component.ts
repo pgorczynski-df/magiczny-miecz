@@ -1,19 +1,19 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 import { Game } from "../game/Game";
 import { Event } from "../game/Event";
 import { GameHubClient } from "../game/GameHubClient";
 import { IActor } from "../game/logic/IActor";
-import { Services } from "../game/Services";
+import { Services } from "app/Services";
 import { EventType } from "../game/EventType";
 import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
+  selector: "app-game",
+  templateUrl: "./game.component.html",
 })
 export class GameComponent implements AfterViewInit {
 
@@ -98,7 +98,7 @@ export class GameComponent implements AfterViewInit {
   pickCard(content) {
     var stack = this.selectedActor as CardStack;
     this.cardsToPick = stack.cards;
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: "modal-basic-title" }).result.then((result) => {
       this.game.world.drawCard(result, true);
     }, cancelReason => { });
   }
