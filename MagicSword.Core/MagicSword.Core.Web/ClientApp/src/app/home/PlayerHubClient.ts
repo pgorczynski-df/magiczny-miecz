@@ -1,4 +1,4 @@
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -38,9 +38,23 @@ export class PlayerHubClient {
     return message;
   }
 
-  login(email: string, password: string): void {
+  login(email: string, password: string): Observable<LoginResponse> {
     this.services.logger.debug("Attempting to login: " + email + " " + password);
-    this._hubConnection.invoke("Token", email, password);
+
+    var observable = Observable.create(observer => {
+
+      this._hubConnection.on("TokenResponse", (res: LoginResponse) => {
+        this._hubConnection.off("TokenResponse");
+
+        observer.next(res);
+        observer.complete();
+      });
+
+    });
+
+    this._hubConnection.invoke("Token", email, password).then(r => console.log(r));
+
+    return observable;
   }
 
   private init() {
@@ -61,16 +75,12 @@ export class PlayerHubClient {
     if (token !== "") {
       tokenValue = "?token=" + token;
     }
-    const url = "http://localhost:50411/";
+    const url = "http://localhost:53048/";
 
     this._hubConnection = new HubConnectionBuilder()
       .withUrl(`${url}/playerhub`, { accessTokenFactory: () => "token" })
       .configureLogging(LogLevel.Information)
       .build();
-
-    this._hubConnection.on("TokenResponse", (res : LoginResponse) => {
-      console.log(res);
-    });
 
     this._hubConnection.start().catch(err =>
       this.services.logger.error(err));

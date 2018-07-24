@@ -27,7 +27,18 @@ export class HomeComponent implements AfterViewInit {
   }
 
   login() {
-    this.playerHub.login(this.email, this.password);
+    if (this.email.length > 1 && this.password.length > 1) {
+      this.playerHub.login(this.email, this.password).subscribe(r => {
+        if (r.success) {
+          this.loginResult = r.token;
+        } else {
+          this.loginResult = r.error;
+        }
+      });
+    } else {
+      this.loginResult = "Email/hasło wymagane";
+    }
+
   }
 
 }

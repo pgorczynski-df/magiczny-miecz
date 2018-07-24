@@ -10,7 +10,7 @@ import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { GameComponent } from "./game/game.component";
 import { CounterComponent } from "./counter/counter.component";
-import { FetchDataComponent } from "./fetch-data/fetch-data.component";
+import { LobbyComponent } from "./lobby/lobby.component";
 
 import {Services} from "app/Services";
 import {AuthService} from "app/AuthService";
@@ -22,7 +22,7 @@ import {AuthService} from "app/AuthService";
     HomeComponent,
     GameComponent,
     CounterComponent,
-    FetchDataComponent,
+    LobbyComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -32,7 +32,7 @@ import {AuthService} from "app/AuthService";
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "game/:mode", component: GameComponent },
       { path: "counter", component: CounterComponent },
-      { path: "fetch-data", component: FetchDataComponent },
+      { path: "lobby", component: LobbyComponent },
     ]),
     NgbModule.forRoot()
   ],
