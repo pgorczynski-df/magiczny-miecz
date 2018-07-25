@@ -39,7 +39,7 @@ export class PlayerHubClient {
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
-    return this.invoke<LoginResponse>("Token", "TokenResponse", email, password);
+    return this.invokeSimple<LoginResponse>("Token", email, password);
   }
 
   getMyGames(): Observable<GameListDto[]> {

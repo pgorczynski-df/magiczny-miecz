@@ -33,7 +33,7 @@ namespace MagicSword.Core.Api.Hubs
             var games = await _context.Games.Where(g => g.Participants.Any(p => p.PlayerId == id)).ToListAsync();
             var dtos = games.Select(g => CreateListDto(g, id));
 
-            await Clients.Caller.SendAsync("GetMyGamesResponse", dtos);
+            await RespondCaller(nameof(GetMyGamesRequest), dtos);
         }
 
         [Authorize]
@@ -53,7 +53,12 @@ namespace MagicSword.Core.Api.Hubs
 
             var gameDto = CreateListDto(game, CallingUserId);
 
-            await Clients.Caller.SendAsync("CreateGameResponse", gameDto);
+            await RespondCaller(nameof(CreateGameRequest), gameDto);
+        }
+
+        private async Task RespondCaller(string requestMethodName, object arg)
+        {
+            await Clients.Caller.SendAsync(requestMethodName.Replace("Request", "Response"), arg);
         }
 
         private GameListDto CreateListDto(Model.Game game, int callerId)
@@ -65,7 +70,7 @@ namespace MagicSword.Core.Api.Hubs
             };
         }
 
-        public async Task Token(string email, string password)
+        public async Task TokenRequest(string email, string password)
         {
             if (String.IsNullOrEmpty(email))
             {
@@ -79,7 +84,7 @@ namespace MagicSword.Core.Api.Hubs
             var user = await _signInManager.UserManager.FindByEmailAsync(email);
             if (user == null)
             {
-                await Clients.Caller.SendAsync("TokenResponse", new LoginResponse
+                await RespondCaller(nameof(TokenRequest), new LoginResponse
                 {
                     Success = false,
                     Error = "Nieznany użytkownik",
@@ -91,7 +96,7 @@ namespace MagicSword.Core.Api.Hubs
             if (result.Succeeded)
             {
                 var token = await _signInManager.GetJwtToken(user);
-                await Clients.Caller.SendAsync("TokenResponse", new LoginResponse
+                await RespondCaller(nameof(TokenRequest), new LoginResponse
                 {
                     Success = true,
                     Token = token,
@@ -100,7 +105,7 @@ namespace MagicSword.Core.Api.Hubs
             }
             else
             {
-                await Clients.Caller.SendAsync("TokenResponse", new LoginResponse
+                await RespondCaller(nameof(TokenRequest), new LoginResponse
                 {
                     Success = false,
                     Error = result.IsLockedOut ? "User is locked out" : "Login failed",
@@ -116,5 +121,7 @@ namespace MagicSword.Core.Api.Hubs
                 return id;
             }
         }
+
+
     }
 }
