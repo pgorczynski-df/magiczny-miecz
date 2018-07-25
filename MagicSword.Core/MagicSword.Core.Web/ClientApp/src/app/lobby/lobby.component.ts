@@ -12,8 +12,13 @@ export class LobbyComponent {
 
   constructor(private services: Services, private hub: PlayerHubClient) {
 
-    this.hub.getMyGames().subscribe(res => this.games = res);
+    this.hub = new PlayerHubClient(this.services);
+    this.hub.init();
 
+  }
+
+  load():void {
+    this.hub.getMyGames().subscribe(res => this.games = res);
   }
 
   create(): void {

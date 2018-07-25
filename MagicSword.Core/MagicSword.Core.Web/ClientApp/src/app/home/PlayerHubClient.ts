@@ -51,7 +51,7 @@ export class PlayerHubClient {
   }
 
   invokeSimple<T = any>(methodName: string, ...args: any[]): Observable<T> {
-    return this.invoke<T>(methodName + "Request", methodName + "Response", args);
+    return this.invoke<T>(methodName + "Request", methodName + "Response", ...args);
   }
 
   invoke<T = any>(requestMethodName: string, responseMethodName: string, ...args: any[]): Observable<T> {
@@ -68,7 +68,7 @@ export class PlayerHubClient {
 
     });
 
-    this._hubConnection.invoke(requestMethodName, args).then(r => console.log(r), r => console.error(r));
+    this._hubConnection.invoke(requestMethodName, ...args).then(r => {}, r => console.error(r));
 
     return observable;
   }
@@ -94,7 +94,12 @@ export class PlayerHubClient {
     const url = "http://localhost:53048/";
 
     this._hubConnection = new HubConnectionBuilder()
-      .withUrl(`${url}/playerhub`, { accessTokenFactory: () => this.services.authService.token })
+      .withUrl(`${url}/playerhub`, {
+        accessTokenFactory: () => {
+          var token = this.services.authService.token;
+          this.services.logger.debug("Auth using token: " + token);
+         return token;
+      } })
       .configureLogging(LogLevel.Information)
       .build();
 

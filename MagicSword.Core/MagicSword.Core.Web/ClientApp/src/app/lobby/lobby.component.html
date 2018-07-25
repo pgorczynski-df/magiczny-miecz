@@ -6,10 +6,8 @@
 <table class='table' *ngIf="games">
   <thead>
   <tr>
-    <th>Date</th>
-    <th>Temp. (C)</th>
-    <th>Temp. (F)</th>
-    <th>Summary</th>
+    <th>Id</th>
+    <th>Is owner</th>
   </tr>
   </thead>
   <tbody>
@@ -20,4 +18,5 @@
   </tbody>
 </table>
 
+<button (click)="load()" class="btn btn-primary">Load games</button>
 <button (click)="create()" class="btn btn-primary">Create game</button>

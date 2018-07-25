@@ -100,7 +100,7 @@ namespace MagicSword.Core.Api
 
                             // If the request is for our hub...
                             var path = context.HttpContext.Request.Path;
-                            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/gameHub"))
+                            if (!string.IsNullOrEmpty(accessToken) /*TODO && path.StartsWithSegments("/gameHub")*/)
                             {
                                 // Read the token out of the query string
                                 context.Token = accessToken;
@@ -129,7 +129,9 @@ namespace MagicSword.Core.Api
             // using Microsoft.AspNetCore.Identity.UI.Services;
             //services.AddSingleton<IEmailSender, EmailSender>();
 
-            services.AddSignalR();
+            services.AddSignalR()
+                .AddHubOptions<PlayerHub>(options => { options.EnableDetailedErrors = true; })
+                .AddHubOptions<GameHub>(options => { options.EnableDetailedErrors = true; });
 
             services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
         }
