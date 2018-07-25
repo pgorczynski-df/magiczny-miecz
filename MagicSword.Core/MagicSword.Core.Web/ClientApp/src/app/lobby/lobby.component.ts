@@ -1,23 +1,22 @@
 import { Component, Inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Services } from "app/Services";
+import { GameListDto } from "app/lobby/dto/GameListDto";
+import { PlayerHubClient } from "app/home/PlayerHubClient";
 
 @Component({
   selector: "app-lobby-data",
   templateUrl: "./lobby.component.html"
 })
 export class LobbyComponent {
-  public forecasts: WeatherForecast[];
+  public games: GameListDto[];
 
-  constructor(http: HttpClient, @Inject("BASE_URL") baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + "api/SampleData/WeatherForecasts").subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  constructor(private services: Services, private hub: PlayerHubClient) {
+
+    this.hub.getMyGames().subscribe(res => this.games = res);
+
   }
-}
 
-interface WeatherForecast {
-  dateFormatted: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+  create(): void {
+    this.hub.createGame().subscribe(res => this.games.push(res));
+  }
 }

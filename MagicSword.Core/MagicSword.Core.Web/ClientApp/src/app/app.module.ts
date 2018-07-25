@@ -12,8 +12,9 @@ import { GameComponent } from "./game/game.component";
 import { CounterComponent } from "./counter/counter.component";
 import { LobbyComponent } from "./lobby/lobby.component";
 
-import {Services} from "app/Services";
-import {AuthService} from "app/AuthService";
+import { Services } from "app/Services";
+import { AuthService } from "app/AuthService";
+import { PlayerHubClient } from "app/home/PlayerHubClient"
 
 @NgModule({
   declarations: [
@@ -37,12 +38,9 @@ import {AuthService} from "app/AuthService";
     NgbModule.forRoot()
   ],
   providers: [
-    //{
-    //  provide: EventBus,
-    //  useFactory: () => new EventBus(),
-    //},
     AuthService,
     Services,
+    PlayerHubClient
   ],
   bootstrap: [AppComponent]
 })

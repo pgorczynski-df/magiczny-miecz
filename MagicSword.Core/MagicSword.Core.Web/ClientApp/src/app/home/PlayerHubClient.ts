@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core";
 import { HubConnection, HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import { Services } from "app/Services";
 import {LoginResponse} from "./LoginResponse";
+import {GameListDto} from "app/lobby/dto/GameListDto";
 //import { Store } from '@ngrx/store';
 //import * as directMessagesActions from './store/directmessages.action';
 //import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -29,7 +30,6 @@ export class PlayerHubClient {
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
 
-    this.init();
   }
 
   sendDirectMessage(message: string, userId: string): string {
@@ -39,12 +39,28 @@ export class PlayerHubClient {
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
-    this.services.logger.debug("Attempting to login: " + email + " " + password);
+    return this.invoke<LoginResponse>("Token", "TokenResponse", email, password);
+  }
+
+  getMyGames(): Observable<GameListDto[]> {
+    return this.invokeSimple<GameListDto[]>("GetMyGames");
+  }
+
+  createGame(): Observable<GameListDto> {
+    return this.invokeSimple<GameListDto>("CreateGame");
+  }
+
+  invokeSimple<T = any>(methodName: string, ...args: any[]): Observable<T> {
+    return this.invoke<T>(methodName + "Request", methodName + "Response", args);
+  }
+
+  invoke<T = any>(requestMethodName: string, responseMethodName: string, ...args: any[]): Observable<T> {
+    this.services.logger.debug(`Attempting to invoke method: ${requestMethodName}, args: ${args.join(", ")}`);
 
     var observable = Observable.create(observer => {
 
-      this._hubConnection.on("TokenResponse", (res: LoginResponse) => {
-        this._hubConnection.off("TokenResponse");
+      this._hubConnection.on(responseMethodName, (res: T) => {
+        this._hubConnection.off(responseMethodName);
 
         observer.next(res);
         observer.complete();
@@ -52,12 +68,12 @@ export class PlayerHubClient {
 
     });
 
-    this._hubConnection.invoke("Token", email, password).then(r => console.log(r));
+    this._hubConnection.invoke(requestMethodName, args).then(r => console.log(r), r => console.error(r));
 
     return observable;
   }
 
-  private init() {
+  public  init() {
     //this.isAuthorizedSubscription = this.oidcSecurityService.getIsAuthorized().subscribe(
     //    (isAuthorized: boolean) => {
     //        this.isAuthorized = isAuthorized;
@@ -78,7 +94,7 @@ export class PlayerHubClient {
     const url = "http://localhost:53048/";
 
     this._hubConnection = new HubConnectionBuilder()
-      .withUrl(`${url}/playerhub`, { accessTokenFactory: () => "token" })
+      .withUrl(`${url}/playerhub`, { accessTokenFactory: () => this.services.authService.token })
       .configureLogging(LogLevel.Information)
       .build();
 

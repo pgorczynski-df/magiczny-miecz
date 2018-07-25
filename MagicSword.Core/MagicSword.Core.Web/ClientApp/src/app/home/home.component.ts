@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Services } from "app/Services";
 import {PlayerHubClient} from "./PlayerHubClient";
@@ -14,23 +15,21 @@ export class HomeComponent implements AfterViewInit {
 
   loginResult = "";
 
-  playerHub: PlayerHubClient;
-
-  constructor(private services: Services) {
+  constructor(private services: Services, private router: Router, private playerHub: PlayerHubClient) {
    
   }
 
   ngAfterViewInit() {
 
-    this.playerHub = new PlayerHubClient(this.services);
-
+    this.playerHub.init();
   }
 
   login() {
     if (this.email.length > 1 && this.password.length > 1) {
       this.playerHub.login(this.email, this.password).subscribe(r => {
         if (r.success) {
-          this.loginResult = r.token;
+          this.services.authService.token = r.token;
+          this.router.navigate(['/lobby']);
         } else {
           this.loginResult = r.error;
         }
