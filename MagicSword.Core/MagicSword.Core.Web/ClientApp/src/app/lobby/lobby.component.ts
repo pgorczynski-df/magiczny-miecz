@@ -8,7 +8,7 @@ import { PlayerHubClient } from "app/home/PlayerHubClient";
   templateUrl: "./lobby.component.html"
 })
 export class LobbyComponent {
-  public games: GameListDto[];
+  public games: GameListDto[] = [];
 
   constructor(private services: Services, private hub: PlayerHubClient) {
 

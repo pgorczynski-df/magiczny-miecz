@@ -68,7 +68,7 @@ export class PlayerHubClient {
 
     });
 
-    this._hubConnection.invoke(requestMethodName, ...args).then(r => {}, r => console.error(r));
+    this._hubConnection.invoke(requestMethodName, ...args).catch(r => console.error(r));
 
     return observable;
   }

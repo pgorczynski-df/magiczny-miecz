@@ -29,13 +29,9 @@ namespace MagicSword.Core.Api.Hubs
         [Authorize]
         public async Task GetMyGamesRequest()
         {
-            var user = Context.User.Identity.Name;
-            var games = _context.Games.Where(g => g.Participants.Any(p => p.Player.Email == user)).ToList();
-            var dtos = games.Select(g => new GameListDto
-            {
-                Id = g.Id,
-                IsOwner = g.Owner.Email == user,
-            });
+            var id = CallingUserId;
+            var games = await _context.Games.Where(g => g.Participants.Any(p => p.PlayerId == id)).ToListAsync();
+            var dtos = games.Select(g => CreateListDto(g, id));
 
             await Clients.Caller.SendAsync("GetMyGamesResponse", dtos);
         }
@@ -54,19 +50,18 @@ namespace MagicSword.Core.Api.Hubs
 
             _context.Games.Add(game);
             await _context.SaveChangesAsync();
-            
-            var games = _context.Games.Where(g => g.Participants.Any(p => p.Player.Email == user)).ToList();
-            var dtos = games.Select(g => CreateListDto(g, user));
 
-            await Clients.Caller.SendAsync("CreateGameResponse", dtos);
+            var gameDto = CreateListDto(game, CallingUserId);
+
+            await Clients.Caller.SendAsync("CreateGameResponse", gameDto);
         }
 
-        private GameListDto CreateListDto(Model.Game game, string callerEmail)
+        private GameListDto CreateListDto(Model.Game game, int callerId)
         {
             return new GameListDto
             {
                 Id = game.Id,
-                IsOwner = game.Owner.Email == callerEmail,
+                IsOwner = game.OwnerId == callerId,
             };
         }
 
@@ -110,6 +105,15 @@ namespace MagicSword.Core.Api.Hubs
                     Success = false,
                     Error = result.IsLockedOut ? "User is locked out" : "Login failed",
                 });
+            }
+        }
+
+        private int CallingUserId
+        {
+            get
+            {
+                var id = int.Parse(_signInManager.UserManager.GetUserId(Context.User));
+                return id;
             }
         }
     }
