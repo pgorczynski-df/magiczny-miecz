@@ -41,6 +41,8 @@ export class Game {
   dragInitialPosition = new THREE.Vector3();
   dragInitialRotation = new THREE.Euler();
 
+  id: string;
+
   world: World;
 
   actors: IActor[] = [];

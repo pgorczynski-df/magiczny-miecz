@@ -54,7 +54,7 @@ export class PlayerHubClient {
     return this.invokeSimple<GameListDto>("CreateGame");
   }
 
-  joinGame(gameId: number): Observable<any> {
+  joinGame(gameId: string): Observable<any> {
     return this.invokeSimple<any>("JoinGame", gameId);
   }
 
@@ -76,30 +76,14 @@ export class PlayerHubClient {
 
     });
 
-    this._hubConnection.invoke(requestMethodName, ...args).catch(r => console.error(r));
+    this._hubConnection.invoke(requestMethodName, ...args).catch(r => this.services.logger.error(r));
 
     return observable;
   }
 
 
-  public  init() {
-    //this.isAuthorizedSubscription = this.oidcSecurityService.getIsAuthorized().subscribe(
-    //    (isAuthorized: boolean) => {
-    //        this.isAuthorized = isAuthorized;
-    //        if (this.isAuthorized) {
-    this.initHub();
-    //        }
-    //    });
-    //console.log('IsAuthorized:' + this.isAuthorized);
-  }
+  public init() : Promise<void> {
 
-  private initHub() {
-    console.log("initHub");
-    const token = ""; // this.oidcSecurityService.getToken();
-    let tokenValue = "";
-    if (token !== "") {
-      tokenValue = "?token=" + token;
-    }
     const url = "http://localhost:53048/";
 
     this._hubConnection = new HubConnectionBuilder()
@@ -107,10 +91,17 @@ export class PlayerHubClient {
         accessTokenFactory: () => {
           var token = this.services.authService.token;
           this.services.logger.debug("Auth using token: " + token);
-         return token;
-      } })
+          return token;
+        }
+      })
       .configureLogging(LogLevel.Information)
       .build();
+
+    return this._hubConnection.start();
+  }
+
+
+  public attachEvents() {
 
     this._hubConnection.on("NewEvent", (event) => {
 
@@ -121,10 +112,11 @@ export class PlayerHubClient {
 
     });
 
-
-    this._hubConnection.start().catch(err =>
-      this.services.logger.error(err));
-
+    this.services.outboundBus.of().subscribe(e => {
+      this.services.logger.debug("sending outbound event: ");
+      this.services.logger.debug(e);
+      this._hubConnection.send("Publish", e);
+    });
 
   }
 }

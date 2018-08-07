@@ -69,6 +69,17 @@ namespace MagicSword.Core.Api.Hubs
 
             await RespondCaller(nameof(JoinGameRequest), new {});
         }
+        
+        [Authorize]
+        public async Task Publish(Event @event)
+        {
+            //switch (@event.Type)
+            //{
+
+            //}
+
+            await Clients.Others.SendAsync("NewEvent", @event);
+        }
 
         private string GetGameGroup(int gameId)
         {

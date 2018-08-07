@@ -16,12 +16,14 @@ export class LobbyComponent implements AfterViewInit {
   constructor(private router: Router, private services: Services, private hub: PlayerHubClient) {
 
     this.hub = new PlayerHubClient(this.services);
-    this.hub.init();
+    this.hub.init().then(r => {
+      this.load();
+    });
 
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.load(), 500);
+    //setTimeout(() => this.load(), 500);
   }
 
   load(): void {

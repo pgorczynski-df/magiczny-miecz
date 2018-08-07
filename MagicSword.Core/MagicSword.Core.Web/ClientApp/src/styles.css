@@ -81,7 +81,9 @@ body {
 
 
 .events-panel {
-  color: gold;
+  color: azure;
+  background-color: dimgray;
+  opacity: 0.7;
   position: absolute;
   bottom: 20px;
   left: 20px;

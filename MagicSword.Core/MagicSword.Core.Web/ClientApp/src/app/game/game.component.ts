@@ -4,12 +4,13 @@ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 import { Game } from "../game/Game";
 import { Event } from "../game/Event";
-import { GameHubClient } from "../game/GameHubClient";
+//import { GameHubClient } from "../game/GameHubClient";
 import { IActor } from "../game/logic/IActor";
 import { Services } from "app/Services";
 import { EventType } from "../game/EventType";
 import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
+import { PlayerHubClient } from "app/home/PlayerHubClient";
 
 @Component({
   selector: "app-game",
@@ -20,7 +21,7 @@ export class GameComponent implements AfterViewInit {
   @ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
 
   game: Game;
-  hub: GameHubClient;
+  hub: PlayerHubClient;
 
   get selectedActor(): IActor {
     return this.game ? this.game.world.selectedActor : null;
@@ -57,7 +58,15 @@ export class GameComponent implements AfterViewInit {
           break;
         case "online":
           var gameId = d.get("gameId");
-          this.hub = new GameHubClient(this.services);
+          this.game.id = gameId;
+          this.hub = new PlayerHubClient(this.services);
+          this.hub.init().then(r => {
+            this.hub.attachEvents();
+            this.hub.joinGame(gameId).subscribe(r => { });
+          }, e => {
+            this.services.logger.error(e);
+          });
+
           break;
         default:
           throw new Error("unknown mode: " + mode);
