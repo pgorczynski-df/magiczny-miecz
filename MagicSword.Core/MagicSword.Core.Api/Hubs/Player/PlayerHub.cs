@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MagicSword.Core.Api.Controllers;
+using MagicSword.Core.Api.Dto;
 using MagicSword.Core.Api.Hubs.Game;
 using MagicSword.Core.Api.Model;
 using MagicSword.Core.Api.Security;
@@ -68,16 +69,16 @@ namespace MagicSword.Core.Api.Hubs
                 Data = new {id = userId, name = Context.User.Identity.Name}
             });
 
-            await RespondCaller(nameof(JoinGameRequest), new {});
+            await RespondCaller(nameof(JoinGameRequest), new GameStateDto
+            {
+                IsStarted = game.Data != null,
+                Data = game.Data,
+            });
         }
-        
+
         [Authorize]
         public async Task Publish(Event ev)
         {
-            //switch (@event.Type)
-            //{
-
-            //}
             var game = await GetGame(ev.GameId);
             var playerId = CallingUserId;
             if (!game.IsParticipant(playerId))
@@ -87,9 +88,18 @@ namespace MagicSword.Core.Api.Hubs
 
             ev.SourcePlayerId = playerId;
 
-            var group = GetGameGroup(ev.GameId);
+            switch (ev.EventType)
+            {
+                case EventType.ResetGameState:
+                    game.Data = ev.Data.ToString();
+                    await _context.SaveChangesAsync();
+                    break;
+                default:
+                    var group = GetGameGroup(ev.GameId);
+                    await Clients.Group(group).SendAsync("NewEvent", ev);
+                    break;
+            }
 
-            await Clients.Group(group).SendAsync("NewEvent", ev);
         }
 
         private string GetGameGroup(int gameId)

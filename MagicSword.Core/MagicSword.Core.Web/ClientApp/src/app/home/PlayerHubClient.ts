@@ -70,6 +70,9 @@ export class PlayerHubClient {
       this._hubConnection.on(responseMethodName, (res: T) => {
         this._hubConnection.off(responseMethodName);
 
+        this.services.logger.debug(`Method: ${requestMethodName}, returned result`);
+        this.services.logger.debug(res);
+
         observer.next(res);
         observer.complete();
       });

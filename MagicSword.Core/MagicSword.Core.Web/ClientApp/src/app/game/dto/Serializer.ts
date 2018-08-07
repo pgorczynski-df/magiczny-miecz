@@ -9,6 +9,8 @@ import {CardStackDto} from "./CardStackDto";
 import {Object3DDto as Object3dDto} from "./Object3DDto";
 import {IActor} from "../logic/IActor";
 import {ActorDto} from "./ActorDto";
+import {Player} from "app/game/Player";
+import {PlayerDto} from "app/game/dto/PlayerDto";
 
 export class Serializer {
 
@@ -16,15 +18,39 @@ export class Serializer {
     var dto = new GameDto();
     dto.camera = this.serializeObject3D(game.camera);
     dto.world = this.serializeWorld(game.world);
+    for (var player of game.players) {
+      var playerDto = this.serializePlayer(player);
+      dto.players.push(playerDto);
+    }
     return dto;
   }
 
   deserializeGame = (source: GameDto, target: Game): void => {
 
     target.world.cleanup();
+    target.players = [];
+
+    for (var player of source.players) {
+      var playerDto = this.deserializePlayer(player);
+      target.players.push(playerDto);
+    }
 
     this.deserializeObject3D(source.camera, target.camera);
     this.deserializeWorld(source.world, target.world);
+  }
+
+  serializePlayer = (player: Player): PlayerDto => {
+    return {
+      id: player.id,
+      name: player.name,
+    };
+  }
+
+  deserializePlayer = (playerDto: PlayerDto): Player => {
+    return {
+      id: playerDto.id,
+      name: playerDto.name,
+    };
   }
 
   serializeWorld = (world: World): WorldDto => {

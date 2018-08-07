@@ -3,14 +3,16 @@ namespace MagicSword.Core.Api.Model
 {
     public class EventType
     {
-        public static string PlayerJoined = "PlayerJoined";
+        public const string ResetGameState = "ResetGameState";
 
-        public static string GameLoadRequest = "GameLoadRequest";
+        public const string PlayerJoined = "PlayerJoined";
 
-        public static string GameLoadResponse = "GameLoadResponse";
+        public const string GameLoadRequest = "GameLoadRequest";
 
-        public static string ActorMove = "ActorMove";
+        public const string GameLoadResponse = "GameLoadResponse";
 
-        public static string ActorRotate = "ActorRotate";
+        public const string ActorMove = "ActorMove";
+
+        public const string ActorRotate = "ActorRotate";
     }
 }

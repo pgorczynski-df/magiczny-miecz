@@ -211,7 +211,6 @@ export class Game {
         var player = this.findPlayer(playerId);
         if (!player) {
           this.players.push(ev.data);
-          console.log(this.players);
         }
         this.services.logger.info(`Gracz ${ev.data.name} dołącza do gry`);
         break;
