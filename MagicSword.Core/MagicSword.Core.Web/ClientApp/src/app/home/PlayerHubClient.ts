@@ -46,8 +46,16 @@ export class PlayerHubClient {
     return this.invokeSimple<GameListDto[]>("GetMyGames");
   }
 
+  getOpenGames(): Observable<GameListDto[]> {
+    return this.invokeSimple<GameListDto[]>("GetOpenGames");
+  }
+
   createGame(): Observable<GameListDto> {
     return this.invokeSimple<GameListDto>("CreateGame");
+  }
+
+  joinGame(gameId: number): Observable<any> {
+    return this.invokeSimple<any>("JoinGame", gameId);
   }
 
   invokeSimple<T = any>(methodName: string, ...args: any[]): Observable<T> {
@@ -72,6 +80,7 @@ export class PlayerHubClient {
 
     return observable;
   }
+
 
   public  init() {
     //this.isAuthorizedSubscription = this.oidcSecurityService.getIsAuthorized().subscribe(
@@ -102,6 +111,16 @@ export class PlayerHubClient {
       } })
       .configureLogging(LogLevel.Information)
       .build();
+
+    this._hubConnection.on("NewEvent", (event) => {
+
+      this.services.logger.debug("received inbound event: ");
+      this.services.logger.debug(event);
+
+      this.services.inboundBus.publish2(event);
+
+    });
+
 
     this._hubConnection.start().catch(err =>
       this.services.logger.error(err));

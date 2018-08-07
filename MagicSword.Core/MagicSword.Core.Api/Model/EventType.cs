@@ -3,6 +3,8 @@ namespace MagicSword.Core.Api.Model
 {
     public class EventType
     {
+        public static string PlayerJoined = "PlayerJoined";
+
         public static string GameLoadRequest = "GameLoadRequest";
 
         public static string GameLoadResponse = "GameLoadResponse";

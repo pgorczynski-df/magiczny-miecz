@@ -27,13 +27,63 @@ namespace MagicSword.Core.Api.Hubs
         }
 
         [Authorize]
+        public async Task GetOpenGamesRequest()
+        {
+            var userId = CallingUserId;
+            var games = await _context.Games.Where(g => g.Participants.Any(p => p.PlayerId != userId)).ToListAsync();
+            var dtos = games.Select(g => CreateListDto(g, userId));
+
+            await RespondCaller(nameof(GetOpenGamesRequest), dtos);
+        }
+
+        [Authorize]
         public async Task GetMyGamesRequest()
         {
-            var id = CallingUserId;
-            var games = await _context.Games.Where(g => g.Participants.Any(p => p.PlayerId == id)).ToListAsync();
-            var dtos = games.Select(g => CreateListDto(g, id));
+            var userId = CallingUserId;
+            var games = await _context.Games.Where(g => g.Participants.Any(p => p.PlayerId == userId)).ToListAsync();
+            var dtos = games.Select(g => CreateListDto(g, userId));
 
             await RespondCaller(nameof(GetMyGamesRequest), dtos);
+        }
+
+        [Authorize]
+        public async Task JoinGameRequest(int gameId)
+        {
+            var userId = CallingUserId;
+            var game = await GetGame(gameId);
+
+            if (game.Participants.All(p => p.PlayerId != userId))
+            {
+                game.Participants.Add(new GamePlayer{ GameId = gameId, PlayerId = userId});
+                await _context.SaveChangesAsync();
+            }
+
+            var group = GetGameGroup(gameId);
+            await Groups.AddToGroupAsync(Context.ConnectionId, group);
+
+            await Clients.Group(group).SendAsync("NewEvent", new Event
+            {
+                EventType = EventType.PlayerJoined,
+                Data = new {playerId = userId, name = Context.User.Identity.Name}
+            });
+
+            await RespondCaller(nameof(JoinGameRequest), new {});
+        }
+
+        private string GetGameGroup(int gameId)
+        {
+            return "Game_" + gameId;
+        }
+
+        private async Task<Model.Game> GetGame(int gameId)
+        {
+            var game = await _context.Games.Include(g => g.Participants).SingleOrDefaultAsync(g => g.Id == gameId);
+            if (game == null)
+            {
+                throw new ArgumentException("Cannot find game with id = " + gameId);
+            }
+
+            return game;
         }
 
         [Authorize]

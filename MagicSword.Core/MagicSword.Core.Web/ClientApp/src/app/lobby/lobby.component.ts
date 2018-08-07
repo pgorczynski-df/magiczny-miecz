@@ -8,7 +8,9 @@ import { PlayerHubClient } from "app/home/PlayerHubClient";
   templateUrl: "./lobby.component.html"
 })
 export class LobbyComponent {
-  public games: GameListDto[] = [];
+
+  public myGames: GameListDto[] = [];
+  public openGames: GameListDto[] = [];
 
   constructor(private services: Services, private hub: PlayerHubClient) {
 
@@ -18,10 +20,15 @@ export class LobbyComponent {
   }
 
   load():void {
-    this.hub.getMyGames().subscribe(res => this.games = res);
+    this.hub.getMyGames().subscribe(res => this.myGames = res);
+    this.hub.getOpenGames().subscribe(res => this.openGames = res);
   }
 
   create(): void {
-    this.hub.createGame().subscribe(res => this.games.push(res));
+    this.hub.createGame().subscribe(res => this.myGames.push(res));
+  }
+
+  join(game: GameListDto): void {
+    this.hub.joinGame(game.id).subscribe(res => {});
   }
 }

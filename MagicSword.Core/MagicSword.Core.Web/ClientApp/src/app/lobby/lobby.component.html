@@ -1,20 +1,39 @@
 <h1>My games</h1>
 
 
-<p *ngIf="!games"><em>Loading...</em></p>
+<p *ngIf="!myGames"><em>Loading...</em></p>
 
-<table class='table' *ngIf="games">
+<table class='table' *ngIf="myGames">
   <thead>
-  <tr>
-    <th>Id</th>
-    <th>Is owner</th>
-  </tr>
+    <tr>
+      <th>Id</th>
+      <th>Is owner</th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let game of games">
-    <td>{{ game.id }}</td>
-    <td>{{ game.isOwner }}</td>
-  </tr>
+    <tr *ngFor="let game of myGames">
+      <td>{{ game.id }}</td>
+      <td>{{ game.isOwner }}</td>
+      <td><button (click)="join(game)" class="btn btn-primary">Join</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!openGames"><em>Loading...</em></p>
+
+<table class='table' *ngIf="openGames">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Is owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let game of openGames">
+      <td>{{ game.id }}</td>
+      <td>{{ game.isOwner }}</td>
+      <td><button (click)="join(game)" class="btn btn-primary">Join</button></td>
+    </tr>
   </tbody>
 </table>
 
