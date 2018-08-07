@@ -13,8 +13,8 @@ export class EventBus {
     this.events = new Subject<Event>();
   }
 
-  public publish(eventType: string, data: any = null): void {
-    this.events.next({ eventType: eventType, data: data } as Event);
+  public publish(gameId: string, eventType: string, data: any = null): void {
+    this.events.next({ gameId: gameId, eventType: eventType, data: data } as Event);
   }
 
   public publish2(message: Event): void {

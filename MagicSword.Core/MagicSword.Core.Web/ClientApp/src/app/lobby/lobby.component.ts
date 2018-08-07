@@ -36,8 +36,6 @@ export class LobbyComponent implements AfterViewInit {
   }
 
   join(game: GameListDto): void {
-    this.hub.joinGame(game.id).subscribe(res => {
-      this.router.navigate(["/game", "online", game.id]);
-    });
+    this.router.navigate(["/game", "online", game.id]);
   }
 }

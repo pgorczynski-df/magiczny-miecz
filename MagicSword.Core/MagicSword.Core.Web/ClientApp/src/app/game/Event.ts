@@ -1,6 +1,9 @@
-import {EventType} from "./EventType";
 
 export class Event {
+
+  sourcePlayerId?: string;
+
+  gameId: string;
 
   eventType: string;
 

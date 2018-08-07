@@ -38,7 +38,7 @@ export class GameComponent implements AfterViewInit {
     var consoleHandler = this.services.logger.createDefaultHandler();
     var myHandler = (messages, context) => {
       if (context.level.value >= 2) { //INFO
-        this.events.push({ eventType: messages[0], data: "asdasd" } as Event);
+        this.events.push({ gameId: this.game ? this.game.id : "-1", eventType: messages[0], data: { }} as Event);
       }
     };
 

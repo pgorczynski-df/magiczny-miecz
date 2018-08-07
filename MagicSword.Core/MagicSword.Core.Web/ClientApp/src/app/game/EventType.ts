@@ -1,6 +1,8 @@
 
 export class EventType {
 
+  public static PlayerJoined = "PlayerJoined";
+
   public static GameLoadRequest = "GameLoadRequest";
 
   public static GameLoadResponse = "GameLoadResponse";

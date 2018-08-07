@@ -63,22 +63,33 @@ namespace MagicSword.Core.Api.Hubs
 
             await Clients.Group(group).SendAsync("NewEvent", new Event
             {
+                GameId = game.Id,
                 EventType = EventType.PlayerJoined,
-                Data = new {playerId = userId, name = Context.User.Identity.Name}
+                Data = new {id = userId, name = Context.User.Identity.Name}
             });
 
             await RespondCaller(nameof(JoinGameRequest), new {});
         }
         
         [Authorize]
-        public async Task Publish(Event @event)
+        public async Task Publish(Event ev)
         {
             //switch (@event.Type)
             //{
 
             //}
+            var game = await GetGame(ev.GameId);
+            var playerId = CallingUserId;
+            if (!game.IsParticipant(playerId))
+            {
+                throw new ArgumentException("Player id = " + playerId + " is not participant of game id = " + game.Id);
+            }
 
-            await Clients.Others.SendAsync("NewEvent", @event);
+            ev.SourcePlayerId = playerId;
+
+            var group = GetGameGroup(ev.GameId);
+
+            await Clients.Group(group).SendAsync("NewEvent", ev);
         }
 
         private string GetGameGroup(int gameId)

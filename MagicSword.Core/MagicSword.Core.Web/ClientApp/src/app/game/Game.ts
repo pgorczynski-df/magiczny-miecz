@@ -5,21 +5,22 @@
 import * as THREE from "three";
 import * as CANNON from "cannon";
 
-import "../../assets/js/EnableThreeExamples";
+import "app/../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 import "three/examples/js/loaders/GLTFLoader";
 
-import { Skybox } from "./Skybox";
-import { World } from "./logic/World";
-import { IActor } from "./logic/IActor";
-import { Serializer } from "./dto/Serializer";
-import { Dice } from "./Dice";
-import { Collections } from "./utils/Collections";
+import { Skybox } from "app/game/Skybox";
+import { World } from "app/game/logic/World";
+import { IActor } from "app/game/logic/IActor";
+import { Serializer } from "app/game/dto/Serializer";
+import { Dice } from "app/game/Dice";
+import { Collections } from "app/game/utils/Collections";
 import { Services } from "app/Services";
 
-import { Event } from "../game/Event";
-import { EventType } from "../game/EventType";
-import {ActorDto} from "./dto/ActorDto";
+import { Event } from "app/game/Event";
+import { EventType } from "app/game/EventType";
+import {ActorDto} from "app/game/dto/ActorDto";
+import {Player} from "app/game/Player";
 
 export class Game {
 
@@ -54,6 +55,8 @@ export class Game {
   serializer = new Serializer();
 
   events: Event[] = [];
+
+  players: Player[] = [];
 
   constructor(vieport: any, public services: Services) {
 
@@ -174,6 +177,13 @@ export class Game {
   }
 
   private processIncomingEvent = (ev: Event) => {
+
+    var senderName = "xxx";
+    var sender = this.findPlayer(ev.sourcePlayerId);
+    if (sender) {
+      senderName = sender.name;
+    }
+
     switch (ev.eventType) {
       case EventType.GameLoadRequest:
         var dto = this.serialize();
@@ -191,15 +201,28 @@ export class Game {
         var actor = this.actors.find(a => a.id === actorDto.id);
         if (actor) {
           this.serializer.deserializeActor(actorDto, actor);
+          this.services.logger.info(`Gracz ${senderName} przesunął kartę ${actor.name}`);
         } else {
-          this.services.logger.warn("Cannot find actor with id: " + actorDto.id);
+          this.services.logger.warn(`Cannot find actor with id: ${actorDto.id}`);
         }
         break;
-
+      case EventType.PlayerJoined:
+        var playerId = ev.data.id;
+        var player = this.findPlayer(playerId);
+        if (!player) {
+          this.players.push(ev.data);
+          console.log(this.players);
+        }
+        this.services.logger.info(`Gracz ${ev.data.name} dołącza do gry`);
+        break;
       default:
         this.services.logger.warn("Unknown event type: " + ev.eventType);
     }
 
+  }
+
+  private findPlayer(playerId: string) {
+    return this.players.find(p => p.id === playerId);
   }
 
   addActor = (actor: IActor) => {
@@ -310,8 +333,12 @@ export class Game {
   };
 
   publishEvent(eventType: string, data: any = null) {
-    this.services.outboundBus.publish(eventType, data);
-    this.events.push({ eventType: eventType, data: data } as Event);
+    this.services.outboundBus.publish(this.id, eventType, data);
+    this.events.push({
+      gameId: this.id,
+      eventType: eventType,
+      data: data
+    } as Event);
   }
 
   new = () => {

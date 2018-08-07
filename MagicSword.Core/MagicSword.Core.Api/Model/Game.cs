@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MagicSword.Core.Api.Model
 {
@@ -11,5 +13,15 @@ namespace MagicSword.Core.Api.Model
         public List<GamePlayer> Participants { get; set; } = new List<GamePlayer>();
 
         public string Data { get; set; }
+
+        public bool IsParticipant(int playerId)
+        {
+            if (!Participants.Any())
+            {
+                throw new InvalidOperationException("Game has no participants, is the collection loaded properly?");
+            }
+
+            return Participants.Any(p => p.PlayerId == playerId);
+        }
     }
 }
