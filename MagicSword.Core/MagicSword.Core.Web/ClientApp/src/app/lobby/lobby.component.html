@@ -1,5 +1,4 @@
-<h1>My games</h1>
-
+<h2>My games</h2>
 
 <p *ngIf="!myGames"><em>Loading...</em></p>
 
@@ -19,6 +18,11 @@
   </tbody>
 </table>
 
+<button (click)="create()" class="btn btn-primary">Create game</button>
+
+
+<h2>Open games</h2>
+
 <p *ngIf="!openGames"><em>Loading...</em></p>
 
 <table class='table' *ngIf="openGames">
@@ -37,5 +41,4 @@
   </tbody>
 </table>
 
-<button (click)="load()" class="btn btn-primary">Load games</button>
-<button (click)="create()" class="btn btn-primary">Create game</button>
+<button (click)="load()" class="btn btn-primary">Refresh</button>

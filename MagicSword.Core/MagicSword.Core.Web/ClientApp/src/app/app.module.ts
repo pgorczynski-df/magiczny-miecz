@@ -31,6 +31,7 @@ import { PlayerHubClient } from "app/home/PlayerHubClient"
     FormsModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
+      { path: "game/:mode/:gameId", component: GameComponent },
       { path: "game/:mode", component: GameComponent },
       { path: "counter", component: CounterComponent },
       { path: "lobby", component: LobbyComponent },

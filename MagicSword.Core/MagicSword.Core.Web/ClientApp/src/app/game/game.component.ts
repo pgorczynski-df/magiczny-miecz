@@ -56,6 +56,7 @@ export class GameComponent implements AfterViewInit {
         case "local":
           break;
         case "online":
+          var gameId = d.get("gameId");
           this.hub = new GameHubClient(this.services);
           break;
         default:

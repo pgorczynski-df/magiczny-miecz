@@ -1,4 +1,5 @@
-import { Component, Inject } from "@angular/core";
+import { Component, AfterViewInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Services } from "app/Services";
 import { GameListDto } from "app/lobby/dto/GameListDto";
 import { PlayerHubClient } from "app/home/PlayerHubClient";
@@ -7,19 +8,23 @@ import { PlayerHubClient } from "app/home/PlayerHubClient";
   selector: "app-lobby-data",
   templateUrl: "./lobby.component.html"
 })
-export class LobbyComponent {
+export class LobbyComponent implements AfterViewInit {
 
   public myGames: GameListDto[] = [];
   public openGames: GameListDto[] = [];
 
-  constructor(private services: Services, private hub: PlayerHubClient) {
+  constructor(private router: Router, private services: Services, private hub: PlayerHubClient) {
 
     this.hub = new PlayerHubClient(this.services);
     this.hub.init();
 
   }
 
-  load():void {
+  ngAfterViewInit(): void {
+    setTimeout(() => this.load(), 500);
+  }
+
+  load(): void {
     this.hub.getMyGames().subscribe(res => this.myGames = res);
     this.hub.getOpenGames().subscribe(res => this.openGames = res);
   }
@@ -29,6 +34,8 @@ export class LobbyComponent {
   }
 
   join(game: GameListDto): void {
-    this.hub.joinGame(game.id).subscribe(res => {});
+    this.hub.joinGame(game.id).subscribe(res => {
+      this.router.navigate(["/game", "online", game.id]);
+    });
   }
 }
