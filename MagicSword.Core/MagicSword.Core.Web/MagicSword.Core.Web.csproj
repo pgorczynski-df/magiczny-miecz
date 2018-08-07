@@ -107,6 +107,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ClientApp\src\app\game\dto\GameStateDto.ts">
+      <CustomToolNamespace>..\MagicSword.Core.Api\Dto\GameStateDto.cs</CustomToolNamespace>
+    </None>
     <None Update="ClientApp\src\app\game\utils\Guid.js">
       <DependentUpon>Guid.ts</DependentUpon>
     </None>

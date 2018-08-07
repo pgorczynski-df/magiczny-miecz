@@ -11,6 +11,7 @@ import { EventType } from "../game/EventType";
 import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
 import { PlayerHubClient } from "app/home/PlayerHubClient";
+import {GameStateDto} from "app/game/dto/GameStateDto";
 
 @Component({
   selector: "app-game",
@@ -63,8 +64,9 @@ export class GameComponent implements AfterViewInit {
           this.hub.init().then(r => {
             this.hub.attachEvents();
             this.hub.joinGame(gameId).subscribe(r => {
-              if (r.isStarted) {
-                var gameDto = JSON.parse(r.data);
+              var rdto = r as GameStateDto;
+              if (rdto.isStarted) {
+                var gameDto = JSON.parse(rdto.data);
                 this.game.deserialize(gameDto);
               } else {
                 var dto = JSON.stringify(this.game.serialize());
