@@ -8,5 +8,6 @@
         public static GameLoadResponse: string = "GameLoadResponse";
         public static ActorMove: string = "ActorMove";
         public static ActorRotate: string = "ActorRotate";
+        public static CardDrawn: string = "CardDrawn";
     }
 

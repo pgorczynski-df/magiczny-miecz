@@ -19,8 +19,12 @@ import { Services } from "app/Services";
 
 import { Event } from "app/game/Event";
 import { EventType } from "app/game/EventType";
-import {ActorDto} from "app/game/dto/ActorDto";
-import {Player} from "app/game/Player";
+import { ActorDto } from "app/game/dto/ActorDto";
+import { Player } from "app/game/Player";
+import { Card } from "app/game/logic/Card";
+import { CardStackDto } from "./dto/CardStackDto";
+import { CardStack } from "./logic/CardStack";
+import { CardDto } from "./dto/CardDto";
 
 export class Game {
 
@@ -206,6 +210,19 @@ export class Game {
           this.services.logger.warn(`Cannot find actor with id: ${actorDto.id}`);
         }
         break;
+      case EventType.CardDrawn:
+        var cardDto = ev.data as CardDto;
+        var originStack = this.world.cardStacks.find(a => a.definition.id === cardDto.originStackDefinitionId);
+        var card = originStack.cards.find(c => c.id === cardDto.id);
+        if (card) {
+          this.world.drawCard(card, !cardDto.isCovered);
+        } else {
+          card = originStack.drawnCards.find(c => c.id === cardDto.id);
+        }
+        if (card) {
+          this.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card.name}`);
+        }
+        break;
       case EventType.PlayerJoined:
         var playerId = ev.data.id;
         var player = this.findPlayer(playerId);
@@ -338,6 +355,13 @@ export class Game {
       eventType: eventType,
       data: data
     } as Event);
+  }
+
+  drawCard(card: Card = null, uncover = true): Card {
+    var cardResult = this.world.drawCard(card, uncover);
+    var stackDto = this.serializer.serializeCard(cardResult);
+    this.publishEvent(EventType.CardDrawn, stackDto);
+    return cardResult;
   }
 
   new = () => {

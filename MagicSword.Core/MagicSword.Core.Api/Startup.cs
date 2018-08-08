@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,7 @@ namespace MagicSword.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             //var connection = @"Server=.\SQLEXPRESS;Initial Catalog=MagicSword;Trusted_Connection=True;ConnectRetryCount=0;Integrated Security=True";
             //services.AddDbContext<GameServerContext>(options => options.UseSqlServer(connection));
 
@@ -130,9 +132,14 @@ namespace MagicSword.Core.Api
             // using Microsoft.AspNetCore.Identity.UI.Services;
             //services.AddSingleton<IEmailSender, EmailSender>();
 
+            void SetHubOptions(HubOptions options)
+            {
+                options.EnableDetailedErrors = true;
+            }
+
             services.AddSignalR()
-                .AddHubOptions<PlayerHub>(options => { options.EnableDetailedErrors = true; })
-                .AddHubOptions<GameHub>(options => { options.EnableDetailedErrors = true; });
+                .AddHubOptions<PlayerHub>(SetHubOptions)
+                .AddHubOptions<GameHub>(SetHubOptions);
 
             services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
 
@@ -144,6 +151,7 @@ namespace MagicSword.Core.Api
                 logging.AddFile("Logs/myapp-{Date}.txt", LogLevel.Information);
             });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -164,10 +172,15 @@ namespace MagicSword.Core.Api
             app.UseStaticFiles();
             app.UseAuthentication();
 
+            void SetHubOptions(HttpConnectionDispatcherOptions options)
+            {
+                options.ApplicationMaxBufferSize = 10 * 1024 * 1024;
+            }
+
             app.UseSignalR(routes =>
             {
-                routes.MapHub<GameHub>("/gameHub");
-                routes.MapHub<PlayerHub>("/playerHub");
+                routes.MapHub<GameHub>("/gameHub", SetHubOptions);
+                routes.MapHub<PlayerHub>("/playerHub", SetHubOptions);
             });
 
             app.UseMvc();

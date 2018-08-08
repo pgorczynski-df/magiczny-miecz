@@ -114,7 +114,7 @@ namespace MagicSword.Core.Api.Hubs
                     break;
                 default:
 
-                    //request updated state from sender
+                    _logger.LogInformation("Requesting updated game state from caller id = {0}", playerId);
                     await SendEvent(Clients.Caller, new Event
                     {
                         GameId = game.Id,
@@ -123,8 +123,9 @@ namespace MagicSword.Core.Api.Hubs
                         SourcePlayerId = -1,
                     });
 
-                    //notify others
                     var group = GetGameGroup(ev.GameId);
+
+                    _logger.LogInformation("Propagating event to group {0}", group);
                     await SendEvent(Clients.Group(group), ev);
                     break;
             }

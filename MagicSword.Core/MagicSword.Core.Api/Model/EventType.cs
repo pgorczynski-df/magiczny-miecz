@@ -14,5 +14,7 @@ namespace MagicSword.Core.Api.Model
         public const string ActorMove = "ActorMove";
 
         public const string ActorRotate = "ActorRotate";
+
+        public const string CardDrawn = "CardDrawn";
     }
 }
