@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace MagicSword.Core.Api.Hubs
 {
@@ -25,6 +26,8 @@ namespace MagicSword.Core.Api.Hubs
             _signInManager = signInManager;
             _context = context;
             _logger = logger;
+
+            _logger.LogInformation("Starting PlayerHub");
         }
 
         [Authorize]
@@ -51,6 +54,9 @@ namespace MagicSword.Core.Api.Hubs
         public async Task JoinGameRequest(int gameId)
         {
             var userId = CallingUserId;
+
+            _logger.LogInformation("User {0} attempting to join game {1}", userId, gameId);
+
             var game = await GetGame(gameId);
 
             if (game.Participants.All(p => p.PlayerId != userId))
@@ -90,11 +96,28 @@ namespace MagicSword.Core.Api.Hubs
 
             switch (ev.EventType)
             {
+                case EventType.GameLoadResponse:
+                    var data = ev.Data;
+                    var serialized = JsonConvert.SerializeObject(data);
+                    game.Data = serialized;
+                    await _context.SaveChangesAsync();
+                    break;
                 case EventType.ResetGameState:
                     game.Data = ev.Data.ToString();
                     await _context.SaveChangesAsync();
                     break;
                 default:
+
+                    //request updated state from sender
+                    await Clients.Caller.SendAsync("NewEvent", new Event
+                    {
+                        GameId = game.Id,
+                        EventType = EventType.GameLoadRequest,
+                        Data = { },
+                        SourcePlayerId = -1,
+                    });
+
+                    //notify others
                     var group = GetGameGroup(ev.GameId);
                     await Clients.Group(group).SendAsync("NewEvent", ev);
                     break;

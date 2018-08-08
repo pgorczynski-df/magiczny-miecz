@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace MagicSword.Core.Api
@@ -134,6 +135,14 @@ namespace MagicSword.Core.Api
                 .AddHubOptions<GameHub>(options => { options.EnableDetailedErrors = true; });
 
             services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+
+            services.AddLogging(logging =>
+            {
+                logging.AddConfiguration(Configuration.GetSection("Logging"));
+                logging.AddConsole();
+                logging.AddDebug();
+                logging.AddFile("Logs/myapp-{Date}.txt", LogLevel.Information);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
