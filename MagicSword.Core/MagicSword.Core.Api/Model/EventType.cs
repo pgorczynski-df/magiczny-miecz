@@ -1,7 +1,7 @@
 ﻿
 namespace MagicSword.Core.Api.Model
 {
-    public class EventType
+    public class EventType : IEnum
     {
         public const string ResetGameState = "ResetGameState";
 

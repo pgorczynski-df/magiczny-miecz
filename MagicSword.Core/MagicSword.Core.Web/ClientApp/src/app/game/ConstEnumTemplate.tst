@@ -22,13 +22,9 @@ ${
 
     // More info: http://frhagn.github.io/Typewriter/
 }
-    $Classes(:IDto)[
+    $Classes(:IEnum)[
     export class $Name {
         $Constants[
-        public $name: $Type = "$Value";]
-
-        $Properties[
-        public $name: $Type = $Type[$Default];]
-
+        public static $Name: $Type = "$Value";]
     }]
 

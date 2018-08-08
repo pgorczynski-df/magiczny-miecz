@@ -1,6 +1,6 @@
 ﻿namespace MagicSword.Core.Api.Dto
 {
-    public class GameStateDto
+    public class GameStateDto : IDto
     {
         public bool IsStarted { get; set; }
 

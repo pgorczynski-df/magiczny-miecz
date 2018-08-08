@@ -87,7 +87,7 @@ export class PlayerHubClient {
 
   public init() : Promise<void> {
 
-    const url = "http://localhost:53048/";
+    const url = "https://localhost:44320/";
 
     this._hubConnection = new HubConnectionBuilder()
       .withUrl(`${url}/playerhub`, {
