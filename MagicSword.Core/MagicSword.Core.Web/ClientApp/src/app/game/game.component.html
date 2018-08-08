@@ -20,7 +20,7 @@
       <button class="btn" (click)="disposeCard()">Odłóż kartę</button>
     </div>
   </div>
-  <div class="events-panel">
+  <div #eventsPanel class="events-panel">
     <ul>
       <li *ngFor="let event of events; index as i;">{{event.eventType}}</li>
     </ul>
