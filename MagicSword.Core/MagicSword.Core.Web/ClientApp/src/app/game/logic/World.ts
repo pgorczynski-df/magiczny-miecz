@@ -123,13 +123,7 @@ export class World {
     }
   }
 
-  drawCardTop = (uncover = true) => {
-    let stack = <CardStack>this.selectedActor;
-    let card = stack.drawCardTop(uncover);
-    this.addNewCard(card);
-  }
-
-  drawCard = (card: Card, uncover = true) => {
+  drawCard = (card: Card = null, uncover = true) => {
     let stack = <CardStack>this.selectedActor;
     card = stack.drawCard(card, uncover);
     this.addNewCard(card);

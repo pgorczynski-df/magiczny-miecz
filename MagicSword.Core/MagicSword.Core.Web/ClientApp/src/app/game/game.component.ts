@@ -100,7 +100,7 @@ export class GameComponent implements AfterViewInit {
   };
 
   drawCard = (uncover: boolean) => {
-    this.game.world.drawCardTop(uncover);
+    this.game.world.drawCard(null, uncover);
   };
 
   disposeCard = () => {
