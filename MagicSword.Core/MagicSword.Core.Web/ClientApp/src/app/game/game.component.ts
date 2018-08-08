@@ -41,7 +41,7 @@ export class GameComponent implements AfterViewInit {
     var myHandler = (messages, context) => {
       if (context.level.value >= 2) { //INFO
         this.events.push({ gameId: this.game ? this.game.id : "-1", eventType: messages[0], data: {} } as Event);
-        var objDiv = this.eventsPanel.nativeElement;
+        var objDiv = this.eventsPanel.nativeElement as any;
         objDiv.scrollTop = objDiv.scrollHeight;
       }
     };
