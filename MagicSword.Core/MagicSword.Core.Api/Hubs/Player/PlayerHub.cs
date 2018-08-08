@@ -85,8 +85,11 @@ namespace MagicSword.Core.Api.Hubs
         [Authorize]
         public async Task Publish(Event ev)
         {
-            var game = await GetGame(ev.GameId);
             var playerId = CallingUserId;
+
+            _logger.LogInformation("Received event {0} from user {1}", ev.EventType, playerId);
+
+            var game = await GetGame(ev.GameId);
             if (!game.IsParticipant(playerId))
             {
                 throw new ArgumentException("Player id = " + playerId + " is not participant of game id = " + game.Id);
@@ -99,6 +102,9 @@ namespace MagicSword.Core.Api.Hubs
                 case EventType.GameLoadResponse:
                     var data = ev.Data;
                     var serialized = JsonConvert.SerializeObject(data);
+
+                    _logger.LogInformation("Updating game state from user {0}, length: {1}", playerId, serialized.Length);
+
                     game.Data = serialized;
                     await _context.SaveChangesAsync();
                     break;
@@ -109,7 +115,7 @@ namespace MagicSword.Core.Api.Hubs
                 default:
 
                     //request updated state from sender
-                    await Clients.Caller.SendAsync("NewEvent", new Event
+                    await SendEvent(Clients.Caller, new Event
                     {
                         GameId = game.Id,
                         EventType = EventType.GameLoadRequest,
@@ -119,10 +125,14 @@ namespace MagicSword.Core.Api.Hubs
 
                     //notify others
                     var group = GetGameGroup(ev.GameId);
-                    await Clients.Group(group).SendAsync("NewEvent", ev);
+                    await SendEvent(Clients.Group(group), ev);
                     break;
             }
+        }
 
+        public static Task SendEvent(IClientProxy clientProxy, object arg1)
+        {
+            return clientProxy.SendAsync("NewEvent", arg1);
         }
 
         private string GetGameGroup(int gameId)

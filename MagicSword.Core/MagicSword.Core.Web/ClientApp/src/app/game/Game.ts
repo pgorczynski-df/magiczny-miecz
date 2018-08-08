@@ -187,7 +187,7 @@ export class Game {
     switch (ev.eventType) {
       case EventType.GameLoadRequest:
         var dto = this.serialize();
-        this.services.outboundBus.publish(EventType.GameLoadResponse, dto);
+        this.publishEvent(EventType.GameLoadResponse, dto);
         break;
 
       case EventType.GameLoadResponse:
