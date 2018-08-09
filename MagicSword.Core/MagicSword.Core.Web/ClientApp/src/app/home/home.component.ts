@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 
 import { Services } from "app/Services";
 import {PlayerHubClient} from "./PlayerHubClient";
+import {SocketService} from "../SocketService";
 
 @Component({
   selector: "app-home",
@@ -22,6 +23,11 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
 
     this.playerHub.init();
+
+    //var sss = new SocketService();
+
+    //sss.initSocket();
+    //sss.send({a: "aaa"});
   }
 
   login() {
