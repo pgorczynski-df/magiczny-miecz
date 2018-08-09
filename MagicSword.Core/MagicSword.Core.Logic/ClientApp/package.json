@@ -6,7 +6,7 @@
   "repository": "https://github.com/pablonautic/magiczny-miecz",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch & nodemon ./dist/out-tsc",
+    "dev": "tsc-watch --onSuccess \"node ./dist/out-tsc \"",
     "test": "tsc && mocha dist/**/*.spec.js",
     "lint": "eslint src --ext ts",
     "tsc": "tsc",
@@ -23,6 +23,7 @@
     "@types/socket.io": "^1.4.36",
     "nodemon": "^1.18.3",
     "ts-node": "~7.0.0",
+    "tsc-watch": "^1.0.26",
     "tslint": "~5.11.0",
     "typescript": "^2.7.2"
   }
