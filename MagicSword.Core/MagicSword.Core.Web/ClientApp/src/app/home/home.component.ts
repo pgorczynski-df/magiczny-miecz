@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { Services } from "app/Services";
 import {PlayerHubClient} from "./PlayerHubClient";
-import {SocketService} from "../SocketService";
+import {SocketClient as SocketService} from "../SocketClient";
 
 @Component({
   selector: "app-home",

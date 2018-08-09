@@ -72,7 +72,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\PlayerDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\SocketService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventBus.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />

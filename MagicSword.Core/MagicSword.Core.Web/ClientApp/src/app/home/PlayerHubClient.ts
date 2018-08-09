@@ -7,6 +7,7 @@ import { HubConnection, HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import { Services } from "app/Services";
 import {LoginResponse} from "./LoginResponse";
 import {GameListDto} from "app/lobby/dto/GameListDto";
+import {SocketClient} from "../SocketClient";
 //import { Store } from '@ngrx/store';
 //import * as directMessagesActions from './store/directmessages.action';
 //import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -21,15 +22,10 @@ export class PlayerHubClient {
   isAuthorizedSubscription: Subscription;
   isAuthorized: boolean;
 
-  constructor(
-    private services: Services
-    //private store: Store<any>,
-    //private oidcSecurityService: OidcSecurityService
-  ) {
-    this.headers = new HttpHeaders();
-    this.headers = this.headers.set("Content-Type", "application/json");
-    this.headers = this.headers.set("Accept", "application/json");
+  socketClient: SocketClient;
 
+  constructor(private services: Services) {
+    this.socketClient = new SocketClient();
   }
 
   sendDirectMessage(message: string, userId: string): string {
@@ -100,25 +96,41 @@ export class PlayerHubClient {
       .configureLogging(LogLevel.Information)
       .build();
 
+    this.socketClient.onEvent().subscribe(event => {
+
+      this.services.logger.debug("received inbound event from socket ");
+      this.services.logger.debug(event);
+      this.services.inboundBus.publish2(event);
+
+    });
+
+    this.socketClient.initSocket();
+
     return this._hubConnection.start();
   }
 
 
   public attachEvents() {
 
-    this._hubConnection.on("NewEvent", (event) => {
+    //this._hubConnection.on("NewEvent", (event) => {
 
-      this.services.logger.debug("received inbound event: ");
-      this.services.logger.debug(event);
+    //  this.services.logger.debug("received inbound event: ");
+    //  this.services.logger.debug(event);
 
-      this.services.inboundBus.publish2(event);
+    //  this.services.inboundBus.publish2(event);
 
-    });
+    //});
 
     this.services.outboundBus.of().subscribe(e => {
       this.services.logger.debug("sending outbound event: ");
       this.services.logger.debug(e);
-      this._hubConnection.send("Publish", e);
+
+      e.token = this.services.authService.token;
+
+      //this._hubConnection.send("Publish", e);
+
+      this.socketClient.send(e);
+
     });
 
   }
