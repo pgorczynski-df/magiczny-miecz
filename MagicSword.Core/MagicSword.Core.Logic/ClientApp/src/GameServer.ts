@@ -55,7 +55,10 @@ export class GameServer {
                     hub.init(token).then(r => {
 
                         hub.attachEvents((ev) => {
-                            socket.send("NewEvent", ev);
+
+                            console.log("forwarding event");
+
+                            socket.emit("NewEvent", ev);
                         });
 
                         console.log("hub connected");

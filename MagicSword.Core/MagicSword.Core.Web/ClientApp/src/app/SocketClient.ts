@@ -15,7 +15,7 @@ const SERVER_URL = 'http://localhost:3000';
 
 @Injectable()
 export class SocketClient {
-  private socket;
+  public socket: any;
 
   public initSocket(): void {
     this.socket = socketIo(SERVER_URL);

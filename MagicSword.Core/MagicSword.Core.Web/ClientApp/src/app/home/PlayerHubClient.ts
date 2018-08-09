@@ -83,7 +83,7 @@ export class PlayerHubClient {
 
   public init() : Promise<void> {
 
-    const url = "https://localhost:44320/";
+    const url = "http://localhost:53048/";
 
     this._hubConnection = new HubConnectionBuilder()
       .withUrl(`${url}/playerhub`, {
@@ -96,6 +96,9 @@ export class PlayerHubClient {
       .configureLogging(LogLevel.Information)
       .build();
 
+
+    this.socketClient.initSocket();
+
     this.socketClient.onEvent().subscribe(event => {
 
       this.services.logger.debug("received inbound event from socket ");
@@ -103,8 +106,6 @@ export class PlayerHubClient {
       this.services.inboundBus.publish2(event);
 
     });
-
-    this.socketClient.initSocket();
 
     return this._hubConnection.start();
   }

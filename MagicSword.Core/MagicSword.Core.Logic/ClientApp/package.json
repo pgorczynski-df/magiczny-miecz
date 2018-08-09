@@ -19,7 +19,9 @@
     "express": "^4.16.3",
     "js-logger": "^1.4.1",
     "rxjs": "^6.2.2",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "websocket": "^1.0.26",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",

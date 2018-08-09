@@ -9,6 +9,9 @@ import { GameListDto } from "app/lobby/dto/GameListDto";
 //import { OidcSecurityService } from 'angular-auth-oidc-client';
 //import { OnlineUser } from './models/online-user';
 
+(<any>global).XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+(<any>global).WebSocket = require("websocket").w3cwebsocket;
+
 export class PlayerHubClient {
 
     private _hubConnection: HubConnection;
@@ -80,7 +83,7 @@ export class PlayerHubClient {
 
     public init(token: string): Promise<void> {
 
-        const url = "https://localhost:44320/";
+        const url = "http://localhost:53048/";
 
         this._hubConnection = new HubConnectionBuilder()
             .withUrl(`${url}/playerhub`, {
@@ -98,7 +101,7 @@ export class PlayerHubClient {
 
 
     public publish(e) {
-        this.services.logger.debug("sending outbound event: ");
+        this.services.logger.debug("sending event -> hub: ");
         this.services.logger.debug(e);
         this._hubConnection.send("Publish", e);
     }
@@ -108,7 +111,7 @@ export class PlayerHubClient {
 
         this._hubConnection.on("NewEvent", (event) => {
 
-            this.services.logger.debug("received inbound event: ");
+            this.services.logger.debug("received inbound from hub: ");
             this.services.logger.debug(event);
 
             //this.services.inboundBus.publish2(event);
