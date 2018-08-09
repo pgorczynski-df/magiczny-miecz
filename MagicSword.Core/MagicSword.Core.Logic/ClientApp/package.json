@@ -1,0 +1,26 @@
+{
+  "name": "magic-sword.core.logic",
+  "version": "1.0.0",
+  "description": "logic project",
+  "main": "index.js",
+  "repository": "https://github.com/pablonautic/magiczny-miecz",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch & nodemon dist/out-tsc",
+    "test": "tsc && mocha dist/**/*.spec.js",
+    "lint": "eslint src --ext ts",
+    "tsc": "tsc",
+    "server": "tsc & node ./dist/out-tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemon": "1.11.0"
+  },
+  "devDependencies": {
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "^2.7.2"
+  }
+}

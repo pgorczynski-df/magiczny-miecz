@@ -332,3 +332,4 @@ ASALocalRun/
 /MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/**/*.js
 /MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/**/*.map
 /MagicSword.Core/MagicSword.Core.Api/Logs
+/MagicSword.Core/MagicSword.Core.Logic/ClientApp/dist/out-tsc
