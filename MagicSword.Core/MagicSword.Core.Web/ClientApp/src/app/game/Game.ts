@@ -48,6 +48,8 @@ export class Game {
 
   id: string;
 
+  currentPlayerId: string;
+
   world: World;
 
   actors: IActor[] = [];

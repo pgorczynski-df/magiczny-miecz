@@ -77,6 +77,7 @@ namespace MagicSword.Core.Api.Hubs
 
             await RespondCaller(nameof(JoinGameRequest), new GameStateDto
             {
+                CurrentPlayerId = userId,
                 IsStarted = game.Data != null,
                 Data = game.Data,
             });

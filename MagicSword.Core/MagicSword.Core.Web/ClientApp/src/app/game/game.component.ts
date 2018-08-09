@@ -12,6 +12,7 @@ import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
 import { PlayerHubClient } from "app/home/PlayerHubClient";
 import {GameStateDto} from "app/game/dto/GameStateDto";
+import {Player} from "./Player";
 
 @Component({
   selector: "app-game",
@@ -59,6 +60,11 @@ export class GameComponent implements AfterViewInit {
 
       switch (mode) {
         case "local":
+          var player = new Player();
+          player.id = "1";
+          player.name = "Samotny gracz";
+          this.game.players.push(player);
+          this.game.currentPlayerId = player.id;
           break;
         case "online":
           var gameId = d.get("gameId");
@@ -68,6 +74,7 @@ export class GameComponent implements AfterViewInit {
             this.hub.attachEvents();
             this.hub.joinGame(gameId).subscribe(r => {
               var rdto = r as GameStateDto;
+              this.game.currentPlayerId = rdto.currentPlayerId.toString();
               if (rdto.isStarted) {
                 var gameDto = JSON.parse(rdto.data);
                 this.game.deserialize(gameDto);
