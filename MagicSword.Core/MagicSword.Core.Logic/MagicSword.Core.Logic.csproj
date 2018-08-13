@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\AccountClient.ts" />
     <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\GameServer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\AuthService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />

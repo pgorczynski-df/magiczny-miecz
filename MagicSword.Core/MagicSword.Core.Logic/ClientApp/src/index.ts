@@ -1,4 +1,4 @@
-﻿import { GameServer as ChatServer } from "./GameServer";
+﻿import { GameServer } from "./GameServer";
 
-let app = new ChatServer().getApp();
+let app = new GameServer().getApp();
 export { app };

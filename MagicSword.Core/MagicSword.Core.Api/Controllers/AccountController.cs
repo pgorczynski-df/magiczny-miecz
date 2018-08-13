@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MagicSword.Core.Api.Model;
 using MagicSword.Core.Api.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -59,6 +60,22 @@ namespace MagicSword.Core.Api.Controllers
                 });
             }
 
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> ValidateToken()
+        {
+            return Json(new {userId = CallingUserId});
+        }
+
+        private int CallingUserId
+        {
+            get
+            {
+                var id = int.Parse(_signInManager.UserManager.GetUserId(User));
+                return id;
+            }
         }
     }
 }
