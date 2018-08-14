@@ -30,13 +30,13 @@
     "bootstrap": "^4.1.2",
     "cannon": "^0.6.2",
     "core-js": "^2.4.1",
+    "express": "^4.16.3",
     "js-logger": "^1.4.1",
     "rxjs": "^6.2.2",
+    "socket.io": "^2.1.1",
     "three": "^0.94.0",
     "tslib": "^1.9.3",
-    "zone.js": "^0.8.19",
-    "express": "^4.16.3",
-    "socket.io": "^2.1.1"
+    "zone.js": "^0.8.19"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.8",

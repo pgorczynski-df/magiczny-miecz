@@ -13,6 +13,18 @@
     <None Remove="ClientApp\src\app\AccountClient.ts" />
     <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
+    <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
+    <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
+    <None Remove="ClientApp\src\app\game\dto\CardStackDto.ts" />
+    <None Remove="ClientApp\src\app\game\dto\GameDto.ts" />
+    <None Remove="ClientApp\src\app\game\dto\Object3DDto.ts" />
+    <None Remove="ClientApp\src\app\game\dto\PlayerDto.ts" />
+    <None Remove="ClientApp\src\app\game\dto\WorldDto.ts" />
+    <None Remove="ClientApp\src\app\game\Event.ts" />
+    <None Remove="ClientApp\src\app\game\EventType.ts" />
+    <None Remove="ClientApp\src\app\game\GameEventProcessor.ts" />
+    <None Remove="ClientApp\src\app\game\IResponseProcessor.ts" />
+    <None Remove="ClientApp\src\app\game\SocketResponseProcessor.ts" />
     <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\LoginResponse.ts" />
     <None Remove="ClientApp\src\GameServer.ts" />
@@ -20,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\game\logic\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -33,12 +46,33 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\AccountClient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\ActorDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardStackDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\GameDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\Object3DDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\PlayerDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\dto\WorldDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\Event.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\GameEventProcessor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\IResponseProcessor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\SocketResponseProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\GameServer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\AuthService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\lobby\dto\GameListDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\LoginResponse.ts" />
     <TypeScriptCompile Include="ClientApp\src\index.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\app\game\dto\EventType.ts">
+      <CustomToolNamespace>..\MagicSword.Core.Api\Model\EventType.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\game\dto\GameStateDto.ts">
+      <CustomToolNamespace>..\MagicSword.Core.Api\Dto\GameStateDto.cs</CustomToolNamespace>
+    </None>
   </ItemGroup>
 
 </Project>

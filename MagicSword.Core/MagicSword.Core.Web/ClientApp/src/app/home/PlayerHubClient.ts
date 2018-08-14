@@ -126,13 +126,16 @@ export class PlayerHubClient {
       this.services.logger.debug("sending outbound event: ");
       this.services.logger.debug(e);
 
-      e.token = this.services.authService.token;
 
       //this._hubConnection.send("Publish", e);
 
-      this.socketClient.send(e);
-
+      this.sendToSocket(e);
     });
 
+  }
+
+  private sendToSocket(event: any) {
+    event.token = this.services.authService.token;
+    this.socketClient.send(event);
   }
 }
