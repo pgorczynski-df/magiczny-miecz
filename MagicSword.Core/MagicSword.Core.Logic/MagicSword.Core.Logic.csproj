@@ -24,6 +24,8 @@
     <None Remove="ClientApp\src\app\game\EventType.ts" />
     <None Remove="ClientApp\src\app\game\GameEventProcessor.ts" />
     <None Remove="ClientApp\src\app\game\IResponseProcessor.ts" />
+    <None Remove="ClientApp\src\app\game\repository\GamesApiClient.ts" />
+    <None Remove="ClientApp\src\app\game\repository\IGamesRepository.ts" />
     <None Remove="ClientApp\src\app\game\SocketResponseProcessor.ts" />
     <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\LoginResponse.ts" />
@@ -57,6 +59,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\GameEventProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\IResponseProcessor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\repository\GamesApiClient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\repository\IGamesRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\SocketResponseProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\GameServer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\AuthService.ts" />

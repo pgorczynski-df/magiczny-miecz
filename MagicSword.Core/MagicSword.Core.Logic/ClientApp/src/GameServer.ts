@@ -6,125 +6,133 @@ import { Services } from "./app/Services";
 import { AuthService } from "./app/AuthService";
 import { AccountClient } from "./app/AccountClient";
 import { Event } from "./app/game/Event";
-import {GameEventProcessor} from "./app/game/GameEventProcessor";
-import {SocketResponseProcessor} from "./app/game/SocketResponseProcessor";
+import { GameEventProcessor } from "./app/game/GameEventProcessor";
+import { SocketResponseProcessor } from "./app/game/SocketResponseProcessor";
+import {GamesApiClient} from "./app/game/repository/GamesApiClient";
 //import { Message } from './model';
 
 export class GameServer {
-  public static readonly PORT: number = 3000;
-  private app: express.Application;
-  private server: Server;
-  private io: SocketIO.Server;
-  private port: string | number;
+    public static readonly PORT: number = 3000;
+    private app: express.Application;
+    private server: Server;
+    private io: SocketIO.Server;
+    private port: string | number;
 
-  private hubs: any = {};
-  private accountClient = new AccountClient();
+    private hubs: any = {};
+    private accountClient = new AccountClient();
 
-  private games: any = {};
+    private games: any = {};
 
-  private services = new Services(new AuthService());
+    constructor() {
+        this.port = (<any>process.env).PORT || GameServer.PORT;
 
-  constructor() {
-    this.port = (<any>process.env).PORT || GameServer.PORT;
+        this.app = express();
+        this.mountRoutes();
+        this.server = createServer(this.app);
+        this.io = socketIo(this.server);
 
-    this.app = express();
-    this.mountRoutes();
-    this.server = createServer(this.app);
-    this.io = socketIo(this.server);
+        this.listen();
 
-    this.listen();
-
-    this
-  }
-
-  private getProcessor(id: string, socket: socketIo.Socket): GameEventProcessor {
-    var processor = this.games[id] as GameEventProcessor;
-    if (!processor) {
-      processor = new GameEventProcessor(new SocketResponseProcessor(this.services, this.io, socket));
-      this.games[id] = processor;
     }
-    return processor;
-  }
 
-  private listen(): void {
-    this.server.listen(this.port, () => {
-      console.log("Running server on port %s", this.port);
-    });
+    private createServices(token: string): Services {
+        var auth = new AuthService();
+        auth.token = token;
+        return new Services(auth);
+    }
 
-    this.io.on("connect", (socket: socketIo.Socket) => {
-      console.log("Connected client on port %s.", this.port);
-
-      socket.on("Publish", (event: Event) => {
-        console.log("[server](event): %s", JSON.stringify(event));
-
-        var token = event.token;
-        if (!token) {
-          console.log("no token!!!");
-          return;
+    private getProcessor(services: Services, gameId: string, socket: socketIo.Socket): GameEventProcessor {
+        var processor = this.games[gameId] as GameEventProcessor;
+        if (!processor) {
+            var repo = new GamesApiClient(services);
+            processor = new GameEventProcessor(services, new SocketResponseProcessor(services, this.io, socket), repo);
+            //TODO think this through
+            //this.games[gameId] = processor;
         }
+        return processor;
+    }
 
-        this.accountClient.validateToken(token).then(
-          r => {
-            var userId = r.userId;
-            event.sourcePlayerId = userId;
-            var processor = this.getProcessor(event.gameId, socket);
-            processor.processRequest(event);
-          },
-          e => {
-            socket.emit("Error", e);
-          });
+    private listen(): void {
+        this.server.listen(this.port, () => {
+            console.log("Running server on port %s", this.port);
+        });
 
-        //var hub = this.hubs[token] as PlayerHubClient;
-        //if (!hub) {
+        this.io.on("connect", (socket: socketIo.Socket) => {
+            console.log("Connected client on port %s.", this.port);
 
-        //  console.log("creating new hub");
+            socket.on("Publish", (event: Event) => {
+                console.log("[server](event): %s", JSON.stringify(event));
 
-        //  hub = new PlayerHubClient(new Services(new AuthService()));
-        //  this.hubs[token] = hub;
+                var token = event.token;
+                if (!token) {
+                    console.log("no token!!!");
+                    return;
+                }
 
-        //  hub.init(token).then(r => {
+                var services = this.createServices(token);
 
-        //    hub.attachEvents((ev) => {
+                this.accountClient.validateToken(token).then(
+                    r => {
+                        var userId = r.userId;
+                        event.sourcePlayerId = userId;
+                        var processor = this.getProcessor(services, event.gameId, socket);
+                        processor.processRequest(event);
+                    },
+                    e => {
+                        socket.emit("Error", e);
+                    });
 
-        //      console.log("forwarding event");
+                //var hub = this.hubs[token] as PlayerHubClient;
+                //if (!hub) {
 
-        //      socket.emit("NewEvent", ev);
-        //    });
+                //  console.log("creating new hub");
 
-        //    console.log("hub connected");
+                //  hub = new PlayerHubClient(new Services(new AuthService()));
+                //  this.hubs[token] = hub;
 
-        //    hub.publish(m);
+                //  hub.init(token).then(r => {
 
-        //  },
-        //    e => {
-        //      console.log("connection error ");
-        //    });
+                //    hub.attachEvents((ev) => {
 
-        //} else {
-        //  hub.publish(m);
+                //      console.log("forwarding event");
 
-        //}
+                //      socket.emit("NewEvent", ev);
+                //    });
 
-        //this.io.emit('message', m);
-      });
+                //    console.log("hub connected");
 
-      socket.on("disconnect", () => {
-        console.log("Client disconnected");
-      });
-    });
-  }
+                //    hub.publish(m);
 
-  private mountRoutes(): void {
-    const router = express.Router();
-    router.get("/", (req, res) => {
-      res.json({
-        message: "Hello World!"
-      });
-    });
-    this.app.use("/", router);
-  }
+                //  },
+                //    e => {
+                //      console.log("connection error ");
+                //    });
 
-  public getApp(): express.Application {
-    return this.app;
-  }
+                //} else {
+                //  hub.publish(m);
+
+                //}
+
+                //this.io.emit('message', m);
+            });
+
+            socket.on("disconnect", () => {
+                console.log("Client disconnected");
+            });
+        });
+    }
+
+    private mountRoutes(): void {
+        const router = express.Router();
+        router.get("/", (req, res) => {
+            res.json({
+                message: "Hello World!"
+            });
+        });
+        this.app.use("/", router);
+    }
+
+    public getApp(): express.Application {
+        return this.app;
+    }
 }

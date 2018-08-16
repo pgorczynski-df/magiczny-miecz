@@ -9,5 +9,5 @@ export class Event {
 
   data?: any;
 
-  token: string;
+  token?: string;
 }

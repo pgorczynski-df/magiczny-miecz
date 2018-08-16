@@ -1,9 +1,10 @@
-﻿
+﻿import { Event } from "./Event";
+
 export interface IResponseProcessor {
 
-  registerCaller(event);
+    registerCaller(event: Event);
 
-  respondCaller(event);
+    respondCaller(event: Event);
 
-  respondAll(event);
+    respondAll(event: Event);
 }

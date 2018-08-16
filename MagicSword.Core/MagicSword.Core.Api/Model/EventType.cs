@@ -3,6 +3,10 @@ namespace MagicSword.Core.Api.Model
 {
     public class EventType : IEnum
     {
+        public const string JoinGameRequest = "JoinGameRequest";
+
+        public const string JoinGameResponse = "JoinGameResponse";
+
         public const string ResetGameState = "ResetGameState";
 
         public const string PlayerJoined = "PlayerJoined";

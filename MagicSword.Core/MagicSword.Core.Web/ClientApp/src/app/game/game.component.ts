@@ -72,17 +72,18 @@ export class GameComponent implements AfterViewInit {
           this.hub = new PlayerHubClient(this.services);
           this.hub.init().then(r => {
             this.hub.attachEvents();
-            this.hub.joinGame(gameId).subscribe(r => {
-              var rdto = r as GameStateDto;
-              this.game.currentPlayerId = rdto.currentPlayerId.toString();
-              if (rdto.isStarted) {
-                var gameDto = JSON.parse(rdto.data);
-                this.game.deserialize(gameDto);
-              } else {
-                var dto = JSON.stringify(this.game.serialize());
-                this.game.publishEvent(EventType.ResetGameState, dto);
-              }
-            });
+            //this.hub.joinGame(gameId).subscribe(r => {
+            //  var rdto = r as GameStateDto;
+            //  this.game.currentPlayerId = rdto.currentPlayerId.toString();
+            //  if (rdto.isStarted) {
+            //    var gameDto = JSON.parse(rdto.data);
+            //    this.game.deserialize(gameDto);
+            //  } else {
+            //    var dto = JSON.stringify(this.game.serialize());
+            //    this.game.publishEvent(EventType.ResetGameState, dto);
+            //  }
+            //});
+            this.game.publishEvent(EventType.JoinGameRequest);
           }, e => {
             this.services.logger.error(e);
           });

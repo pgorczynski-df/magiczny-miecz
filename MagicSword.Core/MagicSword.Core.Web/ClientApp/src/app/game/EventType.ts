@@ -2,6 +2,8 @@
     
     export class EventType {
         
+        public static JoinGameRequest: string = "JoinGameRequest";
+        public static JoinGameResponse: string = "JoinGameResponse";
         public static ResetGameState: string = "ResetGameState";
         public static PlayerJoined: string = "PlayerJoined";
         public static GameLoadRequest: string = "GameLoadRequest";
