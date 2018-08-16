@@ -25,6 +25,7 @@ import { Card } from "app/game/logic/Card";
 import { CardStackDto } from "./dto/CardStackDto";
 import { CardStack } from "./logic/CardStack";
 import { CardDto } from "./dto/CardDto";
+import {GameStateDto} from "@App/game/dto/GameStateDto";
 
 export class Game {
 
@@ -199,6 +200,18 @@ export class Game {
       case EventType.GameLoadResponse:
         var dto2 = ev.data;
         this.deserialize(dto2);
+        break;
+
+      case EventType.JoinGameResponse:
+        var rdto = ev.data as GameStateDto;
+          this.currentPlayerId = rdto.currentPlayerId.toString();
+          if (rdto.isStarted) {
+            var gameDto = rdto.data;
+            this.deserialize(gameDto);
+          } else {
+            var dtoNew = JSON.stringify(this.serialize());
+            this.publishEvent(EventType.ResetGameState, dtoNew);
+          }
         break;
 
       case EventType.ActorMove:

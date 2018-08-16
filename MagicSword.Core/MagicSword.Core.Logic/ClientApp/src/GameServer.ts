@@ -46,7 +46,7 @@ export class GameServer {
         if (!processor) {
             var repo = new GamesApiClient(services);
             processor = new GameEventProcessor(services, new SocketResponseProcessor(services, this.io, socket), repo);
-            //TODO think this through
+            //TODO think this through - auth service here is request-scoped
             //this.games[gameId] = processor;
         }
         return processor;
@@ -76,44 +76,13 @@ export class GameServer {
                         var userId = r.userId;
                         event.sourcePlayerId = userId;
                         var processor = this.getProcessor(services, event.gameId, socket);
+                        services.logger.debug("Sending event to processing");
+                        services.logger.debug(event);
                         processor.processRequest(event);
                     },
                     e => {
                         socket.emit("Error", e);
                     });
-
-                //var hub = this.hubs[token] as PlayerHubClient;
-                //if (!hub) {
-
-                //  console.log("creating new hub");
-
-                //  hub = new PlayerHubClient(new Services(new AuthService()));
-                //  this.hubs[token] = hub;
-
-                //  hub.init(token).then(r => {
-
-                //    hub.attachEvents((ev) => {
-
-                //      console.log("forwarding event");
-
-                //      socket.emit("NewEvent", ev);
-                //    });
-
-                //    console.log("hub connected");
-
-                //    hub.publish(m);
-
-                //  },
-                //    e => {
-                //      console.log("connection error ");
-                //    });
-
-                //} else {
-                //  hub.publish(m);
-
-                //}
-
-                //this.io.emit('message', m);
             });
 
             socket.on("disconnect", () => {

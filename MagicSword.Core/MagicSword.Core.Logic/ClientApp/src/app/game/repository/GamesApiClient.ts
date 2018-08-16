@@ -1,8 +1,8 @@
 ﻿import axios from "axios";
-import {IGamesRepository as IGameRepository} from "./IGamesRepository";
+import {IGamesRepository} from "./IGamesRepository";
 import {Services} from "../../Services";
 
-export class GamesApiClient implements IGameRepository {
+export class GamesApiClient implements IGamesRepository {
 
     private server = "http://localhost:53048";
 

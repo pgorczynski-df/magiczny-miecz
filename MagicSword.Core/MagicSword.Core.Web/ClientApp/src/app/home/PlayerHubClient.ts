@@ -50,9 +50,9 @@ export class PlayerHubClient {
     return this.invokeSimple<GameListDto>("CreateGame");
   }
 
-  joinGame(gameId: string): Observable<any> {
-    return this.invokeSimple<any>("JoinGame", gameId);
-  }
+  //joinGame(gameId: string): Observable<any> {
+  //  return this.invokeSimple<any>("JoinGame", gameId);
+  //}
 
   invokeSimple<T = any>(methodName: string, ...args: any[]): Observable<T> {
     return this.invoke<T>(methodName + "Request", methodName + "Response", ...args);

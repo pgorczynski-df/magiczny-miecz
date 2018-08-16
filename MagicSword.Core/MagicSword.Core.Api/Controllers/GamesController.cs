@@ -38,6 +38,12 @@ namespace MagicSword.Core.Api.Controllers
         public async Task<ActionResult<string>> Get(int id)
         {
             var game = await GetGame(id);
+
+            if (game == null)
+            {
+                return BadRequest("Cannot find game with id = " + id);
+            }
+
             return game.Data;
         }
 
@@ -60,11 +66,18 @@ namespace MagicSword.Core.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(int id, [FromBody] string value)
         {
             var game = await GetGame(id);
+
+            if (game == null)
+            {
+                return BadRequest("Cannot find game with id = " + id);
+            }
+
             game.Data = value;
             await _context.SaveChangesAsync();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -95,7 +108,7 @@ namespace MagicSword.Core.Api.Controllers
             var game = await _context.Games.Include(g => g.Participants).SingleOrDefaultAsync(g => g.Id == gameId);
             if (game == null)
             {
-                throw new ArgumentException("Cannot find game with id = " + gameId);
+                return null;
             }
 
             if (!game.IsParticipant(CallingUserId))
