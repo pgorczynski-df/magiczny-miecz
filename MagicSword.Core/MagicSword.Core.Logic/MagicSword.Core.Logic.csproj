@@ -13,7 +13,6 @@
     <None Remove="ClientApp\src\app\AccountClient.ts" />
     <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
-    <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardStackDto.ts" />
@@ -28,8 +27,6 @@
     <None Remove="ClientApp\src\app\game\repository\GamesApiClient.ts" />
     <None Remove="ClientApp\src\app\game\repository\IGamesRepository.ts" />
     <None Remove="ClientApp\src\app\game\SocketResponseProcessor.ts" />
-    <None Remove="ClientApp\src\app\game\utils\Collections.ts" />
-    <None Remove="ClientApp\src\app\game\utils\Guid.ts" />
     <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\LoginResponse.ts" />
     <None Remove="ClientApp\src\GameServer.ts" />
@@ -50,7 +47,6 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\AccountClient.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\BoxObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\ActorDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardStackDto.ts" />
@@ -65,8 +61,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\repository\GamesApiClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\repository\IGamesRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\SocketResponseProcessor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\utils\Collections.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\utils\Guid.ts" />
     <TypeScriptCompile Include="ClientApp\src\GameServer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\AuthService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
@@ -81,12 +75,6 @@
     </None>
     <None Update="ClientApp\src\app\game\dto\GameStateDto.ts">
       <CustomToolNamespace>..\MagicSword.Core.Api\Dto\GameStateDto.cs</CustomToolNamespace>
-    </None>
-    <None Update="ClientApp\src\app\game\utils\Guid.js">
-      <DependentUpon>Guid.ts</DependentUpon>
-    </None>
-    <None Update="ClientApp\src\app\game\utils\Guid.js.map">
-      <DependentUpon>Guid.js</DependentUpon>
     </None>
   </ItemGroup>
 
