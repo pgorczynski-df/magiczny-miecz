@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import * as Logger from "js-logger";
 
 import { EventBus } from "app/game/EventBus";
-import { AuthService } from "app/AuthService";
+import { AuthService } from "@App/AuthService";
 
 @Injectable()
 export class Services {
