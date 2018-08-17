@@ -1,5 +1,4 @@
-﻿import { GameDto } from "../dto/GameDto";
-
+﻿
 export interface IGamesRepository {
 
     getMyGames(): Promise<any>;

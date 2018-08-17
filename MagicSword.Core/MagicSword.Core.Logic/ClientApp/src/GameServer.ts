@@ -1,14 +1,13 @@
 ﻿import { createServer, Server } from "http";
 import * as express from "express";
 import * as socketIo from "socket.io";
-import { PlayerHubClient } from "./app/PlayerHubClient";
 import { Services } from "./app/Services";
 import { AuthService } from "./app/AuthService";
-import { AccountClient } from "./app/AccountClient";
+import { AccountClient } from "@App/common/client/AccountClient";
 import { Event } from "./app/game/Event";
 import { GameEventProcessor } from "./app/game/GameEventProcessor";
 import { SocketResponseProcessor } from "./app/game/SocketResponseProcessor";
-import {GamesApiClient} from "@App/game/repository/GamesApiClient";
+import { GamesApiClient } from "@App/common/client/GamesApiClient";
 //import { Message } from './model';
 
 export class GameServer {

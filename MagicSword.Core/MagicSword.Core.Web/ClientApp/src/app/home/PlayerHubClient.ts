@@ -5,9 +5,9 @@ import { Injectable } from "@angular/core";
 
 import { HubConnection, HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import { Services } from "app/Services";
-import {LoginResponse} from "./LoginResponse";
-import {GameListDto} from "app/lobby/dto/GameListDto";
-import {SocketClient} from "../SocketClient";
+import { LoginResponse } from "./LoginResponse";
+import { GameListDto } from "app/lobby/dto/GameListDto";
+import { SocketClient } from "../SocketClient";
 //import { Store } from '@ngrx/store';
 //import * as directMessagesActions from './store/directmessages.action';
 //import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -16,126 +16,128 @@ import {SocketClient} from "../SocketClient";
 @Injectable()
 export class PlayerHubClient {
 
-  private _hubConnection: HubConnection;
-  private headers: HttpHeaders;
+    private _hubConnection: HubConnection;
+    private headers: HttpHeaders;
 
-  isAuthorizedSubscription: Subscription;
-  isAuthorized: boolean;
+    isAuthorizedSubscription: Subscription;
+    isAuthorized: boolean;
 
-  socketClient: SocketClient;
+    socketClient: SocketClient;
 
-  constructor(private services: Services) {
-    this.socketClient = new SocketClient();
-  }
+    constructor(private services: Services) {
+        this.socketClient = new SocketClient();
+    }
 
-  sendDirectMessage(message: string, userId: string): string {
+    sendDirectMessage(message: string, userId: string): string {
 
-    this._hubConnection.invoke("SendMessage", message, userId);
-    return message;
-  }
+        this._hubConnection.invoke("SendMessage", message, userId);
+        return message;
+    }
 
-  login(email: string, password: string): Observable<LoginResponse> {
-    return this.invokeSimple<LoginResponse>("Token", email, password);
-  }
+    login(email: string, password: string): Observable<LoginResponse> {
+        return this.invokeSimple<LoginResponse>("Token", email, password);
+    }
 
-  getMyGames(): Observable<GameListDto[]> {
-    return this.invokeSimple<GameListDto[]>("GetMyGames");
-  }
+    getMyGames(): Observable<GameListDto[]> {
+        return this.invokeSimple<GameListDto[]>("GetMyGames");
+    }
 
-  getOpenGames(): Observable<GameListDto[]> {
-    return this.invokeSimple<GameListDto[]>("GetOpenGames");
-  }
+    getOpenGames(): Observable<GameListDto[]> {
+        return this.invokeSimple<GameListDto[]>("GetOpenGames");
+    }
 
-  createGame(): Observable<GameListDto> {
-    return this.invokeSimple<GameListDto>("CreateGame");
-  }
+    createGame(): Observable<GameListDto> {
+        return this.invokeSimple<GameListDto>("CreateGame");
+    }
 
-  //joinGame(gameId: string): Observable<any> {
-  //  return this.invokeSimple<any>("JoinGame", gameId);
-  //}
+    //joinGame(gameId: string): Observable<any> {
+    //  return this.invokeSimple<any>("JoinGame", gameId);
+    //}
 
-  invokeSimple<T = any>(methodName: string, ...args: any[]): Observable<T> {
-    return this.invoke<T>(methodName + "Request", methodName + "Response", ...args);
-  }
+    invokeSimple<T = any>(methodName: string, ...args: any[]): Observable<T> {
+        return this.invoke<T>(methodName + "Request", methodName + "Response", ...args);
+    }
 
-  invoke<T = any>(requestMethodName: string, responseMethodName: string, ...args: any[]): Observable<T> {
-    this.services.logger.debug(`Attempting to invoke method: ${requestMethodName}, args: ${args.join(", ")}`);
+    invoke<T = any>(requestMethodName: string, responseMethodName: string, ...args: any[]): Observable<T> {
+        this.services.logger.debug(`Attempting to invoke method: ${requestMethodName}, args: ${args.join(", ")}`);
 
-    var observable = Observable.create(observer => {
+        var observable = Observable.create(observer => {
 
-      this._hubConnection.on(responseMethodName, (res: T) => {
-        this._hubConnection.off(responseMethodName);
+            this._hubConnection.on(responseMethodName, (res: T) => {
+                this._hubConnection.off(responseMethodName);
 
-        this.services.logger.debug(`Method: ${requestMethodName}, returned result`);
-        this.services.logger.debug(res);
+                this.services.logger.debug(`Method: ${requestMethodName}, returned result`);
+                this.services.logger.debug(res);
 
-        observer.next(res);
-        observer.complete();
-      });
+                observer.next(res);
+                observer.complete();
+            });
 
-    });
+        });
 
-    this._hubConnection.invoke(requestMethodName, ...args).catch(r => this.services.logger.error(r));
+        this._hubConnection.invoke(requestMethodName, ...args).catch(r => this.services.logger.error(r));
 
-    return observable;
-  }
-
-
-  public init() : Promise<void> {
-
-    const url = "http://localhost:53048/";
-
-    this._hubConnection = new HubConnectionBuilder()
-      .withUrl(`${url}/playerhub`, {
-        accessTokenFactory: () => {
-          var token = this.services.authService.token;
-          this.services.logger.debug("Auth using token: " + token);
-          return token;
-        }
-      })
-      .configureLogging(LogLevel.Information)
-      .build();
+        return observable;
+    }
 
 
-    this.socketClient.initSocket();
+    public init(): Promise<void> {
 
-    this.socketClient.onEvent().subscribe(event => {
+        //const url = "http://localhost:53048/";
 
-      this.services.logger.debug("received inbound event from socket ");
-      this.services.logger.debug(event);
-      this.services.inboundBus.publish2(event);
-
-    });
-
-    return this._hubConnection.start();
-  }
-
-
-  public attachEvents() {
-
-    //this._hubConnection.on("NewEvent", (event) => {
-
-    //  this.services.logger.debug("received inbound event: ");
-    //  this.services.logger.debug(event);
-
-    //  this.services.inboundBus.publish2(event);
-
-    //});
-
-    this.services.outboundBus.of().subscribe(e => {
-      this.services.logger.debug("sending outbound event: ");
-      this.services.logger.debug(e);
+        //this._hubConnection = new HubConnectionBuilder()
+        //    .withUrl(`${url}/playerhub`, {
+        //        accessTokenFactory: () => {
+        //            var token = this.services.authService.token;
+        //            this.services.logger.debug("Auth using token: " + token);
+        //            return token;
+        //        }
+        //    })
+        //    .configureLogging(LogLevel.Information)
+        //    .build();
 
 
-      //this._hubConnection.send("Publish", e);
+        this.socketClient.initSocket();
 
-      this.sendToSocket(e);
-    });
+        this.socketClient.onEvent().subscribe(event => {
 
-  }
+            this.services.logger.debug("received inbound event from socket ");
+            this.services.logger.debug(event);
+            this.services.inboundBus.publish2(event);
 
-  private sendToSocket(event: any) {
-    event.token = this.services.authService.token;
-    this.socketClient.send(event);
-  }
+        });
+
+        //return this._hubConnection.start();
+
+        return Promise.resolve();
+    }
+
+
+    public attachEvents() {
+
+        //this._hubConnection.on("NewEvent", (event) => {
+
+        //  this.services.logger.debug("received inbound event: ");
+        //  this.services.logger.debug(event);
+
+        //  this.services.inboundBus.publish2(event);
+
+        //});
+
+        this.services.outboundBus.of().subscribe(e => {
+            this.services.logger.debug("sending outbound event: ");
+            this.services.logger.debug(e);
+
+
+            //this._hubConnection.send("Publish", e);
+
+            this.sendToSocket(e);
+        });
+
+    }
+
+    private sendToSocket(event: any) {
+        event.token = this.services.authService.token;
+        this.socketClient.send(event);
+    }
 }

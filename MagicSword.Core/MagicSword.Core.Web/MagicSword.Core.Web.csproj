@@ -26,7 +26,6 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
-    <None Remove="ClientApp\src\app\GamesApiClient.ts" />
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
     <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
@@ -71,7 +70,6 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\GamesApiClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\PlayerDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
@@ -169,5 +167,9 @@
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
   </PropertyGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="xcopy $(SolutionDir)MagicSword.Core.Logic\ClientApp\src\app\common  $(ProjectDir)ClientApp\src\app\common /s /e /y" />
+  </Target>
 
 </Project>
