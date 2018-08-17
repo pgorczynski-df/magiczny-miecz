@@ -8,7 +8,7 @@ import { AccountClient } from "./app/AccountClient";
 import { Event } from "./app/game/Event";
 import { GameEventProcessor } from "./app/game/GameEventProcessor";
 import { SocketResponseProcessor } from "./app/game/SocketResponseProcessor";
-import {GamesApiClient} from "./app/game/repository/GamesApiClient";
+import {GamesApiClient} from "@App/game/repository/GamesApiClient";
 //import { Message } from './model';
 
 export class GameServer {
