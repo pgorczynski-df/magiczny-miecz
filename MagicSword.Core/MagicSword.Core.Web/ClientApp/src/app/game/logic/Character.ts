@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { Card } from "./Card";
 import { CardDefinition } from "./CardDefinition";
 import { TextObject } from "../TextObject";
@@ -7,76 +6,49 @@ import { CharacterParameterDefinition } from "./CharacterParameterDefinition";
 
 export class Character extends Card {
 
-  static parameterDefinitions: CharacterParameterDefinition[] = [
-    {
-      name: CharacterParameterDefinition.Strength,
-      position: new THREE.Vector3(-12, 0, -5),
-      color: new THREE.Color(0xff0000),
-      initialValue: 1,
-    },
-    {
-      name: CharacterParameterDefinition.Power,
-      position: new THREE.Vector3(-12, 0, 5),
-      color: new THREE.Color(0x0000ff),
-      initialValue: 1,
-    },
-    {
-      name: CharacterParameterDefinition.Gold,
-      position: new THREE.Vector3(12, 0, -5),
-      color: new THREE.Color(0xffff00),
-      initialValue: 1,
-    },
-    {
-      name: CharacterParameterDefinition.Life,
-      position: new THREE.Vector3(12, 0, 5),
-      color: new THREE.Color(0x00ff00),
-      initialValue: 4,
-    },
-  ];
+    parameterValues: number[] = new Array(CharacterParameterDefinition.parameterDefinitions.length);
+    textObjects: TextObject[] = new Array(CharacterParameterDefinition.parameterDefinitions.length);
 
-  parameterValues: number[] = new Array(Character.parameterDefinitions.length);
-  textObjects: TextObject[] = new Array(Character.parameterDefinitions.length);
-
-  constructor(definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false) {
-    super(definition, resourcePath, width, height, depth, delay);
-    for (var i = 0; i < Character.parameterDefinitions.length; i++) {
-      this.parameterValues[i] = 0;
-      this.textObjects[i] = null;
-    }
-  }
-
-  init(): void {
-
-    super.init();
-
-    this.loaded = false;
-
-    for (var definition of Character.parameterDefinitions) {
-      this.increase(definition.name, definition.initialValue); 
+    constructor(definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false) {
+        super(definition, resourcePath, width, height, depth, delay);
+        for (var i = 0; i < CharacterParameterDefinition.parameterDefinitions.length; i++) {
+            this.parameterValues[i] = 0;
+            this.textObjects[i] = null;
+        }
     }
 
-    this.loaded = true;
-  }
+    init(): void {
 
+        super.init();
 
-  increase(parameterName: string, amount = 1) {
+        this.loaded = false;
 
-    var index = this.findIndex(parameterName);
-    this.parameterValues[index] += amount;
+        for (var definition of CharacterParameterDefinition.parameterDefinitions) {
+            this.increase(definition.name, definition.initialValue);
+        }
 
-    if (this.textObjects[index]) {
-      this.removeChild(this.textObjects[index].mesh);
+        this.loaded = true;
     }
 
-    var definition = Character.parameterDefinitions[index];
 
-    var text = new TextObject(World.font, this.parameterValues[index].toString(), definition.color);
-    text.mesh.position.copy(definition.position);
-    this.addChild(text.mesh);
-  }
+    increase(parameterName: string, amount = 1) {
 
-  private findIndex(parameterName: string): number {
-    return Character.parameterDefinitions.findIndex(p => p.name === parameterName);
-  }
+        var index = this.findIndex(parameterName);
+        this.parameterValues[index] += amount;
+
+        if (this.textObjects[index]) {
+            this.removeChild(this.textObjects[index].mesh);
+        }
+
+        var definition = CharacterParameterDefinition.parameterDefinitions[index];
+
+        var text = new TextObject(World.font, this.parameterValues[index].toString(), definition.color);
+        text.mesh.position.copy(definition.position);
+        this.addChild(text.mesh);
+    }
+
+    private findIndex(parameterName: string): number {
+        return CharacterParameterDefinition.parameterDefinitions.findIndex(p => p.name === parameterName);
+    }
 
 }
