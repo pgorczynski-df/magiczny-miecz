@@ -56,6 +56,7 @@
     <None Remove="ClientApp\src\app\game\TextObject.ts" />
     <None Remove="ClientApp\src\app\game\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\game\utils\Guid.ts" />
+    <None Remove="ClientApp\src\app\home\AccountClient.ts" />
     <None Remove="ClientApp\src\app\home\LoginResponse.ts" />
     <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\tsconfig.app.json" />
@@ -72,6 +73,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\PlayerDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\home\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventBus.ts" />

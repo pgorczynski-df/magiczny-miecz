@@ -2,8 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Services } from "app/Services";
-import {PlayerHubClient} from "./PlayerHubClient";
-import {SocketClient as SocketService} from "../SocketClient";
+import {AccountClient} from "@App/home/AccountClient";
 
 @Component({
   selector: "app-home",
@@ -16,23 +15,18 @@ export class HomeComponent implements AfterViewInit {
 
   loginResult = "";
 
-  constructor(private services: Services, private router: Router, private playerHub: PlayerHubClient) {
+  accountClient = new AccountClient();
+
+  constructor(private services: Services, private router: Router) {
    
   }
 
   ngAfterViewInit() {
-
-    this.playerHub.init();
-
-    //var sss = new SocketService();
-
-    //sss.initSocket();
-    //sss.send({a: "aaa"});
   }
 
   login() {
     if (this.email.length > 1 && this.password.length > 1) {
-      this.playerHub.login(this.email, this.password).subscribe(r => {
+      this.accountClient.login(this.email, this.password).then(r => {
         if (r.success) {
           this.services.authService.token = r.token;
           this.router.navigate(['/lobby']);

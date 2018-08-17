@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MagicSword.Core.Api.Model;
 using MagicSword.Core.Api.Security;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,6 @@ namespace MagicSword.Core.Api.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-
         private readonly SignInManager<Player> _signInManager;
         private readonly ILogger _logger;
 
@@ -22,44 +22,54 @@ namespace MagicSword.Core.Api.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Login(string email, string password)
         {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
-            return RedirectToPage("/Index");
-        }
+            if (String.IsNullOrEmpty(email))
+            {
+                return BadRequest("email cannot be empty");
+            }
+            if (String.IsNullOrEmpty(password))
+            {
+                return BadRequest("password cannot be empty");
+            }
 
-        [HttpPost]
-        public async Task<IActionResult> Token(string email, string password)
-        {
-            // Check the password but don't "sign in" (which would set a cookie)
             var user = await _signInManager.UserManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return Json(new
+                return Json(new LoginResponse
                 {
-                    error = "Login failed"
+                    Success = false,
+                    Error = "Nieznany użytkownik",
                 });
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, password, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                var token = _signInManager.GetJwtToken(user);
-                return Json(new
+                var token = await _signInManager.GetJwtToken(user);
+                return Json(new LoginResponse
                 {
-                    token = token,
+                    Success = true,
+                    Token = token,
                 });
             }
             else
             {
-                return Json(new
+                return Json(new LoginResponse
                 {
-                    error = result.IsLockedOut ? "User is locked out" : "Login failed"
+                    Success = false,
+                    Error = result.IsLockedOut ? "User is locked out" : "Login failed",
                 });
             }
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            return RedirectToPage("/Index");
         }
 
         [Authorize]
