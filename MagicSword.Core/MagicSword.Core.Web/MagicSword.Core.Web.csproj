@@ -72,7 +72,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\PlayerDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Player.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />
@@ -89,10 +89,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\WorldDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Dice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\Card.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStackDefinition.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStack.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardType.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\Character.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\GameBoard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\IActor.ts" />

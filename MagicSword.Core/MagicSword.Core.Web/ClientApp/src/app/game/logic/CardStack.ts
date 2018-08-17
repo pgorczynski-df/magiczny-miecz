@@ -1,11 +1,11 @@
 //import * as Logger from "js-logger";
 
 import { BoxObject } from "../BoxObject";
-import { CardDefinition } from "./CardDefinition";
+import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { Card } from "./Card";
 import { IActor } from "./IActor";
-import { CardStackDefinition } from "./CardStackDefinition";
-import { CardType } from "./CardType";
+import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
+import { CardType } from "@App/common/mechanics/definitions/CardType";
 import { Collections } from "../utils/Collections";
 import { Character } from "./Character";
 

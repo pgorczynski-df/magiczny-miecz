@@ -1,8 +1,8 @@
 import { Card } from "./Card";
-import { CardDefinition } from "./CardDefinition";
+import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { TextObject } from "../TextObject";
 import { World } from "./World";
-import { CharacterParameterDefinition } from "./CharacterParameterDefinition";
+import { CharacterParameterDefinition } from "@App/common/mechanics/definitions/CharacterParameterDefinition";
 
 export class Character extends Card {
 

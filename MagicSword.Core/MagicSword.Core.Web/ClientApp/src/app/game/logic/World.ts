@@ -5,11 +5,10 @@ import { Game } from "../Game";
 import { GameBoard } from "./GameBoard";
 import { Card } from "./Card";
 import { CardStack } from "./CardStack";
-//import { Character } from "./Character";
-import { CardDefinition } from "./CardDefinition";
+import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { IActor } from "./IActor";
-import { CardStackDefinition } from "./CardStackDefinition";
-import {CardType} from "./CardType";
+import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
+import { CardType } from "@App/common/mechanics/definitions/CardType";
 
 export class World {
 
