@@ -1,6 +1,7 @@
 ﻿import { createServer, Server } from "http";
 import * as express from "express";
 import * as socketIo from "socket.io";
+
 import { Services } from "./app/Services";
 import { AuthService } from "./app/AuthService";
 import { AccountClient } from "@App/common/client/AccountClient";
@@ -8,7 +9,6 @@ import { Event } from "./app/game/Event";
 import { GameEventProcessor } from "./app/game/GameEventProcessor";
 import { SocketResponseProcessor } from "./app/game/SocketResponseProcessor";
 import { GamesApiClient } from "@App/common/client/GamesApiClient";
-//import { Message } from './model';
 
 export class GameServer {
     public static readonly PORT: number = 3000;
@@ -26,7 +26,17 @@ export class GameServer {
         this.port = (<any>process.env).PORT || GameServer.PORT;
 
         this.app = express();
-        this.mountRoutes();
+
+        const router = express.Router();
+        router.get("/", (req, res) => {
+            res.json({
+                message: "Hello World!"
+            });
+        });
+        this.app.use("/", router);
+
+        this.app.use("/res", express.static("."));
+
         this.server = createServer(this.app);
         this.io = socketIo(this.server);
 
@@ -88,16 +98,6 @@ export class GameServer {
                 console.log("Client disconnected");
             });
         });
-    }
-
-    private mountRoutes(): void {
-        const router = express.Router();
-        router.get("/", (req, res) => {
-            res.json({
-                message: "Hello World!"
-            });
-        });
-        this.app.use("/", router);
     }
 
     public getApp(): express.Application {
