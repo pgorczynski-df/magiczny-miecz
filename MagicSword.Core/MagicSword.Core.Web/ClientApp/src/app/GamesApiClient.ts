@@ -1,9 +1,8 @@
-﻿import axios from "axios";
+import axios from "axios";
 import { AxiosRequestConfig } from "axios";
-import { IGamesRepository } from "./IGamesRepository";
-import { Services } from "../../Services";
+import { Services } from "@App/Services";
 
-export class GamesApiClient implements IGamesRepository {
+export class GamesApiClient {
 
     private server = "http://localhost:53048";
 
@@ -23,6 +22,11 @@ export class GamesApiClient implements IGamesRepository {
     public getOpenGames(): Promise<any> {
         var url = `${this.server}/api/Games/OpenGames`;
         return this.request("GET", url);
+    }
+
+    public createGame(): Promise<any> {
+        var url = `${this.server}/api/Games/CreateGame`;
+        return this.request("POST", url);
     }
 
     private request(method: string, url: string) {

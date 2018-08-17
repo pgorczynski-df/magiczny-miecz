@@ -15,7 +15,7 @@ namespace MagicSword.Core.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class GamesController : ControllerBase
+    public class GamesController : Controller
     {
         private readonly SignInManager<Player> _signInManager;
         private readonly MagicSwordCoreApiContext _context;
@@ -28,10 +28,44 @@ namespace MagicSword.Core.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [HttpGet("MyGames")]
+        public async Task<ActionResult<IEnumerable<GameListDto>>> GetMyGames()
         {
-            return new string[] { "value1", "value2" };
+            var userId = CallingUserId;
+            var games = await _context.Games.Where(g => g.Participants.Any(p => p.PlayerId == userId)).ToListAsync();
+            var dtos = games.Select(g => CreateListDto(g, userId));
+
+            return Json(dtos);
+        }
+
+        [HttpGet("OpenGames")]
+        public async Task<ActionResult<IEnumerable<GameListDto>>> GetOpenGames()
+        {
+            var userId = CallingUserId;
+            var games = await _context.Games.Where(g => g.Participants.Any(p => p.PlayerId != userId)).ToListAsync();
+            var dtos = games.Select(g => CreateListDto(g, userId));
+
+            return Json(dtos);
+        }
+
+        [HttpPost("CreateGame")]
+        public async Task<ActionResult<GameListDto>> CreateGame()
+        {
+            var user = User.Identity.Name;
+            var player = await _context.Users.FirstOrDefaultAsync(u => u.Email == user);
+
+            var game = new Model.Game
+            {
+                OwnerId = player.Id
+            };
+            game.Participants.Add(new GamePlayer { Game = game, Player = player });
+
+            _context.Games.Add(game);
+            await _context.SaveChangesAsync();
+
+            var gameDto = CreateListDto(game, CallingUserId);
+
+            return Json(gameDto);
         }
 
         [HttpGet("{id}")]

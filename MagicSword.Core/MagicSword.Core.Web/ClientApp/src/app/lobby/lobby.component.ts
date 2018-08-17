@@ -3,39 +3,37 @@ import { Router } from "@angular/router";
 import { Services } from "app/Services";
 import { GameListDto } from "app/lobby/dto/GameListDto";
 import { PlayerHubClient } from "app/home/PlayerHubClient";
+import {GamesApiClient} from "@App/GamesApiClient";
 
 @Component({
-  selector: "app-lobby-data",
-  templateUrl: "./lobby.component.html"
+    selector: "app-lobby-data",
+    templateUrl: "./lobby.component.html"
 })
 export class LobbyComponent implements AfterViewInit {
 
-  public myGames: GameListDto[] = [];
-  public openGames: GameListDto[] = [];
+    public myGames: GameListDto[] = [];
+    public openGames: GameListDto[] = [];
 
-  constructor(private router: Router, private services: Services, private hub: PlayerHubClient) {
+    private gamesApiClient: GamesApiClient;
 
-    this.hub = new PlayerHubClient(this.services);
-    this.hub.init().then(r => {
-      this.load();
-    });
+    constructor(private router: Router, private services: Services) {
+        this.gamesApiClient = new GamesApiClient(this.services);
+    }
 
-  }
+    ngAfterViewInit(): void {
+        setTimeout(() => this.load(), 500);
+    }
 
-  ngAfterViewInit(): void {
-    //setTimeout(() => this.load(), 500);
-  }
+    load(): void {
+        this.gamesApiClient.getMyGames().then(res => this.myGames = res);
+        this.gamesApiClient.getOpenGames().then(res => this.openGames = res);
+    }
 
-  load(): void {
-    this.hub.getMyGames().subscribe(res => this.myGames = res);
-    this.hub.getOpenGames().subscribe(res => this.openGames = res);
-  }
+    create(): void {
+        this.gamesApiClient.createGame().then(res => this.myGames.push(res));
+    }
 
-  create(): void {
-    this.hub.createGame().subscribe(res => this.myGames.push(res));
-  }
-
-  join(game: GameListDto): void {
-    this.router.navigate(["/game", "online", game.id]);
-  }
+    join(game: GameListDto): void {
+        this.router.navigate(["/game", "online", game.id]);
+    }
 }

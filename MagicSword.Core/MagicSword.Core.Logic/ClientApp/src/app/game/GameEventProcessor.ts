@@ -12,6 +12,10 @@ export class GameEventProcessor {
     }
 
     processRequest(event: Event) {
+
+        var games = this.gamesRepository.getMyGames().then(r => console.log(r), r => console.log(r));
+
+
         switch (event.eventType) {
             case EventType.JoinGameRequest:
 
