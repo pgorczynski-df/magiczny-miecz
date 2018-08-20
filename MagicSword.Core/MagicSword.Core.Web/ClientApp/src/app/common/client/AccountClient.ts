@@ -1,16 +1,20 @@
-﻿import axios from "axios";
+import { HttpClient } from "@App/common/client/HttpClient";
+import { Services } from "@App/Services";
 
-export class AccountClient {
+export class AccountClient extends HttpClient {
 
-    private server = "http://localhost:53048";
     private controller = "Account";
 
+    constructor(services: Services) {
+        super(services.settings.authServerUrl, services);
+    }
+
     public validateToken(token: string): Promise<any> {
-        return axios.get<any>(`${this.server}/${this.controller}/ValidateToken?access_token=${token}`).then(r => { return r.data; });
+        return super.get(`${this.controller}/ValidateToken?access_token=${token}`);
     }
 
     public login(email: string, password: string): Promise<any> {
-        return axios.post<any>(`${this.server}/${this.controller}/Login?email=${email}&password=${password}`).then(r => { return r.data; });
+        return super.post(`${this.controller}/Login?email=${email}&password=${password}`);
     }
 
 }

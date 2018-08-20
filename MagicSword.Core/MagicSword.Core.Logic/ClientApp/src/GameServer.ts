@@ -18,7 +18,6 @@ export class GameServer {
     private port: string | number;
 
     private hubs: any = {};
-    private accountClient = new AccountClient();
 
     private games: any = {};
 
@@ -33,9 +32,9 @@ export class GameServer {
                 message: "Hello World!"
             });
         });
-        this.app.use("/", router);
+        this.app.use("/api", router);
 
-        this.app.use("/res", express.static("."));
+        this.app.use("/", express.static("./src"));
 
         this.server = createServer(this.app);
         this.io = socketIo(this.server);
@@ -80,7 +79,9 @@ export class GameServer {
 
                 var services = this.createServices(token);
 
-                this.accountClient.validateToken(token).then(
+                var accountClient = new AccountClient(services);
+
+                accountClient.validateToken(token).then(
                     r => {
                         var userId = r.userId;
                         event.sourcePlayerId = userId;

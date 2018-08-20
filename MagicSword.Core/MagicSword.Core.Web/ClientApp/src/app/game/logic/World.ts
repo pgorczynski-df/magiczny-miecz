@@ -70,7 +70,7 @@ export class World {
   }
 
   public loadCardDefinitions = (stackDefinition: CardStackDefinition) => {
-    let url = stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl;
+    let url = this.game.services.settings.gameServerUrl + stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl;
     Logger.debug("Attempting to fetch: " + url);
     this.game.services.httpClient.get(url).subscribe((res: CardDefinition[]) => {
       stackDefinition.cardDefinitions = res;

@@ -3,19 +3,22 @@ import * as Logger from "js-logger";
 
 //import { EventBus } from "app/game/EventBus";
 import { AuthService } from "app/AuthService";
+import {Settings} from "@App/common/infrastructure/Settings";
 
 export class Services {
 
-  public logger: any;
-  //public inboundBus = new EventBus();
-  //public outboundBus = new EventBus();
+    public logger: any;
+    //public inboundBus = new EventBus();
+    //public outboundBus = new EventBus();
 
-  constructor(public authService: AuthService) {
+    public settings = new Settings();
 
-    Logger.useDefaults({ logLevel: Logger.DEBUG });
+    constructor(public authService: AuthService) {
 
-    this.logger = Logger;
+        Logger.useDefaults({ logLevel: Logger.DEBUG });
 
-  }
+        this.logger = Logger;
+
+    }
 
 }

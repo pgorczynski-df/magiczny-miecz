@@ -1,48 +1,33 @@
-﻿import axios from "axios";
-import { AxiosRequestConfig } from "axios";
-import { Services } from "@App/Services";
+﻿import { Services } from "@App/Services";
+import { HttpClient } from "@App/common/client/HttpClient";
 
-export class GamesApiClient {
+export class GamesApiClient extends HttpClient {
 
-    private server = "http://localhost:53048";
+    private readonly apiUrl = "/api/Games";
 
-    constructor(private services: Services) {
+    constructor(services: Services) {
+        super(services.settings.authServerUrl, services);
     }
 
     public get(id: string): Promise<any> {
-        var url = `${this.server}/api/Games/${id}`;
-        return this.request("GET", url);
+        var url = `${this.apiUrl}/${id}`;
+        return super.get(url);
     }
 
     public getMyGames(): Promise<any> {
-        var url = `${this.server}/api/Games/MyGames`;
-        return this.request("GET", url);
+        var url = `${this.apiUrl}/MyGames`;
+        return super.get(url);
     }
 
     public getOpenGames(): Promise<any> {
-        var url = `${this.server}/api/Games/OpenGames`;
-        return this.request("GET", url);
+        var url = `${this.apiUrl}/OpenGames`;
+        return super.get(url);
     }
 
     public createGame(): Promise<any> {
-        var url = `${this.server}/api/Games/CreateGame`;
-        return this.request("POST", url);
+        var url = `${this.apiUrl}/CreateGame`;
+        return super.post(url);
     }
 
-    private request(method: string, url: string) {
-        this.services.logger.debug(`Attempting to ${method} ${url}`);
-        return axios.request<any>(this.getConfig(method, url)).then(r => {
-            this.services.logger.debug(`${method} ${url} successful`);
-            return r.data;
-        });
-    }
-
-    private getConfig(method: string, url: string): AxiosRequestConfig {
-        return {
-            url: url,
-            method: method,
-            headers: { "Authorization": `Bearer ${this.services.authService.token}` }
-        };
-    }
 
 }

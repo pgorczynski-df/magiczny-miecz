@@ -6,13 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="ClientApp\src\assets\img\Postacie.json" />
+    <Content Remove="ClientApp\src\assets\img\Wyposazenie.json" />
+    <Content Remove="ClientApp\src\assets\img\Zaklecia.json" />
+    <Content Remove="ClientApp\src\assets\img\Zdarzenia\Zdarzenia.json" />
     <Content Remove="ClientApp\tslint.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\AccountClient.ts" />
     <None Remove="ClientApp\src\app\AuthService.ts" />
+    <None Remove="ClientApp\src\app\common\client\GamesApiClient.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
+    <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
+    <None Remove="ClientApp\src\app\common\utils\StringUtils.ts" />
     <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardStackDto.ts" />
@@ -38,6 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="ClientApp\src\assets\img\Postacie\Postacie.json" />
+    <None Include="ClientApp\src\assets\img\Wyposazenie\Wyposazenie.json" />
+    <None Include="ClientApp\src\assets\img\Zaklecia\Zaklecia.json" />
+    <None Include="ClientApp\src\assets\img\Zdarzenia\Zdarzenia.json" />
     <None Include="ClientApp\tslint.json" />
   </ItemGroup>
 
@@ -47,6 +58,9 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\infrastructure\Settings.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\utils\StringUtils.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\ActorDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardStackDto.ts" />
@@ -58,7 +72,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\GameEventProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\IResponseProcessor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\client\HttpClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\IGamesRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\SocketResponseProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\GameServer.ts" />

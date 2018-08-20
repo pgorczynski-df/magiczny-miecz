@@ -5,20 +5,23 @@ import * as Logger from "js-logger";
 
 import { EventBus } from "app/game/EventBus";
 import { AuthService } from "@App/AuthService";
+import { Settings } from "@App/common/infrastructure/Settings";
 
 @Injectable()
 export class Services {
 
-  public logger: any;
-  public inboundBus = new EventBus();
-  public outboundBus = new EventBus();
+    public logger: any;
+    public inboundBus = new EventBus();
+    public outboundBus = new EventBus();
 
-  constructor(public httpClient: HttpClient, public authService: AuthService) {
+    public settings = new Settings();
 
-    Logger.useDefaults({ logLevel: Logger.DEBUG });
+    constructor(public httpClient: HttpClient, public authService: AuthService) {
 
-    this.logger = Logger;
+        Logger.useDefaults({ logLevel: Logger.DEBUG });
 
-  }
+        this.logger = Logger;
+
+    }
 
 }
