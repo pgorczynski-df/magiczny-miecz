@@ -14,7 +14,7 @@ import { World } from "app/game/logic/World";
 import { IActor } from "app/game/logic/IActor";
 import { Serializer } from "app/game/dto/Serializer";
 import { Dice } from "app/game/Dice";
-import { Collections } from "app/game/utils/Collections";
+import { Collections } from "@App/common/utils/Collections";
 import { Services } from "app/Services";
 
 import { Event } from "app/game/Event";

@@ -19,6 +19,8 @@
     <None Remove="ClientApp\src\app\common\client\GamesApiClient.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
+    <None Remove="ClientApp\src\app\common\utils\Collections.ts" />
+    <None Remove="ClientApp\src\app\common\utils\Guid.ts" />
     <None Remove="ClientApp\src\app\common\utils\StringUtils.ts" />
     <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
     <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
@@ -60,6 +62,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\infrastructure\Settings.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\utils\Collections.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\utils\Guid.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\StringUtils.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\ActorDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardDto.ts" />
