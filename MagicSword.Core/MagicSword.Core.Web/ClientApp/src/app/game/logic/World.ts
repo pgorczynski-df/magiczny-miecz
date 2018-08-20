@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import * as Logger from "js-logger";
 
 import { Game } from "../Game";
 import { GameBoard } from "./GameBoard";
@@ -13,158 +12,123 @@ import { CardType } from "@App/common/mechanics/definitions/CardType";
 export class World {
 
 
-  selectedActor: IActor;
+    selectedActor: IActor;
 
-  mmBoard: GameBoard;
+    mmBoard: GameBoard;
 
-  cardStacks: CardStack[] = [];
+    cardStacks: CardStack[] = [];
 
-  //characters: Character[] = [];
+    //characters: Character[] = [];
 
-  static font: THREE.Font = null;
+    static font: THREE.Font = null;
 
-  constructor(private game: Game) {
+    constructor(private game: Game) {
 
+        this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
+        this.game.addActor(this.mmBoard);
 
-    this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
-    this.game.addActor(this.mmBoard);
+        this.loadFont();
 
-    this.loadFont();
+        var promises = [];
 
-    for (var definition of CardStackDefinition.cardStackDefinitions) {
+        for (var def of CardStackDefinition.cardStackDefinitions) {
+            promises.push(CardStackDefinition.loadCardDefinitions(def, this.game.services));
+        }
 
-      this.loadCardDefinitions(definition);
+        Promise.all(promises).then(_ => {
 
-      var characterAspect = 1.241772151898734;
-      var width = 16.18257261410788;
-      var height = 10;
+            for (var definition of CardStackDefinition.cardStackDefinitions) {
+                var characterAspect = 1.241772151898734;
+                var width = 16.18257261410788;
+                var height = 10;
 
-      if (definition.type === CardType.Character) {
-        height = width;
-        width = characterAspect * width;
-      }
+                if (definition.type === CardType.Character) {
+                    height = width;
+                    width = characterAspect * width;
+                }
 
-      var cardStack = new CardStack(definition, width, height, 3);
-      cardStack.cleanup(); //set initial coordinates
+                var cardStack = new CardStack(definition, width, height, 3);
+                cardStack.cleanup(); //set initial coordinates
 
-      this.cardStacks.push(cardStack);
-      this.game.addActor(cardStack);
+                this.cardStacks.push(cardStack);
+                this.game.addActor(cardStack);
+            }
+
+            this.newGame();
+
+        });
+
     }
 
-    //let playersCount = 3;
-
-    //for (var i = 0; i < playersCount; i++) {
-
-    //  var card = new Character("/assets/img/Characters/Barbarzynca.png", 10, 0.8053007135575944, 0.5);
-    //  this.characters.push(card);
-
-    //  var object = card.object3D;
-    //  object.position.x = (playersCount / 2 - i) * 20;
-    //  object.position.y = 0.5;
-    //  object.position.z = 45;
-
-    //  this.game.addActor(card);
-    //}
-
-    //this.newGame();
-  }
-
-  public loadCardDefinitions = (stackDefinition: CardStackDefinition) => {
-    let url = this.game.services.settings.gameServerUrl + stackDefinition.resourcePath + "/" + stackDefinition.cardDefinitionsUrl;
-    Logger.debug("Attempting to fetch: " + url);
-    this.game.services.httpClient.get(url).subscribe((res: CardDefinition[]) => {
-      stackDefinition.cardDefinitions = res;
-      Logger.debug("Sucessfuly loaded: " + url);
-      if (this.ensureLoaded()) {
-        this.newGame();
-      }
-    });
-  }
-
-  private loadFont = () => {
-    var loader = new THREE.FontLoader();
-    loader.load("/assets/fonts/helvetiker_regular.typeface.json", (font) => {
-      World.font = font;
-    });
-  }
-
-  //TODO nicefy
-  private ensureLoaded = (): boolean => {
-
-    if (World.font === null) {
-      return false;
+    private loadFont = () => {
+        var loader = new THREE.FontLoader();
+        loader.load("/assets/fonts/helvetiker_regular.typeface.json", (font) => {
+            World.font = font;
+        });
     }
 
-    for (var stack of this.cardStacks) {
-      if (!stack.definition.cardDefinitions) {
-        return false;
-      }
+    newGame = () => {
+        this.cleanup();
+        for (var stack of this.cardStacks) {
+            stack.buildStack();
+        }
     }
-    return true;
-  }
 
-  newGame = () => {
-    this.cleanup();
-    for (var stack of this.cardStacks) {
-      stack.buildStack();
+    cleanup = () => {
+
+        this.clearSelectedActor();
+
+        for (var stack of this.cardStacks) {
+            for (var card of stack.drawnCards) {
+                this.disposeCardInternal(card);
+            }
+            stack.cleanup();
+        }
     }
-  }
 
-  cleanup = () => {
+    drawCard = (card: Card = null, uncover = true): Card => {
+        let stack = card !== null ? card.originStack : <CardStack>this.selectedActor;
+        card = stack.drawCard(card, uncover);
+        this.addNewCard(card);
+        return card;
+    }
 
-    this.clearSelectedActor();
+    addNewCard(card: Card) {
+        this.game.addActor(card);
+    }
 
-    for (var stack of this.cardStacks) {
-      for (var card of stack.drawnCards) {
+    disposeCard = () => {
+        let card = <Card>this.selectedActor;
+        this.clearSelectedActor();
         this.disposeCardInternal(card);
-      }
-      stack.cleanup();
     }
-  }
 
-  drawCard = (card: Card = null, uncover = true): Card => {
-    let stack = card !== null ? card.originStack : <CardStack>this.selectedActor;
-    card = stack.drawCard(card, uncover);
-    this.addNewCard(card);
-    return card;
-  }
-
-  addNewCard(card: Card) {
-    this.game.addActor(card);
-  }
-
-  disposeCard = () => {
-    let card = <Card>this.selectedActor;
-    this.clearSelectedActor();
-    this.disposeCardInternal(card);
-  }
-
-  selectActor(actor: IActor) {
-    this.clearSelectedActor();
-    this.selectedActor = actor;
-    this.selectedActor.isSelected = true;
-  }
-
-  clearSelectedActor = () => {
-    if (this.selectedActor) {
-      this.selectedActor.isSelected = false;
+    selectActor(actor: IActor) {
+        this.clearSelectedActor();
+        this.selectedActor = actor;
+        this.selectedActor.isSelected = true;
     }
-    this.selectedActor = null;
-  }
 
-  private disposeCardInternal = (card: Card) => {
-    card.dispose();
-    this.game.removeActor(card);
-  }
+    clearSelectedActor = () => {
+        if (this.selectedActor) {
+            this.selectedActor.isSelected = false;
+        }
+        this.selectedActor = null;
+    }
 
-  setCovered(isCovered: boolean) {
-    let card = <Card>this.selectedActor;
-    card.setCovered(isCovered);
-  }
+    private disposeCardInternal = (card: Card) => {
+        card.dispose();
+        this.game.removeActor(card);
+    }
 
-  toggleCovered() {
-    let card = <Card>this.selectedActor;
-    card.toggleCovered();
-  }
+    setCovered(isCovered: boolean) {
+        let card = <Card>this.selectedActor;
+        card.setCovered(isCovered);
+    }
+
+    toggleCovered() {
+        let card = <Card>this.selectedActor;
+        card.toggleCovered();
+    }
 
 }

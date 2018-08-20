@@ -6,7 +6,7 @@ export class GamesApiClient extends HttpClient {
     private readonly apiUrl = "/api/Games";
 
     constructor(services: Services) {
-        super(services.settings.authServerUrl, services);
+        super(services, services.settings.authServerUrl);
     }
 
     public get(id: string): Promise<any> {

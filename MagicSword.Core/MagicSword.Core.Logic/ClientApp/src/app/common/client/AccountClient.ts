@@ -6,7 +6,7 @@ export class AccountClient extends HttpClient {
     private controller = "Account";
 
     constructor(services: Services) {
-        super(services.settings.authServerUrl, services);
+        super(services, services.settings.authServerUrl);
     }
 
     public validateToken(token: string): Promise<any> {

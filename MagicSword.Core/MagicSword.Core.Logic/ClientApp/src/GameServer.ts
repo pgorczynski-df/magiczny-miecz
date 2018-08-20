@@ -1,6 +1,7 @@
 ﻿import { createServer, Server } from "http";
 import * as express from "express";
 import * as socketIo from "socket.io";
+import * as cors from "cors";
 
 import { Services } from "./app/Services";
 import { AuthService } from "./app/AuthService";
@@ -25,6 +26,8 @@ export class GameServer {
         this.port = (<any>process.env).PORT || GameServer.PORT;
 
         this.app = express();
+
+        this.app.use(cors());
 
         const router = express.Router();
         router.get("/", (req, res) => {

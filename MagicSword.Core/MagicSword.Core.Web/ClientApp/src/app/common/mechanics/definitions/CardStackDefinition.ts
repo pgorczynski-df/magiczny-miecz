@@ -2,6 +2,8 @@ import * as THREE from "three";
 
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { CardType } from "@App/common/mechanics/definitions//CardType";
+import { Services } from "@App/Services";
+import { HttpClient } from "@App/common/client/HttpClient";
 
 export class CardStackDefinition {
 
@@ -24,6 +26,18 @@ export class CardStackDefinition {
     initialRotation: THREE.Euler = new THREE.Euler();
 
     shuffle = false;
+
+    //static, because not using "new" causes a function undefined except
+    public static loadCardDefinitions(definition: CardStackDefinition, services: Services): Promise<boolean> {
+        var client = new HttpClient(services, services.settings.gameServerUrl);
+        var promise = client
+            .get(definition.resourcePath + "/" + definition.cardDefinitionsUrl)
+            .then(res => {
+                definition.cardDefinitions = res;
+                return true;
+            });
+        return promise;
+    }
 
     static cardStackDefinitions: CardStackDefinition[] = [
         <CardStackDefinition>{

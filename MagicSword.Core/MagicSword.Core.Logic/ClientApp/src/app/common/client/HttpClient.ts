@@ -1,11 +1,11 @@
 ﻿import axios from "axios";
 import { AxiosRequestConfig } from "axios";
 import { Services } from "@App/Services";
-import {StringUtils} from "@App/common/utils/StringUtils";
+import { StringUtils } from "@App/common/utils/StringUtils";
 
 export class HttpClient {
 
-    constructor(private serverUrl, private services: Services) {
+    constructor(private services: Services, private serverUrl) {
         this.serverUrl = StringUtils.slashify(this.serverUrl);
     }
 
@@ -36,7 +36,9 @@ export class HttpClient {
             url: url,
             method: method,
             data: data,
-            headers: { "Authorization": `Bearer ${this.services.authService.token}` }
+            headers: {
+                "Authorization": `Bearer ${this.services.authService.token}`,
+            }
         };
     }
 
