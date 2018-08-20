@@ -15,8 +15,6 @@ export class CardStack extends BoxObject implements IActor {
 
   selectable: boolean = true;
   draggable: boolean = true;
-  isCard: boolean = false;
-  isCardStack: boolean = true;
 
   get name() { return this.definition.name; }
   get type() { return this.definition.type; }

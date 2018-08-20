@@ -7,8 +7,6 @@ export class Card extends BoxObject implements IActor {
 
   selectable: boolean = true;
   draggable: boolean = true;
-  isCard: boolean = true;
-  isCardStack: boolean = false;
 
   originStack: CardStack;
 
