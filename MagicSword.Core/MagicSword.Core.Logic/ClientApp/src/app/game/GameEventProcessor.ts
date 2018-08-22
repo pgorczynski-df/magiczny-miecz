@@ -2,8 +2,8 @@
 import { EventType } from "./EventType";
 import { IResponseProcessor } from "app/game/IResponseProcessor";
 import { Services } from "../Services";
-import { GameStateDto } from "./dto/GameStateDto";
 import { IGamesRepository } from "@App/common/repository/IGamesRepository";
+import { GameStateDto } from "@App/common/dto/GameStateDto";
 
 export class GameEventProcessor {
 

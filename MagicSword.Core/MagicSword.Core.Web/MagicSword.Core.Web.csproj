@@ -27,7 +27,9 @@
     <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\CardStack.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardArgsDto.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Game.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\IActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Object3D.ts" />
@@ -54,6 +56,7 @@
     <None Remove="ClientApp\src\app\game\logic\Character.ts" />
     <None Remove="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\GameBoard.ts" />
+    <None Remove="ClientApp\src\app\game\logic\handlers\DrawCardEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
     <None Remove="ClientApp\src\app\game\logic\World.ts" />
     <None Remove="ClientApp\src\app\game\Player.ts" />
@@ -75,12 +78,15 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\CardStack.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardArgsDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Object3D.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\World.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\PlayerDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\logic\handlers\DrawCardEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\AccountClient.ts" />
@@ -120,9 +126,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ClientApp\src\app\common\dto\EventType.ts">
-      <CustomToolNamespace>..\MagicSword.Core.Api\Model\EventType.cs</CustomToolNamespace>
-    </None>
     <None Update="ClientApp\src\app\common\dto\GameStateDto.ts">
       <CustomToolNamespace>..\MagicSword.Core.Api\Dto\GameStateDto.cs</CustomToolNamespace>
     </None>

@@ -329,6 +329,8 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
+/MagicSword.Core/MagicSword.Core.Logic/ClientApp/src/app/**/*.js
+/MagicSword.Core/MagicSword.Core.Logic/ClientApp/src/app/**/*.map
 /MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/**/*.js
 /MagicSword.Core/MagicSword.Core.Web/ClientApp/src/app/**/*.map
 /MagicSword.Core/MagicSword.Core.Api/Logs

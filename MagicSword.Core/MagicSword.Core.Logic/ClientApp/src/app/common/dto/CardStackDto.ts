@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import {CardDto} from "./CardDto";
-import { ActorDto } from "./ActorDto";
+import { CardDto } from "@App/common/dto/CardDto";
+import { ActorDto } from "@App/common/dto/ActorDto";
 
 export class CardStackDto extends ActorDto {
 

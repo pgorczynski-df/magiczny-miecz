@@ -17,18 +17,32 @@
     <None Remove="ClientApp\src\app\AccountClient.ts" />
     <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\common\client\GamesApiClient.ts" />
+    <None Remove="ClientApp\src\app\common\dto\ActorDto.ts" />
+    <None Remove="ClientApp\src\app\common\dto\CardDto.ts" />
+    <None Remove="ClientApp\src\app\common\dto\CardStackDto.ts" />
+    <None Remove="ClientApp\src\app\common\dto\GameDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
+    <None Remove="ClientApp\src\app\common\dto\Object3DDto.ts" />
+    <None Remove="ClientApp\src\app\common\dto\PlayerDto.ts" />
+    <None Remove="ClientApp\src\app\common\dto\WorldDto.ts" />
     <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\Card.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\CardStack.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\Character.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardArgsDto.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\Game.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\IActorBase.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\Object3D.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\World.ts" />
     <None Remove="ClientApp\src\app\common\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\common\utils\Guid.ts" />
     <None Remove="ClientApp\src\app\common\utils\StringUtils.ts" />
-    <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\CardStackDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\GameDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\Object3DDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\PlayerDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\WorldDto.ts" />
     <None Remove="ClientApp\src\app\game\Event.ts" />
     <None Remove="ClientApp\src\app\game\EventType.ts" />
     <None Remove="ClientApp\src\app\game\GameEventProcessor.ts" />
@@ -61,17 +75,31 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\dto\ActorDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardStackDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\dto\Object3DDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\dto\PlayerDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\dto\WorldDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\infrastructure\Settings.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Card.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\CardStack.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Character.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardArgsDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Object3D.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\World.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\Collections.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\Guid.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\StringUtils.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\ActorDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\CardStackDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\GameDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\Object3DDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\PlayerDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\dto\WorldDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Event.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\GameEventProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />
@@ -88,10 +116,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ClientApp\src\app\game\dto\EventType.ts">
-      <CustomToolNamespace>..\MagicSword.Core.Api\Model\EventType.cs</CustomToolNamespace>
-    </None>
-    <None Update="ClientApp\src\app\game\dto\GameStateDto.ts">
+    <None Update="ClientApp\src\app\common\dto\GameStateDto.ts">
       <CustomToolNamespace>..\MagicSword.Core.Api\Dto\GameStateDto.cs</CustomToolNamespace>
     </None>
   </ItemGroup>
