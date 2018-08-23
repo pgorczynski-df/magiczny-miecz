@@ -4,14 +4,24 @@ import { IResponseProcessor } from "app/game/IResponseProcessor";
 import { Services } from "../Services";
 import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
-import {Game} from "@App/common/mechanics/Game";
+import { Game } from "@App/common/mechanics/Game";
+import { Player } from "@App/common/mechanics/Player";
+import { Serializer } from "@App/common/mechanics/Serializer";
 
 export class GameEventProcessor {
 
-    game = new Game();
+    game: Game;
+    serializer = new Serializer();
 
     constructor(private services: Services, private responseProcessor: IResponseProcessor, private gamesRepository: IGamesRepository) {
 
+    }
+
+    private initGame(ownerId: string) {
+        this.services.logger.info(`Creating new game, ownerId = ${ownerId}`);
+        var owner = new Player();
+        owner.id = owner.name = ownerId;
+        this.game = new Game(owner);
     }
 
     processRequest(event: Event) {
@@ -21,12 +31,19 @@ export class GameEventProcessor {
             case EventType.JoinGameRequest:
 
                 this.responseProcessor.registerCaller(event);
+
                 this.gamesRepository.get(event.gameId).then(gameDto => {
+
+                    if (gameDto == null) {
+                        this.initGame(event.sourcePlayerId);
+                        gameDto = this.serializer.serializeGame(this.game);
+                        //this.gamesRepository.save();
+                    }
 
                     var gsDto: GameStateDto = {
                         currentPlayerId: event.sourcePlayerId,
                         data: gameDto,
-                        isStarted: gameDto != null,
+                        isStarted: true, // gameDto != null,
                     };
 
                     this.responseProcessor.respondCaller({
