@@ -38,6 +38,7 @@
     <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Game.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\IActorBase.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\loaders\CardDefinitionLoader.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Object3D.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\World.ts" />
     <None Remove="ClientApp\src\app\common\utils\Collections.ts" />
@@ -95,6 +96,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\loaders\CardDefinitionLoader.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Object3D.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\World.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\Collections.ts" />

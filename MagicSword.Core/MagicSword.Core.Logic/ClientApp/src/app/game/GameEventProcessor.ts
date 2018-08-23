@@ -4,8 +4,11 @@ import { IResponseProcessor } from "app/game/IResponseProcessor";
 import { Services } from "../Services";
 import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
+import {Game} from "@App/common/mechanics/Game";
 
 export class GameEventProcessor {
+
+    game = new Game();
 
     constructor(private services: Services, private responseProcessor: IResponseProcessor, private gamesRepository: IGamesRepository) {
 

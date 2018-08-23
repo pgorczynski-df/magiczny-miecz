@@ -10,6 +10,7 @@ import { Event } from "./app/game/Event";
 import { GameEventProcessor } from "./app/game/GameEventProcessor";
 import { SocketResponseProcessor } from "./app/game/SocketResponseProcessor";
 import { GamesApiClient } from "@App/common/client/GamesApiClient";
+import {CardDefinitionLoader} from "@App/common/mechanics/loaders/CardDefinitionLoader";
 
 export class GameServer {
     public static readonly PORT: number = 3000;
@@ -63,9 +64,18 @@ export class GameServer {
         return processor;
     }
 
+    private loadResources() {
+        var services = this.createServices("");
+        var cardLoader = new CardDefinitionLoader(services);
+        cardLoader.load().then(_ => {
+            services.logger.info("Card definitions loaded successfully");
+        });
+    }
+
     private listen(): void {
         this.server.listen(this.port, () => {
             console.log("Running server on port %s", this.port);
+            this.loadResources();
         });
 
         this.io.on("connect", (socket: socketIo.Socket) => {
