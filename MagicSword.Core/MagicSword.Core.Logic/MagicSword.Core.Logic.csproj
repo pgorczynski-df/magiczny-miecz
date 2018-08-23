@@ -56,6 +56,7 @@
     <None Remove="ClientApp\src\app\game\SocketResponseProcessor.ts" />
     <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\LoginResponse.ts" />
+    <None Remove="ClientApp\src\app\UserProvider.ts" />
     <None Remove="ClientApp\src\GameServer.ts" />
     <None Remove="ClientApp\src\index.ts" />
   </ItemGroup>
@@ -77,6 +78,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\UserProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\ActorDto.ts" />

@@ -3,15 +3,10 @@ import * as express from "express";
 import * as socketIo from "socket.io";
 import * as cors from "cors";
 
-import { AccountClient } from "@App/common/client/AccountClient";
-import { GamesApiClient } from "@App/common/client/GamesApiClient";
-import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { Services } from "@App/Services";
-import { AuthService } from "@App/AuthService";
-import { GameEventProcessor } from "@App/game/GameEventProcessor";
 import { SocketResponseProcessor } from "@App/game/SocketResponseProcessor";
 import { Event } from "@App/game/Event";
-import {GameManager} from "@App/GameManager";
+import { GameManager } from "@App/GameManager";
 
 export class GameServer {
 

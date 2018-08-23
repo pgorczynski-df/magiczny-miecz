@@ -1,5 +1,4 @@
-﻿import { AccountClient } from "@App/common/client/AccountClient";
-import { Services } from "@App/Services";
+﻿import { Services } from "@App/Services";
 import {AuthService} from "@App/AuthService";
 
 import {GameEventProcessor} from "@App/game/GameEventProcessor";
@@ -7,8 +6,11 @@ import {GamesApiClient} from "@App/common/client/GamesApiClient";
 import {CardDefinitionLoader} from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { Event } from "@App/game/Event";
 import {IResponseProcessor} from "@App/game/IResponseProcessor";
+import {UserProvider} from "@App/UserProvider";
 
 export class GameManager {
+
+    private userProvider = new UserProvider();
 
     private games = {};
 
@@ -30,13 +32,10 @@ export class GameManager {
         }
 
         var services = this.createServices(token);
-
-        var accountClient = new AccountClient(services);
-
-        accountClient.validateToken(token).then(
+   
+        this.userProvider.getUserId(services, token).then(
             r => {
-                var userId = r.userId;
-                event.sourcePlayerId = userId;
+                event.sourcePlayerId = r;
                 var processor = this.getProcessor(services, event.gameId, responseProcessor);
                 services.logger.debug("Sending event to processing");
                 services.logger.debug(event);
