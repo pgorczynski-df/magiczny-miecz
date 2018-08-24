@@ -40,8 +40,6 @@ export class World {
             //this.game.addActor(cardStack as any);
         }
 
-        this.newGame();
-
     }
 
 

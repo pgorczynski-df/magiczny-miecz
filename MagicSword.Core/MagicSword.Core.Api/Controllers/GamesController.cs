@@ -82,14 +82,15 @@ namespace MagicSword.Core.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<int> Post([FromBody] string value)
+        public async Task<int> Post([FromBody] dynamic request)
         {
             var user = User.Identity.Name;
             var player = await _context.Users.FirstOrDefaultAsync(u => u.Email == user);
 
             var game = new Model.Game
             {
-                OwnerId = player.Id
+                OwnerId = player.Id,
+                Data = request.data,
             };
             game.Participants.Add(new GamePlayer { Game = game, Player = player });
 
@@ -100,7 +101,7 @@ namespace MagicSword.Core.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(int id, [FromBody] string data)
         {
             var game = await GetGame(id);
 
@@ -109,7 +110,7 @@ namespace MagicSword.Core.Api.Controllers
                 return BadRequest("Cannot find game with id = " + id);
             }
 
-            game.Data = value;
+            game.Data = data;
             await _context.SaveChangesAsync();
             return Ok();
         }

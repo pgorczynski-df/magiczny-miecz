@@ -17,7 +17,7 @@ export class CardStack implements IActorBase {
 
     id: string;
 
-    object3D: Object3D;
+    object3D = new Object3D();
 
     get name() { return this.definition.name; }
     get type() { return this.definition.type; }

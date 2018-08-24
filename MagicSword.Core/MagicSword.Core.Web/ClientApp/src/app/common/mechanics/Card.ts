@@ -14,7 +14,7 @@ export class Card implements IActorBase {
 
     id: string;
 
-    object3D: Object3D;
+    object3D = new Object3D();
 
     constructor(public definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false, isPawn = false) {
         //super(resourcePath + "/" + definition.imageUrl, width, height, depth, delay, isPawn);

@@ -2,29 +2,21 @@
 import { EventType } from "./EventType";
 import { IResponseProcessor } from "app/game/IResponseProcessor";
 import { Services } from "../Services";
-import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Game } from "@App/common/mechanics/Game";
 import { Player } from "@App/common/mechanics/Player";
 import { Serializer } from "@App/common/mechanics/Serializer";
+import {GameProvider} from "@App/GameProvider";
 
 export class GameEventProcessor {
 
-    game: Game;
     serializer = new Serializer();
 
-    constructor(private services: Services, private responseProcessor: IResponseProcessor, private gamesRepository: IGamesRepository) {
+    constructor(private services: Services, private responseProcessor: IResponseProcessor, private gameProvider: GameProvider) {
 
     }
 
-    private initGame(ownerId: string) {
-        this.services.logger.info(`Creating new game, ownerId = ${ownerId}`);
-        var owner = new Player();
-        owner.id = owner.name = ownerId;
-        this.game = new Game(owner);
-    }
-
-    processRequest(event: Event) {
+    processRequest(game: Game, event: Event) {
 
 
         switch (event.eventType) {
@@ -32,13 +24,7 @@ export class GameEventProcessor {
 
                 this.responseProcessor.registerCaller(event);
 
-                this.gamesRepository.get(event.gameId).then(gameDto => {
-
-                    if (gameDto == null) {
-                        this.initGame(event.sourcePlayerId);
-                        gameDto = this.serializer.serializeGame(this.game);
-                        //this.gamesRepository.save();
-                    }
+                this.gameProvider.getDto(this.services, event.gameId, event.sourcePlayerId).then(gameDto => {
 
                     var gsDto: GameStateDto = {
                         currentPlayerId: event.sourcePlayerId,

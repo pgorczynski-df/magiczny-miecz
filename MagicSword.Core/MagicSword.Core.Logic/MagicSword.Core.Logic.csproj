@@ -47,6 +47,7 @@
     <None Remove="ClientApp\src\app\common\utils\Guid.ts" />
     <None Remove="ClientApp\src\app\common\utils\StringUtils.ts" />
     <None Remove="ClientApp\src\app\GameManager.ts" />
+    <None Remove="ClientApp\src\app\GameProvider.ts" />
     <None Remove="ClientApp\src\app\game\Event.ts" />
     <None Remove="ClientApp\src\app\game\EventType.ts" />
     <None Remove="ClientApp\src\app\game\GameEventProcessor.ts" />
@@ -78,6 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\GameProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\UserProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
