@@ -53,6 +53,7 @@ export class CommonSerializer {
         var player = {
             id: playerDto.id,
             name: playerDto.name,
+            camera: null,
         } as Player;
         this.deserializeObject3D(playerDto.camera, player.camera);
         return player;
@@ -142,6 +143,9 @@ export class CommonSerializer {
     }
 
     serializeObject3D = (object3D: Object3D): Object3DDto => {
+        if (!object3D) {
+            return null;
+        }
         var dto = new Object3DDto();
         dto.position.copy(object3D.position);
         dto.rotation.copy(object3D.rotation);
@@ -149,6 +153,9 @@ export class CommonSerializer {
     }
 
     deserializeObject3D = (source: Object3DDto, object3D: Object3D) => {
+        if (!source) {
+            return;
+        }
         object3D.position.copy(source.position);
         object3D.rotation.copy(source.rotation);
     }

@@ -37,7 +37,9 @@ export class Serializer {
         }
 
         var currentPlayer = target.getCurrentPlayer();
-        this.deserializeObject3D(currentPlayer.camera, target.camera); //TODO type mismatch - to be fixed
+        if (currentPlayer && currentPlayer.camera) {
+            this.deserializeObject3D(currentPlayer.camera, target.camera); //TODO type mismatch - to be fixed
+        }
 
         this.deserializeWorld(source.world, target.world);
     }

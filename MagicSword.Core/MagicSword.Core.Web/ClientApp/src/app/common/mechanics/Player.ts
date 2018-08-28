@@ -6,6 +6,6 @@ export class Player {
 
     name: string;
 
-    camera = new Object3D();
+    camera: Object3D = null;
 
 }
