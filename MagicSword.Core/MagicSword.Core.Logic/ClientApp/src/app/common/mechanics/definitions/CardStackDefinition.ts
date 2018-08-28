@@ -33,7 +33,10 @@ export class CardStackDefinition {
         var promise = client
             .get(definition.resourcePath + "/" + definition.cardDefinitionsUrl)
             .then(res => {
-                definition.cardDefinitions = res;
+                //TODO proper fix (remove BOM from files)
+                //workaround: https://stackoverflow.com/questions/44176194/json-parse-causes-error-syntaxerror-unexpected-token-in-json-at-position-0
+                var parsed = JSON.parse(res.trim());
+                definition.cardDefinitions = parsed;
                 return true;
             });
         return promise;

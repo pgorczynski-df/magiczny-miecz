@@ -27,10 +27,15 @@ export class GameServer {
 
         this.app.use(cors());
 
+        //TODO close hole
         const router = express.Router();
         router.get("/game/:id", (req, res) => {
             var gameId = req.params.id;
             res.json(this.gameManager.getGame(gameId));
+        });
+        router.get("/gamedto/:id", (req, res) => {
+            var gameId = req.params.id;
+            res.json(this.gameManager.getGameDto(gameId));
         });
         this.app.use("/api", router);
 
