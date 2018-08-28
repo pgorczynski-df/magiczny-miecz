@@ -4,20 +4,15 @@ import { IResponseProcessor } from "app/game/IResponseProcessor";
 import { Services } from "../Services";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Game } from "@App/common/mechanics/Game";
-import { Player } from "@App/common/mechanics/Player";
-import { Serializer } from "@App/common/mechanics/Serializer";
-import {GameProvider} from "@App/GameProvider";
+import { GameProvider } from "@App/GameProvider";
 
 export class GameEventProcessor {
-
-    serializer = new Serializer();
 
     constructor(private services: Services, private responseProcessor: IResponseProcessor, private gameProvider: GameProvider) {
 
     }
 
     processRequest(game: Game, event: Event) {
-
 
         switch (event.eventType) {
             case EventType.JoinGameRequest:

@@ -9,17 +9,18 @@ import { CardStackDto } from "@App/common/dto/CardStackDto";
 import { Object3DDto as Object3dDto } from "@App/common/dto/Object3DDto";
 import { IActor } from "@App/game/logic/IActor";
 import { ActorDto } from "@App/common/dto/ActorDto";
-import { Player } from "@App/common/mechanics/Player";
-import { PlayerDto } from "@App/common/dto/PlayerDto";
+import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 
 export class Serializer {
+
+    private commonSerializer = new CommonSerializer();
 
     serializeGame = (game: Game): GameDto => {
         var dto = new GameDto();
 
         dto.world = this.serializeWorld(game.world);
         for (var player of game.players) {
-            var playerDto = this.serializePlayer(player);
+            var playerDto = this.commonSerializer.serializePlayer(player);
             dto.players.push(playerDto);
         }
         return dto;
@@ -31,7 +32,7 @@ export class Serializer {
         target.players = [];
 
         for (var dto of source.players) {
-            var player = this.deserializePlayer(dto);
+            var player = this.commonSerializer.deserializePlayer(dto);
             target.players.push(player);
         }
 
@@ -39,26 +40,6 @@ export class Serializer {
         this.deserializeObject3D(currentPlayer.camera, target.camera); //TODO type mismatch - to be fixed
 
         this.deserializeWorld(source.world, target.world);
-    }
-
-
-
-    serializePlayer = (player: Player): PlayerDto => {
-        var dto = {
-            id: player.id,
-            name: player.name,
-            camera: this.serializeObject3D(player.camera),
-        };
-        return dto;
-    }
-
-    deserializePlayer = (playerDto: PlayerDto): Player => {
-        var player = {
-            id: playerDto.id,
-            name: playerDto.name,
-        } as Player;
-        this.deserializeObject3D(playerDto.camera, player.camera);
-        return player;
     }
 
     serializeWorld = (world: World): WorldDto => {

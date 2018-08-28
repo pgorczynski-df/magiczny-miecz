@@ -1,12 +1,12 @@
 import { Services } from "@App/Services";
 import { GamesApiClient } from "@App/common/client/GamesApiClient";
-import { Serializer } from "@App/common/mechanics/Serializer";
+import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { Player } from "@App/common/mechanics/Player";
 import { Game } from "@App/common/mechanics/Game";
 
 export class GameProvider {
 
-    private serializer = new Serializer();
+    private serializer = new CommonSerializer();
 
     private cache = {};
     private dto = {};

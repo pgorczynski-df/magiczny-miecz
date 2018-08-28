@@ -13,7 +13,7 @@ import { Player } from "@App/common/mechanics/Player";
 import { PlayerDto } from "@App/common/dto/PlayerDto";
 import { Object3D } from "@App/common/mechanics/Object3D";
 
-export class Serializer {
+export class CommonSerializer {
 
     serializeGame = (game: Game): GameDto => {
         var dto = new GameDto();
