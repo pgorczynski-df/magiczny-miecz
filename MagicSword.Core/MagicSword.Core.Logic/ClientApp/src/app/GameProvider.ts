@@ -60,11 +60,11 @@ export class GameProvider {
     }
 
     getGame(id: string): Game {
-        var game = this.cache[id];
+        var game = this.cache[id] as Game;
         if (!game) {
             return null;
         }
-        return null;
+        return game;
     }
 
     getDto(id: string) {
