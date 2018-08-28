@@ -26,6 +26,7 @@
     <None Remove="ClientApp\src\app\common\dto\PlayerDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\WorldDto.ts" />
     <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Card.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\CardStack.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Character.ts" />
@@ -79,6 +80,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\GameProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\UserProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />

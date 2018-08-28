@@ -2,22 +2,18 @@ import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition
 import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
 import { CardType } from "@App/common/mechanics/definitions/CardType";
 import { Collections } from "@App/common/utils/Collections";
-import { IActorBase } from "@App/common/mechanics/IActorBase";
+import { ActorBase } from "@App/common/mechanics/ActorBase";
 import { Object3D } from "@App/common/mechanics/Object3D";
 import { Card } from "@App/common/mechanics/Card";
 import { Character } from "@App/common/mechanics/Character";
 
 
-export class CardStack implements IActorBase {
+export class CardStack extends ActorBase {
 
     static cardWidth = 0.5;
 
     selectable: boolean = true;
     draggable: boolean = true;
-
-    id: string;
-
-    object3D = new Object3D();
 
     get name() { return this.definition.name; }
     get type() { return this.definition.type; }
@@ -29,6 +25,7 @@ export class CardStack implements IActorBase {
     disposedCards: Card[] = [];
 
     constructor(public definition: CardStackDefinition, private width: number, private height: number, private depth: number) {
+        super();
         //super(definition.resourcePath + "/" + definition.imageUrl, width, aspect, height);
     }
 

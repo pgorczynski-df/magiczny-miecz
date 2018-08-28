@@ -1,9 +1,9 @@
 import { CardStack } from "@App/common/mechanics/CardStack";
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { IActorBase } from "@App/common/mechanics/IActorBase";
+import { ActorBase } from "@App/common/mechanics/ActorBase";
 import { Object3D } from "@App/common/mechanics/Object3D";
 
-export class Card implements IActorBase {
+export class Card extends ActorBase {
 
     selectable: boolean = true;
     draggable: boolean = true;
@@ -12,11 +12,8 @@ export class Card implements IActorBase {
 
     isCovered = true;
 
-    id: string;
-
-    object3D = new Object3D();
-
     constructor(public definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false, isPawn = false) {
+        super();
         //super(resourcePath + "/" + definition.imageUrl, width, height, depth, delay, isPawn);
     }
 
