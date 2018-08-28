@@ -19,6 +19,11 @@ export class GamesApiClient extends HttpClient {
         return super.post(url, { "data": JSON.stringify(dto) });
     }
 
+    public update(id: string, dto: any): Promise<any> {
+        var url = `${this.apiUrl}/${id}`;
+        return super.patch(url, { "data": JSON.stringify(dto) });
+    }
+
     public getMyGames(): Promise<any> {
         var url = `${this.apiUrl}/MyGames`;
         return super.get(url);

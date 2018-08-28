@@ -19,7 +19,7 @@ export class GameEventProcessor {
 
                 this.responseProcessor.registerCaller(event);
 
-                this.gameProvider.getDto(this.services, event.gameId, event.sourcePlayerId).then(gameDto => {
+                this.gameProvider.getOrLoadDto(this.services, event.gameId, event.sourcePlayerId).then(gameDto => {
 
                     var gsDto: GameStateDto = {
                         currentPlayerId: event.sourcePlayerId,

@@ -2,7 +2,6 @@
 import { AuthService } from "@App/AuthService";
 
 import { GameEventProcessor } from "@App/game/GameEventProcessor";
-import { GamesApiClient } from "@App/common/client/GamesApiClient";
 import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { Event } from "@App/game/Event";
 import { IResponseProcessor } from "@App/game/IResponseProcessor";
@@ -14,8 +13,6 @@ export class GameManager {
 
     private userProvider = new UserProvider();
     private gameProvider = new GameProvider();
-
-    private games = {};
 
     constructor(private services: Services) {
     }
@@ -51,11 +48,18 @@ export class GameManager {
         services.logger.debug(event);
 
         var gameId = event.gameId;
-        this.gameProvider.getGame(services, gameId, event.sourcePlayerId).then(game => {
+        this.gameProvider.getOrLoadGame(services, gameId, event.sourcePlayerId).then(game => {
             var processor = new GameEventProcessor(services, responseProcessor, this.gameProvider);
             processor.processRequest(game, event);
         });
+    }
 
+    public getGame(id: string) {
+        return this.gameProvider.getGame(id);
+    }
+
+    public getGameDto(id: string) {
+        return this.gameProvider.getDto(id);
     }
 
     private respondError(responseProcessor: IResponseProcessor, data: any) {

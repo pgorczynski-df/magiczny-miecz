@@ -100,8 +100,8 @@ namespace MagicSword.Core.Api.Controllers
             return game.Id;
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] string data)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> Patch(int id, [FromBody] dynamic request)
         {
             var game = await GetGame(id);
 
@@ -110,9 +110,9 @@ namespace MagicSword.Core.Api.Controllers
                 return BadRequest("Cannot find game with id = " + id);
             }
 
-            game.Data = data;
+            game.Data = request.data;
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(game.Id);
         }
 
         [HttpDelete("{id}")]

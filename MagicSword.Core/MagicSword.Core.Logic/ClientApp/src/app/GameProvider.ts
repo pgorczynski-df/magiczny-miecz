@@ -9,13 +9,13 @@ export class GameProvider {
     private serializer = new CommonSerializer();
 
     private cache = {};
-    private dto = {};
+    //private dto = {};
 
-    getGame(services: Services, id: string, callingPlayerId: string): Promise<any> {
+    getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<any> {
 
         //TODO check if player is on the list
 
-        var game = this.cache[id];
+        var game = this.getGame(id);
         if (!game) {
             services.logger.debug(`Cache did not contain game id = ${id}`);
             var gamesApiClient = new GamesApiClient(services);
@@ -28,14 +28,21 @@ export class GameProvider {
                     game = this.createGame(services, callingPlayerId);
 
                     if (!gameDto) {
+
+                        services.logger.debug(`Game id = ${id} didn't contain data, creating new game`);
+
                         game.init();
                         gameDto = this.serializer.serializeGame(game);
-                        gamesApiClient.save(gameDto).then(newId => {
-                            game.id = newId;
+                        gamesApiClient.update(id, gameDto).then(resId => {
+                            services.logger.debug(`Game id = ${resId} initiated successfully`);
                         });
                     } else {
-                        game = this.serializer.deserializeGame(game, gameDto);
+
+                        services.logger.debug(`Game id = ${id} existed, deserializing`);
+                        this.serializer.deserializeGame(gameDto, game);
                     }
+
+                    services.logger.debug(`Adding game id = ${id} to cache`);
 
                     this.cache[id] = game;
                     return game;
@@ -46,16 +53,33 @@ export class GameProvider {
         return Promise.resolve(game);
     }
 
-    getDto(services: Services, id: string, callingPlayerId: string): Promise<any> {
-        return this.getGame(services, id, callingPlayerId).then(game => {
+    getOrLoadDto(services: Services, id: string, callingPlayerId: string): Promise<any> {
+        return this.getOrLoadGame(services, id, callingPlayerId).then(game => {
             return this.serializer.serializeGame(game);
         });;
+    }
+
+    getGame(id: string): Game {
+        var game = this.cache[id];
+        if (!game) {
+            return null;
+        }
+        return null;
+    }
+
+    getDto(id: string) {
+        var game = this.getGame(id);
+        if (!game) {
+            return null;
+        }
+        return this.serializer.serializeGame(game);
     }
 
     private createGame(services: Services, ownerId: string): Game {
         services.logger.info(`Creating new game, ownerId = ${ownerId}`);
         var owner = new Player();
         owner.id = owner.name = ownerId;
-        return new Game(owner);
+        var game = new Game(owner);
+        return game;
     }
 }

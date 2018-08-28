@@ -28,10 +28,9 @@ export class GameServer {
         this.app.use(cors());
 
         const router = express.Router();
-        router.get("/", (req, res) => {
-            res.json({
-                message: "Hello World!"
-            });
+        router.get("/game/:id", (req, res) => {
+            var gameId = req.params.id;
+            res.json(this.gameManager.getGame(gameId));
         });
         this.app.use("/api", router);
 

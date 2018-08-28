@@ -36,14 +36,6 @@
     <None Remove="ClientApp\src\app\common\mechanics\World.ts" />
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
-    <None Remove="ClientApp\src\app\game\dto\ActorDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\CardDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\CardStackDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\GameDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\Object3dDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\PlayerDto.ts" />
-    <None Remove="ClientApp\src\app\game\dto\Serializer.ts" />
-    <None Remove="ClientApp\src\app\game\dto\WorldDto.ts" />
     <None Remove="ClientApp\src\app\game\Event.ts" />
     <None Remove="ClientApp\src\app\game\EventBus.ts" />
     <None Remove="ClientApp\src\app\game\EventType.ts" />
@@ -119,7 +111,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\game\dto\" />
     <Folder Include="ClientApp\src\assets\3d\" />
   </ItemGroup>
 

@@ -17,6 +17,10 @@ export class HttpClient {
         return this.request("POST", url, data);
     }
 
+    public patch(url: string, data: any = null): Promise<any> {
+        return this.request("PATCH", url, data);
+    }
+
     protected request(method: string, url: string, data: any) {
 
         if (url.startsWith("/")) {
