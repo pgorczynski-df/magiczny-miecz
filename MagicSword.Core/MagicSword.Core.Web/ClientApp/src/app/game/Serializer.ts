@@ -9,14 +9,14 @@ import { CardStackDto } from "@App/common/dto/CardStackDto";
 import { Object3DDto as Object3dDto } from "@App/common/dto/Object3DDto";
 import { IActor } from "@App/game/logic/IActor";
 import { ActorDto } from "@App/common/dto/ActorDto";
-import { Player } from "@App/game/Player";
+import { Player } from "@App/common/mechanics/Player";
 import { PlayerDto } from "@App/common/dto/PlayerDto";
 
 export class Serializer {
 
     serializeGame = (game: Game): GameDto => {
         var dto = new GameDto();
-        dto.camera = this.serializeObject3D(game.camera);
+
         dto.world = this.serializeWorld(game.world);
         for (var player of game.players) {
             var playerDto = this.serializePlayer(player);
@@ -30,27 +30,35 @@ export class Serializer {
         target.world.cleanup();
         target.players = [];
 
-        for (var player of source.players) {
-            var playerDto = this.deserializePlayer(player);
-            target.players.push(playerDto);
+        for (var dto of source.players) {
+            var player = this.deserializePlayer(dto);
+            target.players.push(player);
         }
 
-        this.deserializeObject3D(source.camera, target.camera);
+        var currentPlayer = target.getCurrentPlayer();
+        this.deserializeObject3D(currentPlayer.camera, target.camera); //TODO type mismatch - to be fixed
+
         this.deserializeWorld(source.world, target.world);
     }
 
+
+
     serializePlayer = (player: Player): PlayerDto => {
-        return {
+        var dto = {
             id: player.id,
             name: player.name,
+            camera: this.serializeObject3D(player.camera),
         };
+        return dto;
     }
 
     deserializePlayer = (playerDto: PlayerDto): Player => {
-        return {
+        var player = {
             id: playerDto.id,
             name: playerDto.name,
-        };
+        } as Player;
+        this.deserializeObject3D(playerDto.camera, player.camera);
+        return player;
     }
 
     serializeWorld = (world: World): WorldDto => {

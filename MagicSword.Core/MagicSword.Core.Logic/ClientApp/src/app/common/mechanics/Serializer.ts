@@ -41,17 +41,21 @@ export class Serializer {
     }
 
     serializePlayer = (player: Player): PlayerDto => {
-        return {
+        var dto =  {
             id: player.id,
             name: player.name,
+            camera: this.serializeObject3D(player.camera),
         };
+        return dto;
     }
 
     deserializePlayer = (playerDto: PlayerDto): Player => {
-        return {
+        var player = {
             id: playerDto.id,
             name: playerDto.name,
-        };
+        } as Player;
+        this.deserializeObject3D(playerDto.camera, player.camera);
+        return player;
     }
 
     serializeWorld = (world: World): WorldDto => {

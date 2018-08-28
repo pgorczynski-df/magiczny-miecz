@@ -12,7 +12,7 @@ import "three/examples/js/loaders/GLTFLoader";
 import { Skybox } from "app/game/Skybox";
 import { World } from "app/game/logic/World";
 import { IActor } from "app/game/logic/IActor";
-import { Serializer } from "@App/common/dto/Serializer";
+import { Serializer } from "@App/game/Serializer";
 import { Dice } from "app/game/Dice";
 import { Collections } from "@App/common/utils/Collections";
 import { Services } from "app/Services";
@@ -20,10 +20,10 @@ import { Services } from "app/Services";
 import { Event } from "app/game/Event";
 import { EventType } from "app/game/EventType";
 import { ActorDto } from "@App/common/dto/ActorDto";
-import { Player } from "app/game/Player";
 import { Card } from "app/game/logic/Card";
 import { CardDto } from "@App/common/dto/CardDto";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
+import { Player } from "@App/common/mechanics/Player";
 
 export class Game {
 
@@ -252,6 +252,10 @@ export class Game {
 
     private findPlayer(playerId: string) {
         return this.players.find(p => p.id === playerId);
+    }
+
+    public getCurrentPlayer() {
+        return this.findPlayer(this.currentPlayerId);
     }
 
     addActor = (actor: IActor) => {

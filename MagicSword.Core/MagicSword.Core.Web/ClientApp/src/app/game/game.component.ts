@@ -10,7 +10,7 @@ import { EventType } from "../game/EventType";
 import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
 import { PlayerHubClient } from "app/home/PlayerHubClient";
-import { Player } from "./Player";
+import { Player } from "@App/common/mechanics/Player";
 
 @Component({
     selector: "app-game",

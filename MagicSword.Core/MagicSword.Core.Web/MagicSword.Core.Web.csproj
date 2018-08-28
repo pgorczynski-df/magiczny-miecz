@@ -59,7 +59,6 @@
     <None Remove="ClientApp\src\app\game\logic\handlers\DrawCardEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
     <None Remove="ClientApp\src\app\game\logic\World.ts" />
-    <None Remove="ClientApp\src\app\game\Player.ts" />
     <None Remove="ClientApp\src\app\game\Skybox.ts" />
     <None Remove="ClientApp\src\app\game\SocketService.ts" />
     <None Remove="ClientApp\src\app\game\TextObject.ts" />
@@ -87,7 +86,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\World.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\PlayerDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\handlers\DrawCardEventHandler.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
@@ -100,7 +98,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\Object3DDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardStackDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\Serializer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\Serializer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\WorldDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Dice.ts" />
