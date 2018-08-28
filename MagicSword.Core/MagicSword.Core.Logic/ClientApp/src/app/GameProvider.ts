@@ -75,6 +75,10 @@ export class GameProvider {
         return this.serializer.serializeGame(game);
     }
 
+    evictCache() {
+        this.cache = {};
+    }
+
     private createGame(services: Services, ownerId: string): Game {
         services.logger.info(`Creating new game, ownerId = ${ownerId}`);
         var owner = new Player();

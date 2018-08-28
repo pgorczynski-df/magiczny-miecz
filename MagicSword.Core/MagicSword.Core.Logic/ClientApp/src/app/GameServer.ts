@@ -37,6 +37,10 @@ export class GameServer {
             var gameId = req.params.id;
             res.json(this.gameManager.getGameDto(gameId));
         });
+        router.get("/game_evictcache", (req, res) => {
+            this.gameManager.evictCache();
+            res.json("OK");
+        });
         this.app.use("/api", router);
 
         this.app.use("/", express.static("./src"));

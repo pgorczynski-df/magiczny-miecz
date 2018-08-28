@@ -62,6 +62,11 @@ export class GameManager {
         return this.gameProvider.getDto(id);
     }
 
+    public evictCache() {
+        this.services.logger.info("Clearing game cache");
+        this.gameProvider.evictCache();
+    }
+
     private respondError(responseProcessor: IResponseProcessor, data: any) {
         this.services.logger.error(data);
         responseProcessor.respondCaller({
