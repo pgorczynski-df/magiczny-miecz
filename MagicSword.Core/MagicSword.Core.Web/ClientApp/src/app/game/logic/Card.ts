@@ -1,47 +1,50 @@
 import { BoxObject } from "../BoxObject";
-import {CardStack} from "./CardStack";
+import { CardStack } from "./CardStack";
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import {IActor} from "./IActor";
+import { IActor } from "./IActor";
 
 export class Card extends BoxObject implements IActor {
 
-  selectable: boolean = true;
-  draggable: boolean = true;
+    selectable: boolean = true;
+    draggable: boolean = true;
 
-  originStack: CardStack;
+    isCard: boolean = true;
+    isCardStack: boolean = false;
 
-  isCovered = true;
+    originStack: CardStack;
 
-  constructor(public definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false, isPawn = false) {
-    super(resourcePath + "/" + definition.imageUrl, width, height, depth, delay, isPawn);
-  }
+    isCovered = true;
 
-  get name() {
-    return this.definition ? this.definition.name : "Karta";
-  }
+    constructor(public definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false, isPawn = false) {
+        super(resourcePath + "/" + definition.imageUrl, width, height, depth, delay, isPawn);
+    }
 
-  dispose = () => {
-    this.originStack.disposeCard(this);
-  }
+    get name() {
+        return this.definition ? this.definition.name : "Karta";
+    }
 
-  init(): void {
-     super.init();
-  }
+    dispose = () => {
+        this.originStack.disposeCard(this);
+    }
 
-  get faceUrl(): string {
-    return this.isCovered ? this.originStack.faceUrl : this.topTexture;
-  }
+    init(): void {
+        super.init();
+    }
 
-  get contentUrl() {
-    return this.topTexture;
-  }
+    get faceUrl(): string {
+        return this.isCovered ? this.originStack.faceUrl : this.topTexture;
+    }
 
-  setCovered(isCovered: boolean) {
-    this.isCovered = isCovered;
-    this.changeTex(this.faceUrl);
-  }
+    get contentUrl() {
+        return this.topTexture;
+    }
 
-  toggleCovered() {
-    this.setCovered(!this.isCovered);
-  }
+    setCovered(isCovered: boolean) {
+        this.isCovered = isCovered;
+        this.changeTex(this.faceUrl);
+    }
+
+    toggleCovered() {
+        this.setCovered(!this.isCovered);
+    }
 }

@@ -1,15 +1,18 @@
 import { BoxObject } from "../BoxObject";
-import {IActor} from "./IActor";
+import { IActor } from "./IActor";
 
-export class GameBoard extends BoxObject implements IActor  {
+export class GameBoard extends BoxObject implements IActor {
 
-  selectable: boolean = false;
-  draggable: boolean = false;
+    selectable: boolean = false;
+    draggable: boolean = false;
 
-  name = "Plansza";
+    isCard: boolean = false;
+    isCardStack: boolean = false;
 
-  constructor(topTexture: string, width: number, aspect: number, height: number) {
-    super(topTexture, width, aspect, height);
-  }
+    name = "Plansza";
+
+    constructor(topTexture: string, width: number, aspect: number, height: number) {
+        super(topTexture, width, aspect, height);
+    }
 
 }

@@ -18,5 +18,8 @@ export interface IActor {
 
   faceUrl: string;
 
+ //used for ui binding
+    isCard: boolean;
 
+    isCardStack: boolean;
 }
