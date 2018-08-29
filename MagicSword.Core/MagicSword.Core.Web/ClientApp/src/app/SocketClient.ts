@@ -14,39 +14,23 @@ export class SocketClient {
     constructor(private services: Services) {
     }
 
- 
-
-    private onEvent(): Observable<Event> {
-        return new Observable<Event>(observer => {
-            this.socket.on("NewEvent", (data: Event) => observer.next(data));
-        });
-    }
-
-
     public init(): void {
 
         this.socket = socketIo(this.services.settings.gameServerUrl);
 
-        this.onEvent().subscribe(event => {
-
+        this.socket.on("NewEvent", (event: Event) => {
             this.services.logger.debug("received inbound event:");
             this.services.logger.debug(event);
             this.services.inboundBus.publish2(event);
-
         });
 
-        this.services.outboundBus.of().subscribe(e => {
+        this.services.outboundBus.of().subscribe((e : Event) => {
             this.services.logger.debug("sending outbound event:");
             this.services.logger.debug(e);
 
-            this.send(e);
+            e.token = this.services.authService.token;
+            this.socket.emit("Publish", e);
         });
 
     }
-
-    private send(event: Event) {
-        event.token = this.services.authService.token;
-        this.socket.emit("Publish", event);
-    }
-
 }

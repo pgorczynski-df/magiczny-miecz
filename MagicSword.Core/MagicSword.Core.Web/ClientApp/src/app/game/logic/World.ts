@@ -1,4 +1,3 @@
-import * as THREE from "three";
 
 import { Game } from "../Game";
 import { GameBoard } from "./GameBoard";
@@ -7,10 +6,8 @@ import { CardStack } from "./CardStack";
 import { IActor } from "./IActor";
 import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
 import { CardType } from "@App/common/mechanics/definitions/CardType";
-import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 
 export class World {
-
 
     selectedActor: IActor;
 
@@ -20,48 +17,29 @@ export class World {
 
     //characters: Character[] = [];
 
-    static font: THREE.Font = null;
-
-    private loader: CardDefinitionLoader;
-
     constructor(private game: Game) {
 
         this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
         this.game.addActor(this.mmBoard);
 
-        this.loadFont();
+        for (var definition of CardStackDefinition.cardStackDefinitions) {
+            var characterAspect = 1.241772151898734;
+            var width = 16.18257261410788;
+            var height = 10;
 
-        this.loader = new CardDefinitionLoader(game.services);
-
-        this.loader.load().then(_ => {
-
-            for (var definition of CardStackDefinition.cardStackDefinitions) {
-                var characterAspect = 1.241772151898734;
-                var width = 16.18257261410788;
-                var height = 10;
-
-                if (definition.type === CardType.Character) {
-                    height = width;
-                    width = characterAspect * width;
-                }
-
-                var cardStack = new CardStack(definition, width, height, 3);
-                cardStack.cleanup(); //set initial coordinates
-
-                this.cardStacks.push(cardStack);
-                this.game.addActor(cardStack);
+            if (definition.type === CardType.Character) {
+                height = width;
+                width = characterAspect * width;
             }
 
-            this.newGame();
-        });
+            var cardStack = new CardStack(definition, width, height, 3);
+            cardStack.cleanup(); //set initial coordinates
 
-    }
+            this.cardStacks.push(cardStack);
+            this.game.addActor(cardStack);
+        }
 
-    private loadFont = () => {
-        var loader = new THREE.FontLoader();
-        loader.load("/assets/fonts/helvetiker_regular.typeface.json", (font) => {
-            World.font = font;
-        });
+        this.newGame();
     }
 
     newGame = () => {

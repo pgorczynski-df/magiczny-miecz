@@ -15,34 +15,36 @@ import { LobbyComponent } from "./lobby/lobby.component";
 import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
 import { SocketClient } from "@App/SocketClient"
+import { ResourceManager } from "@App/game/ResourceManager";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    GameComponent,
-    CounterComponent,
-    LobbyComponent,
-  ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot([
-      { path: "", component: HomeComponent, pathMatch: "full" },
-      { path: "game/:mode/:gameId", component: GameComponent },
-      { path: "game/:mode", component: GameComponent },
-      { path: "counter", component: CounterComponent },
-      { path: "lobby", component: LobbyComponent },
-    ]),
-    NgbModule.forRoot()
-  ],
-  providers: [
-    AuthService,
-    Services,
-    SocketClient
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavMenuComponent,
+        HomeComponent,
+        GameComponent,
+        CounterComponent,
+        LobbyComponent,
+    ],
+    imports: [
+        BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
+        HttpClientModule,
+        FormsModule,
+        RouterModule.forRoot([
+            { path: "", component: HomeComponent, pathMatch: "full" },
+            { path: "game/:mode/:gameId", component: GameComponent },
+            { path: "game/:mode", component: GameComponent },
+            { path: "counter", component: CounterComponent },
+            { path: "lobby", component: LobbyComponent },
+        ]),
+        NgbModule.forRoot()
+    ],
+    providers: [
+        AuthService,
+        Services,
+        SocketClient,
+        ResourceManager
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

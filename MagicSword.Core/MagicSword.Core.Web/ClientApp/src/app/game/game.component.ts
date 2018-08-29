@@ -11,6 +11,7 @@ import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
 import { SocketClient } from "@App/SocketClient";
 import { Player } from "@App/common/mechanics/Player";
+import { ResourceManager } from "@App/game/ResourceManager";
 
 @Component({
     selector: "app-game",
@@ -28,7 +29,7 @@ export class GameComponent implements AfterViewInit {
         return this.game ? this.game.world.selectedActor : null;
     }
 
-    constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services) {
+    constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services, private resourceManager: ResourceManager) {
         this.socketClient = new SocketClient(this.services);
     }
 
@@ -51,33 +52,38 @@ export class GameComponent implements AfterViewInit {
             myHandler(messages, context);
         });
 
-        this.route.paramMap.subscribe(d => {
-            var mode = d.get("mode");
-            this.services.logger.info("Starting game in " + mode + " mode");
-
-            this.game = new Game(this.viewport.nativeElement, this.services);
-
-            switch (mode) {
-                case "local":
-                    var player = new Player();
-                    player.id = "1";
-                    player.name = "Samotny gracz";
-                    this.game.players.push(player);
-                    this.game.currentPlayerId = player.id;
-                    break;
-                case "online":
-                    var gameId = d.get("gameId");
-                    this.game.id = gameId;
-                    this.socketClient.init();
-                    this.game.publishEvent(EventType.JoinGameRequest);
-
-                    break;
-                default:
-                    throw new Error("unknown mode: " + mode);
-            }
+        this.resourceManager.load().then(_ => {
+            this.route.paramMap.subscribe(d => {
+                var mode = d.get("mode");
+                var gameId = d.get("gameId");
+                this.startGame(gameId, mode);
+            });
         });
+    }
 
+    private startGame(gameId: string, mode: string) {
 
+        this.services.logger.info("Starting game in " + mode + " mode");
+
+        this.game = new Game(this.viewport.nativeElement, this.services);
+
+        switch (mode) {
+            case "local":
+                var player = new Player();
+                player.id = "1";
+                player.name = "Samotny gracz";
+                this.game.players.push(player);
+                this.game.currentPlayerId = player.id;
+                break;
+            case "online":
+                this.game.id = gameId;
+                this.socketClient.init();
+                this.game.publishEvent(EventType.JoinGameRequest);
+
+                break;
+            default:
+                throw new Error("unknown mode: " + mode);
+        }
     }
 
     new = () => {
@@ -102,7 +108,7 @@ export class GameComponent implements AfterViewInit {
     };
 
     //sendMessage = () => {
-        //this.hub.sendDirectMessage("dada", "userName");
+    //this.hub.sendDirectMessage("dada", "userName");
     //}
 
     toggleCovered() {

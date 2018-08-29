@@ -1,8 +1,8 @@
 import { Card } from "./Card";
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { TextObject } from "../TextObject";
-import { World } from "./World";
 import { CharacterParameterDefinition } from "@App/common/mechanics/definitions/CharacterParameterDefinition";
+import { ResourceManager } from "@App/game/ResourceManager";
 
 export class Character extends Card {
 
@@ -42,7 +42,7 @@ export class Character extends Card {
 
         var definition = CharacterParameterDefinition.parameterDefinitions[index];
 
-        var text = new TextObject(World.font, this.parameterValues[index].toString(), definition.color);
+        var text = new TextObject(ResourceManager.font, this.parameterValues[index].toString(), definition.color);
         text.mesh.position.copy(definition.position);
         this.addChild(text.mesh);
     }

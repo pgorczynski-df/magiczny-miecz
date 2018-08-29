@@ -57,7 +57,7 @@ export class Serializer {
 
     deserializeWorld = (source: WorldDto, target: World): void => {
 
-        console.log("deserialing world");
+        console.log("deserialing world, stacks: " + target.cardStacks.length);
 
         for (var cardStack of target.cardStacks) {
 

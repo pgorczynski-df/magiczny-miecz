@@ -6,7 +6,6 @@ import { Event } from "./Event";
 export class SocketResponseProcessor implements IResponseProcessor {
 
     constructor(private services: Services, private io: SocketIO.Server, private socket: socketIo.Socket) {
-
     }
 
     registerCaller(event: Event) {
