@@ -4,10 +4,10 @@ import { Game } from "../Game";
 import { GameBoard } from "./GameBoard";
 import { Card } from "./Card";
 import { CardStack } from "./CardStack";
-import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { IActor } from "./IActor";
 import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
 import { CardType } from "@App/common/mechanics/definitions/CardType";
+import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 
 export class World {
 
@@ -22,6 +22,8 @@ export class World {
 
     static font: THREE.Font = null;
 
+    private loader: CardDefinitionLoader;
+
     constructor(private game: Game) {
 
         this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
@@ -29,13 +31,9 @@ export class World {
 
         this.loadFont();
 
-        var promises = [];
+        this.loader = new CardDefinitionLoader(game.services);
 
-        for (var def of CardStackDefinition.cardStackDefinitions) {
-            promises.push(CardStackDefinition.loadCardDefinitions(def, this.game.services));
-        }
-
-        Promise.all(promises).then(_ => {
+        this.loader.load().then(_ => {
 
             for (var definition of CardStackDefinition.cardStackDefinitions) {
                 var characterAspect = 1.241772151898734;
@@ -55,7 +53,6 @@ export class World {
             }
 
             this.newGame();
-
         });
 
     }

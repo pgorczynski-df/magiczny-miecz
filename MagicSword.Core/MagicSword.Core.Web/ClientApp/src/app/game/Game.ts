@@ -376,8 +376,8 @@ export class Game {
 
     drawCard(card: Card = null, uncover = true): Card {
         var cardResult = this.world.drawCard(card, uncover);
-        var stackDto = this.serializer.serializeCard(cardResult);
-        this.publishEvent(EventType.CardDrawn, stackDto);
+        var cardDto = this.serializer.serializeCard(cardResult);
+        this.publishEvent(EventType.CardDrawn, cardDto);
         return cardResult;
     }
 

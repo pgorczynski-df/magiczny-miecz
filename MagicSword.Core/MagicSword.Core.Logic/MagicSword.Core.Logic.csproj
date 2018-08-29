@@ -35,9 +35,9 @@
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardArgsDto.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardNotificationDto.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardRequestDto.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Game.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\IActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\loaders\CardDefinitionLoader.ts" />
@@ -100,9 +100,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardArgsDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardResultDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardNotificationDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />

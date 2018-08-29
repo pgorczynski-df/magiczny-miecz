@@ -23,10 +23,20 @@ export class CardDefinitionLoader {
         var promise = client
             .get(definition.resourcePath + "/" + definition.cardDefinitionsUrl)
             .then(res => {
-                //TODO proper fix (remove BOM from files)
-                //workaround: https://stackoverflow.com/questions/44176194/json-parse-causes-error-syntaxerror-unexpected-token-in-json-at-position-0
-                var parsed = JSON.parse(res.trim());
-                definition.cardDefinitions = parsed;
+                //seems that the returned result type differs in Chrome and Node:
+                switch (res.constructor.name) {
+                    case "Array": //Chrome
+                        definition.cardDefinitions = res;
+                        break;
+                    case "String": //Node
+                        //TODO proper fix (remove BOM from files)
+                        //workaround: https://stackoverflow.com/questions/44176194/json-parse-causes-error-syntaxerror-unexpected-token-in-json-at-position-0
+                        var parsed = JSON.parse(res.trim());
+                        definition.cardDefinitions = parsed;
+                        break;
+                    default:
+                        throw new Error("Unexpected result type: " + res.constructor.name);
+                }
                 return true;
             });
         return promise;

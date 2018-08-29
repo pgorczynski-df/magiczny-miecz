@@ -1,5 +1,5 @@
 import { Game } from "@App/common/mechanics/Game";
-import {DrawCardResultDto} from "@App/common/mechanics/events/DrawCardResultDto";
+import { DrawCardNotificationDto } from "@App/common/mechanics/events/DrawCardNotificationDto";
 
 export class DrawCardEventHandler {
 
@@ -9,7 +9,7 @@ export class DrawCardEventHandler {
 
     execute(game: Game, args: any) {
 
-        var eventResult = <DrawCardResultDto> args;
+        var eventResult = <DrawCardNotificationDto>args;
 
     }
 

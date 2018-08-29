@@ -1,7 +1,6 @@
 ﻿
 
 export class EventType {
-
     public static JoinGameRequest: string = "JoinGameRequest";
     public static JoinGameResponse: string = "JoinGameResponse";
     public static ResetGameState: string = "ResetGameState";
@@ -12,5 +11,6 @@ export class EventType {
     public static ActorRotate: string = "ActorRotate";
     public static CardDrawn: string = "CardDrawn";
     public static ErrorResponse: string = "ErrorResponse";
+    public static DrawCard: string = "DrawCard";
 }
 

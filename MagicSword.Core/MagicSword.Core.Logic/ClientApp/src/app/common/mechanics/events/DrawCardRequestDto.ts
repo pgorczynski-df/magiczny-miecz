@@ -1,4 +1,4 @@
-export class DrawCardArgsDto {
+export class DrawCardRequestDto {
 
     stackId: string;
 

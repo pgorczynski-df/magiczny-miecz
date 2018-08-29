@@ -42,15 +42,15 @@ export class World {
 
     }
 
+    newGame() {
 
-    newGame = () => {
         this.cleanup();
         for (var stack of this.cardStacks) {
             stack.buildStack();
         }
     }
 
-    cleanup = () => {
+    cleanup() {
 
         //this.clearSelectedActor();
 
@@ -62,7 +62,7 @@ export class World {
         }
     }
 
-    drawCard = (card: Card = null, uncover = true): Card => {
+    drawCard(card: Card = null, uncover = true): Card {
         let stack = card !== null ? card.originStack : <CardStack>this.selectedActor;
         card = stack.drawCard(card, uncover);
         //this.addNewCard(card);
@@ -92,7 +92,7 @@ export class World {
     //    this.selectedActor = null;
     //}
 
-    private disposeCardInternal = (card: Card) => {
+    private disposeCardInternal(card: Card) {
         card.dispose();
         //this.game.removeActor(card);
     }

@@ -6,11 +6,11 @@ export interface IActorBase {
 
     object3D: Object3D;
 
-    selectable: boolean;
+    //selectable: boolean;
 
     //isSelected: boolean;
 
-    draggable: boolean;
+    //draggable: boolean;
 
     name: string;
 
