@@ -28,6 +28,8 @@ export class Serializer {
 
     deserializeGame = (source: GameDto, target: Game): void => {
 
+        console.log("deserialing game");
+
         target.world.cleanup();
         target.players = [];
 
@@ -54,7 +56,12 @@ export class Serializer {
     }
 
     deserializeWorld = (source: WorldDto, target: World): void => {
+
+        console.log("deserialing world");
+
         for (var cardStack of target.cardStacks) {
+
+            console.log("deserialing card stack");
 
             var stackDto = source.cardStacks.find(s => s.definitionId === cardStack.definition.id);
             if (stackDto) {
@@ -92,9 +99,6 @@ export class Serializer {
         this.deserializeCardCollection(world, target, source.cards, target.cards);
         this.deserializeCardCollection(world, target, source.drawnCards, target.drawnCards);
         this.deserializeCardCollection(world, target, source.disposedCards, target.disposedCards);
-
-        console.log("deserialized stack: " + target.id);
-
     }
 
     private deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[]) => {

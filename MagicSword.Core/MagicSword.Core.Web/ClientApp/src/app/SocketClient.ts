@@ -1,29 +1,52 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
-import * as socketIo from 'socket.io-client';
+import * as socketIo from "socket.io-client";
 
-import { Event } from "./game/Event";
-
-const SERVER_URL = 'http://localhost:3000';
-
+import { Event } from "@App/game/Event";
+import { Services } from "@App/Services";
 
 @Injectable()
 export class SocketClient {
-  public socket: any;
 
-  public initSocket(): void {
-    this.socket = socketIo(SERVER_URL);
-  }
+    private socket: SocketIOClient.Socket;
 
-  public send(message: Event): void {
-    this.socket.emit('Publish', message);
-  }
+    constructor(private services: Services) {
+    }
 
-  public onEvent(): Observable<Event> {
-    return new Observable<Event>(observer => {
-      this.socket.on('NewEvent', (data: Event) => observer.next(data));
-    });
-  }
+ 
+
+    private onEvent(): Observable<Event> {
+        return new Observable<Event>(observer => {
+            this.socket.on("NewEvent", (data: Event) => observer.next(data));
+        });
+    }
+
+
+    public init(): void {
+
+        this.socket = socketIo(this.services.settings.gameServerUrl);
+
+        this.onEvent().subscribe(event => {
+
+            this.services.logger.debug("received inbound event:");
+            this.services.logger.debug(event);
+            this.services.inboundBus.publish2(event);
+
+        });
+
+        this.services.outboundBus.of().subscribe(e => {
+            this.services.logger.debug("sending outbound event:");
+            this.services.logger.debug(e);
+
+            this.send(e);
+        });
+
+    }
+
+    private send(event: Event) {
+        event.token = this.services.authService.token;
+        this.socket.emit("Publish", event);
+    }
 
 }

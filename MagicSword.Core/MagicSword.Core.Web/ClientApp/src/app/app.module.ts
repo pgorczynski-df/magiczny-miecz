@@ -12,9 +12,9 @@ import { GameComponent } from "./game/game.component";
 import { CounterComponent } from "./counter/counter.component";
 import { LobbyComponent } from "./lobby/lobby.component";
 
-import { Services } from "app/Services";
-import { AuthService } from "app/AuthService";
-import { PlayerHubClient } from "app/home/PlayerHubClient"
+import { Services } from "@App/Services";
+import { AuthService } from "@App/AuthService";
+import { SocketClient } from "@App/SocketClient"
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { PlayerHubClient } from "app/home/PlayerHubClient"
   providers: [
     AuthService,
     Services,
-    PlayerHubClient
+    SocketClient
   ],
   bootstrap: [AppComponent]
 })

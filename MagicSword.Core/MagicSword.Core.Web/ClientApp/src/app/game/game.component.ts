@@ -9,7 +9,7 @@ import { Services } from "app/Services";
 import { EventType } from "../game/EventType";
 import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
-import { PlayerHubClient } from "app/home/PlayerHubClient";
+import { SocketClient } from "@App/SocketClient";
 import { Player } from "@App/common/mechanics/Player";
 
 @Component({
@@ -22,13 +22,14 @@ export class GameComponent implements AfterViewInit {
     @ViewChild("eventsPanel", { read: ElementRef }) eventsPanel: ElementRef;
 
     game: Game;
-    hub: PlayerHubClient;
+    socketClient: SocketClient;
 
     get selectedActor(): IActor {
         return this.game ? this.game.world.selectedActor : null;
     }
 
     constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services) {
+        this.socketClient = new SocketClient(this.services);
     }
 
     events: Event[] = [];
@@ -67,13 +68,8 @@ export class GameComponent implements AfterViewInit {
                 case "online":
                     var gameId = d.get("gameId");
                     this.game.id = gameId;
-                    this.hub = new PlayerHubClient(this.services);
-                    this.hub.init().then(r => {
-                        this.hub.attachEvents();
-                        this.game.publishEvent(EventType.JoinGameRequest);
-                    }, e => {
-                        this.services.logger.error(e);
-                    });
+                    this.socketClient.init();
+                    this.game.publishEvent(EventType.JoinGameRequest);
 
                     break;
                 default:
@@ -105,9 +101,9 @@ export class GameComponent implements AfterViewInit {
         this.game.world.disposeCard();
     };
 
-    sendMessage = () => {
-        this.hub.sendDirectMessage("dada", "userName");
-    }
+    //sendMessage = () => {
+        //this.hub.sendDirectMessage("dada", "userName");
+    //}
 
     toggleCovered() {
         this.game.world.toggleCovered();
