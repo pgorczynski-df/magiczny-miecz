@@ -62,7 +62,22 @@ export class World {
         }
     }
 
-    drawCard(card: Card = null, uncover = true): Card {
+
+    drawCard(stackId: string, uncover: boolean): Card {
+        var stack = this.findStack(stackId);
+        var card = stack.drawCard(null, uncover);
+        return card;
+    }
+
+    private findStack(stackId: string) {
+        var stack = this.cardStacks.find(s => s.id === stackId);
+        if (!stack) {
+            throw new Error("Cannot find stack id = " + stackId);
+        }
+        return stack;
+    }
+
+    drawCardOld(card: Card = null, uncover = true): Card {
         let stack = card !== null ? card.originStack : <CardStack>this.selectedActor;
         card = stack.drawCard(card, uncover);
         //this.addNewCard(card);

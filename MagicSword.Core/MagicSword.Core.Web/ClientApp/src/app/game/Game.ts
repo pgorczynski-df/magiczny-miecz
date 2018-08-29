@@ -24,6 +24,9 @@ import { Card } from "app/game/logic/Card";
 import { CardDto } from "@App/common/dto/CardDto";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Player } from "@App/common/mechanics/Player";
+import {CardStack} from "@App/game/logic/CardStack";
+import { DrawCardRequestDto } from "@App/common/mechanics/events/DrawCardRequestDto";
+import { DrawCardNotificationDto } from "@App/common/mechanics/events/DrawCardNotificationDto";
 
 export class Game {
 
@@ -236,6 +239,15 @@ export class Game {
                     this.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card.name}`);
                 }
                 break;
+            case EventType.DrawCard + "_Notification":
+                var dto3 = ev.data as DrawCardNotificationDto;
+                var cardDto2 = dto3.cardDto;
+                cardDto2.loaded = true;
+                var originStack2 = this.world.cardStacks.find(a => a.definition.id === cardDto2.originStackDefinitionId);
+                var card2 = this.serializer.deserializeCard(this.world, originStack2, cardDto2);
+                this.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card2.name}`);
+
+                break;
             case EventType.PlayerJoined:
                 var playerId = ev.data.id;
                 var player = this.findPlayer(playerId);
@@ -374,11 +386,19 @@ export class Game {
         } as Event);
     }
 
-    drawCard(card: Card = null, uncover = true): Card {
+    drawCardOld(card: Card = null, uncover = true): Card {
         var cardResult = this.world.drawCard(card, uncover);
         var cardDto = this.serializer.serializeCard(cardResult);
         this.publishEvent(EventType.CardDrawn, cardDto);
         return cardResult;
+    }
+
+    drawCard(uncover = true) {
+        var stack = <CardStack>this.world.selectedActor;
+        var request = new DrawCardRequestDto();
+        request.stackId = stack.id;
+        request.uncover = uncover;
+        this.publishEvent(EventType.DrawCard + "_Request", request);
     }
 
     new = () => {

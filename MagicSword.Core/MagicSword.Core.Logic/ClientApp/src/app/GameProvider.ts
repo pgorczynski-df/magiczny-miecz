@@ -3,15 +3,16 @@ import { GamesApiClient } from "@App/common/client/GamesApiClient";
 import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { Player } from "@App/common/mechanics/Player";
 import { Game } from "@App/common/mechanics/Game";
+import { GameDto } from "@App/common/dto/GameDto";
 
 export class GameProvider {
 
-    private serializer = new CommonSerializer();
+    public serializer = new CommonSerializer();
 
     private cache = {};
     //private dto = {};
 
-    getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<any> {
+    getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<Game> {
 
         //TODO check if player is on the list
 
@@ -25,17 +26,14 @@ export class GameProvider {
                     services.logger.debug(`Fetching game id = ${id} completed`);
                     services.logger.debug(gameDto);
 
-                    game = this.createGame(services, callingPlayerId);
+                    game = this.createGame(services, id, callingPlayerId);
 
                     if (!gameDto) {
 
                         services.logger.debug(`Game id = ${id} didn't contain data, creating new game`);
-
                         game.init();
-                        gameDto = this.serializer.serializeGame(game);
-                        gamesApiClient.update(id, gameDto).then(resId => {
-                            services.logger.debug(`Game id = ${resId} initiated successfully`);
-                        });
+                        this.persistGame(services, game);
+
                     } else {
 
                         services.logger.debug(`Game id = ${id} existed, deserializing`);
@@ -53,7 +51,16 @@ export class GameProvider {
         return Promise.resolve(game);
     }
 
-    getOrLoadDto(services: Services, id: string, callingPlayerId: string): Promise<any> {
+    persistGame(services: Services, game: Game) : GameDto {
+        var gameDto = this.serializer.serializeGame(game);
+        var gamesApiClient = new GamesApiClient(services);
+        gamesApiClient.update(game.id, gameDto).then(resId => {
+            services.logger.debug(`Game id = ${resId} updated successfully`);
+        });
+        return gameDto;
+    }
+
+    getOrLoadDto(services: Services, id: string, callingPlayerId: string): Promise<GameDto> {
         return this.getOrLoadGame(services, id, callingPlayerId).then(game => {
             return this.serializer.serializeGame(game);
         });;
@@ -79,11 +86,12 @@ export class GameProvider {
         this.cache = {};
     }
 
-    private createGame(services: Services, ownerId: string): Game {
+    private createGame(services: Services, id: string, ownerId: string): Game {
         services.logger.info(`Creating new game, ownerId = ${ownerId}`);
         var owner = new Player();
         owner.id = owner.name = ownerId;
         var game = new Game(owner);
+        game.id = id;
         return game;
     }
 }

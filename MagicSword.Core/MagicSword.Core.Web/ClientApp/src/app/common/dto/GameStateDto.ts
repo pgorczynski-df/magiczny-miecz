@@ -4,7 +4,7 @@
         
         public currentPlayerId: string;
         public isStarted: boolean = false;
-        public data: string = null;
+        public data: any = null;
 
     }
 

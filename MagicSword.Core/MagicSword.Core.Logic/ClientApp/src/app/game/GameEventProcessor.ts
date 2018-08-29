@@ -5,6 +5,8 @@ import { Services } from "../Services";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Game } from "@App/common/mechanics/Game";
 import { GameProvider } from "@App/GameProvider";
+import {DrawCardRequestDto} from "@App/common/mechanics/events/DrawCardRequestDto";
+import {DrawCardNotificationDto} from "@App/common/mechanics/events/DrawCardNotificationDto";
 
 export class GameEventProcessor {
 
@@ -27,8 +29,9 @@ export class GameEventProcessor {
                         isStarted: true, // gameDto != null,
                     };
 
-                    this.responseProcessor.respondCaller({
+                    this.responseProcessor.respondCaller({              
                         eventType: EventType.JoinGameResponse,
+                        sourcePlayerId: event.sourcePlayerId,
                         data: gsDto,
                         gameId: event.gameId
                     });
@@ -37,10 +40,42 @@ export class GameEventProcessor {
                         {
                             gameId: event.gameId,
                             eventType: EventType.PlayerJoined,
+                            sourcePlayerId: event.sourcePlayerId,
                             data: {
                                 id: event.sourcePlayerId,
                                 name: event.sourcePlayerId,
                             }
+                        });
+
+                }, e => { this.services.logger.error(e); });
+
+
+                break;
+
+            case EventType.DrawCard + "_Request":
+
+                this.gameProvider.getOrLoadGame(this.services, event.gameId, event.sourcePlayerId).then(game => {
+
+                    var args = event.data as DrawCardRequestDto;
+                    var card = game.world.drawCard(args.stackId, args.uncover);
+                    var cardDto = this.gameProvider.serializer.serializeCard(card);
+                    var res = new DrawCardNotificationDto();
+                    res.cardDto = cardDto;
+ 
+                    //this.responseProcessor.respondCaller({
+                    //    eventType: EventType.JoinGameResponse,
+                    //    data: res,
+                    //    gameId: event.gameId
+                    //});
+
+                    this.gameProvider.persistGame(this.services, game);
+
+                    this.responseProcessor.respondAll(
+                        {
+                            gameId: event.gameId,
+                            eventType: EventType.DrawCard + "_Notification",
+                            sourcePlayerId: event.sourcePlayerId,
+                            data: res,
                         });
 
                 }, e => { this.services.logger.error(e); });

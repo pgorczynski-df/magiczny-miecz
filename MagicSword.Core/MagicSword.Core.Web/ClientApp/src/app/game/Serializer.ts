@@ -92,6 +92,9 @@ export class Serializer {
         this.deserializeCardCollection(world, target, source.cards, target.cards);
         this.deserializeCardCollection(world, target, source.drawnCards, target.drawnCards);
         this.deserializeCardCollection(world, target, source.disposedCards, target.disposedCards);
+
+        console.log("deserialized stack: " + target.id);
+
     }
 
     private deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[]) => {

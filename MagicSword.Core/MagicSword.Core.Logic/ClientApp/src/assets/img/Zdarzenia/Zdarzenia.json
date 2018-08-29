@@ -369,7 +369,7 @@
   },
   {
     "id": 47,
-    "name": "0 0",
+    "name": "Kuglarz",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/00.png",
@@ -377,7 +377,7 @@
   },
   {
     "id": 48,
-    "name": "0 1",
+    "name": "Wielkolud",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/01.png",
@@ -385,7 +385,7 @@
   },
   {
     "id": 49,
-    "name": "1 0",
+    "name": "Mędzec",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/10.png",
@@ -393,7 +393,7 @@
   },
   {
     "id": 50,
-    "name": "1 1",
+    "name": "Wróżka",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/11.png",
@@ -401,7 +401,7 @@
   },
   {
     "id": 51,
-    "name": "2 0",
+    "name": "Półbóg",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/20.png",
@@ -409,7 +409,7 @@
   },
   {
     "id": 52,
-    "name": "2 1",
+    "name": "Zaklinacz Czasu",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/21.png",
@@ -417,7 +417,7 @@
   },
   {
     "id": 53,
-    "name": "3 0",
+    "name": "Sztukmistrz",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/30.png",
@@ -425,7 +425,7 @@
   },
   {
     "id": 54,
-    "name": "3 1",
+    "name": "Żłodziej Dobroczyńca",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/31.png",
@@ -433,7 +433,7 @@
   },
   {
     "id": 55,
-    "name": "4 0",
+    "name": "Urocza Diablica",
     "type": "Zdarzenie",
     "subtype": "Nieznajomy",
     "imageUrl": "/4-Nieznajomy/40.png",
