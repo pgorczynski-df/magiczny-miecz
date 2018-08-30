@@ -1,21 +1,16 @@
-import { Card } from "./Card";
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { TextObject } from "../TextObject";
 import { CharacterParameterDefinition } from "@App/common/mechanics/definitions/CharacterParameterDefinition";
+import { TextObject } from "App/game/TextObject";
 import { ResourceManager } from "@App/game/ResourceManager";
+import { Card } from "@App/game/logic/Card";
 
 export class Character extends Card {
 
-    parameterValues: number[] = new Array(CharacterParameterDefinition.parameterDefinitions.length);
-    textObjects: TextObject[] = new Array(CharacterParameterDefinition.parameterDefinitions.length);
+    parameterValues: number[];
+    textObjects: TextObject[];
 
     constructor(definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false) {
         super(definition, resourcePath, width, height, depth, delay);
-
-        for (var i = 0; i < CharacterParameterDefinition.parameterDefinitions.length; i++) {
-            this.parameterValues[i] = 0;
-            this.textObjects[i] = null;
-        }
     }
 
     init(): void {
@@ -23,6 +18,14 @@ export class Character extends Card {
         super.init();
 
         this.loaded = false;
+
+        this.parameterValues = new Array(CharacterParameterDefinition.parameterDefinitions.length);
+        this.textObjects = new Array(CharacterParameterDefinition.parameterDefinitions.length);
+
+        for (var i = 0; i < CharacterParameterDefinition.parameterDefinitions.length; i++) {
+            this.parameterValues[i] = 0;
+            this.textObjects[i] = null;
+        }
 
         for (var definition of CharacterParameterDefinition.parameterDefinitions) {
             this.increase(definition.name, definition.initialValue);
