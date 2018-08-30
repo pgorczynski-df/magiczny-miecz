@@ -11,7 +11,7 @@ import { IActor } from "@App/game/logic/IActor";
 import { ActorDto } from "@App/common/dto/ActorDto";
 import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 
-export class Serializer {
+export class ClientSerializer {
 
     private commonSerializer = new CommonSerializer();
 

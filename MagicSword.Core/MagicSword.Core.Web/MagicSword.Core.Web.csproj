@@ -86,7 +86,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\Object3DDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardStackDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\Serializer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\ClientSerializer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\WorldDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Dice.ts" />

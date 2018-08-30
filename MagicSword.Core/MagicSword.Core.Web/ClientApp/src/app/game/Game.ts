@@ -12,7 +12,7 @@ import "three/examples/js/loaders/GLTFLoader";
 import { Skybox } from "app/game/Skybox";
 import { World } from "app/game/logic/World";
 import { IActor } from "app/game/logic/IActor";
-import { Serializer } from "@App/game/Serializer";
+import { ClientSerializer } from "@App/game/ClientSerializer";
 import { Dice } from "app/game/Dice";
 import { Collections } from "@App/common/utils/Collections";
 import { Services } from "app/Services";
@@ -24,7 +24,7 @@ import { Card } from "app/game/logic/Card";
 import { CardDto } from "@App/common/dto/CardDto";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Player } from "@App/common/mechanics/Player";
-import {CardStack} from "@App/game/logic/CardStack";
+import { CardStack } from "@App/game/logic/CardStack";
 import { DrawCardRequestDto } from "@App/common/mechanics/events/DrawCardRequestDto";
 import { DrawCardNotificationDto } from "@App/common/mechanics/events/DrawCardNotificationDto";
 
@@ -60,7 +60,7 @@ export class Game {
 
     dice: Dice;
 
-    serializer = new Serializer();
+    serializer = new ClientSerializer();
 
     events: Event[] = [];
 
@@ -207,8 +207,8 @@ export class Game {
                 var rdto = ev.data as GameStateDto;
                 this.currentPlayerId = rdto.currentPlayerId;
                 //if (rdto.isStarted) {
-                    var gameDto = rdto.data;
-                    this.deserialize(gameDto);
+                var gameDto = rdto.data;
+                this.deserialize(gameDto);
                 //} else {
                 //var dtoNew = JSON.stringify(this.serialize());
                 //    this.publishEvent(EventType.ResetGameState, dtoNew);
