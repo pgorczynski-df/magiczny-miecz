@@ -12,6 +12,7 @@ import { Card } from "./logic/Card";
 import { SocketClient } from "@App/SocketClient";
 import { Player } from "@App/common/mechanics/Player";
 import { ResourceManager } from "@App/game/ResourceManager";
+import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 
 @Component({
     selector: "app-game",
@@ -24,6 +25,7 @@ export class GameComponent implements AfterViewInit {
 
     game: Game;
     socketClient: SocketClient;
+    dispatcher: ClientEventDispatcher;
 
     get selectedActor(): IActor {
         return this.game ? this.game.world.selectedActor : null;
@@ -31,6 +33,7 @@ export class GameComponent implements AfterViewInit {
 
     constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services, private resourceManager: ResourceManager) {
         this.socketClient = new SocketClient(this.services);
+
     }
 
     events: Event[] = [];
@@ -66,6 +69,7 @@ export class GameComponent implements AfterViewInit {
         this.services.logger.info("Starting game in " + mode + " mode");
 
         this.game = new Game(this.viewport.nativeElement, this.services);
+        this.dispatcher = new ClientEventDispatcher(this.services, this.game);
 
         switch (mode) {
             case "local":
@@ -100,7 +104,8 @@ export class GameComponent implements AfterViewInit {
     };
 
     drawCard = (uncover: boolean) => {
-        this.game.drawCard(uncover);
+        console.log(this.dispatcher);
+        this.dispatcher.drawCardHandler.drawCard(uncover);
     };
 
     disposeCard = () => {

@@ -22,7 +22,6 @@ import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Player } from "@App/common/mechanics/Player";
 import { CardStack } from "@App/game/logic/CardStack";
 import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
-import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
 
 export class Game {
 
@@ -69,8 +68,6 @@ export class Game {
         if (!this.container) {
             throw new Error("cannot find viewport");
         }
-
-        //this.publishEvent("asdasd", "asdas");
 
         this.services.inboundBus.of().subscribe(e => this.processIncomingEvent(e));
 
@@ -236,12 +233,7 @@ export class Game {
                 }
                 break;
             case EventType.DrawCard + "_Notification":
-                var dto3 = ev.data as DrawCardNotificationDto;
-                var cardDto2 = dto3.cardDto;
-                cardDto2.loaded = true;
-                var originStack2 = this.world.cardStacks.find(a => a.definition.id === cardDto2.originStackDefinitionId);
-                var card2 = this.serializer.deserializeCard(this.world, originStack2, cardDto2, true);
-                this.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card2.name}`);
+
 
                 break;
             case EventType.PlayerJoined:
@@ -389,13 +381,7 @@ export class Game {
         return cardResult;
     }
 
-    drawCard(uncover = true) {
-        var stack = <CardStack>this.world.selectedActor;
-        var request = new DrawCardRequestDto();
-        request.stackId = stack.id;
-        request.uncover = uncover;
-        this.publishEvent(EventType.DrawCard + "_Request", request);
-    }
+
 
     new = () => {
         this.resetCamera();

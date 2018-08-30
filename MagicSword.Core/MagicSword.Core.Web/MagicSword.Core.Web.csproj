@@ -34,6 +34,11 @@
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
     <None Remove="ClientApp\src\app\game\EventBus.ts" />
+    <None Remove="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
+    <None Remove="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
+    <None Remove="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
+    <None Remove="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
+    <None Remove="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\Game.ts" />
     <None Remove="ClientApp\src\app\game\logic\Card.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardDefinition.ts" />
@@ -43,7 +48,6 @@
     <None Remove="ClientApp\src\app\game\logic\Character.ts" />
     <None Remove="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\GameBoard.ts" />
-    <None Remove="ClientApp\src\app\game\logic\handlers\DrawCardEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
     <None Remove="ClientApp\src\app\game\logic\World.ts" />
     <None Remove="ClientApp\src\app\game\ResourceManager.ts" />
@@ -69,8 +73,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Object3D.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\World.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\PlayerDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\logic\handlers\DrawCardEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />

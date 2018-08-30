@@ -17,7 +17,10 @@ export class EventDispatcher {
         this.register(new DrawCardServerEventHandler());
     }
 
-    processRequest(services: Services, responseProcessor: IResponseProcessor, event: Event) {
+    process(services: Services, responseProcessor: IResponseProcessor, event: Event) {
+
+        services.logger.debug("EventDispatcher: processing event");
+        services.logger.debug(event);
 
         var type = event.eventType;
 
