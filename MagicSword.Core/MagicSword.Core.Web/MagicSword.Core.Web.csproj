@@ -34,9 +34,7 @@
     <None Remove="ClientApp\src\app\common\mechanics\World.ts" />
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
-    <None Remove="ClientApp\src\app\game\Event.ts" />
     <None Remove="ClientApp\src\app\game\EventBus.ts" />
-    <None Remove="ClientApp\src\app\game\EventType.ts" />
     <None Remove="ClientApp\src\app\game\Game.ts" />
     <None Remove="ClientApp\src\app\game\logic\Card.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardDefinition.ts" />
@@ -79,8 +77,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventBus.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\Event.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\BoxObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\ActorDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\Object3DDto.ts" />

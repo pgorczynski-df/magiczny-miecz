@@ -5,7 +5,7 @@ import * as cors from "cors";
 
 import { Services } from "@App/Services";
 import { SocketResponseProcessor } from "@App/game/SocketResponseProcessor";
-import { Event } from "@App/game/Event";
+import { Event } from "@App/common/events/Event";
 import { GameManager } from "@App/GameManager";
 
 export class GameServer {

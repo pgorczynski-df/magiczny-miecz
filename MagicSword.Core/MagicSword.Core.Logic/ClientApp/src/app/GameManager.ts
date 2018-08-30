@@ -3,10 +3,10 @@ import { AuthService } from "@App/AuthService";
 
 import { GameEventProcessor } from "@App/game/GameEventProcessor";
 import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
-import { Event } from "@App/game/Event";
-import { IResponseProcessor } from "@App/game/IResponseProcessor";
+import { Event } from "@App/common/events/Event";
+import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { UserProvider } from "@App/UserProvider";
-import { EventType } from "@App/game/EventType";
+import { EventType } from "@App/common/events/EventType";
 import { GameProvider } from "@App/GameProvider";
 
 export class GameManager {

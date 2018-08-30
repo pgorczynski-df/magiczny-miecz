@@ -1,6 +1,6 @@
 import { Game } from "@App/common/mechanics/Game";
 
-export class DrawCardEvent {
+export class DrawCardServerEventHandler {
 
     get name() {
         return this.constructor.name;

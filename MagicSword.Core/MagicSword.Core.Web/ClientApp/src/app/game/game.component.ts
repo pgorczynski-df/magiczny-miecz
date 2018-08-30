@@ -3,10 +3,10 @@ import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 import { Game } from "../game/Game";
-import { Event } from "../game/Event";
+import { Event } from "@App/common/events/Event";
 import { IActor } from "../game/logic/IActor";
 import { Services } from "app/Services";
-import { EventType } from "../game/EventType";
+import { EventType } from "@App/common/events/EventType";
 import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
 import { SocketClient } from "@App/SocketClient";

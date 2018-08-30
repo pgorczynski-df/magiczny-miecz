@@ -17,10 +17,10 @@ import { Dice } from "app/game/Dice";
 import { Collections } from "@App/common/utils/Collections";
 import { Services } from "app/Services";
 
-import { Event } from "app/game/Event";
-import { EventType } from "app/game/EventType";
+import { Event } from "@App/common/events/Event";
+import { EventType } from "@App/common/events/EventType";
 import { ActorDto } from "@App/common/dto/ActorDto";
-import { Card } from "app/game/logic/Card";
+import { Card } from "@App/game/logic/Card";
 import { CardDto } from "@App/common/dto/CardDto";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Player } from "@App/common/mechanics/Player";

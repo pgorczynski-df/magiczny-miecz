@@ -1,12 +1,12 @@
-﻿import { Event } from "./Event";
-import { EventType } from "./EventType";
-import { IResponseProcessor } from "app/game/IResponseProcessor";
+﻿import { Event } from "@App/common/events/Event";
+import { EventType } from "@App/common/events/EventType";
+import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "../Services";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Game } from "@App/common/mechanics/Game";
 import { GameProvider } from "@App/GameProvider";
-import {DrawCardRequestDto} from "@App/common/mechanics/events/DrawCardRequestDto";
-import {DrawCardNotificationDto} from "@App/common/mechanics/events/DrawCardNotificationDto";
+import { DrawCardRequestDto } from "@App/common/events/DrawCardRequestDto";
+import { DrawCardNotificationDto } from "@App/common/events/DrawCardNotificationDto";
 
 export class GameEventProcessor {
 
@@ -29,7 +29,7 @@ export class GameEventProcessor {
                         isStarted: true, // gameDto != null,
                     };
 
-                    this.responseProcessor.respondCaller({              
+                    this.responseProcessor.respondCaller({
                         eventType: EventType.JoinGameResponse,
                         sourcePlayerId: event.sourcePlayerId,
                         data: gsDto,
@@ -61,7 +61,7 @@ export class GameEventProcessor {
                     var cardDto = this.gameProvider.serializer.serializeCard(card);
                     var res = new DrawCardNotificationDto();
                     res.cardDto = cardDto;
- 
+
                     //this.responseProcessor.respondCaller({
                     //    eventType: EventType.JoinGameResponse,
                     //    data: res,

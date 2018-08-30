@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 
 import * as socketIo from "socket.io-client";
 
-import { Event } from "@App/game/Event";
+import { Event } from "@App/common/events/Event";
 import { Services } from "@App/Services";
 
 @Injectable()

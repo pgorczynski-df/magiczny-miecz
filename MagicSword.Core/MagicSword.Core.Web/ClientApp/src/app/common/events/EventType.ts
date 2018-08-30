@@ -1,4 +1,4 @@
-
+﻿
 
 export class EventType {
     public static JoinGameRequest: string = "JoinGameRequest";

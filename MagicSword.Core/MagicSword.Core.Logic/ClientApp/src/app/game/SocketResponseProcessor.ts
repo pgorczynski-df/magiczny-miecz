@@ -1,7 +1,7 @@
 ﻿import * as socketIo from "socket.io";
-import { IResponseProcessor } from "app/game/IResponseProcessor";
-import { Services } from "app/Services";
-import { Event } from "./Event";
+import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
+import { Services } from "@App/Services";
+import { Event } from "@App/common/events/Event";
 
 export class SocketResponseProcessor implements IResponseProcessor {
 

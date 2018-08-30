@@ -47,4 +47,8 @@ export class Card extends BoxObject implements IActor {
     toggleCovered() {
         this.setCovered(!this.isCovered);
     }
+
+    getType() {
+        return this.constructor.name;
+    }
 }

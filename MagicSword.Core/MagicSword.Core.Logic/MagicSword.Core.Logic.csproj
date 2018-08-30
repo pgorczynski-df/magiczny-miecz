@@ -35,9 +35,9 @@
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardNotificationDto.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\DrawCardNotificationDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\DrawCardRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\DrawCardServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Game.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\IActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\loaders\CardDefinitionLoader.ts" />
@@ -64,6 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\common\events\drawcard\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -100,9 +101,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardRequestDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardNotificationDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\DrawCardRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\DrawCardServerEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\DrawCardNotificationDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />
@@ -114,10 +115,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\Guid.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\StringUtils.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\GameManager.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\Event.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\Event.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\GameEventProcessor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\EventType.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\IResponseProcessor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\EventType.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\IResponseProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\HttpClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\IGamesRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\SocketResponseProcessor.ts" />
