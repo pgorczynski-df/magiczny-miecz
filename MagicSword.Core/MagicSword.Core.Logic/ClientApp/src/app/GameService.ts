@@ -1,18 +1,18 @@
 ﻿import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
 
-import { GameEventProcessor } from "@App/game/GameEventProcessor";
 import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { Event } from "@App/common/events/Event";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { UserProvider } from "@App/UserProvider";
-import { EventType } from "@App/common/events/EventType";
-import { GameProvider } from "@App/GameProvider";
+import { GameProvider } from "@App/common/repository/GameProvider";
+import { EventDispatcher } from "@App/common/events/EventDispatcher";
 
-export class GameManager {
+export class GameService {
 
     private userProvider = new UserProvider();
     private gameProvider = new GameProvider();
+    private eventDispatcher = new EventDispatcher(this.gameProvider);
 
     constructor(private services: Services) {
     }
@@ -36,22 +36,11 @@ export class GameManager {
         this.userProvider.getUserId(services, token).then(
             r => {
                 event.sourcePlayerId = r;
-                this.process(services, responseProcessor, event);
+                this.eventDispatcher.process(services, responseProcessor, event);
             },
             e => {
                 responseProcessor.respondError(e);
             });
-    }
-
-    private process(services: Services, responseProcessor: IResponseProcessor, event: Event) {
-        services.logger.debug("Beginning event processing");
-        services.logger.debug(event);
-
-        var gameId = event.gameId;
-        this.gameProvider.getOrLoadGame(services, gameId, event.sourcePlayerId).then(game => {
-            var processor = new GameEventProcessor(services, responseProcessor, this.gameProvider);
-            processor.processRequest(game, event);
-        });
     }
 
     public getGame(id: string) {

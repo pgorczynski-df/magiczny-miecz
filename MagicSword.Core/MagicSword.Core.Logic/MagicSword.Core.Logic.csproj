@@ -50,17 +50,16 @@
     <None Remove="ClientApp\src\app\common\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\common\utils\Guid.ts" />
     <None Remove="ClientApp\src\app\common\utils\StringUtils.ts" />
-    <None Remove="ClientApp\src\app\GameManager.ts" />
     <None Remove="ClientApp\src\app\GameProvider.ts" />
+    <None Remove="ClientApp\src\app\GameService.ts" />
     <None Remove="ClientApp\src\app\game\Event.ts" />
+    <None Remove="ClientApp\src\app\game\EventDispatcher.ts" />
     <None Remove="ClientApp\src\app\game\EventType.ts" />
-    <None Remove="ClientApp\src\app\game\GameEventProcessor.ts" />
     <None Remove="ClientApp\src\app\game\IResponseProcessor.ts" />
     <None Remove="ClientApp\src\app\common\repository\GamesApiClient.ts" />
     <None Remove="ClientApp\src\app\common\repository\IGamesRepository.ts" />
     <None Remove="ClientApp\src\app\game\SocketResponseProcessor.ts" />
     <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
-    <None Remove="ClientApp\src\app\LoginResponse.ts" />
     <None Remove="ClientApp\src\app\UserProvider.ts" />
     <None Remove="ClientApp\src\GameServer.ts" />
     <None Remove="ClientApp\src\index.ts" />
@@ -87,7 +86,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\events\IServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\joingame\JoinGameServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\GameProvider.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\repository\GameProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\UserProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
@@ -119,9 +118,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\Collections.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\Guid.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\utils\StringUtils.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\GameManager.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\GameService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\Event.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\GameEventProcessor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\EventDispatcher.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\IResponseProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\HttpClient.ts" />
@@ -131,7 +130,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\AuthService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\lobby\dto\GameListDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\LoginResponse.ts" />
     <TypeScriptCompile Include="ClientApp\src\index.ts" />
   </ItemGroup>
 

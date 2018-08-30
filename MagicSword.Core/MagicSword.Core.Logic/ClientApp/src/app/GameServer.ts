@@ -6,7 +6,7 @@ import * as cors from "cors";
 import { Services } from "@App/Services";
 import { SocketResponseProcessor } from "@App/game/SocketResponseProcessor";
 import { Event } from "@App/common/events/Event";
-import { GameManager } from "@App/GameManager";
+import { GameService} from "@App/GameService";
 
 export class GameServer {
 
@@ -18,7 +18,7 @@ export class GameServer {
     private port: string | number;
 
     private services: Services;
-    private gameManager: GameManager;
+    private gameManager: GameService;
 
     constructor() {
         this.port = (<any>process.env).PORT || GameServer.PORT;
@@ -49,7 +49,7 @@ export class GameServer {
         this.io = socketIo(this.server);
 
         this.services = new Services(null);
-        this.gameManager = new GameManager(this.services);
+        this.gameManager = new GameService(this.services);
         this.gameManager.init();
 
         this.listen();

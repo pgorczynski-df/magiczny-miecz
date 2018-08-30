@@ -1,6 +1,5 @@
 import { World } from "@App/common/mechanics/World";
 import { Player } from "@App/common/mechanics/Player";
-import { Services } from "@App/Services";
 
 export class Game {
 

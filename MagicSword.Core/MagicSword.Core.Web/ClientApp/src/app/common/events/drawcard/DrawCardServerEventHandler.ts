@@ -3,7 +3,7 @@ import { EventType } from "@App/common/events/EventType";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
 import { Game } from "@App/common/mechanics/Game";
-import { GameProvider } from "@App/GameProvider";
+import { GameProvider } from "@App/common/repository/GameProvider";
 import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
 import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
 import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
