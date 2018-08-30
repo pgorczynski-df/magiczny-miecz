@@ -28,8 +28,6 @@ export class Serializer {
 
     deserializeGame = (source: GameDto, target: Game): void => {
 
-        console.log("deserialing game");
-
         target.world.cleanup();
         target.players = [];
 
@@ -57,11 +55,7 @@ export class Serializer {
 
     deserializeWorld = (source: WorldDto, target: World): void => {
 
-        console.log("deserialing world, stacks: " + target.cardStacks.length);
-
         for (var cardStack of target.cardStacks) {
-
-            console.log("deserialing card stack");
 
             var stackDto = source.cardStacks.find(s => s.definitionId === cardStack.definition.id);
             if (stackDto) {
@@ -96,14 +90,14 @@ export class Serializer {
 
         this.deserializeObject3D(source.object3D, target.object3D);
 
-        this.deserializeCardCollection(world, target, source.cards, target.cards);
-        this.deserializeCardCollection(world, target, source.drawnCards, target.drawnCards);
-        this.deserializeCardCollection(world, target, source.disposedCards, target.disposedCards);
+        this.deserializeCardCollection(world, target, source.cards, target.cards, false);
+        this.deserializeCardCollection(world, target, source.drawnCards, target.drawnCards, true);
+        this.deserializeCardCollection(world, target, source.disposedCards, target.disposedCards, false);
     }
 
-    private deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[]) => {
+    private deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[], loadCard: boolean) => {
         for (var cardDto of sourceCollection) {
-            var card = this.deserializeCard(world, stack, cardDto);
+            var card = this.deserializeCard(world, stack, cardDto, loadCard);
             targetCollection.push(card);
         }
     }
@@ -112,7 +106,7 @@ export class Serializer {
         var dto = new CardDto();
         dto.id = card.id;
         dto.definitionId = card.definition.id;
-        dto.loaded = card.loaded;
+        //dto.loaded = card.loaded;
         dto.isCovered = card.isCovered;
         dto.originStackDefinitionId = card.originStack.definition.id;
         if (card.loaded) {
@@ -123,11 +117,11 @@ export class Serializer {
         return dto;
     }
 
-    deserializeCard = (world: World, stack: CardStack, cardDto: CardDto): Card => {
-        var card = stack.createCard(cardDto.definitionId, !cardDto.loaded);
+    deserializeCard = (world: World, stack: CardStack, cardDto: CardDto, loadCard: boolean): Card => {
+        var card = stack.createCard(cardDto.definitionId, !loadCard);
         card.id = cardDto.id;
         card.isCovered = cardDto.isCovered;
-        if (cardDto.loaded) {
+        if (loadCard) {
             world.addNewCard(card);
             this.deserializeObject3D(cardDto.object3D, card.object3D);
         }

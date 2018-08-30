@@ -41,7 +41,7 @@ export class CardStack extends ActorBase {
             }
         }
 
-        if (this.definition.shuffle) {
+        if (this.definition.eventLike) {
             this.shuffle();
         }
     }

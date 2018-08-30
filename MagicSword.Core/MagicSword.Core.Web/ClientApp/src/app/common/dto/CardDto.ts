@@ -6,7 +6,7 @@ export class CardDto extends ActorDto {
 
   originStackDefinitionId: number;
 
-  loaded: boolean;
+  //loaded: boolean;
 
   isCovered: boolean;
 

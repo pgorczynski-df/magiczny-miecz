@@ -244,7 +244,7 @@ export class Game {
                 var cardDto2 = dto3.cardDto;
                 cardDto2.loaded = true;
                 var originStack2 = this.world.cardStacks.find(a => a.definition.id === cardDto2.originStackDefinitionId);
-                var card2 = this.serializer.deserializeCard(this.world, originStack2, cardDto2);
+                var card2 = this.serializer.deserializeCard(this.world, originStack2, cardDto2, true);
                 this.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card2.name}`);
 
                 break;

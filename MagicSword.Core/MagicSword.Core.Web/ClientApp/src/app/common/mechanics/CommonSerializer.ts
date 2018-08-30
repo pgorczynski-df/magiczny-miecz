@@ -120,7 +120,7 @@ export class CommonSerializer {
         var dto = new CardDto();
         dto.id = card.id;
         dto.definitionId = card.definition.id;
-        //dto.loaded = card.loaded;
+        //dto.loaded = true; //card.loaded;
         dto.isCovered = card.isCovered;
         dto.originStackDefinitionId = card.originStack.definition.id;
         //if (card.loaded) {
@@ -132,13 +132,13 @@ export class CommonSerializer {
     }
 
     deserializeCard = (world: World, stack: CardStack, cardDto: CardDto): Card => {
-        var card = stack.createCard(cardDto.definitionId, !cardDto.loaded);
+        var card = stack.createCard(cardDto.definitionId, true /*!cardDto.loaded*/);
         card.id = cardDto.id;
         card.isCovered = cardDto.isCovered;
-        if (cardDto.loaded) {
+        //if (cardDto.loaded) {
             //world.addNewCard(card);
             this.deserializeObject3D(cardDto.object3D, card.object3D);
-        }
+        //}
         return card;
     }
 

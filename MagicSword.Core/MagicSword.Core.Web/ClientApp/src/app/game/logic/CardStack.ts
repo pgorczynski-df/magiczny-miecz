@@ -43,7 +43,7 @@ export class CardStack extends BoxObject implements IActor {
             }
         }
 
-        if (this.definition.shuffle) {
+        if (this.definition.eventLike) {
             this.shuffle();
         }
     }

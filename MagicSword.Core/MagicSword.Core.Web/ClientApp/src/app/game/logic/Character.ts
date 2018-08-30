@@ -11,6 +11,7 @@ export class Character extends Card {
 
     constructor(definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false) {
         super(definition, resourcePath, width, height, depth, delay);
+
         for (var i = 0; i < CharacterParameterDefinition.parameterDefinitions.length; i++) {
             this.parameterValues[i] = 0;
             this.textObjects[i] = null;
@@ -34,6 +35,7 @@ export class Character extends Card {
     increase(parameterName: string, amount = 1) {
 
         var index = this.findIndex(parameterName);
+
         this.parameterValues[index] += amount;
 
         if (this.textObjects[index]) {

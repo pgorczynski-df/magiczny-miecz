@@ -23,7 +23,7 @@ export class CardStackDefinition {
 
     initialRotation: THREE.Euler = new THREE.Euler();
 
-    shuffle = false;
+    eventLike = false;
 
     static cardStackDefinitions: CardStackDefinition[] = [
         <CardStackDefinition>{
@@ -35,7 +35,7 @@ export class CardStackDefinition {
             cardDefinitionsUrl: "Zdarzenia.json",
             initialPosition: new THREE.Vector3(-5, 2, 0),
             initialRotation: new THREE.Euler(),
-            shuffle: true,
+            eventLike: true,
         },
         <CardStackDefinition>{
             id: 2,
@@ -46,7 +46,7 @@ export class CardStackDefinition {
             cardDefinitionsUrl: "Wyposazenie.json",
             initialPosition: new THREE.Vector3(0, 2, -60),
             initialRotation: new THREE.Euler(),
-            shuffle: false,
+            eventLike: false,
         },
         <CardStackDefinition>{
             id: 3,
@@ -57,7 +57,7 @@ export class CardStackDefinition {
             cardDefinitionsUrl: "Zaklecia.json",
             initialPosition: new THREE.Vector3(20, 2, -60),
             initialRotation: new THREE.Euler(),
-            shuffle: true,
+            eventLike: true,
         },
         <CardStackDefinition>{
             id: 4,
@@ -68,7 +68,7 @@ export class CardStackDefinition {
             cardDefinitionsUrl: "Postacie.json",
             initialPosition: new THREE.Vector3(-40, 2, -60),
             initialRotation: new THREE.Euler(),
-            shuffle: false,
+            eventLike: false,
         },
         <CardStackDefinition>{
             id: 5,
@@ -79,7 +79,7 @@ export class CardStackDefinition {
             cardDefinitionsUrl: "../Postacie.json",
             initialPosition: new THREE.Vector3(-20, 2, -60),
             initialRotation: new THREE.Euler(),
-            shuffle: false,
+            eventLike: false,
         },
     ];
 
