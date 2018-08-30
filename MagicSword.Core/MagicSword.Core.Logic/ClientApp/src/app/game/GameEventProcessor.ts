@@ -5,8 +5,8 @@ import { Services } from "../Services";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Game } from "@App/common/mechanics/Game";
 import { GameProvider } from "@App/GameProvider";
-import { DrawCardRequestDto } from "@App/common/events/DrawCardRequestDto";
-import { DrawCardNotificationDto } from "@App/common/events/DrawCardNotificationDto";
+import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
+import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
 
 export class GameEventProcessor {
 

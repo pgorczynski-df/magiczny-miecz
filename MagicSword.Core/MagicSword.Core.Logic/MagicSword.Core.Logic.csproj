@@ -64,7 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\common\events\drawcard\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -101,9 +100,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\events\DrawCardRequestDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\events\DrawCardServerEventHandler.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\events\DrawCardNotificationDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\drawcard\DrawCardRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\drawcard\DrawCardServerEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\drawcard\DrawCardNotificationDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Player.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />

@@ -1,5 +1,5 @@
 import { Game } from "@App/common/mechanics/Game";
-import { DrawCardNotificationDto } from "@App/common/mechanics/events/DrawCardNotificationDto";
+import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
 
 export class DrawCardEventHandler {
 

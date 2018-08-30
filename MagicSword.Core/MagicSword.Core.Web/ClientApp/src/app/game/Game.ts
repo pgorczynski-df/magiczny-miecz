@@ -1,7 +1,3 @@
-/**
- * WebGL With Three.js - Lesson 10 - Drag and Drop Objects
- * http://www.script-tutorials.com/webgl-with-three-js-lesson-10/
- */
 import * as THREE from "three";
 import * as CANNON from "cannon";
 
@@ -25,8 +21,8 @@ import { CardDto } from "@App/common/dto/CardDto";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Player } from "@App/common/mechanics/Player";
 import { CardStack } from "@App/game/logic/CardStack";
-import { DrawCardRequestDto } from "@App/common/mechanics/events/DrawCardRequestDto";
-import { DrawCardNotificationDto } from "@App/common/mechanics/events/DrawCardNotificationDto";
+import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
+import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
 
 export class Game {
 

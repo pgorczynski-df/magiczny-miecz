@@ -27,7 +27,6 @@
     <None Remove="ClientApp\src\app\AuthService.ts" />
     <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\CardStack.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Game.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\IActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Object3D.ts" />
@@ -65,7 +64,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\CardStack.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\events\DrawCardEvent.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Object3D.ts" />
@@ -103,6 +101,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\common\mechanics\events\drawcard\" />
     <Folder Include="ClientApp\src\assets\3d\" />
   </ItemGroup>
 
