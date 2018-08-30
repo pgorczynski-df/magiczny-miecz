@@ -78,7 +78,7 @@ export class GameComponent implements AfterViewInit {
             case "online":
                 this.game.id = gameId;
                 this.socketClient.init();
-                this.game.publishEvent(EventType.JoinGameRequest);
+                this.game.publishEvent(EventType.JoinGame);
 
                 break;
             default:

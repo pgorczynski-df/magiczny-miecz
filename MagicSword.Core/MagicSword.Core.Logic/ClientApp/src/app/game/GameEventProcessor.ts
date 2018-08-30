@@ -1,123 +1,47 @@
 ﻿import { Event } from "@App/common/events/Event";
-import { EventType } from "@App/common/events/EventType";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
-import { Services } from "../Services";
-import { GameStateDto } from "@App/common/dto/GameStateDto";
+import { Services } from "@App/Services";
 import { Game } from "@App/common/mechanics/Game";
 import { GameProvider } from "@App/GameProvider";
-import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
-import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
+import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
+import { JoinGameServerEventHandler } from "@App/common/events/joingame/JoinGameServerEventHandler";
+import { DrawCardServerEventHandler } from "@App/common/events/drawcard/DrawCardServerEventHandler";
+import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
 
 export class GameEventProcessor {
 
-    constructor(private services: Services, private responseProcessor: IResponseProcessor, private gameProvider: GameProvider) {
+    private eventHandlers: { [eventType: string]: IServerEventHandler; } = {};
 
+    constructor(private services: Services, private responseProcessor: IResponseProcessor, private gameProvider: GameProvider) {
+        this.register(new JoinGameServerEventHandler());
+        this.register(new DrawCardServerEventHandler());
     }
 
     processRequest(game: Game, event: Event) {
 
-        switch (event.eventType) {
-            case EventType.JoinGameRequest:
+        var type = event.eventType;
 
-                this.responseProcessor.registerCaller(event);
-
-                this.gameProvider.getOrLoadDto(this.services, event.gameId, event.sourcePlayerId).then(gameDto => {
-
-                    var gsDto: GameStateDto = {
-                        currentPlayerId: event.sourcePlayerId,
-                        data: gameDto,
-                        isStarted: true, // gameDto != null,
-                    };
-
-                    this.responseProcessor.respondCaller({
-                        eventType: EventType.JoinGameResponse,
-                        sourcePlayerId: event.sourcePlayerId,
-                        data: gsDto,
-                        gameId: event.gameId
-                    });
-
-                    this.responseProcessor.respondAll(
-                        {
-                            gameId: event.gameId,
-                            eventType: EventType.PlayerJoined,
-                            sourcePlayerId: event.sourcePlayerId,
-                            data: {
-                                id: event.sourcePlayerId,
-                                name: event.sourcePlayerId,
-                            }
-                        });
-
-                }, e => { this.services.logger.error(e); });
-
-
-                break;
-
-            case EventType.DrawCard + "_Request":
-
-                this.gameProvider.getOrLoadGame(this.services, event.gameId, event.sourcePlayerId).then(game => {
-
-                    var args = event.data as DrawCardRequestDto;
-                    var card = game.world.drawCard(args.stackId, args.uncover);
-                    var cardDto = this.gameProvider.serializer.serializeCard(card);
-                    var res = new DrawCardNotificationDto();
-                    res.cardDto = cardDto;
-
-                    //this.responseProcessor.respondCaller({
-                    //    eventType: EventType.JoinGameResponse,
-                    //    data: res,
-                    //    gameId: event.gameId
-                    //});
-
-                    this.gameProvider.persistGame(this.services, game);
-
-                    this.responseProcessor.respondAll(
-                        {
-                            gameId: event.gameId,
-                            eventType: EventType.DrawCard + "_Notification",
-                            sourcePlayerId: event.sourcePlayerId,
-                            data: res,
-                        });
-
-                }, e => { this.services.logger.error(e); });
-
-
-                break;
-
-            //case EventType.GameLoadResponse:
-            //    var data = ev.Data;
-            //    var serialized = JsonConvert.SerializeObject(data);
-
-            //    _logger.LogInformation("Updating game state from user {0}, length: {1}", playerId, serialized.Length);
-
-            //    game.Data = serialized;
-            //    await _context.SaveChangesAsync();
-            //    break;
-            //case EventType.ResetGameState:
-            //    game.Data = ev.Data.ToString();
-            //    await _context.SaveChangesAsync();
-            //    break;
-            //default:
-
-            //    _logger.LogInformation("Requesting updated game state from caller id = {0}", playerId);
-            //    await SendEvent(Clients.Caller, new Event
-            //{
-            //            GameId = game.Id,
-            //            EventType = EventType.GameLoadRequest,
-            //            Data = {},
-            //            SourcePlayerId = -1,
-            //        });
-
-            //    var group = GetGameGroup(ev.GameId);
-
-            //    _logger.LogInformation("Propagating event to group {0}", group);
-            //    await SendEvent(Clients.Group(group), ev);
-            //    break;
-
-            default:
-                this.services.logger.info("Propagating event to group");
-                this.responseProcessor.respondAll(event);
-                break;
+        var split = type.split("_");
+        if (split.length > 1) {
+            type = split[0];
         }
+
+        var context = new EventHandlerContext();
+        context.game = game;
+        context.responseProcessor = this.responseProcessor;
+        context.services = this.services;
+        context.gameProvider = this.gameProvider;
+
+        var handler = this.eventHandlers[type];
+        if (!handler) {
+            this.responseProcessor.respondError("Unknown event type: " + event.eventType);
+            return;
+        }
+
+        handler.process(context, event);
     }
 
+    private register(handler: IServerEventHandler) {
+        this.eventHandlers[handler.getEventType()] = handler;
+    }
 }

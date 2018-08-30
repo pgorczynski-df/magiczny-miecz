@@ -27,7 +27,7 @@ export class GameManager {
 
         var token = event.token;
         if (!token) {
-            this.respondError(responseProcessor, "No token in request");
+            responseProcessor.respondError("No token in request");
             return;
         }
 
@@ -39,7 +39,7 @@ export class GameManager {
                 this.process(services, responseProcessor, event);
             },
             e => {
-                this.respondError(responseProcessor, e);
+                responseProcessor.respondError(e);
             });
     }
 
@@ -65,14 +65,6 @@ export class GameManager {
     public evictCache() {
         this.services.logger.info("Clearing game cache");
         this.gameProvider.evictCache();
-    }
-
-    private respondError(responseProcessor: IResponseProcessor, data: any) {
-        this.services.logger.error(data);
-        responseProcessor.respondCaller({
-            eventType: EventType.ErrorResponse,
-            data: data,
-        } as any);
     }
 
     private createServices(token: string): Services {

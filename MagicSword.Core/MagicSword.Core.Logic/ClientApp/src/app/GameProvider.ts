@@ -10,7 +10,6 @@ export class GameProvider {
     public serializer = new CommonSerializer();
 
     private cache = {};
-    //private dto = {};
 
     getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<Game> {
 
