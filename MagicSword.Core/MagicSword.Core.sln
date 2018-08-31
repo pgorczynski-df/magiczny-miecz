@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardHelper", "CardHelper\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicSword.Core.Api", "MagicSword.Core.Api\MagicSword.Core.Api.csproj", "{DBAE1C45-9EC7-499B-8B04-8965B6A66EFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicSword.Core.Logic", "MagicSword.Core.Logic\MagicSword.Core.Logic.csproj", "{29A11199-843A-4654-80DA-CD41459A55C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicSword.Core.Logic", "MagicSword.Core.Logic\MagicSword.Core.Logic.csproj", "{29A11199-843A-4654-80DA-CD41459A55C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

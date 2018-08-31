@@ -12,12 +12,8 @@ import { ClientSerializer } from "@App/game/ClientSerializer";
 import { Dice } from "app/game/Dice";
 import { Collections } from "@App/common/utils/Collections";
 import { Services } from "app/Services";
-
 import { Event } from "@App/common/events/Event";
-import { EventType } from "@App/common/events/EventType";
-import { ActorDto } from "@App/common/dto/ActorDto";
 import { Card } from "@App/game/logic/Card";
-import { CardDto } from "@App/common/dto/CardDto";
 import { Player } from "@App/common/mechanics/Player";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 
@@ -208,7 +204,9 @@ export class Game {
         this.actors = Collections.remove(this.actors, object3D);
     }
 
-    private updateRaycaster(event: MouseEvent) {
+    //BEWARE: the functions below cannot be converted to member functions, since the binding context changes !
+
+    private updateRaycaster = (event: MouseEvent) => {
 
         var mouseX = (event.offsetX / this.width) * 2 - 1;
         var mouseY = -(event.offsetY / this.height) * 2 + 1;
@@ -221,7 +219,7 @@ export class Game {
         //this.raycaster.setFromCamera({ x: event.clientX,  y: event.clientY }, this.camera);
     }
 
-    onDocumentMouseDown(event: MouseEvent) {
+    private onDocumentMouseDown = (event: MouseEvent) => {
 
         this.updateRaycaster(event);
 
@@ -250,7 +248,7 @@ export class Game {
 
     }
 
-    onDocumentMouseMove(event: MouseEvent) {
+    private onDocumentMouseMove = (event: MouseEvent) =>  {
         event.preventDefault();
 
         this.updateRaycaster(event);
@@ -271,7 +269,7 @@ export class Game {
     }
 
     // ReSharper disable once UnusedParameter
-    onDocumentMouseUp(event: MouseEvent) {
+    private onDocumentMouseUp = (event: MouseEvent) => {
 
         if (!this.draggedObject) {
             return;
@@ -293,6 +291,8 @@ export class Game {
         this.draggedObject = null;
         this.controls.enabled = true;
     }
+
+    // end of BEWARE
 
     drawCardOld(card: Card = null, uncover = true): Card {
         var cardResult = this.world.drawCard(card, uncover);
