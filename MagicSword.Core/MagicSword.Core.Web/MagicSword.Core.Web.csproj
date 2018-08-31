@@ -38,6 +38,7 @@
     <None Remove="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
     <None Remove="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
+    <None Remove="ClientApp\src\app\game\events\handlers\JoinGameEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\Game.ts" />
     <None Remove="ClientApp\src\app\game\logic\Card.ts" />
@@ -76,6 +77,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\JoinGameEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />

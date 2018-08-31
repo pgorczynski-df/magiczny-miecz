@@ -196,18 +196,6 @@ export class Game {
                 this.deserialize(dto2);
                 break;
 
-            case EventType.JoinGameResponse:
-                var rdto = ev.data as GameStateDto;
-                this.currentPlayerId = rdto.currentPlayerId;
-                //if (rdto.isStarted) {
-                var gameDto = rdto.data;
-                this.deserialize(gameDto);
-                //} else {
-                //var dtoNew = JSON.stringify(this.serialize());
-                //    this.publishEvent(EventType.ResetGameState, dtoNew);
-                //}
-                break;
-
             case EventType.ActorMove:
             case EventType.ActorRotate:
                 var actorDto = ev.data as ActorDto;

@@ -14,7 +14,7 @@ export abstract class ServerEventHandlerBase implements IServerEventHandler {
             {
                 gameId: context.game.id,
                 eventType: this.getEventType(),
-                eventKind: EventKind.Notification,
+                eventKind: EventKind.Response,
                 sourcePlayerId: context.event.sourcePlayerId,
                 data: data,
             });
