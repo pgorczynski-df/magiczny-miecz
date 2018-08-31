@@ -5,6 +5,6 @@ export interface IServerEventHandler {
 
     getEventType(): string;
 
-    process(context: EventHandlerContext, event: Event);
+    process(context: EventHandlerContext, data: any);
 
 }

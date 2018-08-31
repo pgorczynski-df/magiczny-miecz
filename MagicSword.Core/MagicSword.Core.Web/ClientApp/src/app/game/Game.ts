@@ -19,6 +19,7 @@ import { ActorDto } from "@App/common/dto/ActorDto";
 import { Card } from "@App/game/logic/Card";
 import { CardDto } from "@App/common/dto/CardDto";
 import { Player } from "@App/common/mechanics/Player";
+import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 
 export class Game {
 
@@ -58,6 +59,8 @@ export class Game {
 
     players: Player[] = [];
 
+    eventDispatcher: ClientEventDispatcher;
+
     constructor(vieport: any, public services: Services) {
 
         this.container = vieport;
@@ -65,8 +68,6 @@ export class Game {
         if (!this.container) {
             throw new Error("cannot find viewport");
         }
-
-        this.services.inboundBus.of().subscribe(e => this.processIncomingEvent(e));
 
         this.offset = new THREE.Vector3();
         this.raycaster = new THREE.Raycaster();
@@ -174,34 +175,6 @@ export class Game {
         this.camera.lookAt(new THREE.Vector3(0, 0, 0));
     }
 
-    private processIncomingEvent = (ev: Event) => {
-
-        var senderName = "xxx";
-        var sender = this.findPlayer(ev.sourcePlayerId);
-        if (sender) {
-            senderName = sender.name;
-        }
-
-        switch (ev.eventType) {
-
-
-            case EventType.ActorMove:
-            case EventType.ActorRotate:
-                var actorDto = ev.data as ActorDto;
-                var actor = this.actors.find(a => a.id === actorDto.id);
-                if (actor) {
-                    this.serializer.deserializeActor(actorDto, actor);
-                    this.services.logger.info(`Gracz ${senderName} przesunął kartę ${actor.name}`);
-                } else {
-                    this.services.logger.warn(`Cannot find actor with id: ${actorDto.id}`);
-                }
-                break;
-
-            default:
-                this.services.logger.warn("Unknown event type: " + ev.eventType);
-        }
-
-    }
 
     public findPlayer(playerId: string) {
         return this.players.find(p => p.id === playerId);
@@ -293,6 +266,7 @@ export class Game {
         }
     };
 
+    // ReSharper disable once UnusedParameter
     onDocumentMouseUp = (event: MouseEvent) => {
 
         if (!this.draggedObject) {
@@ -303,38 +277,25 @@ export class Game {
 
         if (finalPosition.distanceTo(this.dragInitialPosition) > 0.001) {
             var actor = this.draggedObject.userData["parent"];
-            var actorDto = this.serializer.serializeActor(actor);
-            this.publishEvent(EventType.ActorMove, actorDto);
+            this.eventDispatcher.actorMoveHandler.moveActor(actor);
         }
 
         var finalRotation = this.draggedObject.rotation;
         if (finalRotation.toVector3().distanceTo(this.dragInitialRotation.toVector3()) > 0.001) {
             var actor2 = this.draggedObject.userData["parent"];
-            var actorDto2 = this.serializer.serializeActor(actor2);
-            this.publishEvent(EventType.ActorRotate, actorDto2);
+            this.eventDispatcher.actorRotateHandler.moveActor(actor2);
         }
 
         this.draggedObject = null;
         this.controls.enabled = true;
     };
 
-    publishEvent(eventType: string, data: any = null) {
-        this.services.outboundBus.publish(this.id, eventType, data);
-        this.events.push({
-            gameId: this.id,
-            eventType: eventType,
-            data: data
-        } as Event);
-    }
-
     drawCardOld(card: Card = null, uncover = true): Card {
         var cardResult = this.world.drawCard(card, uncover);
         var cardDto = this.serializer.serializeCard(cardResult);
-        this.publishEvent(EventType.CardDrawn, cardDto);
+        //this.publishEvent(EventType.CardDrawn, cardDto);
         return cardResult;
     }
-
-
 
     new = () => {
         this.resetCamera();

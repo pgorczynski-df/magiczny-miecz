@@ -10,4 +10,9 @@ export class ClientEventHandlerContext {
 
     serializer = new ClientSerializer();
 
+    //var sender = this.findPlayer(ev.sourcePlayerId);
+    //if (sender) {
+    //    senderName = sender.name;
+    //}
+
 }

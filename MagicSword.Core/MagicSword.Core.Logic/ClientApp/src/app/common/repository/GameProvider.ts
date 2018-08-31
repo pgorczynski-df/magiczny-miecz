@@ -9,7 +9,7 @@ export class GameProvider {
 
     public serializer = new CommonSerializer();
 
-    private cache = {};
+    private cache: { [gameId: string]: Game } = {};
 
     getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<Game> {
 

@@ -37,6 +37,8 @@
     <None Remove="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
     <None Remove="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
     <None Remove="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
+    <None Remove="ClientApp\src\app\game\events\handlers\ActorMoveClientEventHandler.ts" />
+    <None Remove="ClientApp\src\app\game\events\handlers\ActorRotateClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\JoinGameEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\IClientEventHandler.ts" />
@@ -77,6 +79,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\ActorRotateClientEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\ActorMoveClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\JoinGameEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />

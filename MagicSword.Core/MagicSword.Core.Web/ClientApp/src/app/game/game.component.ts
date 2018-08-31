@@ -70,6 +70,8 @@ export class GameComponent implements AfterViewInit {
 
         this.game = new Game(this.viewport.nativeElement, this.services);
         this.dispatcher = new ClientEventDispatcher(this.services, this.game);
+        this.game.eventDispatcher = this.dispatcher;
+
         this.services.inboundBus.of().subscribe(e => this.dispatcher.process(e));
 
         switch (mode) {
