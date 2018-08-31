@@ -7,6 +7,8 @@ export interface IClientEventHandler {
 
     getEventType(): string;
 
-    process(event: Event);
+    processNotification(event: Event);
+
+    processResponse(event: Event);
 
 }

@@ -11,7 +11,7 @@ export class EventType {
     public static ActorRotate: string = "ActorRotate";
     public static CardDrawn: string = "CardDrawn";
 
-    public static ErrorResponse: string = "ErrorResponse";
+    public static Error: string = "Error";
     public static DrawCard: string = "DrawCard";
     public static JoinGame: string = "JoinGame";
 }

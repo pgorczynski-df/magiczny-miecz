@@ -25,7 +25,7 @@ export class SocketResponseProcessor implements IResponseProcessor {
     respondError(data: any) {
         this.services.logger.error(data);
         this.respondCaller({
-            eventType: EventType.ErrorResponse,
+            eventType: EventType.Error,
             data: data,
         } as any);
     }

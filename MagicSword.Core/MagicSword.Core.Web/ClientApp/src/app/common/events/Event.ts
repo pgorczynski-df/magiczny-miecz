@@ -1,13 +1,15 @@
 
 export class Event {
 
-  sourcePlayerId?: string;
+    eventType: string;
 
-  gameId: string;
+    eventKind: string;
 
-  eventType: string;
+    gameId: string;
 
-  data?: any;
+    sourcePlayerId?: string;
 
-  token?: string;
+    data?: any;
+
+    token?: string;
 }

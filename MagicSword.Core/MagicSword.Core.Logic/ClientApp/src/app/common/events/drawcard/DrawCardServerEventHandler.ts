@@ -8,6 +8,7 @@ import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestD
 import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
 import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
 import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
+import {EventKind} from "@App/common/events/EventKind";
 
 export class DrawCardServerEventHandler implements IServerEventHandler {
 
@@ -36,7 +37,8 @@ export class DrawCardServerEventHandler implements IServerEventHandler {
             context.responseProcessor.respondAll(
                 {
                     gameId: event.gameId,
-                    eventType: EventType.DrawCard + "_Notification",
+                    eventType: EventType.DrawCard,
+                    eventKind: EventKind.Notification,
                     sourcePlayerId: event.sourcePlayerId,
                     data: res,
                 });

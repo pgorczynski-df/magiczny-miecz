@@ -4,6 +4,7 @@ import { IClientEventHandler } from "@App/game/events/IClientEventHandler";
 import { ClientEventHandlerContext } from "@App/game/events/ClientEventHandlerContext";
 import { Game } from "@App/game/Game";
 import { DrawCardClientEventHandler } from "@App/game/events/handlers/DrawCardClientEventHandler";
+import { EventKind } from "@App/common/events/EventKind";
 
 export class ClientEventDispatcher {
 
@@ -26,18 +27,24 @@ export class ClientEventDispatcher {
 
         var type = event.eventType;
 
-        var split = type.split("_");
-        if (split.length > 1) {
-            type = split[0];
-        }
-
         var handler = this.eventHandlers[type];
         if (!handler) {
-            //responseProcessor.respondError("Unknown event type: " + event.eventType);
+            this.services.logger.error("Unknown incoming event type: " + type);
             return;
         }
 
-        handler.process(event);
+        switch (event.eventKind) {
+            case EventKind.Response:
+                handler.processResponse(event);
+                break;
+            case EventKind.Notification:
+                handler.processNotification(event);
+                break;
+            default:
+                this.services.logger.error("Unexpected incoming event kind: " + event.eventKind);
+                break;
+        }
+
     }
 
     private register(handler: IClientEventHandler) {

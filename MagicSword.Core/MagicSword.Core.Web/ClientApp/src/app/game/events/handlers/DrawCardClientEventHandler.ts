@@ -1,10 +1,8 @@
 import { Event } from "@App/common/events/Event";
 import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
-import { ClientEventHandlerContext } from "@App/game/events/ClientEventHandlerContext";
 import { CardStack } from "@App/game/logic/CardStack";
 import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
 import { EventType } from "@App/common/events/EventType";
-import { IClientEventHandler } from "@App/game/events/IClientEventHandler";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 
 export class DrawCardClientEventHandler extends ClientEventHandlerBase {
@@ -19,10 +17,10 @@ export class DrawCardClientEventHandler extends ClientEventHandlerBase {
         request.stackId = stack.id;
         request.uncover = uncover;
 
-        this.publishEvent(this.getEventType() + "_Request", request);
+        this.sendRequest(request);
     }
 
-    process(event: Event) {
+    processNotification(event: Event) {
 
         var world = this.context.game.world;
 

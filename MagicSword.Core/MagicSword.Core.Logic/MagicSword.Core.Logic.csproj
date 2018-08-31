@@ -26,6 +26,7 @@
     <None Remove="ClientApp\src\app\common\dto\PlayerDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\WorldDto.ts" />
     <None Remove="ClientApp\src\app\common\events\EventHandlerContext.ts" />
+    <None Remove="ClientApp\src\app\common\events\EventKind.ts" />
     <None Remove="ClientApp\src\app\common\events\IServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\joingame\JoinGameServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
@@ -83,6 +84,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventHandlerContext.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\EventKind.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\IServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\joingame\JoinGameServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />

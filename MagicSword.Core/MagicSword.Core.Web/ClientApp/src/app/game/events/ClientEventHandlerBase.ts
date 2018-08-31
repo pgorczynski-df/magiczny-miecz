@@ -1,6 +1,7 @@
 import { Event } from "@App/common/events/Event";
 import { ClientEventHandlerContext } from "@App/game/events/ClientEventHandlerContext";
 import { IClientEventHandler } from "@App/game/events/IClientEventHandler";
+import { EventKind } from "@App/common/events/EventKind";
 
 export abstract class ClientEventHandlerBase implements IClientEventHandler {
 
@@ -8,9 +9,13 @@ export abstract class ClientEventHandlerBase implements IClientEventHandler {
 
     abstract getEventType(): string;
 
-    abstract process(event: Event);
+    processNotification(event: Event) {
+    }
 
-    publishEvent(eventType: string, data: any = null) {
-        this.context.services.outboundBus.publish(this.context.game.id, eventType, data);
+    processResponse(event: Event) {
+    }
+
+    sendRequest(data: any) {
+        this.context.services.outboundBus.publish(this.context.game.id, this.getEventType(), EventKind.Request, data);
     }
 }
