@@ -10,7 +10,7 @@ export class SocketResponseProcessor implements IResponseProcessor {
     }
 
     registerCaller(event: Event) {
-        this.services.logger.debug("Registering caller");
+        //this.services.logger.debug("Registering caller");
         this.socket.join(this.roomId(event.gameId));
     }
 

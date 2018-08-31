@@ -1,4 +1,5 @@
-import { Event } from "@App/common/events/Event";
+﻿import { Event } from "@App/common/events/Event";
+import { EventKind } from "@App/common/events/EventKind";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
 import { Game } from "@App/common/mechanics/Game";
@@ -7,7 +8,6 @@ import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
 import { JoinGameServerEventHandler } from "@App/common/events/joingame/JoinGameServerEventHandler";
 import { DrawCardServerEventHandler } from "@App/common/events/drawcard/DrawCardServerEventHandler";
 import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { EventKind } from "@App/common/events/EventKind";
 
 export class EventDispatcher {
 
@@ -43,6 +43,7 @@ export class EventDispatcher {
             context.responseProcessor = responseProcessor;
             context.services = services;
             context.gameProvider = this.gameProvider;
+            context.event = event;
 
             handler.process(context, event);
         });

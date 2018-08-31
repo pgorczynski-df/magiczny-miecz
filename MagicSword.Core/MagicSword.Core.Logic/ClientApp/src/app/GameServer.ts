@@ -56,7 +56,6 @@ export class GameServer {
 
     }
 
-
     private listen(): void {
         this.server.listen(this.port, () => {
             this.services.logger.info("Running server on port %s", this.port);
@@ -66,7 +65,10 @@ export class GameServer {
             this.services.logger.info("Connected client on port %s.", this.port);
 
             socket.on("Publish", (event: Event) => {
+
                 var responseProcessor = new SocketResponseProcessor(this.services, this.io, socket);
+                responseProcessor.registerCaller(event);
+
                 this.gameManager.handleEvent(responseProcessor, event);
             });
 

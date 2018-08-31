@@ -1,4 +1,5 @@
 ﻿import { Event } from "@App/common/events/Event";
+import { EventKind } from "@App/common/events/EventKind";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
 import { Game } from "@App/common/mechanics/Game";
@@ -24,15 +25,14 @@ export class EventDispatcher {
 
         var type = event.eventType;
 
-        var split = type.split("_");
-        if (split.length > 1) {
-            type = split[0];
-        }
-
         var handler = this.eventHandlers[type];
         if (!handler) {
-            responseProcessor.respondError("Unknown event type: " + event.eventType);
+            responseProcessor.respondError("Unknown request event type: " + event.eventType);
             return;
+        }
+
+        if (event.eventKind !== EventKind.Request) {
+            services.logger.warn("Unexpected event kind: " + event.eventKind);
         }
 
         var gameId = event.gameId;
@@ -43,6 +43,7 @@ export class EventDispatcher {
             context.responseProcessor = responseProcessor;
             context.services = services;
             context.gameProvider = this.gameProvider;
+            context.event = event;
 
             handler.process(context, event);
         });

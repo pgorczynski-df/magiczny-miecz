@@ -2,6 +2,7 @@ import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
 import { GameProvider } from "@App/common/repository/GameProvider";
 import { Game } from "@App/common/mechanics/Game";
+import { Event } from "@App/common/events/Event";
 
 export class EventHandlerContext {
 
@@ -13,4 +14,5 @@ export class EventHandlerContext {
 
     game: Game;
 
+    event: Event;
 }

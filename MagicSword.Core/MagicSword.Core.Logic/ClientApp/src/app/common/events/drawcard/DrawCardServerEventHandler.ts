@@ -7,20 +7,20 @@ import { GameProvider } from "@App/common/repository/GameProvider";
 import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
 import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
 import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
-import {EventKind} from "@App/common/events/EventKind";
+import { EventKind } from "@App/common/events/EventKind";
+import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
 
-export class DrawCardServerEventHandler implements IServerEventHandler {
+export class DrawCardServerEventHandler extends ServerEventHandlerBase {
 
     getEventType(): string {
         return EventType.DrawCard;
     }
 
-    process(context: EventHandlerContext, event: Event) {
+    process(context: EventHandlerContext, data: any) {
 
-        context.gameProvider.getOrLoadGame(context.services, event.gameId, event.sourcePlayerId).then(game => {
+        context.gameProvider.getOrLoadGame(context.services, context.game.id, context.event.sourcePlayerId).then(game => {
 
-            var args = event.data as DrawCardRequestDto;
+            var args = data as DrawCardRequestDto;
             var card = game.world.drawCard(args.stackId, args.uncover);
             var cardDto = context.gameProvider.serializer.serializeCard(card);
             var res = new DrawCardNotificationDto();
@@ -32,16 +32,7 @@ export class DrawCardServerEventHandler implements IServerEventHandler {
             //    gameId: event.gameId
             //});
 
-            context.gameProvider.persistGame(context.services, game);
-
-            context.responseProcessor.respondAll(
-                {
-                    gameId: event.gameId,
-                    eventType: EventType.DrawCard,
-                    eventKind: EventKind.Notification,
-                    sourcePlayerId: event.sourcePlayerId,
-                    data: res,
-                });
+            this.notifyAll(context, res);
 
         });
 
