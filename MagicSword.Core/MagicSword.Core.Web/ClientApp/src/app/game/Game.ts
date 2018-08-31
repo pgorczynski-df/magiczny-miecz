@@ -18,10 +18,7 @@ import { EventType } from "@App/common/events/EventType";
 import { ActorDto } from "@App/common/dto/ActorDto";
 import { Card } from "@App/game/logic/Card";
 import { CardDto } from "@App/common/dto/CardDto";
-import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { Player } from "@App/common/mechanics/Player";
-import { CardStack } from "@App/game/logic/CardStack";
-import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
 
 export class Game {
 
@@ -186,15 +183,7 @@ export class Game {
         }
 
         switch (ev.eventType) {
-            case EventType.GameLoadRequest:
-                var dto = this.serialize();
-                this.publishEvent(EventType.GameLoadResponse, dto);
-                break;
 
-            case EventType.GameLoadResponse:
-                var dto2 = ev.data;
-                this.deserialize(dto2);
-                break;
 
             case EventType.ActorMove:
             case EventType.ActorRotate:
@@ -207,38 +196,14 @@ export class Game {
                     this.services.logger.warn(`Cannot find actor with id: ${actorDto.id}`);
                 }
                 break;
-            case EventType.CardDrawn:
-                var cardDto = ev.data as CardDto;
-                var originStack = this.world.cardStacks.find(a => a.definition.id === cardDto.originStackDefinitionId);
-                var card = originStack.cards.find(c => c.id === cardDto.id);
-                if (card) {
-                    this.world.drawCard(card, !cardDto.isCovered);
-                } else {
-                    card = originStack.drawnCards.find(c => c.id === cardDto.id);
-                }
-                if (card) {
-                    this.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card.name}`);
-                }
-                break;
-            case EventType.DrawCard + "_Notification":
 
-
-                break;
-            case EventType.PlayerJoined:
-                var playerId = ev.data.id;
-                var player = this.findPlayer(playerId);
-                if (!player) {
-                    this.players.push(ev.data);
-                }
-                this.services.logger.info(`Gracz ${ev.data.name} dołącza do gry`);
-                break;
             default:
                 this.services.logger.warn("Unknown event type: " + ev.eventType);
         }
 
     }
 
-    private findPlayer(playerId: string) {
+    public findPlayer(playerId: string) {
         return this.players.find(p => p.id === playerId);
     }
 

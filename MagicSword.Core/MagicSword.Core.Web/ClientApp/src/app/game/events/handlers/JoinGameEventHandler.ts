@@ -25,5 +25,17 @@ export class JoinGameEventHandler extends ClientEventHandlerBase {
 
     }
 
+    processNotification(event: Event): void {
+
+        var game = this.context.game;
+
+        var playerId = event.data.id;
+        var player = game.findPlayer(playerId);
+        if (!player) {
+            game.players.push(event.data);
+        }
+
+        //this.services.logger.info(`Gracz ${ev.data.name} dołącza do gry`);
+    }
 }
 
