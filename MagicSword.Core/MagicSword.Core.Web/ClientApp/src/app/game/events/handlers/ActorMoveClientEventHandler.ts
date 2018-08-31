@@ -20,7 +20,7 @@ export class ActorMoveClientEventHandler extends ClientEventHandlerBase {
         var game = this.context.game;
 
         var actorDto = event.data as ActorDto;
-        var actor = game.actors.find(a => a.id === actorDto.id);
+        var actor = game.findActor(actorDto.id);
         if (actor) {
             this.context.serializer.deserializeActor(actorDto, actor);
             //this.services.logger.info(`Gracz ${senderName} przesunął kartę ${actor.name}`);

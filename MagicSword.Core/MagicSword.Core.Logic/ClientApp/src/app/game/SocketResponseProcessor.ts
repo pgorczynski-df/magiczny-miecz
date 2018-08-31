@@ -3,6 +3,7 @@ import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
 import { Event } from "@App/common/events/Event";
 import { EventType } from "@App/common/events/EventType";
+import { EventKind } from "@App/common/events/EventKind";
 
 export class SocketResponseProcessor implements IResponseProcessor {
 
@@ -26,6 +27,7 @@ export class SocketResponseProcessor implements IResponseProcessor {
         this.services.logger.error(data);
         this.respondCaller({
             eventType: EventType.Error,
+            eventKind: EventKind.Response,
             data: data,
         } as any);
     }

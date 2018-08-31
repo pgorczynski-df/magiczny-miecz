@@ -9,13 +9,14 @@ import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
 import { JoinGameServerEventHandler } from "@App/common/events/joingame/JoinGameServerEventHandler";
 import { DrawCardServerEventHandler } from "@App/common/events/drawcard/DrawCardServerEventHandler";
 import { ActorMoveServerEventHandler } from "@App/common/events/actormove/ActorMoveServerEventHandler";
-import { ActorRotateServerEventHandler } from "@App/common/events/actorrotate/ActorMoveServerEventHandler";
+import { ActorRotateServerEventHandler } from "@App/common/events/actorrotate/ActorRotateServerEventHandler";
+import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 
 export class EventDispatcher {
 
     private eventHandlers: { [eventType: string]: IServerEventHandler; } = {};
 
-    constructor(private gameProvider: GameProvider) {
+    constructor(private gameProvider: GameProvider, private commonSerializer: CommonSerializer) {
         this.register(new JoinGameServerEventHandler());
         this.register(new DrawCardServerEventHandler());
         this.register(new ActorMoveServerEventHandler());
@@ -48,6 +49,7 @@ export class EventDispatcher {
             context.services = services;
             context.gameProvider = this.gameProvider;
             context.event = event;
+            context.serializer = this.commonSerializer;
 
             handler.process(context, event.data);
         });

@@ -7,9 +7,10 @@ import { GameDto } from "@App/common/dto/GameDto";
 
 export class GameProvider {
 
-    public serializer = new CommonSerializer();
+    private cache: { [gameId: string]: Game } = {};
 
-    private cache = {};
+    constructor(private serializer: CommonSerializer) {
+    }
 
     getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<Game> {
 

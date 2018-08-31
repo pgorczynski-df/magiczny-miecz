@@ -19,4 +19,25 @@ export class Game {
     init() {
         this.world.newGame();
     }
+
+    findActor(id: string) {
+        for (var stack of this.world.cardStacks) {
+            if (stack.id === id) {
+                return stack;
+            }
+            var card = stack.drawnCards.find(a => a.id === id);
+            if (card) {
+                return card;
+            }
+            card = stack.cards.find(a => a.id === id);
+            if (card) {
+                return card;
+            }
+            card = stack.disposedCards.find(a => a.id === id);
+            if (card) {
+                return card;
+            }
+        }
+        return undefined;
+    }
 }

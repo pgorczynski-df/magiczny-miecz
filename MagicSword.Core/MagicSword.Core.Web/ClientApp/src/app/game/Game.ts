@@ -184,13 +184,17 @@ export class Game {
         return this.findPlayer(this.currentPlayerId);
     }
 
-    addActor = (actor: IActor) => {
+    findActor(id: string) {
+        return this.actors.find(a => a.id === id);
+    }
+
+    addActor(actor: IActor) {
         this.actors.push(actor);
         this.scene.add(actor.object3D);
         this.interectionObjects.push(actor.object3D);
     }
 
-    removeActor = (actor: IActor) => {
+    removeActor(actor: IActor) {
 
         var object3D = actor.object3D;
         this.interectionObjects = Collections.remove(this.interectionObjects, object3D);
@@ -204,7 +208,7 @@ export class Game {
         this.actors = Collections.remove(this.actors, object3D);
     }
 
-    updateRaycaster = (event: MouseEvent) => {
+    private updateRaycaster(event: MouseEvent) {
 
         var mouseX = (event.offsetX / this.width) * 2 - 1;
         var mouseY = -(event.offsetY / this.height) * 2 + 1;
@@ -217,7 +221,7 @@ export class Game {
         //this.raycaster.setFromCamera({ x: event.clientX,  y: event.clientY }, this.camera);
     }
 
-    onDocumentMouseDown = (event: MouseEvent) => {
+    onDocumentMouseDown(event: MouseEvent) {
 
         this.updateRaycaster(event);
 
@@ -244,9 +248,9 @@ export class Game {
             this.world.clearSelectedActor();
         }
 
-    };
+    }
 
-    onDocumentMouseMove = (event: MouseEvent) => {
+    onDocumentMouseMove(event: MouseEvent) {
         event.preventDefault();
 
         this.updateRaycaster(event);
@@ -264,10 +268,10 @@ export class Game {
 
             }
         }
-    };
+    }
 
     // ReSharper disable once UnusedParameter
-    onDocumentMouseUp = (event: MouseEvent) => {
+    onDocumentMouseUp(event: MouseEvent) {
 
         if (!this.draggedObject) {
             return;
@@ -288,7 +292,7 @@ export class Game {
 
         this.draggedObject = null;
         this.controls.enabled = true;
-    };
+    }
 
     drawCardOld(card: Card = null, uncover = true): Card {
         var cardResult = this.world.drawCard(card, uncover);

@@ -5,17 +5,22 @@ import { Services } from "@App/Services";
 import { Game } from "@App/common/mechanics/Game";
 import { GameProvider } from "@App/common/repository/GameProvider";
 import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
+import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
 import { JoinGameServerEventHandler } from "@App/common/events/joingame/JoinGameServerEventHandler";
 import { DrawCardServerEventHandler } from "@App/common/events/drawcard/DrawCardServerEventHandler";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
+import { ActorMoveServerEventHandler } from "@App/common/events/actormove/ActorMoveServerEventHandler";
+import { ActorRotateServerEventHandler } from "@App/common/events/actorrotate/ActorRotateServerEventHandler";
+import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 
 export class EventDispatcher {
 
     private eventHandlers: { [eventType: string]: IServerEventHandler; } = {};
 
-    constructor(private gameProvider: GameProvider) {
+    constructor(private gameProvider: GameProvider, private commonSerializer: CommonSerializer) {
         this.register(new JoinGameServerEventHandler());
         this.register(new DrawCardServerEventHandler());
+        this.register(new ActorMoveServerEventHandler());
+        this.register(new ActorRotateServerEventHandler());
     }
 
     process(services: Services, responseProcessor: IResponseProcessor, event: Event) {
@@ -44,8 +49,9 @@ export class EventDispatcher {
             context.services = services;
             context.gameProvider = this.gameProvider;
             context.event = event;
+            context.serializer = this.commonSerializer;
 
-            handler.process(context, event);
+            handler.process(context, event.data);
         });
 
     }

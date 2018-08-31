@@ -15,8 +15,6 @@ export class World {
 
     cardStacks: CardStack[] = [];
 
-    //characters: Character[] = [];
-
     constructor(private game: Game) {
 
         this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
