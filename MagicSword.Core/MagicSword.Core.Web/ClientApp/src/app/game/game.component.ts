@@ -123,6 +123,10 @@ export class GameComponent implements AfterViewInit {
     }
 
     pickCard(content) {
+        if (!confirm("Jesteś pewien?")) {
+            return;
+        }
+
         var stack = this.selectedActor as any as CardStack;
         this.cardsToPick = stack.cards;
         this.modalService.open(content, { ariaLabelledBy: "modal-basic-title" }).result.then((result) => {

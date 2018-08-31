@@ -1,4 +1,3 @@
-﻿
 
 export class EventType {
     public static JoinGameRequest: string = "JoinGameRequest";
@@ -14,5 +13,6 @@ export class EventType {
     public static Error: string = "Error";
     public static DrawCard: string = "DrawCard";
     public static JoinGame: string = "JoinGame";
+    public static ViewStack: string = "ViewStack";
 }
 

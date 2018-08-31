@@ -1,5 +1,6 @@
 import { World } from "@App/common/mechanics/World";
 import { Player } from "@App/common/mechanics/Player";
+import {IActorBase} from "@App/common/mechanics/IActorBase";
 
 export class Game {
 
@@ -20,7 +21,7 @@ export class Game {
         this.world.newGame();
     }
 
-    findActor(id: string) {
+    findActor(id: string) : IActorBase {
         for (var stack of this.world.cardStacks) {
             if (stack.id === id) {
                 return stack;

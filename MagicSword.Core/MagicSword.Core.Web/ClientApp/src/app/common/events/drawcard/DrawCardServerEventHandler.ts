@@ -12,23 +12,13 @@ export class DrawCardServerEventHandler extends ServerEventHandlerBase {
 
     process(context: EventHandlerContext, data: any) {
 
-        context.gameProvider.getOrLoadGame(context.services, context.game.id, context.event.sourcePlayerId).then(game => {
+        var args = data as DrawCardRequestDto;
+        var card = context.game.world.drawCard(args.stackId, args.uncover);
+        var cardDto = context.serializer.serializeCard(card);
+        var res = new DrawCardNotificationDto();
+        res.cardDto = cardDto;
 
-            var args = data as DrawCardRequestDto;
-            var card = game.world.drawCard(args.stackId, args.uncover);
-            var cardDto = context.serializer.serializeCard(card);
-            var res = new DrawCardNotificationDto();
-            res.cardDto = cardDto;
-
-            //this.responseProcessor.respondCaller({
-            //    eventType: EventType.JoinGameResponse,
-            //    data: res,
-            //    gameId: event.gameId
-            //});
-
-            this.notifyAll(context, res);
-
-        });
+        this.notifyAll(context, res);
 
     }
 

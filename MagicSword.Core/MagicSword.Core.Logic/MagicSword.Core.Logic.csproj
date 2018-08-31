@@ -29,6 +29,8 @@
     <None Remove="ClientApp\src\app\common\events\EventKind.ts" />
     <None Remove="ClientApp\src\app\common\events\IServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\ServerEventHandlerBase.ts" />
+    <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Card.ts" />
@@ -87,6 +89,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventKind.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\IServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\ServerEventHandlerBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\GameProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\UserProvider.ts" />
