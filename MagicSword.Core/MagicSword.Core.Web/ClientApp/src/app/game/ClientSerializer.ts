@@ -95,7 +95,7 @@ export class ClientSerializer {
         this.deserializeCardCollection(world, target, source.disposedCards, target.disposedCards, false);
     }
 
-    private deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[], loadCard: boolean) => {
+    public deserializeCardCollection = (world: World, stack: CardStack, sourceCollection: CardDto[], targetCollection: Card[], loadCard: boolean) => {
         for (var cardDto of sourceCollection) {
             var card = this.deserializeCard(world, stack, cardDto, loadCard);
             targetCollection.push(card);

@@ -122,16 +122,26 @@ export class GameComponent implements AfterViewInit {
         this.game.world.toggleCovered();
     }
 
-    pickCard(content) {
+    async pickCard(content) {
         if (!confirm("Jesteś pewien?")) {
             return;
         }
 
         var stack = this.selectedActor as any as CardStack;
+        await this.dispatcher.viewStackHandler.viewCards(stack);
+
         this.cardsToPick = stack.cards;
-        this.modalService.open(content, { ariaLabelledBy: "modal-basic-title" }).result.then((result) => {
-            this.game.drawCardOld(result, true);
-        }, cancelReason => { });
+        this.modalService.open(content, { ariaLabelledBy: "modal-basic-title" }).result.then(async (result) => {
+            
+            //this.game.drawCardOld(result, true);
+            this.clearCards(stack);
+        }, cancelReason => {
+            this.clearCards(stack);
+        });
+    }
+
+    private clearCards(stack: CardStack) {
+        stack.cards = [];
     }
 
 }
