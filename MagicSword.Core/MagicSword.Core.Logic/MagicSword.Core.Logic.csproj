@@ -25,6 +25,9 @@
     <None Remove="ClientApp\src\app\common\dto\Object3DDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\PlayerDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\WorldDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\disposecard\DisposeCardNotificationDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\disposecard\DisposeCardRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\disposecard\DisposeCardServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\EventHandlerContext.ts" />
     <None Remove="ClientApp\src\app\common\events\EventKind.ts" />
     <None Remove="ClientApp\src\app\common\events\IServerEventHandler.ts" />
@@ -85,6 +88,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventHandlerContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventKind.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\IServerEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\disposecard\DisposeCardNotificationDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\disposecard\DisposeCardRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\disposecard\DisposeCardServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardNotificationDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardServerEventHandler.ts" />

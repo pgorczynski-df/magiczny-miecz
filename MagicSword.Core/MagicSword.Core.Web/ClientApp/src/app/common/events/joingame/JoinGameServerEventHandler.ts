@@ -16,10 +16,11 @@ export class JoinGameServerEventHandler extends ServerEventHandlerBase {
         var game = context.game;
         var gameDto = context.serializer.serializeGameForPlayer(game, playerId);
 
-        var gsDto: GameStateDto = {
+        var gsDto = {
             currentPlayerId: playerId,
             data: gameDto,
-        } as any;
+            notificationEvents: []
+        } as GameStateDto;
 
         var player = context.callingPlayer;
 

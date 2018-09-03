@@ -4,13 +4,14 @@ import { Services } from "@App/Services";
 import { IClientEventHandler } from "@App/game/events/IClientEventHandler";
 import { ClientEventHandlerContext } from "@App/game/events/ClientEventHandlerContext";
 import { Game } from "@App/game/Game";
+import { ErrorEventHandler } from "@App/game/events/handlers/ErrorEventHandler";
 import { DrawCardClientEventHandler } from "@App/game/events/handlers/DrawCardClientEventHandler";
 import { JoinGameEventHandler } from "@App/game/events/handlers/JoinGameEventHandler";
 import { ActorRotateClientEventHandler } from "@App/game/events/handlers/ActorRotateClientEventHandler";
 import { ActorMoveClientEventHandler } from "@App/game/events/handlers/ActorMoveClientEventHandler";
 import { ViewStackClientEventHandler } from "@App/game/events/handlers/ViewStackClientEventHandler";
 import { PickCardClientEventHandler } from "@App/game/events/handlers/PickCardClientEventHandler";
-import { ErrorEventHandler } from "@App/game/events/handlers/ErrorEventHandler";
+import { DisposeCardClientEventHandler } from "@App/game/events/handlers/DisposeCardClientEventHandler";
 
 export class ClientEventDispatcher {
 
@@ -20,6 +21,7 @@ export class ClientEventDispatcher {
     actorMoveHandler = new ActorMoveClientEventHandler();
     viewStackHandler = new ViewStackClientEventHandler();
     pickCardClientEventHandler = new PickCardClientEventHandler();
+    disposeCardClientEventHandler = new DisposeCardClientEventHandler();
 
     private eventHandlers: { [eventType: string]: IClientEventHandler; } = {};
     private context = new ClientEventHandlerContext();
@@ -35,6 +37,7 @@ export class ClientEventDispatcher {
         this.register(this.actorMoveHandler);
         this.register(this.viewStackHandler);
         this.register(this.pickCardClientEventHandler);
+        this.register(this.disposeCardClientEventHandler);
     }
 
     process(event: Event) {

@@ -1,7 +1,6 @@
 import { CardStack } from "@App/common/mechanics/CardStack";
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { ActorBase } from "@App/common/mechanics/ActorBase";
-import { Object3D } from "@App/common/mechanics/Object3D";
 
 export class Card extends ActorBase {
 
@@ -25,21 +24,8 @@ export class Card extends ActorBase {
         this.originStack.disposeCard(this);
     }
 
-    //init(): void {
-    //   super.init();
-    //}
-
-    //get faceUrl(): string {
-    //  return this.isCovered ? this.originStack.faceUrl : this.topTexture;
-    //}
-
-    //get contentUrl() {
-    //  return this.topTexture;
-    //}
-
     setCovered(isCovered: boolean) {
         this.isCovered = isCovered;
-        //this.changeTex(this.faceUrl);
     }
 
     toggleCovered() {

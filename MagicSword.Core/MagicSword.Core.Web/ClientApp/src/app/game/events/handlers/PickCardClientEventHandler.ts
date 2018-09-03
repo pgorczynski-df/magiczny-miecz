@@ -27,7 +27,6 @@ export class PickCardClientEventHandler extends ClientEventHandlerBase {
 
         var dto3 = event.data as PickCardNotificationDto;
         var cardDto2 = dto3.cardDto;
-        cardDto2.loaded = true;
         var originStack2 = world.cardStacks.find(a => a.definition.id === cardDto2.originStackDefinitionId);
         this.context.serializer.deserializeCard(world, originStack2, cardDto2, true);
     }

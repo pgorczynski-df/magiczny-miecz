@@ -37,13 +37,7 @@ export class World {
     }
 
     cleanup() {
-
-        //this.clearSelectedActor();
-
         for (var stack of this.cardStacks) {
-            for (var card of stack.drawnCards) {
-                this.disposeCardInternal(card);
-            }
             stack.cleanup();
         }
     }
@@ -59,6 +53,13 @@ export class World {
         var stack = this.findStack(stackId);
         var card = stack.findCard(cardId);
         stack.drawCard(card, true);
+        return card;
+    }
+
+    disposeCard(stackId: string, cardId: string): Card {
+        var stack = this.findStack(stackId);
+        var card = stack.findDrawnCard(cardId);
+        card.dispose();
         return card;
     }
 

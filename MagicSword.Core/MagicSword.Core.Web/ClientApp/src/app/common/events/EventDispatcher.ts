@@ -12,6 +12,7 @@ import { ActorMoveServerEventHandler } from "@App/common/events/actormove/ActorM
 import { ActorRotateServerEventHandler } from "@App/common/events/actorrotate/ActorRotateServerEventHandler";
 import { ViewStackServerEventHandler } from "@App/common/events/viewstack/ViewStackServerEventHandler";
 import { PickCardServerEventHandler } from "@App/common/events/pickcard/PickCardServerEventHandler";
+import { DisposeCardServerEventHandler } from "@App/common/events/disposecard/DisposeCardServerEventHandler";
 
 export class EventDispatcher {
 
@@ -24,6 +25,7 @@ export class EventDispatcher {
         this.register(new ActorRotateServerEventHandler());
         this.register(new ViewStackServerEventHandler());
         this.register(new PickCardServerEventHandler());
+        this.register(new DisposeCardServerEventHandler());
     }
 
     process(services: Services, responseProcessor: IResponseProcessor, event: Event) {

@@ -49,9 +49,7 @@ export class GameComponent implements AfterViewInit {
             if (context.level.value >= 2) { //INFO
                 var message = new Message();
                 message.text = messages[0];
-                this.messages.push(message);
-                var objDiv = this.eventsPanel.nativeElement as any;
-                objDiv.scrollTop = objDiv.scrollHeight;
+                this.addMessage(message);
             }
         };
 
@@ -69,9 +67,15 @@ export class GameComponent implements AfterViewInit {
         });
     }
 
+    private addMessage(message: Message) {
+        this.messages.push(message);
+        var objDiv = this.eventsPanel.nativeElement as any;
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
     private startGame(gameId: string, mode: string) {
 
-        this.services.logger.info("Starting game in " + mode + " mode");
+        //this.services.logger.info("Starting game in " + mode + " mode");
 
         this.game = new Game(this.viewport.nativeElement, this.services);
         this.dispatcher = new ClientEventDispatcher(this.services, this.game);
@@ -81,14 +85,14 @@ export class GameComponent implements AfterViewInit {
             this.dispatcher.process(e);
             if (e.eventKind === EventKind.Notification) {
                 var message = this.eventToMessage(e);
-                this.messages.push(message);
+                this.addMessage(message);
             }
             if (e.eventKind === EventKind.Response && e.eventType === EventType.JoinGame) {
 
                 var rdto = e.data as GameStateDto;
                 for (var event of rdto.notificationEvents) {
                     var message2 = this.eventToMessage(event);
-                    this.messages.push(message2);
+                    this.addMessage(message2);
                 }
             }
         });
@@ -135,18 +139,22 @@ export class GameComponent implements AfterViewInit {
     };
 
     disposeCard = () => {
-        this.game.world.disposeCard();
+
+        var card = this.selectedActor as Card;
+
+        this.dispatcher.disposeCardClientEventHandler.disposeCard(card);
     };
 
     //sendMessage = () => {
     //this.hub.sendDirectMessage("dada", "userName");
     //}
 
-    toggleCovered() {
-        this.game.world.toggleCovered();
-    }
+    //toggleCovered() {
+    //    this.game.world.toggleCovered();
+    //}
 
     async pickCard(content) {
+
         if (!confirm("Jesteś pewien?")) {
             return;
         }
