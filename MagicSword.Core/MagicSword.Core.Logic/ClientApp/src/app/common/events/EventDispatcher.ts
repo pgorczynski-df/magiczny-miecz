@@ -55,6 +55,8 @@ export class EventDispatcher {
             context.serializer = this.commonSerializer;
 
             handler.process(context, event.data);
+
+            this.gameProvider.persistGame(services, game);
         });
 
     }
