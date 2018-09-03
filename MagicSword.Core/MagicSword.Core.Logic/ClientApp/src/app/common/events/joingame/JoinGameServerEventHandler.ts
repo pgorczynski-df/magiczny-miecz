@@ -14,15 +14,15 @@ export class JoinGameServerEventHandler extends ServerEventHandlerBase {
         context.gameProvider.getOrLoadDto(context.services, context.game.id, context.event.sourcePlayerId).then(gameDto => {
 
             var gsDto: GameStateDto = {
-                currentPlayerId: context.event.sourcePlayerId,
+                currentPlayerId: context.callingPlayer.id,
                 data: gameDto,
             } as any;
 
             this.respondCaller(context, gsDto);
 
             this.notifyAll(context, {
-                id: context.event.sourcePlayerId,
-                name: context.event.sourcePlayerId,
+                id: context.callingPlayer.id,
+                name: context.callingPlayer.name,
             });
 
         });

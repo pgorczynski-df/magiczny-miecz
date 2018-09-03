@@ -28,6 +28,14 @@ export class Game {
         return this.players.find(p => p.id === id);
     }
 
+    addPlayer(id: string, name: string): Player {
+        var player = new Player();
+        player.id = id;
+        player.name = name;
+        this.players.push(player);
+        return player;
+    }
+
     findActor(id: string): IActorBase {
         for (var stack of this.world.cardStacks) {
             if (stack.id === id) {

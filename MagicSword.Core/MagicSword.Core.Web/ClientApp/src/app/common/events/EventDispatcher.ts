@@ -47,6 +47,11 @@ export class EventDispatcher {
         this.gameProvider.getOrLoadGame(services, gameId, event.sourcePlayerId).then(game => {
 
             var callingPlayer = game.findPlayer(event.sourcePlayerId);
+            if (!callingPlayer) {
+                //TODO name
+                callingPlayer = game.addPlayer(event.sourcePlayerId, event.sourcePlayerId);
+            }
+
             callingPlayer.incomingEvents.push(event);
 
             var context = new EventHandlerContext();
