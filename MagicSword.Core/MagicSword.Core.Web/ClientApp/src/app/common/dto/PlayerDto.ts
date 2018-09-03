@@ -1,3 +1,4 @@
+import { Event } from "@App/common/events/Event";
 import { Object3DDto } from "@App/common/dto/Object3DDto";
 
 export class PlayerDto {
@@ -7,5 +8,9 @@ export class PlayerDto {
     name: string;
 
     camera = new Object3DDto();
+
+    incomingEvents: Event[] = [];
+
+    outboundEventIds: string[] = [];
 
 }

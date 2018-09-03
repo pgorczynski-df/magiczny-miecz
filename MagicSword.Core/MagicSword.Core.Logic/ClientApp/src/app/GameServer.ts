@@ -1,10 +1,10 @@
-﻿import { createServer, Server } from "http";
+import { createServer, Server } from "http";
 import * as express from "express";
 import * as socketIo from "socket.io";
 import * as cors from "cors";
 
 import { Services } from "@App/Services";
-import { SocketResponseProcessor } from "@App/game/SocketResponseProcessor";
+import { SocketResponseProcessor } from "@App/SocketResponseProcessor";
 import { Event } from "@App/common/events/Event";
 import { GameService} from "@App/GameService";
 

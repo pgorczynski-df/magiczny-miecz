@@ -45,7 +45,9 @@ export class CommonSerializer {
             id: player.id,
             name: player.name,
             camera: this.serializeObject3D(player.camera),
-        };
+            incomingEvents: player.incomingEvents,
+            outboundEventIds: player.outboundEventIds,
+        } as Player;
         return dto;
     }
 
@@ -54,6 +56,8 @@ export class CommonSerializer {
             id: playerDto.id,
             name: playerDto.name,
             camera: null,
+            incomingEvents: playerDto.incomingEvents,
+            outboundEventIds: playerDto.outboundEventIds,
         } as Player;
         this.deserializeObject3D(playerDto.camera, player.camera);
         return player;

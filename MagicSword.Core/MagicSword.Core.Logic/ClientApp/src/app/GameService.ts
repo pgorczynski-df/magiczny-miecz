@@ -1,4 +1,4 @@
-﻿import { Services } from "@App/Services";
+import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
 import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { Event } from "@App/common/events/Event";
@@ -37,6 +37,7 @@ export class GameService {
         this.userProvider.getUserId(services, token).then(
             r => {
                 event.sourcePlayerId = r;
+                event.token = null;
                 this.eventDispatcher.process(services, responseProcessor, event);
             },
             e => {
