@@ -17,10 +17,19 @@ export class CommonSerializer {
 
     serializeGame = (game: Game): GameDto => {
         var dto = new GameDto();
-        // dto.camera = this.serializeObject3D(game.camera);
         dto.world = this.serializeWorld(game.world);
         for (var player of game.players) {
             var playerDto = this.serializePlayer(player);
+            dto.players.push(playerDto);
+        }
+        return dto;
+    }
+
+    serializeGameForPlayer(game: Game, playerId: string): GameDto {
+        var dto = new GameDto();
+        dto.world = this.serializeWorld(game.world, false, true, true);
+        for (var player of game.players) {
+            var playerDto = this.serializePlayer(player, false);
             dto.players.push(playerDto);
         }
         return dto;
@@ -40,14 +49,15 @@ export class CommonSerializer {
         this.deserializeWorld(source.world, target.world);
     }
 
-    serializePlayer = (player: Player): PlayerDto => {
-        var dto =  {
+    serializePlayer = (player: Player, includeEvents = true): PlayerDto => {
+        var dto = {
             id: player.id,
             name: player.name,
             camera: this.serializeObject3D(player.camera),
-            incomingEvents: player.incomingEvents,
-            outboundEventIds: player.outboundEventIds,
-        } as Player;
+            incomingEvents: includeEvents ? player.incomingEvents : [],
+            outboundEventIds: includeEvents ? player.outboundEventIds : [],
+            notificationEvents: [],
+        } as PlayerDto;
         return dto;
     }
 
@@ -63,10 +73,10 @@ export class CommonSerializer {
         return player;
     }
 
-    serializeWorld = (world: World): WorldDto => {
+    serializeWorld = (world: World, serializeCards = true, serializeDrawnCards = true, serializeDisposedCards = true): WorldDto => {
         var dto = new WorldDto();
         for (var cardStack of world.cardStacks) {
-            var cardStackDto = this.serializeCardStack(cardStack);
+            var cardStackDto = this.serializeCardStack(cardStack, serializeCards, serializeDrawnCards, serializeDisposedCards);
             dto.cardStacks.push(cardStackDto);
         }
         return dto;
@@ -146,8 +156,8 @@ export class CommonSerializer {
         card.id = cardDto.id;
         card.isCovered = cardDto.isCovered;
         //if (cardDto.loaded) {
-            //world.addNewCard(card);
-            this.deserializeObject3D(cardDto.object3D, card.object3D);
+        //world.addNewCard(card);
+        this.deserializeObject3D(cardDto.object3D, card.object3D);
         //}
         return card;
     }

@@ -15,6 +15,7 @@ import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
 import { EventKind } from "@App/common/events/EventKind";
 import { EventType } from "@App/common/events/EventType";
+import {GameStateDto} from "@App/common/dto/GameStateDto";
 
 @Component({
     selector: "app-game",
@@ -79,9 +80,16 @@ export class GameComponent implements AfterViewInit {
         this.services.inboundBus.of().subscribe(e => {
             this.dispatcher.process(e);
             if (e.eventKind === EventKind.Notification) {
-                var message = new Message();
-                message.text = this.dispatcher.getMessage(e);
+                var message = this.eventToMessage(e);
                 this.messages.push(message);
+            }
+            if (e.eventKind === EventKind.Response && e.eventType === EventType.JoinGame) {
+
+                var rdto = e.data as GameStateDto;
+                for (var event of rdto.notificationEvents) {
+                    var message2 = this.eventToMessage(event);
+                    this.messages.push(message2);
+                }
             }
         });
 
@@ -101,6 +109,12 @@ export class GameComponent implements AfterViewInit {
             default:
                 throw new Error("unknown mode: " + mode);
         }
+    }
+
+    private eventToMessage(event: Event) {
+        var message = new Message();
+        message.text = this.dispatcher.getMessage(event);
+        return message;
     }
 
     new = () => {

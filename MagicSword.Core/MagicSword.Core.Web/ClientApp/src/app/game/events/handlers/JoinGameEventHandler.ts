@@ -1,6 +1,7 @@
 import { Event } from "@App/common/events/Event";
 import { EventType } from "@App/common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
+import { GameDto } from "@App/common/dto/GameDto";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { StringUtils } from "@App/common/utils/StringUtils";
 
@@ -21,7 +22,7 @@ export class JoinGameEventHandler extends ClientEventHandlerBase {
         var rdto = event.data as GameStateDto;
         game.currentPlayerId = rdto.currentPlayerId;
 
-        var gameDto = rdto.data;
+        var gameDto = rdto.data as GameDto;
         this.context.serializer.deserializeGame(gameDto, game);
 
     }

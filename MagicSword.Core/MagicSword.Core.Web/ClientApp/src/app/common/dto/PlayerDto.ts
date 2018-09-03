@@ -12,5 +12,4 @@ export class PlayerDto {
     incomingEvents: Event[] = [];
 
     outboundEventIds: string[] = [];
-
 }
