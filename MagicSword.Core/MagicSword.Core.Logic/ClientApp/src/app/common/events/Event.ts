@@ -5,6 +5,10 @@ export class Event {
 
     eventKind: string;
 
+    id: string;
+
+    requestEventId?: string;
+
     gameId: string;
 
     sourcePlayerId?: string;

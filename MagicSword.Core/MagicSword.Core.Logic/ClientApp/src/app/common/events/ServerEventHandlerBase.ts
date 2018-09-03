@@ -1,7 +1,9 @@
 import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
 import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
+import { Event } from "@App/common/events/Event";
 import { EventKind } from "@App/common/events/EventKind";
 import { EventType } from "@App/common/events/EventType";
+import { Guid } from "@App/common/utils/Guid";
 
 export abstract class ServerEventHandlerBase implements IServerEventHandler {
 
@@ -9,40 +11,33 @@ export abstract class ServerEventHandlerBase implements IServerEventHandler {
 
     abstract process(context: EventHandlerContext, data: any);
 
-    protected respondCaller(context: EventHandlerContext, data: any) {
+    private createEvent(context: EventHandlerContext, eventType: string, eventKind: string, data: any) : Event {
+        var ev = {
+            id: Guid.uuidv4(),
+            requestEventId: context.event.id,
+            gameId: context.game.id,
+            eventType: eventType,
+            eventKind: eventKind,
+            sourcePlayerId: context.event.sourcePlayerId,
+            data: data,
+        };
+        return ev;
+    }
 
-        context.responseProcessor.respondCaller(
-            {
-                gameId: context.game.id,
-                eventType: this.getEventType(),
-                eventKind: EventKind.Response,
-                sourcePlayerId: context.event.sourcePlayerId,
-                data: data,
-            });
+    protected respondCaller(context: EventHandlerContext, data: any) {
+        var ev = this.createEvent(context, this.getEventType(), EventKind.Response, data);
+        context.responseProcessor.respondCaller(ev);
     }
 
     protected respondError(context: EventHandlerContext, data: any) {
-        context.services.logger.error(data);
-        context.responseProcessor.respondCaller(
-            {
-                gameId: context.game.id,
-                eventType: EventType.Error,
-                eventKind: EventKind.Response,
-                sourcePlayerId: context.event.sourcePlayerId,
-                data: data,
-            });
+        var ev = this.createEvent(context, EventType.Error, EventKind.Response, data);
+        context.services.logger.error(ev);
+        context.responseProcessor.respondCaller(ev);
     }
 
     protected notifyAll(context: EventHandlerContext, data: any) {
-
-        context.responseProcessor.respondAll(
-            {
-                gameId: context.game.id,
-                eventType: this.getEventType(),
-                eventKind: EventKind.Notification,
-                sourcePlayerId: context.event.sourcePlayerId,
-                data: data,
-            });
+        var ev = this.createEvent(context, this.getEventType(), EventKind.Notification, data);
+        context.responseProcessor.respondAll(ev);
     }
 
 }

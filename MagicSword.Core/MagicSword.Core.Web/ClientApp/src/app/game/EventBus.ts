@@ -3,6 +3,7 @@ import { filter } from "rxjs/operators";
 import { Injectable } from "@angular/core";
 
 import { Event } from "@App/common/events/Event";
+import { Guid } from "@App/common/utils/Guid";
 
 @Injectable()
 export class EventBus {
@@ -14,7 +15,13 @@ export class EventBus {
     }
 
     public publish(gameId: string, eventType: string, eventKind: string, data: any = null): void {
-        this.events.next({ gameId: gameId, eventType: eventType, eventKind: eventKind, data: data } as Event);
+        this.events.next({
+            id: Guid.uuidv4(),
+            gameId: gameId,
+            eventType: eventType,
+            eventKind: eventKind,
+            data: data
+        } as Event);
     }
 
     public publish2(message: Event): void {
