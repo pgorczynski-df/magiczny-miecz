@@ -10,6 +10,7 @@ import { ActorRotateClientEventHandler } from "@App/game/events/handlers/ActorRo
 import { ActorMoveClientEventHandler } from "@App/game/events/handlers/ActorMoveClientEventHandler";
 import { ViewStackClientEventHandler } from "@App/game/events/handlers/ViewStackClientEventHandler";
 import { PickCardClientEventHandler } from "@App/game/events/handlers/PickCardClientEventHandler";
+import { ErrorEventHandler } from "@App/game/events/handlers/ErrorEventHandler";
 
 export class ClientEventDispatcher {
 
@@ -27,6 +28,7 @@ export class ClientEventDispatcher {
         this.context.game = this.game;
         this.context.services = this.services;
 
+        this.register(new ErrorEventHandler());
         this.register(this.drawCardHandler);
         this.register(this.joinGameHandler);
         this.register(this.actorRotateHandler);

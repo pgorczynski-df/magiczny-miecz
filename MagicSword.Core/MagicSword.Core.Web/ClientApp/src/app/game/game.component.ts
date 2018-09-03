@@ -13,7 +13,8 @@ import { Player } from "@App/common/mechanics/Player";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
-import {EventKind} from "@App/common/events/EventKind";
+import { EventKind } from "@App/common/events/EventKind";
+import { EventType } from "@App/common/events/EventType";
 
 @Component({
     selector: "app-game",

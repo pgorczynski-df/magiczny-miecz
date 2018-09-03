@@ -50,6 +50,8 @@ export class ResourceManager {
         d[EventType.ActorMove] = "Gracz {0} przesunął kartę {1}";
         d[EventType.ActorRotate] = "Gracz {0} obrócił kartę {1}";
         d[EventType.ViewStack] = "Gracz {0} ogląda zawartość stosu {1}";
+        d[EventType.DrawCard] = "Gracz {0} wyciągnął kartę {1}";
+        d[EventType.PickCard] = "Gracz {0} wyłożył kartę {1}";
     }
 
 }

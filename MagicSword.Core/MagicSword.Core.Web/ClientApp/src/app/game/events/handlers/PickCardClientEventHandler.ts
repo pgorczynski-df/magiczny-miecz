@@ -4,6 +4,7 @@ import { PickCardRequestDto } from "@App/common/events/pickcard/PickCardRequestD
 import { EventType } from "@App/common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 import { Card } from "@App/game/logic/Card";
+import {StringUtils} from "@App/common/utils/StringUtils";
 
 export class PickCardClientEventHandler extends ClientEventHandlerBase {
 
@@ -28,10 +29,20 @@ export class PickCardClientEventHandler extends ClientEventHandlerBase {
         var cardDto2 = dto3.cardDto;
         cardDto2.loaded = true;
         var originStack2 = world.cardStacks.find(a => a.definition.id === cardDto2.originStackDefinitionId);
-        var card2 = this.context.serializer.deserializeCard(world, originStack2, cardDto2, true);
+        this.context.serializer.deserializeCard(world, originStack2, cardDto2, true);
+    }
 
-        //context.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card2.name}`);
+    getMessage(event: Event): string {
 
+        var game = this.context.game;
+
+        var dto3 = event.data as PickCardNotificationDto;
+        var actor = game.findActor(dto3.cardDto.id);
+        if (actor) {
+            return StringUtils.format(this.r(), this.senderName(event), actor.name);
+        }
+
+        return event.eventType + " " + "error";
     }
 
 }
