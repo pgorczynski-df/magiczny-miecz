@@ -3,7 +3,7 @@ import { AccountClient } from "@App/common/client/AccountClient";
 
 export class UserProvider {
 
-    private cache = {};
+    private cache: { [token: string]: any } = {};
 
     getUserId(services: Services, token: string): Promise<any> {
 

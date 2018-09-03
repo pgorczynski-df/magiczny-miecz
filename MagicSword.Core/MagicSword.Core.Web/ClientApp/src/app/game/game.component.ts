@@ -6,13 +6,14 @@ import { Game } from "../game/Game";
 import { Event } from "@App/common/events/Event";
 import { IActor } from "../game/logic/IActor";
 import { Services } from "app/Services";
-import { EventType } from "@App/common/events/EventType";
 import { CardStack } from "./logic/CardStack";
 import { Card } from "./logic/Card";
 import { SocketClient } from "@App/SocketClient";
 import { Player } from "@App/common/mechanics/Player";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
+import { Message } from "@App/game/Message";
+import {EventKind} from "@App/common/events/EventKind";
 
 @Component({
     selector: "app-game",
@@ -36,7 +37,7 @@ export class GameComponent implements AfterViewInit {
 
     }
 
-    events: Event[] = [];
+    messages: Message[] = [];
     cardsToPick: Card[] = [];
 
     ngAfterViewInit() {
@@ -44,7 +45,9 @@ export class GameComponent implements AfterViewInit {
         var consoleHandler = this.services.logger.createDefaultHandler();
         var myHandler = (messages, context) => {
             if (context.level.value >= 2) { //INFO
-                //this.events.push({ gameId: this.game ? this.game.id : "-1", eventType: messages[0], data: {}, token: "" } as Event);
+                var message = new Message();
+                message.text = messages[0];
+                this.messages.push(message);
                 var objDiv = this.eventsPanel.nativeElement as any;
                 objDiv.scrollTop = objDiv.scrollHeight;
             }
@@ -72,7 +75,14 @@ export class GameComponent implements AfterViewInit {
         this.dispatcher = new ClientEventDispatcher(this.services, this.game);
         this.game.eventDispatcher = this.dispatcher;
 
-        this.services.inboundBus.of().subscribe(e => this.dispatcher.process(e));
+        this.services.inboundBus.of().subscribe(e => {
+            this.dispatcher.process(e);
+            if (e.eventKind === EventKind.Notification) {
+                var message = new Message();
+                message.text = this.dispatcher.getMessage(e);
+                this.messages.push(message);
+            }
+        });
 
         switch (mode) {
             case "local":
@@ -106,7 +116,6 @@ export class GameComponent implements AfterViewInit {
     };
 
     drawCard = (uncover: boolean) => {
-        console.log(this.dispatcher);
         this.dispatcher.drawCardHandler.drawCard(uncover);
     };
 

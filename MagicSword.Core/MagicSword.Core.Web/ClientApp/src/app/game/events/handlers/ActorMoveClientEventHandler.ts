@@ -3,6 +3,7 @@ import { EventType } from "@App/common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 import { ActorDto } from "@App/common/dto/ActorDto";
 import { IActor } from "@App/game/logic/IActor";
+import { StringUtils } from "@App/common/utils/StringUtils";
 
 export class ActorMoveClientEventHandler extends ClientEventHandlerBase {
 
@@ -23,11 +24,21 @@ export class ActorMoveClientEventHandler extends ClientEventHandlerBase {
         var actor = game.findActor(actorDto.id);
         if (actor) {
             this.context.serializer.deserializeActor(actorDto, actor);
-            //this.services.logger.info(`Gracz ${senderName} przesunął kartę ${actor.name}`);
-        } else {
-            //this.services.logger.warn(`Cannot find actor with id: ${actorDto.id}`);
+        } 
+
+    }
+
+    getMessage(event: Event): string {
+
+        var game = this.context.game;
+
+        var actorDto = event.data as ActorDto;
+        var actor = game.findActor(actorDto.id);
+        if (actor) {
+            return StringUtils.format(this.r(), this.senderName(event), actor.name);
         }
 
+        return event.eventType + " " + "error";
     }
 
 }

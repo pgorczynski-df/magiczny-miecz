@@ -36,7 +36,6 @@ export class ClientEventDispatcher {
     }
 
     process(event: Event) {
-
         var type = event.eventType;
 
         var handler = this.eventHandlers[type];
@@ -56,7 +55,15 @@ export class ClientEventDispatcher {
                 this.services.logger.error("Unexpected incoming event kind: " + event.eventKind);
                 break;
         }
+    }
 
+    getMessage(event: Event): string {
+        var type = event.eventType;
+        var handler = this.eventHandlers[type];
+        if (!handler) {
+            return event.eventType;
+        }
+        return handler.getMessage(event);
     }
 
     private register(handler: IClientEventHandler) {

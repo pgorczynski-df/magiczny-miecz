@@ -11,4 +11,6 @@ export interface IClientEventHandler {
 
     processResponse(event: Event);
 
+    getMessage(event: Event);
+
 }

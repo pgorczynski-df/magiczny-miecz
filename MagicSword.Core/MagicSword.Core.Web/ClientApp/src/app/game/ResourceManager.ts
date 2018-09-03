@@ -3,11 +3,14 @@ import { Injectable } from "@angular/core";
 
 import { Services } from "@App/Services";
 import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
+import { EventType } from "@App/common/events/EventType";
 
 @Injectable()
 export class ResourceManager {
 
-    static font: THREE.Font = null;
+    public static font: THREE.Font = null;
+
+    private static readonly localization: { [key: string]: string } = {};
 
     private cardDefinitionLoader: CardDefinitionLoader;
     private fontLoader: THREE.FontLoader;
@@ -17,7 +20,9 @@ export class ResourceManager {
         this.fontLoader = new THREE.FontLoader();
     }
 
-    load(): Promise<any> {
+    public load(): Promise<any> {
+
+        this.addMessages();
 
         var promises : Promise<any>[] = [];
 
@@ -31,6 +36,17 @@ export class ResourceManager {
         promises.push(this.cardDefinitionLoader.load());
 
         return Promise.all(promises); 
+    }
+
+    public static getLocalizationMessage(key: string) {
+        var msg = ResourceManager.localization[key];
+        return msg ? msg : key;
+    }
+
+    private addMessages() {
+        var d = ResourceManager.localization;
+        d[EventType.Error] = "Wystąpił błąd: {0}";
+        d[EventType.ActorMove] = "Gracz {0} przesunął kartę {1}";
     }
 
 }
