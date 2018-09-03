@@ -4,6 +4,7 @@ import { CardStack } from "@App/game/logic/CardStack";
 import { CardStackDto } from "@App/common/dto/CardStackDto";
 import { EventType } from "@App/common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
+import { StringUtils } from "@App/common/utils/StringUtils";
 
 export class ViewStackClientEventHandler extends ClientEventHandlerBase {
 
@@ -30,12 +31,14 @@ export class ViewStackClientEventHandler extends ClientEventHandlerBase {
         this.resolve(this.stack);
     }
 
-    processNotification(event: Event) {
-
-
-
-        //context.services.logger.info(`Gracz ${senderName} wyciągnał kartę ${card2.name}`);
-
+    getMessage(event: Event): string {
+        var dto = event.data as ViewStackRequestDto;
+        var stack = this.context.game.findActor(dto.stackId) as CardStack;
+        if (stack) {
+            return StringUtils.format(this.r(), this.senderName(event), stack.name);
+        } else {
+            return event.eventType + " " + "error";
+        }
     }
 
 }

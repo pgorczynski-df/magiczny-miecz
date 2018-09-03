@@ -2,6 +2,7 @@ import { Event } from "@App/common/events/Event";
 import { EventType } from "@App/common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
+import { StringUtils } from "@App/common/utils/StringUtils";
 
 export class JoinGameEventHandler extends ClientEventHandlerBase {
 
@@ -34,8 +35,10 @@ export class JoinGameEventHandler extends ClientEventHandlerBase {
         if (!player) {
             game.players.push(event.data);
         }
+    }
 
-        //this.services.logger.info(`Gracz ${ev.data.name} dołącza do gry`);
+    getMessage(event: Event): string {
+        return StringUtils.format(this.r(), this.senderName(event));
     }
 }
 

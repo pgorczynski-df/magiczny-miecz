@@ -46,7 +46,10 @@ export class ResourceManager {
     private addMessages() {
         var d = ResourceManager.localization;
         d[EventType.Error] = "Wystąpił błąd: {0}";
+        d[EventType.JoinGame] = "Gracz {0} dołączył do gry";
         d[EventType.ActorMove] = "Gracz {0} przesunął kartę {1}";
+        d[EventType.ActorRotate] = "Gracz {0} obrócił kartę {1}";
+        d[EventType.ViewStack] = "Gracz {0} ogląda zawartość stosu {1}";
     }
 
 }
