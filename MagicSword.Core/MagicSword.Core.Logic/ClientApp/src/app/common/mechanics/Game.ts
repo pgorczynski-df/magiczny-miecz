@@ -1,6 +1,7 @@
+import { Event } from "@App/common/events/Event";
 import { World } from "@App/common/mechanics/World";
 import { Player } from "@App/common/mechanics/Player";
-import {IActorBase} from "@App/common/mechanics/IActorBase";
+import { IActorBase } from "@App/common/mechanics/IActorBase";
 
 export class Game {
 
@@ -9,6 +10,8 @@ export class Game {
     owner: Player;
 
     players: Player[] = [];
+
+    outBoundEvents: Event[] = [];
 
     world = new World();
 
@@ -21,7 +24,11 @@ export class Game {
         this.world.newGame();
     }
 
-    findActor(id: string) : IActorBase {
+    findPlayer(id: string) {
+        return this.players.find(p => p.id === id);
+    }
+
+    findActor(id: string): IActorBase {
         for (var stack of this.world.cardStacks) {
             if (stack.id === id) {
                 return stack;

@@ -46,6 +46,9 @@ export class EventDispatcher {
         var gameId = event.gameId;
         this.gameProvider.getOrLoadGame(services, gameId, event.sourcePlayerId).then(game => {
 
+            var callingPlayer = game.findPlayer(event.sourcePlayerId);
+            callingPlayer.incomingEvents.push(event);
+
             var context = new EventHandlerContext();
             context.game = game;
             context.responseProcessor = responseProcessor;
@@ -53,6 +56,7 @@ export class EventDispatcher {
             context.gameProvider = this.gameProvider;
             context.event = event;
             context.serializer = this.commonSerializer;
+            context.callingPlayer = callingPlayer;
 
             handler.process(context, event.data);
 
