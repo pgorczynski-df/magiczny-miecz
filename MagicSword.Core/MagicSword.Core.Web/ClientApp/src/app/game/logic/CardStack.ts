@@ -86,31 +86,6 @@ export class CardStack extends BoxObject implements IActor {
         return card;
     }
 
-    public drawCard(card: Card = null, uncover: boolean): Card {
-
-        if (card == null) {
-
-            if (this.cards.length === 0) {
-                throw new Error("Stack " + name + " is empty!");
-            }
-
-            card = this.cards.pop();
-        }
-
-        this.cards = Collections.remove(this.cards, card);
-
-        card.init();
-        card.setCovered(!uncover);
-
-        card.object3D.position.copy(this.object3D.position);
-        card.object3D.position.x += this.width + 1;
-        card.object3D.position.y = this.definition.type === CardType.Pawn ? this.width / 2 + 0.5 : 0.5;
-
-        this.drawnCards.push(card);
-
-        return card;
-    }
-
     public disposeCard = (card: Card) => {
         this.drawnCards = this.drawnCards.filter(obj => obj !== card);
         this.disposedCards.push(card);

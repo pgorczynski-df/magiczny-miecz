@@ -55,6 +55,13 @@ export class World {
         return card;
     }
 
+    pickCard(stackId: string, cardId: string): Card {
+        var stack = this.findStack(stackId);
+        var card = stack.findCard(cardId);
+        stack.drawCard(card, true);
+        return card;
+    }
+
     private findStack(stackId: string) {
         var stack = this.cardStacks.find(s => s.id === stackId);
         if (!stack) {

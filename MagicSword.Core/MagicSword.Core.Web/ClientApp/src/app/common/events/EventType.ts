@@ -14,5 +14,6 @@ export class EventType {
     public static DrawCard: string = "DrawCard";
     public static JoinGame: string = "JoinGame";
     public static ViewStack: string = "ViewStack";
+    public static PickCard: string = "PickCard";
 }
 

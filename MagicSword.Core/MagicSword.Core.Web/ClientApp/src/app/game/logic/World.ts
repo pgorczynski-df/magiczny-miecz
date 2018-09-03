@@ -59,13 +59,6 @@ export class World {
         }
     }
 
-    drawCard = (card: Card = null, uncover = true): Card => {
-        let stack = card !== null ? card.originStack : <CardStack>this.selectedActor;
-        card = stack.drawCard(card, uncover);
-        this.addNewCard(card);
-        return card;
-    }
-
     addNewCard(card: Card) {
         this.game.addActor(card);
     }

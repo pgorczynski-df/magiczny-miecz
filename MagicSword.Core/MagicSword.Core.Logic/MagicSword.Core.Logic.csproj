@@ -28,6 +28,9 @@
     <None Remove="ClientApp\src\app\common\events\EventHandlerContext.ts" />
     <None Remove="ClientApp\src\app\common\events\EventKind.ts" />
     <None Remove="ClientApp\src\app\common\events\IServerEventHandler.ts" />
+    <None Remove="ClientApp\src\app\common\events\pickcard\PickCardNotificationDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\pickcard\PickCardRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\pickcard\PickCardServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\ServerEventHandlerBase.ts" />
     <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
     <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />
@@ -88,6 +91,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventHandlerContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventKind.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\IServerEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardNotificationDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\ServerEventHandlerBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />

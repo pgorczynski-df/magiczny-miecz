@@ -294,13 +294,6 @@ export class Game {
 
     // end of BEWARE
 
-    drawCardOld(card: Card = null, uncover = true): Card {
-        var cardResult = this.world.drawCard(card, uncover);
-        var cardDto = this.serializer.serializeCard(cardResult);
-        //this.publishEvent(EventType.CardDrawn, cardDto);
-        return cardResult;
-    }
-
     new = () => {
         this.resetCamera();
         this.world.newGame();

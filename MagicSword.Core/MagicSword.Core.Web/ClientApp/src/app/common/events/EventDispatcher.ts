@@ -1,16 +1,16 @@
-﻿import { Event } from "@App/common/events/Event";
+import { Event } from "@App/common/events/Event";
 import { EventKind } from "@App/common/events/EventKind";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
-import { Game } from "@App/common/mechanics/Game";
 import { GameProvider } from "@App/common/repository/GameProvider";
+import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
 import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
 import { JoinGameServerEventHandler } from "@App/common/events/joingame/JoinGameServerEventHandler";
 import { DrawCardServerEventHandler } from "@App/common/events/drawcard/DrawCardServerEventHandler";
 import { ActorMoveServerEventHandler } from "@App/common/events/actormove/ActorMoveServerEventHandler";
 import { ActorRotateServerEventHandler } from "@App/common/events/actorrotate/ActorRotateServerEventHandler";
-import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
+import { ViewStackServerEventHandler } from "@App/common/events/viewstack/ViewStackServerEventHandler";
 
 export class EventDispatcher {
 
@@ -21,6 +21,7 @@ export class EventDispatcher {
         this.register(new DrawCardServerEventHandler());
         this.register(new ActorMoveServerEventHandler());
         this.register(new ActorRotateServerEventHandler());
+        this.register(new ViewStackServerEventHandler());
     }
 
     process(services: Services, responseProcessor: IResponseProcessor, event: Event) {

@@ -9,6 +9,7 @@ import { JoinGameEventHandler } from "@App/game/events/handlers/JoinGameEventHan
 import { ActorRotateClientEventHandler } from "@App/game/events/handlers/ActorRotateClientEventHandler";
 import { ActorMoveClientEventHandler } from "@App/game/events/handlers/ActorMoveClientEventHandler";
 import { ViewStackClientEventHandler } from "@App/game/events/handlers/ViewStackClientEventHandler";
+import { PickCardClientEventHandler } from "@App/game/events/handlers/PickCardClientEventHandler";
 
 export class ClientEventDispatcher {
 
@@ -17,6 +18,7 @@ export class ClientEventDispatcher {
     actorRotateHandler = new ActorRotateClientEventHandler();
     actorMoveHandler = new ActorMoveClientEventHandler();
     viewStackHandler = new ViewStackClientEventHandler();
+    pickCardClientEventHandler = new PickCardClientEventHandler();
 
     private eventHandlers: { [eventType: string]: IClientEventHandler; } = {};
     private context = new ClientEventHandlerContext();
@@ -30,6 +32,7 @@ export class ClientEventDispatcher {
         this.register(this.actorRotateHandler);
         this.register(this.actorMoveHandler);
         this.register(this.viewStackHandler);
+        this.register(this.pickCardClientEventHandler);
     }
 
     process(event: Event) {

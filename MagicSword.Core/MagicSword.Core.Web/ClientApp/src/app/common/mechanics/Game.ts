@@ -26,15 +26,15 @@ export class Game {
             if (stack.id === id) {
                 return stack;
             }
-            var card = stack.drawnCards.find(a => a.id === id);
+            var card = stack.findDrawnCard(id);
             if (card) {
                 return card;
             }
-            card = stack.cards.find(a => a.id === id);
+            card = stack.findCard(id);
             if (card) {
                 return card;
             }
-            card = stack.disposedCards.find(a => a.id === id);
+            card = stack.findDisposedCard(id);
             if (card) {
                 return card;
             }

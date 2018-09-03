@@ -79,15 +79,21 @@ export class CommonSerializer {
         }
     }
 
-    serializeCardStack = (cardStack: CardStack): CardStackDto => {
+    serializeCardStack = (cardStack: CardStack, serializeCards = true, serializeDrawnCards = true, serializeDisposedCards = true): CardStackDto => {
         var dto = new CardStackDto();
         dto.id = cardStack.id;
         dto.definitionId = cardStack.definition.id;
         dto.object3D = this.serializeObject3D(cardStack.object3D);
 
-        this.serializeCardCollection(cardStack.cards, dto.cards);
-        this.serializeCardCollection(cardStack.drawnCards, dto.drawnCards);
-        this.serializeCardCollection(cardStack.disposedCards, dto.disposedCards);
+        if (serializeCards) {
+            this.serializeCardCollection(cardStack.cards, dto.cards);
+        }
+        if (serializeDrawnCards) {
+            this.serializeCardCollection(cardStack.drawnCards, dto.drawnCards);
+        }
+        if (serializeDisposedCards) {
+            this.serializeCardCollection(cardStack.disposedCards, dto.disposedCards);
+        }
 
         return dto;
     }
