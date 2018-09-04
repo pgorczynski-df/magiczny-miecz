@@ -1,7 +1,8 @@
-﻿import { Services } from "@App/Services";
+import { Services } from "@App/Services";
 import { HttpClient } from "@App/common/client/HttpClient";
+import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 
-export class GamesApiClient extends HttpClient {
+export class GamesApiClient extends HttpClient implements IGamesRepository {
 
     private readonly apiUrl = "/api/Games";
 

@@ -32,6 +32,7 @@
     <None Remove="ClientApp\src\app\common\mechanics\Object3D.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\World.ts" />
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
+    <None Remove="ClientApp\src\app\game\ClientGameService.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
     <None Remove="ClientApp\src\app\game\EventBus.ts" />
     <None Remove="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
@@ -47,6 +48,7 @@
     <None Remove="ClientApp\src\app\game\events\handlers\ViewStackClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\Game.ts" />
+    <None Remove="ClientApp\src\app\game\local\EventBusResponseProcessor.ts" />
     <None Remove="ClientApp\src\app\game\logic\Card.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardDefinition.ts" />
     <None Remove="ClientApp\src\app\game\logic\CardStack.ts" />
@@ -92,6 +94,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\ViewStackClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\JoinGameEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\IClientEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\local\ClientGameService.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\local\EventBusResponseProcessor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Message.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />

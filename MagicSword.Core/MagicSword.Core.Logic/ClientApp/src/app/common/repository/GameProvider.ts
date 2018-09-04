@@ -1,15 +1,15 @@
 import { Services } from "@App/Services";
-import { GamesApiClient } from "@App/common/client/GamesApiClient";
 import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { Player } from "@App/common/mechanics/Player";
 import { Game } from "@App/common/mechanics/Game";
 import { GameDto } from "@App/common/dto/GameDto";
+import {IGamesRepository} from "@App/common/repository/IGamesRepository";
 
 export class GameProvider {
 
     private cache: { [gameId: string]: Game } = {};
-
-    constructor(private serializer: CommonSerializer) {
+     
+    constructor(private serializer: CommonSerializer, private repositoryFactory: (services: Services) => IGamesRepository) {
     }
 
     getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<Game> {
@@ -19,7 +19,7 @@ export class GameProvider {
         var game = this.getGame(id);
         if (!game) {
             services.logger.debug(`Cache did not contain game id = ${id}`);
-            var gamesApiClient = new GamesApiClient(services);
+            var gamesApiClient = this.repositoryFactory(services);
             return gamesApiClient.get(id).then(
                 gameDto => {
 
@@ -53,7 +53,7 @@ export class GameProvider {
 
     persistGame(services: Services, game: Game) : GameDto {
         var gameDto = this.serializer.serializeGame(game);
-        var gamesApiClient = new GamesApiClient(services);
+        var gamesApiClient = this.repositoryFactory(services);
         gamesApiClient.update(game.id, gameDto).then(resId => {
             services.logger.debug(`Game id = ${resId} updated successfully`);
         });

@@ -6,6 +6,8 @@ import { EventKind } from "@App/common/events/EventKind";
 
 export class JoinGameServerEventHandler extends ServerEventHandlerBase {
 
+    private readonly lastEventsToLoad = 20; 
+
     getEventType(): string {
         return EventType.JoinGame;
     }
@@ -22,11 +24,14 @@ export class JoinGameServerEventHandler extends ServerEventHandlerBase {
             notificationEvents: []
         } as GameStateDto;
 
-        var player = context.callingPlayer;
+        var playerEvents = context.callingPlayer.outboundEventIds;
 
-        for (var eventId of player.outboundEventIds/*.slice(player.outboundEventIds.length - 20, null)*/) {
+        var beginIndex = playerEvents.length - this.lastEventsToLoad;
+        var sliced = playerEvents.slice(beginIndex > 0 ? beginIndex : 0, playerEvents.length);
+
+        for (var eventId of sliced) {
             var event = game.outBoundEvents.find(e => e.id === eventId); //TODO optimize
-            if (event && event.eventKind === EventKind.Notification) {
+            if (event && event.eventKind === EventKind.Notification) {               
                 gsDto.notificationEvents.push(event);
             }
         }

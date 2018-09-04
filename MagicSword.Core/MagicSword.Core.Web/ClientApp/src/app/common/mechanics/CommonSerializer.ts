@@ -17,6 +17,7 @@ export class CommonSerializer {
 
     serializeGame = (game: Game): GameDto => {
         var dto = new GameDto();
+        dto.outBoundEvents = game.outBoundEvents;
         dto.world = this.serializeWorld(game.world);
         for (var player of game.players) {
             var playerDto = this.serializePlayer(player);
@@ -27,6 +28,7 @@ export class CommonSerializer {
 
     serializeGameForPlayer(game: Game, playerId: string): GameDto {
         var dto = new GameDto();
+        dto.outBoundEvents = []; //handled in JoinGameServerEventHandler
         dto.world = this.serializeWorld(game.world, false, true, true);
         for (var player of game.players) {
             var playerDto = this.serializePlayer(player, false);
@@ -37,6 +39,7 @@ export class CommonSerializer {
 
     deserializeGame = (source: GameDto, target: Game): void => {
 
+        target.outBoundEvents = source.outBoundEvents;
         target.world.cleanup();
         target.players = [];
 
@@ -56,7 +59,6 @@ export class CommonSerializer {
             camera: this.serializeObject3D(player.camera),
             incomingEvents: includeEvents ? player.incomingEvents : [],
             outboundEventIds: includeEvents ? player.outboundEventIds : [],
-            notificationEvents: [],
         } as PlayerDto;
         return dto;
     }

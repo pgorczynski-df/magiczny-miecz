@@ -15,7 +15,8 @@ import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
 import { EventKind } from "@App/common/events/EventKind";
 import { EventType } from "@App/common/events/EventType";
-import {GameStateDto} from "@App/common/dto/GameStateDto";
+import { GameStateDto } from "@App/common/dto/GameStateDto";
+import { ClientGameService } from "@App/game/local/ClientGameService";
 
 @Component({
     selector: "app-game",
@@ -29,6 +30,7 @@ export class GameComponent implements AfterViewInit {
     game: Game;
     socketClient: SocketClient;
     dispatcher: ClientEventDispatcher;
+    clientGameService: ClientGameService;
 
     get selectedActor(): IActor {
         return this.game ? this.game.world.selectedActor : null;
@@ -78,6 +80,8 @@ export class GameComponent implements AfterViewInit {
         //this.services.logger.info("Starting game in " + mode + " mode");
 
         this.game = new Game(this.viewport.nativeElement, this.services);
+        this.game.id = gameId;
+
         this.dispatcher = new ClientEventDispatcher(this.services, this.game);
         this.game.eventDispatcher = this.dispatcher;
 
@@ -99,14 +103,16 @@ export class GameComponent implements AfterViewInit {
 
         switch (mode) {
             case "local":
-                var player = new Player();
-                player.id = "1";
-                player.name = "Samotny gracz";
-                this.game.players.push(player);
-                this.game.currentPlayerId = player.id;
+                this.clientGameService = new ClientGameService(this.services);
+                if (!this.services.authService.token) {
+                    this.services.authService.token = "dummy";
+                }
+                this.services.outboundBus.of().subscribe((e: Event) => {
+                    this.clientGameService.handleEvent(e);
+                });
+                this.dispatcher.joinGameHandler.request();
                 break;
             case "online":
-                this.game.id = gameId;
                 this.socketClient.init();
                 this.dispatcher.joinGameHandler.request();
                 break;
