@@ -8,7 +8,6 @@ import "three/examples/js/loaders/GLTFLoader";
 import { Skybox } from "app/game/Skybox";
 import { World } from "app/game/logic/World";
 import { IActor } from "app/game/logic/IActor";
-import { ClientSerializer } from "@App/game/ClientSerializer";
 import { Dice } from "app/game/Dice";
 import { Collections } from "@App/common/utils/Collections";
 import { Services } from "app/Services";
@@ -47,8 +46,6 @@ export class Game {
     physicsScene: CANNON.World;
 
     dice: Dice;
-
-    serializer = new ClientSerializer();
 
     events: Event[] = [];
 
@@ -318,27 +315,6 @@ export class Game {
     new = () => {
         this.resetCamera();
         this.world.newGame();
-    }
-
-    serialize = (): any => {
-        return this.serializer.serializeGame(this);
-    }
-
-    deserialize = (dto: any): any => {
-        this.serializer.deserializeGame(dto, this);
-    }
-
-    save = () => {
-
-        var c = this.serialize();
-        var ss = JSON.stringify(c);
-        localStorage.setItem("mmsave", ss);
-    }
-
-    load = () => {
-        var ss = localStorage.getItem("mmsave");
-        var c = JSON.parse(ss);
-        this.deserialize(c);
     }
 
     threeXWindowResize = (renderer, camera) => {

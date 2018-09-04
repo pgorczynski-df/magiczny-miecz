@@ -69,12 +69,6 @@ export class GameComponent implements AfterViewInit {
         });
     }
 
-    private addMessage(message: Message) {
-        this.messages.push(message);
-        var objDiv = this.eventsPanel.nativeElement as any;
-        objDiv.scrollTop = objDiv.scrollHeight;
-    }
-
     private startGame(gameId: string, mode: string) {
 
         //this.services.logger.info("Starting game in " + mode + " mode");
@@ -127,18 +121,20 @@ export class GameComponent implements AfterViewInit {
         return message;
     }
 
-    new = () => {
-        this.game.new();
+    private addMessage(message: Message) {
+        this.messages.push(message);
+        var objDiv = this.eventsPanel.nativeElement as any;
+        objDiv.scrollTop = objDiv.scrollHeight;
     }
 
-    save = () => {
-        this.game.save();
-    };
+    //new = () => {
+    //}
 
-    load = () => {
-        //this.game.load();
-        //this.services.outboundBus.publish(EventType.GameLoadRequest);
-    };
+    //save = () => {
+    //};
+
+    //load = () => {
+    //};
 
     drawCard = (uncover: boolean) => {
         this.dispatcher.drawCardHandler.drawCard(uncover);
