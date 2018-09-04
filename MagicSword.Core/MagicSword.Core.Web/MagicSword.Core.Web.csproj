@@ -58,6 +58,7 @@
     <None Remove="ClientApp\src\app\game\logic\CardType.ts" />
     <None Remove="ClientApp\src\app\game\logic\Character.ts" />
     <None Remove="ClientApp\src\app\game\logic\CharacterParameterDefinition.ts" />
+    <None Remove="ClientApp\src\app\game\logic\Dice.js" />
     <None Remove="ClientApp\src\app\game\logic\GameBoard.ts" />
     <None Remove="ClientApp\src\app\game\logic\IActor.ts" />
     <None Remove="ClientApp\src\app\game\logic\World.ts" />
@@ -99,6 +100,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\local\ClientGameService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\local\EventBusResponseProcessor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\logic\dice.js" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Message.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
@@ -133,6 +135,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\common\mechanics\events\drawcard\" />
     <Folder Include="ClientApp\src\assets\3d\" />
+    <Folder Include="ClientApp\src\modules\threejs-dice\lib\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,15 +8,16 @@ import "app/../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 import "three/examples/js/loaders/GLTFLoader";
 
-import { Skybox } from "app/game/Skybox";
-import { World } from "app/game/logic/World";
-import { IActor } from "app/game/logic/IActor";
-import { Dice } from "app/game/Dice";
+import { Skybox } from "@App/game/Skybox";
+import { World } from "@App/game/logic/World";
+import { IActor } from "@App/game/logic/IActor";
 import { Collections } from "@App/common/utils/Collections";
-import { Services } from "app/Services";
+import { Services } from "@App/Services";
 import { Event } from "@App/common/events/Event";
 import { Player } from "@App/common/mechanics/Player";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
+
+import { DiceManager, DiceD6 } from "app/../modules/threejs-dice";
 
 export class Game {
 
@@ -48,7 +49,7 @@ export class Game {
 
     physicsScene: CANNON.World;
 
-    dice: Dice;
+    dice: DiceD6;
 
     events: Event[] = [];
 
@@ -131,7 +132,7 @@ export class Game {
         this.scene.add(this.plane);
 
         this.physicsScene = new CANNON.World();
-        this.physicsScene.gravity.set(0, -9.82, 0); // m/s²
+        this.physicsScene.gravity.set(0, -9.8 * 20, 0); // m/s²
 
         var groundShape = new CANNON.Plane();
         var groundBody = new CANNON.Body({
@@ -139,13 +140,7 @@ export class Game {
         });
         groundBody.addShape(groundShape);
         groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
-
         this.physicsScene.addBody(groundBody);
-
-
-        //this.dice = new Dice();
-        //this.dice.init(this.scene);
-        //this.physicsScene.addBody(this.dice.body);
 
         this.world = new World(this);
 
@@ -157,19 +152,40 @@ export class Game {
         //var outlinePass = new THREE.OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera);
         //composer.addPass(outlinePass);
 
+        DiceManager.setWorld(this.physicsScene);
+
+        this.dice = new DiceD6({ backColor: "#1A6481", fontColor: "#000000", size: 5 });
+        this.scene.add(this.dice.getObject());
+        this.throwDice(5);
+
         var dt = 1 / 60;
 
         var animate = () => {
-            requestAnimationFrame(animate);
 
             this.physicsScene.step(dt);
-            //this.dice.update();
+
+            this.dice.updateMeshFromBody(); 
 
             this.renderer.render(this.scene, this.camera);
             this.controls.update();
+
+            requestAnimationFrame(animate);
         };
 
         animate();
+    }
+
+    public throwDice(value: number) {
+
+        this.dice.getObject().position.x = 15;
+        this.dice.getObject().position.y = 10;
+        this.dice.getObject().position.z = 10;
+        this.dice.getObject().rotation.x = 20 * Math.PI / 180;
+        this.dice.getObject().body.angularVelocity.set(2, 4, 3);
+
+        this.dice.updateBodyFromMesh();
+
+        DiceManager.prepareValues([{ dice: this.dice, value: value }]);
     }
 
     private resetCamera = () => {
@@ -276,7 +292,7 @@ export class Game {
 
     }
 
-    private onDocumentMouseMove = (event: MouseEvent) =>  {
+    private onDocumentMouseMove = (event: MouseEvent) => {
         event.preventDefault();
 
         this.updateRaycaster(event);
