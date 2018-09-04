@@ -13,7 +13,6 @@ import { Dice } from "app/game/Dice";
 import { Collections } from "@App/common/utils/Collections";
 import { Services } from "app/Services";
 import { Event } from "@App/common/events/Event";
-import { Card } from "@App/game/logic/Card";
 import { Player } from "@App/common/mechanics/Player";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 
