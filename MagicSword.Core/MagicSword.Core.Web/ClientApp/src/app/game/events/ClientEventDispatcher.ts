@@ -12,6 +12,7 @@ import { ActorMoveClientEventHandler } from "@App/game/events/handlers/ActorMove
 import { ViewStackClientEventHandler } from "@App/game/events/handlers/ViewStackClientEventHandler";
 import { PickCardClientEventHandler } from "@App/game/events/handlers/PickCardClientEventHandler";
 import { DisposeCardClientEventHandler } from "@App/game/events/handlers/DisposeCardClientEventHandler";
+import { CameraChangeEventHandler } from "@App/game/events/handlers/CameraChangeEventHandler";
 
 export class ClientEventDispatcher {
 
@@ -22,6 +23,7 @@ export class ClientEventDispatcher {
     viewStackHandler = new ViewStackClientEventHandler();
     pickCardClientEventHandler = new PickCardClientEventHandler();
     disposeCardClientEventHandler = new DisposeCardClientEventHandler();
+    cameraChangeEventHandler = new CameraChangeEventHandler();
 
     private eventHandlers: { [eventType: string]: IClientEventHandler; } = {};
     private context = new ClientEventHandlerContext();
@@ -38,6 +40,7 @@ export class ClientEventDispatcher {
         this.register(this.viewStackHandler);
         this.register(this.pickCardClientEventHandler);
         this.register(this.disposeCardClientEventHandler);
+        this.register(this.cameraChangeEventHandler);
     }
 
     process(event: Event) {

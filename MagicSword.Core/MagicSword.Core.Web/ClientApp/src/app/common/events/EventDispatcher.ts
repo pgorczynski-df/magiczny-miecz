@@ -13,6 +13,7 @@ import { ActorRotateServerEventHandler } from "@App/common/events/actorrotate/Ac
 import { ViewStackServerEventHandler } from "@App/common/events/viewstack/ViewStackServerEventHandler";
 import { PickCardServerEventHandler } from "@App/common/events/pickcard/PickCardServerEventHandler";
 import { DisposeCardServerEventHandler } from "@App/common/events/disposecard/DisposeCardServerEventHandler";
+import { CameraChangeEventHandler } from "@App/common/events/camerachange/CameraChangeEventHandler";
 
 export class EventDispatcher {
 
@@ -26,6 +27,7 @@ export class EventDispatcher {
         this.register(new ViewStackServerEventHandler());
         this.register(new PickCardServerEventHandler());
         this.register(new DisposeCardServerEventHandler());
+        this.register(new CameraChangeEventHandler());
     }
 
     process(services: Services, responseProcessor: IResponseProcessor, event: Event) {
@@ -54,7 +56,9 @@ export class EventDispatcher {
                 callingPlayer = game.addPlayer(event.sourcePlayerId, event.sourcePlayerId);
             }
 
-            callingPlayer.incomingEvents.push(event);
+            if (!handler.isTransient()) {
+                callingPlayer.incomingEvents.push(event);
+            }
 
             var context = new EventHandlerContext();
             context.game = game;

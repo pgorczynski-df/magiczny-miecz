@@ -8,5 +8,6 @@ export class EventType {
     public static ViewStack: string = "ViewStack";
     public static PickCard: string = "PickCard";
     public static DisposeCard: string = "DisposeCard";
+    public static CameraChange: string = "CameraChange";
 }
 

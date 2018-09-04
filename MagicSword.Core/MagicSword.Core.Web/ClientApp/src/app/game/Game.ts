@@ -1,3 +1,6 @@
+import { fromEvent } from "rxjs";
+import { debounceTime } from "rxjs/operators";
+
 import * as THREE from "three";
 import * as CANNON from "cannon";
 
@@ -89,7 +92,14 @@ export class Game {
 
         this.controls = new THREE.OrbitControls(this.camera, this.container);
         this.controls.target = new THREE.Vector3(0, 0, 0);
-        this.controls.maxDistance = 150;
+        this.controls.maxDistance = 300;
+
+        const source = fromEvent(this.controls, "change");
+        const result = source.pipe(debounceTime(1000));
+        result.subscribe(_ => {
+            console.log(this.eventDispatcher.cameraChangeEventHandler);
+            this.eventDispatcher.cameraChangeEventHandler.cameraChanged(this.camera);
+        });
 
         // Prepare clock
         this.clock = new THREE.Clock();
@@ -222,7 +232,7 @@ export class Game {
         this.actors = Collections.remove(this.actors, object3D);
     }
 
-    //BEWARE: the functions below cannot be converted to member functions, since the binding context changes !
+    //BEWARE: the functions below cannot be converted to member functions, since the "this" context is different when using "old-style" binding !
 
     private updateRaycaster = (event: MouseEvent) => {
 
@@ -312,12 +322,12 @@ export class Game {
 
     // end of BEWARE
 
-    new = () => {
+    new() {
         this.resetCamera();
         this.world.newGame();
     }
 
-    threeXWindowResize = (renderer, camera) => {
+    private threeXWindowResize(renderer, camera) {
 
         var callback = () => {
             renderer.setSize(this.width, this.height);

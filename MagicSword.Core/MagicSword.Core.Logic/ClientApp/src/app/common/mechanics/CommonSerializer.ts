@@ -71,7 +71,10 @@ export class CommonSerializer {
             incomingEvents: playerDto.incomingEvents,
             outboundEventIds: playerDto.outboundEventIds,
         } as Player;
-        this.deserializeObject3D(playerDto.camera, player.camera);
+        if (playerDto.camera) {
+            player.camera = new Object3D();
+            this.deserializeObject3D(playerDto.camera, player.camera);
+        }
         return player;
     }
 

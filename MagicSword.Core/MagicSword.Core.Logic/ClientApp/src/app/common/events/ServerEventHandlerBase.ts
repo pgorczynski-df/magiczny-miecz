@@ -7,6 +7,10 @@ import { Guid } from "@App/common/utils/Guid";
 
 export abstract class ServerEventHandlerBase implements IServerEventHandler {
 
+    isTransient(): boolean {
+        return false;
+    }
+
     abstract getEventType(): string;
 
     abstract process(context: EventHandlerContext, data: any);
