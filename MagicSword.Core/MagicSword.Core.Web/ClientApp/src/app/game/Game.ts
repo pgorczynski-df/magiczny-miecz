@@ -143,9 +143,9 @@ export class Game {
         this.physicsScene.addBody(groundBody);
 
 
-        this.dice = new Dice();
-        this.dice.init(this.scene);
-        this.physicsScene.addBody(this.dice.body);
+        //this.dice = new Dice();
+        //this.dice.init(this.scene);
+        //this.physicsScene.addBody(this.dice.body);
 
         this.world = new World(this);
 
@@ -163,7 +163,7 @@ export class Game {
             requestAnimationFrame(animate);
 
             this.physicsScene.step(dt);
-            this.dice.update();
+            //this.dice.update();
 
             this.renderer.render(this.scene, this.camera);
             this.controls.update();

@@ -9,5 +9,6 @@ export class EventType {
     public static PickCard: string = "PickCard";
     public static DisposeCard: string = "DisposeCard";
     public static CameraChange: string = "CameraChange";
+    public static DiceThrow: string = "DiceThrow";
 }
 

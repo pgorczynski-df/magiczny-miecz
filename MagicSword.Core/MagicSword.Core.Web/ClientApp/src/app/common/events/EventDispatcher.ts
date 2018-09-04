@@ -14,6 +14,7 @@ import { ViewStackServerEventHandler } from "@App/common/events/viewstack/ViewSt
 import { PickCardServerEventHandler } from "@App/common/events/pickcard/PickCardServerEventHandler";
 import { DisposeCardServerEventHandler } from "@App/common/events/disposecard/DisposeCardServerEventHandler";
 import { CameraChangeEventHandler } from "@App/common/events/camerachange/CameraChangeEventHandler";
+import { DiceThrowServerEventHandler } from "@App/common/events/dicethrow/DiceThrowServerEventHandler";
 
 export class EventDispatcher {
 
@@ -28,6 +29,7 @@ export class EventDispatcher {
         this.register(new PickCardServerEventHandler());
         this.register(new DisposeCardServerEventHandler());
         this.register(new CameraChangeEventHandler());
+        this.register(new DiceThrowServerEventHandler());
     }
 
     process(services: Services, responseProcessor: IResponseProcessor, event: Event) {

@@ -136,24 +136,18 @@ export class GameComponent implements AfterViewInit {
     //load = () => {
     //};
 
-    drawCard = (uncover: boolean) => {
+    drawCard(uncover: boolean) {
         this.dispatcher.drawCardHandler.drawCard(uncover);
-    };
+    }
 
-    disposeCard = () => {
-
+    disposeCard() {
         var card = this.selectedActor as Card;
-
         this.dispatcher.disposeCardClientEventHandler.disposeCard(card);
-    };
+    }
 
-    //sendMessage = () => {
-    //this.hub.sendDirectMessage("dada", "userName");
-    //}
-
-    //toggleCovered() {
-    //    this.game.world.toggleCovered();
-    //}
+    diceThrow() {
+        this.dispatcher.diceThrowClientEventHandler.throwDice();
+    }
 
     async pickCard(content) {
 

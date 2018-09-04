@@ -53,6 +53,7 @@ export class ResourceManager {
         d[EventType.DrawCard] = "Gracz {0} wyciągnął kartę {1}";
         d[EventType.PickCard] = "Gracz {0} wyłożył kartę {1}";
         d[EventType.DisposeCard] = "Gracz {0} odłożył kartę {1}";
+        d[EventType.DiceThrow] = "Gracz {0} wyrzucił kostką: {1}";
     }
 
 }

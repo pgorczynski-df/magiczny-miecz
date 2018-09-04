@@ -41,6 +41,7 @@
     <None Remove="ClientApp\src\app\game\events\handlers\ActorMoveClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\ActorRotateClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\CameraChangeEventHandler.ts" />
+    <None Remove="ClientApp\src\app\game\events\handlers\DiceThrowClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\DisposeCardClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
     <None Remove="ClientApp\src\app\game\events\handlers\ErrorEventHandler.ts" />
@@ -86,6 +87,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DiceThrowClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\ActorRotateClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\ActorMoveClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\CameraChangeEventHandler.ts" />
