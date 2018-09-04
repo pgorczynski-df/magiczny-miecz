@@ -154,7 +154,7 @@ export class Game {
 
         DiceManager.setWorld(this.physicsScene);
 
-        this.dice = new DiceD6({ backColor: "#1A6481", fontColor: "#000000", size: 5 });
+        this.dice = new DiceD6({ backColor: "#1A6481", fontColor: "#FFFFFF", size: 5 });
         this.scene.add(this.dice.getObject());
         this.throwDice(5);
 
@@ -177,11 +177,12 @@ export class Game {
 
     public throwDice(value: number) {
 
-        this.dice.getObject().position.x = 15;
+        this.dice.getObject().position.x = Math.random() * 45;
         this.dice.getObject().position.y = 10;
         this.dice.getObject().position.z = 10;
         this.dice.getObject().rotation.x = 20 * Math.PI / 180;
-        this.dice.getObject().body.angularVelocity.set(2, 4, 3);
+        this.dice.getObject().body.velocity.set(Math.random() * 20, 0, 0);
+        this.dice.getObject().body.angularVelocity.set(Math.random() * 20, 4, 3);
 
         this.dice.updateBodyFromMesh();
 

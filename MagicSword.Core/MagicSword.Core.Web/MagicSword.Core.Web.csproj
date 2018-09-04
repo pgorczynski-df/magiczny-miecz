@@ -100,7 +100,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\events\IClientEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\local\ClientGameService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\local\EventBusResponseProcessor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\game\logic\dice.js" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Message.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
