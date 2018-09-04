@@ -100,4 +100,16 @@ export class CardStack extends BoxObject implements IActor {
         this.object3D.position.copy(this.definition.initialPosition);
         this.object3D.rotation.copy(this.definition.initialRotation);
     }
+
+    public findCard(id: string) {
+        return this.cards.find(a => a.id === id);
+    }
+
+    public findDrawnCard(id: string) {
+        return this.drawnCards.find(a => a.id === id);
+    }
+
+    public findDisposedCard(id: string) {
+        return this.disposedCards.find(a => a.id === id);
+    }
 }

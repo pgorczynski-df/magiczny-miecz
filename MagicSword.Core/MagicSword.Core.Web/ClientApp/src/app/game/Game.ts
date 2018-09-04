@@ -172,16 +172,38 @@ export class Game {
     }
 
 
-    public findPlayer(playerId: string) {
+    public findPlayer(playerId: string): Player {
         return this.players.find(p => p.id === playerId);
     }
 
-    public getCurrentPlayer() {
+    public getCurrentPlayer(): Player {
         return this.findPlayer(this.currentPlayerId);
     }
 
-    findActor(id: string) {
-        return this.actors.find(a => a.id === id);
+    findActor(id: string): IActor {
+        var actor = this.actors.find(a => a.id === id);
+        return actor ? actor : this.findActorDeep(id);
+    }
+
+    private findActorDeep(id: string): IActor {
+        for (var stack of this.world.cardStacks) {
+            if (stack.id === id) {
+                return stack;
+            }
+            var card = stack.findDisposedCard(id);
+            if (card) {
+                return card;
+            }
+            card = stack.findCard(id);
+            if (card) {
+                return card;
+            }
+            card = stack.findDrawnCard(id);
+            if (card) {
+                return card;
+            }
+        }
+        return undefined;
     }
 
     addActor(actor: IActor) {
