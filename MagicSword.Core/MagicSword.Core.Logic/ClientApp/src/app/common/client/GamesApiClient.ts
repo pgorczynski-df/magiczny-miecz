@@ -1,6 +1,7 @@
 import { Services } from "@App/Services";
 import { HttpClient } from "@App/common/client/HttpClient";
 import { IGamesRepository } from "@App/common/repository/IGamesRepository";
+import { GameListDto } from "@App/common/dto/GameListDto";
 
 export class GamesApiClient extends HttpClient implements IGamesRepository {
 
@@ -10,34 +11,34 @@ export class GamesApiClient extends HttpClient implements IGamesRepository {
         super(services, services.settings.authServerUrl);
     }
 
-    public get(id: string): Promise<any> {
+    public getGame(id: string): Promise<any> {
         var url = `${this.apiUrl}/${id}`;
-        return super.get(url);
+        return this.get(url);
     }
 
     public save(dto: any): Promise<any> {
         var url = `${this.apiUrl}`;
-        return super.post(url, { "data": JSON.stringify(dto) });
+        return this.post(url, { "data": JSON.stringify(dto) });
     }
 
-    public update(id: string, dto: any): Promise<any> {
+    public update(id: string, dto: any): Promise<string> {
         var url = `${this.apiUrl}/${id}`;
-        return super.patch(url, { "data": JSON.stringify(dto) });
+        return this.patch<string>(url, { "data": JSON.stringify(dto) });
     }
 
-    public getMyGames(): Promise<any> {
+    public getMyGames(): Promise<GameListDto[]> {
         var url = `${this.apiUrl}/MyGames`;
-        return super.get(url);
+        return this.get<GameListDto[]>(url);
     }
 
-    public getOpenGames(): Promise<any> {
+    public getOpenGames(): Promise<GameListDto[]> {
         var url = `${this.apiUrl}/OpenGames`;
-        return super.get(url);
+        return this.get<GameListDto[]>(url);
     }
 
-    public createGame(): Promise<any> {
+    public createGame(): Promise<GameListDto> {
         var url = `${this.apiUrl}/CreateGame`;
-        return super.post(url);
+        return this.post(url);
     }
 
 

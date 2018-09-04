@@ -1,7 +1,8 @@
 
+export class GameListDto {
 
-export class DtoBase {
+    id: string;
 
-  id: number;
+    isOwner: boolean;
 
 }

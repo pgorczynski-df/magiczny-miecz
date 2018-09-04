@@ -20,7 +20,7 @@ export class GameProvider {
         if (!game) {
             services.logger.debug(`Cache did not contain game id = ${id}`);
             var gamesApiClient = this.repositoryFactory(services);
-            return gamesApiClient.get(id).then(
+            return gamesApiClient.getGame(id).then(
                 gameDto => {
 
                     services.logger.debug(`Fetching game id = ${id} completed`);

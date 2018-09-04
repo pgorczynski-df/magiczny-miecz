@@ -66,7 +66,6 @@
     <None Remove="ClientApp\src\app\game\SocketService.ts" />
     <None Remove="ClientApp\src\app\game\TextObject.ts" />
     <None Remove="ClientApp\src\app\home\LoginResponse.ts" />
-    <None Remove="ClientApp\src\app\lobby\dto\GameListDto.ts" />
     <None Remove="ClientApp\src\tsconfig.app.json" />
     <None Remove="ClientApp\tsconfig.json" />
   </ItemGroup>
@@ -127,7 +126,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\Game.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\LoginResponse.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\AuthService.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\lobby\dto\GameListDto.ts" />
   </ItemGroup>
 
   <ItemGroup>

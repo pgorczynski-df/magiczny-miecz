@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 import { AxiosRequestConfig } from "axios";
 import { Services } from "@App/Services";
 import { StringUtils } from "@App/common/utils/StringUtils";
@@ -9,19 +9,19 @@ export class HttpClient {
         this.serverUrl = StringUtils.slashify(this.serverUrl);
     }
 
-    public get(url: string): Promise<any> {
-        return this.request("GET", url, null);
+    public get<T = any>(url: string): Promise<T> {
+        return this.request<T>("GET", url, null);
     }
 
-    public post(url: string, data: any = null): Promise<any> {
-        return this.request("POST", url, data);
+    public post<T = any>(url: string, data: any = null): Promise<T> {
+        return this.request<T>("POST", url, data);
     }
 
-    public patch(url: string, data: any = null): Promise<any> {
-        return this.request("PATCH", url, data);
+    public patch<T = any>(url: string, data: any = null): Promise<T> {
+        return this.request<T>("PATCH", url, data);
     }
 
-    protected request(method: string, url: string, data: any) {
+    protected request<T>(method: string, url: string, data: any): Promise<T> {
 
         if (url.startsWith("/")) {
             url = url.substring(1);
@@ -29,7 +29,7 @@ export class HttpClient {
         url = this.serverUrl + url;
 
         this.services.logger.debug(`Attempting to ${method} ${url}`);
-        return axios.request<any>(this.getConfig(method, url, data)).then(r => {
+        return axios.request<T>(this.getConfig(method, url, data)).then(r => {
             this.services.logger.debug(`${method} ${url} successful`);
             return r.data;
         });

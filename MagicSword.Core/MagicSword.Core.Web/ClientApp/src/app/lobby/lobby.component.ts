@@ -1,8 +1,8 @@
 import { Component, AfterViewInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Services } from "app/Services";
-import { GameListDto } from "app/lobby/dto/GameListDto";
-import {GamesApiClient} from "@App/common/client/GamesApiClient";
+import { Services } from "@App/Services";
+import { GamesApiClient } from "@App/common/client/GamesApiClient";
+import { GameListDto } from "@App/common/dto/GameListDto";
 
 @Component({
     selector: "app-lobby-data",

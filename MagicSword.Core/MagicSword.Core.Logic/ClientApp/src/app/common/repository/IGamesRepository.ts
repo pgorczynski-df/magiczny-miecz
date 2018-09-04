@@ -1,9 +1,10 @@
+import {GameListDto} from "@App/common/dto/GameListDto";
 
 export interface IGamesRepository {
 
-    getMyGames(): Promise<any>;
+    getGame(id: string): Promise<any>;
 
-    get(id: string): Promise<any>;
+    getMyGames(): Promise<GameListDto[]>;
 
-    update(id: string, dto: any): Promise<any>;
+    update(id: string, dto: any): Promise<string>;
 }

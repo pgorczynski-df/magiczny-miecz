@@ -1,5 +1,6 @@
 import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 import { Services } from "@App/Services";
+import { GameListDto } from "@App/common/dto/GameListDto";
 
 export class LocalStorageGamesRepository implements IGamesRepository {
 
@@ -8,11 +9,11 @@ export class LocalStorageGamesRepository implements IGamesRepository {
     constructor(private services: Services) {
     }
 
-    getMyGames(): Promise<any> {
+    getMyGames(): Promise<GameListDto[]> {
         throw new Error("not supported");
     }
 
-    get(id: string): Promise<any> {
+    getGame(id: string): Promise<any> {
         var games = this.getUserGames();
         if (!games) {
             return Promise.resolve(null);
