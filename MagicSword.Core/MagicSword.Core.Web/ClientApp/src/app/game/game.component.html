@@ -7,7 +7,8 @@
         <div [hidden]="!(selectedActor?.isCardStack)">
             <div class="btn-group btn-group-vertical" role="group" aria-label="Basic example">
                 <button class="btn btn-secondary" (click)="drawCard()">Wyciągnij kartę</button>
-                <button class="btn btn-secondary" (click)="pickCard(content)">Zobacz karty</button>
+                <button class="btn btn-secondary" (click)="viewCards(content)">Zobacz karty</button>
+                <button class="btn btn-secondary" (click)="viewDisposedCards(content)">Zobacz karty odłożone</button>
             </div>
         </div>
         <div [hidden]="!(selectedActor?.isCard)">

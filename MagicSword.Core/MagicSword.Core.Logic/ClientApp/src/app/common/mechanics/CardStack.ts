@@ -78,7 +78,9 @@ export class CardStack extends ActorBase {
             card = this.cards.pop();
         }
 
+        //a lazy way to override the lack of info on which substack are we drawning from
         this.cards = Collections.remove(this.cards, card);
+        this.disposedCards = Collections.remove(this.disposedCards, card);
 
         //card.init();
         card.setCovered(!uncover);
@@ -121,5 +123,16 @@ export class CardStack extends ActorBase {
 
     public findDisposedCard(id: string) {
         return this.disposedCards.find(a => a.id === id);
+    }
+
+    public findCardDeep(id: string) {
+        var card = this.findCard(id);
+        if (!card) {
+            card = this.findDrawnCard(id);
+        }
+        if (!card) {
+            card = this.findDisposedCard(id);
+        }
+        return card;
     }
 }

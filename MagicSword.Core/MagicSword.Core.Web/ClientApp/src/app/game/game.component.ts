@@ -48,10 +48,6 @@ export class GameComponent implements AfterViewInit {
     cardsToPick: Card[] = [];
     attributes: AttributeDefinition[] = AttributeDefinition.attributeDefinitions;
 
-    //get attributes(): AttributeDefinition[] {
-    //    return AttributeDefinition.attributeDefinitions;
-    //}
-
     ngAfterViewInit() {
 
         var consoleHandler = this.services.logger.createDefaultHandler();
@@ -167,26 +163,38 @@ export class GameComponent implements AfterViewInit {
         return ResourceManager.getLocalizationMessage(key);
     }
 
-    async pickCard(content) {
-
+    async viewCards(content) {
         if (!confirm("Jesteś pewien?")) {
             return;
         }
 
         var stack = this.selectedActor as CardStack;
-        await this.dispatcher.viewStackHandler.viewCards(stack);
+        var cards = await this.dispatcher.viewStackHandler.viewCards(stack);
+        this.showModal(content, cards);
+    }
 
-        this.cardsToPick = stack.cards;
+    async viewDisposedCards(content) {
+        if (!confirm("Jesteś pewien?")) {
+            return;
+        }
+
+        var stack = this.selectedActor as CardStack;
+        var cards = await this.dispatcher.viewStackHandler.viewDisposedCards(stack);
+        this.showModal(content, cards);
+    }
+
+    private showModal(content, cards: Card[]) {
+        this.cardsToPick = cards;
         this.modalService.open(content, { ariaLabelledBy: "modal-basic-title" }).result.then(async (result) => {
             this.dispatcher.pickCardClientEventHandler.pickCard(result);
-            this.clearCards(stack);
+            this.clearCards();
         }, cancelReason => {
-            this.clearCards(stack);
+            this.clearCards();
         });
     }
 
-    private clearCards(stack: CardStack) {
-        stack.cards = [];
+    private clearCards() {
+        this.cardsToPick = [];
     }
 
 }

@@ -49,7 +49,7 @@ export class World {
 
     pickCard(stackId: string, cardId: string): Card {
         var stack = this.findStack(stackId);
-        var card = stack.findCard(cardId);
+        var card = stack.findCardDeep(cardId);
         stack.drawCard(card, true);
         return card;
     }

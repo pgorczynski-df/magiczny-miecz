@@ -116,7 +116,7 @@ export class CommonSerializer {
         return dto;
     }
 
-    private serializeCardCollection = (sourceCollection: Card[], targetCollection: CardDto[]) => {
+    public serializeCardCollection = (sourceCollection: Card[], targetCollection: CardDto[]) => {
         for (var card of sourceCollection) {
             var cardDto = this.serializeCard(card);
             targetCollection.push(cardDto);
