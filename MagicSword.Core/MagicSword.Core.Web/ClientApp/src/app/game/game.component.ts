@@ -18,6 +18,7 @@ import { EventType } from "@App/common/events/EventType";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { ClientGameService } from "@App/game/local/ClientGameService";
 import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
+import {StringUtils} from "@App/common/utils/StringUtils";
 
 
 @Component({
@@ -40,15 +41,16 @@ export class GameComponent implements AfterViewInit {
 
     constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services, private resourceManager: ResourceManager) {
         this.socketClient = new SocketClient(this.services);
-
+        
     }
 
     messages: Message[] = [];
     cardsToPick: Card[] = [];
+    attributes: AttributeDefinition[] = AttributeDefinition.attributeDefinitions;
 
-    get attributes(): AttributeDefinition[] {
-        return AttributeDefinition.attributeDefinitions;
-    }
+    //get attributes(): AttributeDefinition[] {
+    //    return AttributeDefinition.attributeDefinitions;
+    //}
 
     ngAfterViewInit() {
 
@@ -136,6 +138,16 @@ export class GameComponent implements AfterViewInit {
     toggleAttribute(attribute: AttributeDefinition) {
         var card = this.selectedActor as Card;
         this.dispatcher.cardSetAttributeClientEventHandler.toggleAttribute(card, attribute.name);
+    }
+
+    attrDdText(attribute: AttributeDefinition) {
+        var card = this.selectedActor as Card;
+        if (!card) {
+            return "";
+        }
+        var attr = card.getAttribute(attribute.name);
+        var msg = this.res(attr ? "attribute_remove" : "attribute_give");
+        return StringUtils.format(msg, this.res(attribute.name));
     }
 
     drawCard(uncover: boolean) {

@@ -19,11 +19,11 @@ export class ResourceManager {
     constructor(private services: Services) {
         this.cardDefinitionLoader = new CardDefinitionLoader(this.services);
         this.fontLoader = new THREE.FontLoader();
+
+        this.addMessages();
     }
 
     public load(): Promise<any> {
-
-        this.addMessages();
 
         var promises : Promise<any>[] = [];
 
@@ -60,6 +60,8 @@ export class ResourceManager {
         d[AttributeDefinition.Power] = "Magia";
         d[AttributeDefinition.Gold] = "Złoto";
         d[AttributeDefinition.Life] = "Życie";
+        d["attribute_give"] = "Nadaj atrybut: {0}";
+        d["attribute_remove"] = "Usuń atrybut: {0}";
     }
 
 }
