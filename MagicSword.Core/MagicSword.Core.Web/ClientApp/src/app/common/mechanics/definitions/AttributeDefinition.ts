@@ -12,10 +12,6 @@ export class AttributeDefinition {
     position: THREE.Vector3;
     initialValue: number;
 
-    static nameToIndex(parameterName: string): number {
-        return AttributeDefinition.attributeDefinitions.findIndex(p => p.name === parameterName);
-    }
-
     static find(name: string): AttributeDefinition {
         return AttributeDefinition.attributeDefinitions.find(p => p.name === name);
     }

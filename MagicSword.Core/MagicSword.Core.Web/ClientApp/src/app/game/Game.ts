@@ -8,6 +8,8 @@ import "app/../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 import "three/examples/js/loaders/GLTFLoader";
 
+import { DiceManager, DiceD6 } from "@App/../modules/threejs-dice";
+
 import { Skybox } from "@App/game/Skybox";
 import { World } from "@App/game/logic/World";
 import { IActor } from "@App/game/logic/IActor";
@@ -16,9 +18,6 @@ import { Services } from "@App/Services";
 import { Event } from "@App/common/events/Event";
 import { Player } from "@App/common/mechanics/Player";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
-
-import { DiceManager, DiceD6 } from "app/../modules/threejs-dice";
-import {Character} from "@App/game/logic/Character";
 import { Card } from "@App/game/logic/Card";
 
 export class Game {

@@ -5,8 +5,6 @@ import { IActor } from "./IActor";
 import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
 import { CardType } from "@App/common/mechanics/definitions/CardType";
 import { Collections } from "@App/common/utils/Collections";
-import { Character } from "./Character";
-
 
 export class CardStack extends BoxObject implements IActor {
 

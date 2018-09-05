@@ -43,7 +43,6 @@
     <None Remove="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Card.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\CardStack.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\Character.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\CommonSerializer.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\AttributeDefinition.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
@@ -118,7 +117,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\infrastructure\Settings.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Card.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\CardStack.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Character.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
