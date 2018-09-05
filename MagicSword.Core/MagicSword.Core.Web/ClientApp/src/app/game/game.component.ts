@@ -47,7 +47,7 @@ export class GameComponent implements AfterViewInit {
     cardsToPick: Card[] = [];
 
     get attributes(): AttributeDefinition[] {
-        return AttributeDefinition.parameterDefinitions;
+        return AttributeDefinition.attributeDefinitions;
     }
 
     ngAfterViewInit() {
@@ -134,7 +134,8 @@ export class GameComponent implements AfterViewInit {
     }
 
     toggleAttribute(attribute: AttributeDefinition) {
-        console.log(attribute);
+        var card = this.selectedActor as Card;
+        this.dispatcher.cardSetAttributeClientEventHandler.toggleAttribute(card, attribute.name);
     }
 
     drawCard(uncover: boolean) {
@@ -148,6 +149,10 @@ export class GameComponent implements AfterViewInit {
 
     diceThrow() {
         this.dispatcher.diceThrowClientEventHandler.throwDice();
+    }
+
+    res(key: string) {
+        return ResourceManager.getLocalizationMessage(key);
     }
 
     async pickCard(content) {

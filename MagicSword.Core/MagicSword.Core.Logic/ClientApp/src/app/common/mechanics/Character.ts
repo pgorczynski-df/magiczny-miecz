@@ -4,12 +4,12 @@ import { Card } from "@App/common/mechanics/Card";
 
 export class Character extends Card {
 
-    parameterValues: number[] = new Array(AttributeDefinition.parameterDefinitions.length);
+    parameterValues: number[] = new Array(AttributeDefinition.attributeDefinitions.length);
     //textObjects: TextObject[] = new Array(AttributeDefinition.parameterDefinitions.length);
 
     constructor(definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false) {
         super(definition, resourcePath, width, height, depth, delay);
-        for (var i = 0; i < AttributeDefinition.parameterDefinitions.length; i++) {
+        for (var i = 0; i < AttributeDefinition.attributeDefinitions.length; i++) {
             this.parameterValues[i] = 0;
             //this.textObjects[i] = null;
         }
@@ -21,7 +21,7 @@ export class Character extends Card {
 
         //this.loaded = false;
 
-        for (var definition of AttributeDefinition.parameterDefinitions) {
+        for (var definition of AttributeDefinition.attributeDefinitions) {
             this.increase(definition.name, definition.initialValue);
         }
 
@@ -38,7 +38,7 @@ export class Character extends Card {
         //    this.removeChild(this.textObjects[index].mesh);
         //}
 
-        var definition = AttributeDefinition.parameterDefinitions[index];
+        var definition = AttributeDefinition.attributeDefinitions[index];
 
         //var text = new TextObject(World.font, this.parameterValues[index].toString(), definition.color);
         //text.mesh.position.copy(definition.position);
@@ -46,7 +46,7 @@ export class Character extends Card {
     }
 
     private findIndex(parameterName: string): number {
-        return AttributeDefinition.parameterDefinitions.findIndex(p => p.name === parameterName);
+        return AttributeDefinition.attributeDefinitions.findIndex(p => p.name === parameterName);
     }
 
 }

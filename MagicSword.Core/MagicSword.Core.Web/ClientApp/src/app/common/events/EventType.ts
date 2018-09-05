@@ -10,5 +10,6 @@ export class EventType {
     public static DisposeCard: string = "DisposeCard";
     public static CameraChange: string = "CameraChange";
     public static DiceThrow: string = "DiceThrow";
+    public static CardSetAttribute: string = "CardSetAttribute";
 }
 

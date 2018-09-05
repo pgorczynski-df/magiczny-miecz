@@ -15,6 +15,7 @@ import { PickCardServerEventHandler } from "@App/common/events/pickcard/PickCard
 import { DisposeCardServerEventHandler } from "@App/common/events/disposecard/DisposeCardServerEventHandler";
 import { CameraChangeEventHandler } from "@App/common/events/camerachange/CameraChangeEventHandler";
 import { DiceThrowServerEventHandler } from "@App/common/events/dicethrow/DiceThrowServerEventHandler";
+import { CardSetAttributeServerEventHandler } from "@App/common/events/cardsetattribute/CardSetAttributeServerEventHandler";
 
 export class EventDispatcher {
 
@@ -30,6 +31,7 @@ export class EventDispatcher {
         this.register(new DisposeCardServerEventHandler());
         this.register(new CameraChangeEventHandler());
         this.register(new DiceThrowServerEventHandler());
+        this.register(new CardSetAttributeServerEventHandler());
     }
 
     process(services: Services, responseProcessor: IResponseProcessor, event: Event) {

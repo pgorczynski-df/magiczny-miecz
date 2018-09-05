@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { Services } from "@App/Services";
 import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { EventType } from "@App/common/events/EventType";
+import {AttributeDefinition} from "@App/common/mechanics/definitions/AttributeDefinition";
 
 @Injectable()
 export class ResourceManager {
@@ -54,6 +55,11 @@ export class ResourceManager {
         d[EventType.PickCard] = "Gracz {0} wyłożył kartę {1}";
         d[EventType.DisposeCard] = "Gracz {0} odłożył kartę {1}";
         d[EventType.DiceThrow] = "Gracz {0} wyrzucił kostką: {1}";
+        d[EventType.CardSetAttribute] = "Gracz {0} nadał karcie {1} atrybut {2} o wartości {3}";
+        d[AttributeDefinition.Strength] = "Miecz";
+        d[AttributeDefinition.Power] = "Magia";
+        d[AttributeDefinition.Gold] = "Złoto";
+        d[AttributeDefinition.Life] = "Życie";
     }
 
 }

@@ -2,17 +2,21 @@ import * as THREE from "three";
 
 export class AttributeDefinition {
 
-    static Strength = "Miecz";
-    static Power = "Magia";
-    static Gold = "Złoto";
-    static Life = "Życie";
+    static readonly Strength = "Strength";
+    static readonly Power = "Magia";
+    static readonly Gold = "Gold";
+    static readonly Life = "Life";
 
     name: string;
     color: THREE.Color;
     position: THREE.Vector3;
     initialValue: number;
 
-    static parameterDefinitions: AttributeDefinition[] = [
+    static nameToIndex(parameterName: string): number {
+        return AttributeDefinition.attributeDefinitions.findIndex(p => p.name === parameterName);
+    }
+
+    static attributeDefinitions: AttributeDefinition[] = [
         {
             name: AttributeDefinition.Strength,
             position: new THREE.Vector3(-12, 0, -5),

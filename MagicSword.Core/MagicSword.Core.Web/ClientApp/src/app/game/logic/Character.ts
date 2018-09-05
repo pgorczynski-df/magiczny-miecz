@@ -21,15 +21,15 @@ export class Character extends Card {
 
         this.loaded = false;
 
-        this.parameterValues = new Array(AttributeDefinition.parameterDefinitions.length);
-        this.textObjects = new Array(AttributeDefinition.parameterDefinitions.length);
+        this.parameterValues = new Array(AttributeDefinition.attributeDefinitions.length);
+        this.textObjects = new Array(AttributeDefinition.attributeDefinitions.length);
 
-        for (var i = 0; i < AttributeDefinition.parameterDefinitions.length; i++) {
+        for (var i = 0; i < AttributeDefinition.attributeDefinitions.length; i++) {
             this.parameterValues[i] = 0;
             this.textObjects[i] = null;
         }
 
-        for (var definition of AttributeDefinition.parameterDefinitions) {
+        for (var definition of AttributeDefinition.attributeDefinitions) {
             this.increase(definition.name, definition.initialValue);
         }
 
@@ -39,7 +39,7 @@ export class Character extends Card {
 
     increase(parameterName: string, amount = 1) {
 
-        var index = this.findIndex(parameterName);
+        var index = AttributeDefinition.nameToIndex(parameterName);
 
         this.parameterValues[index] += amount;
 
@@ -47,7 +47,7 @@ export class Character extends Card {
             this.removeChild(this.textObjects[index].mesh);
         }
 
-        var definition = AttributeDefinition.parameterDefinitions[index];
+        var definition = AttributeDefinition.attributeDefinitions[index];
 
         var text = new TextObject(ResourceManager.font, this.parameterValues[index].toString(), definition.color);
         text.mesh.position.copy(definition.position);
@@ -56,8 +56,5 @@ export class Character extends Card {
         this.addChild(text.mesh);
     }
 
-    private findIndex(parameterName: string): number {
-        return AttributeDefinition.parameterDefinitions.findIndex(p => p.name === parameterName);
-    }
 
 }

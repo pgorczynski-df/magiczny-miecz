@@ -25,6 +25,8 @@
     <None Remove="ClientApp\src\app\common\dto\Object3DDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\PlayerDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\WorldDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\cardsetattribute\CardSetAttributeRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\cardsetattribute\CardSetAttributeServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\disposecard\DisposeCardNotificationDto.ts" />
     <None Remove="ClientApp\src\app\common\events\disposecard\DisposeCardRequestDto.ts" />
     <None Remove="ClientApp\src\app\common\events\disposecard\DisposeCardServerEventHandler.ts" />
@@ -86,6 +88,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\cardsetattribute\CardSetAttributeRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\cardsetattribute\CardSetAttributeServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventHandlerContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventKind.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\IServerEventHandler.ts" />

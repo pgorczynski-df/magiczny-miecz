@@ -30,6 +30,10 @@ export abstract class ClientEventHandlerBase implements IClientEventHandler {
     }
 
     protected r() {
-        return ResourceManager.getLocalizationMessage(this.getEventType());
+        return this.res(this.getEventType());
+    }
+
+    protected res(key: string) {
+        return ResourceManager.getLocalizationMessage(key);
     }
 }

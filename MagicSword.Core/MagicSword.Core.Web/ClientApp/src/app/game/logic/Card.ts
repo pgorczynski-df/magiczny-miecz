@@ -15,6 +15,20 @@ export class Card extends BoxObject implements IActor {
 
     isCovered = true;
 
+    attributes: { [name: string]: number } = {};
+
+    getAttribute(name: string) {
+        return this.attributes[name];
+    }
+
+    setAttribute(name: string, value: number) {
+        this.attributes[name] = value;
+    }
+
+    clearAttribute(name: string) {
+        this.setAttribute(name, null);
+    }
+
     constructor(public definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false, isPawn = false) {
         super(resourcePath + "/" + definition.imageUrl, width, height, depth, delay, isPawn);
     }

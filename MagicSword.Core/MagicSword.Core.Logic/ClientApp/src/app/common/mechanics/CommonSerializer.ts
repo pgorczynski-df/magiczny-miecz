@@ -145,14 +145,11 @@ export class CommonSerializer {
         var dto = new CardDto();
         dto.id = card.id;
         dto.definitionId = card.definition.id;
-        //dto.loaded = true; //card.loaded;
+        dto.attributes = card.attributes;
         dto.isCovered = card.isCovered;
         dto.originStackDefinitionId = card.originStack.definition.id;
-        //if (card.loaded) {
         dto.object3D = this.serializeObject3D(card.object3D);
-        //} else {
-        //    dto.object3D = null;
-        //}
+
         return dto;
     }
 
@@ -160,10 +157,10 @@ export class CommonSerializer {
         var card = stack.createCard(cardDto.definitionId, true /*!cardDto.loaded*/);
         card.id = cardDto.id;
         card.isCovered = cardDto.isCovered;
-        //if (cardDto.loaded) {
-        //world.addNewCard(card);
+        if (cardDto.attributes) {
+            card.attributes = cardDto.attributes;
+        }
         this.deserializeObject3D(cardDto.object3D, card.object3D);
-        //}
         return card;
     }
 
