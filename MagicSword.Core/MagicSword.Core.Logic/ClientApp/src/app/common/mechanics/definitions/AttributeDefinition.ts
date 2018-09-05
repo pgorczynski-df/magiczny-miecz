@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export class CharacterParameterDefinition {
+export class AttributeDefinition {
 
     static Strength = "Miecz";
     static Power = "Magia";
@@ -12,27 +12,27 @@ export class CharacterParameterDefinition {
     position: THREE.Vector3;
     initialValue: number;
 
-    static parameterDefinitions: CharacterParameterDefinition[] = [
+    static parameterDefinitions: AttributeDefinition[] = [
         {
-            name: CharacterParameterDefinition.Strength,
+            name: AttributeDefinition.Strength,
             position: new THREE.Vector3(-12, 0, -5),
             color: new THREE.Color(0xff0000),
             initialValue: 1,
         },
         {
-            name: CharacterParameterDefinition.Power,
+            name: AttributeDefinition.Power,
             position: new THREE.Vector3(-12, 0, 5),
             color: new THREE.Color(0x0000ff),
             initialValue: 1,
         },
         {
-            name: CharacterParameterDefinition.Gold,
+            name: AttributeDefinition.Gold,
             position: new THREE.Vector3(12, 0, -5),
             color: new THREE.Color(0xffff00),
             initialValue: 1,
         },
         {
-            name: CharacterParameterDefinition.Life,
+            name: AttributeDefinition.Life,
             position: new THREE.Vector3(12, 0, 5),
             color: new THREE.Color(0x00ff00),
             initialValue: 4,

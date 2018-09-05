@@ -1,15 +1,15 @@
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { CharacterParameterDefinition } from "@App/common/mechanics/definitions/CharacterParameterDefinition";
+import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
 import { Card } from "@App/common/mechanics/Card";
 
 export class Character extends Card {
 
-    parameterValues: number[] = new Array(CharacterParameterDefinition.parameterDefinitions.length);
-    //textObjects: TextObject[] = new Array(CharacterParameterDefinition.parameterDefinitions.length);
+    parameterValues: number[] = new Array(AttributeDefinition.parameterDefinitions.length);
+    //textObjects: TextObject[] = new Array(AttributeDefinition.parameterDefinitions.length);
 
     constructor(definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false) {
         super(definition, resourcePath, width, height, depth, delay);
-        for (var i = 0; i < CharacterParameterDefinition.parameterDefinitions.length; i++) {
+        for (var i = 0; i < AttributeDefinition.parameterDefinitions.length; i++) {
             this.parameterValues[i] = 0;
             //this.textObjects[i] = null;
         }
@@ -21,7 +21,7 @@ export class Character extends Card {
 
         //this.loaded = false;
 
-        for (var definition of CharacterParameterDefinition.parameterDefinitions) {
+        for (var definition of AttributeDefinition.parameterDefinitions) {
             this.increase(definition.name, definition.initialValue);
         }
 
@@ -38,7 +38,7 @@ export class Character extends Card {
         //    this.removeChild(this.textObjects[index].mesh);
         //}
 
-        var definition = CharacterParameterDefinition.parameterDefinitions[index];
+        var definition = AttributeDefinition.parameterDefinitions[index];
 
         //var text = new TextObject(World.font, this.parameterValues[index].toString(), definition.color);
         //text.mesh.position.copy(definition.position);
@@ -46,7 +46,7 @@ export class Character extends Card {
     }
 
     private findIndex(parameterName: string): number {
-        return CharacterParameterDefinition.parameterDefinitions.findIndex(p => p.name === parameterName);
+        return AttributeDefinition.parameterDefinitions.findIndex(p => p.name === parameterName);
     }
 
 }

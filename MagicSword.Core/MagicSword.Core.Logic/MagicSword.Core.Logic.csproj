@@ -43,10 +43,10 @@
     <None Remove="ClientApp\src\app\common\mechanics\CardStack.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Character.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\CommonSerializer.ts" />
+    <None Remove="ClientApp\src\app\common\mechanics\definitions\AttributeDefinition.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
     <None Remove="ClientApp\src\app\common\events\DrawCardNotificationDto.ts" />
     <None Remove="ClientApp\src\app\common\events\DrawCardRequestDto.ts" />
     <None Remove="ClientApp\src\app\common\events\DrawCardServerEventHandler.ts" />
@@ -118,7 +118,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\AttributeDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\drawcard\DrawCardRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\drawcard\DrawCardServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\drawcard\DrawCardNotificationDto.ts" />

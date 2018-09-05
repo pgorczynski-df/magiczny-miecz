@@ -1,5 +1,5 @@
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { CharacterParameterDefinition } from "@App/common/mechanics/definitions/CharacterParameterDefinition";
+import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
 import { TextObject } from "App/game/TextObject";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { Card } from "@App/game/logic/Card";
@@ -21,15 +21,15 @@ export class Character extends Card {
 
         this.loaded = false;
 
-        this.parameterValues = new Array(CharacterParameterDefinition.parameterDefinitions.length);
-        this.textObjects = new Array(CharacterParameterDefinition.parameterDefinitions.length);
+        this.parameterValues = new Array(AttributeDefinition.parameterDefinitions.length);
+        this.textObjects = new Array(AttributeDefinition.parameterDefinitions.length);
 
-        for (var i = 0; i < CharacterParameterDefinition.parameterDefinitions.length; i++) {
+        for (var i = 0; i < AttributeDefinition.parameterDefinitions.length; i++) {
             this.parameterValues[i] = 0;
             this.textObjects[i] = null;
         }
 
-        for (var definition of CharacterParameterDefinition.parameterDefinitions) {
+        for (var definition of AttributeDefinition.parameterDefinitions) {
             this.increase(definition.name, definition.initialValue);
         }
 
@@ -47,7 +47,7 @@ export class Character extends Card {
             this.removeChild(this.textObjects[index].mesh);
         }
 
-        var definition = CharacterParameterDefinition.parameterDefinitions[index];
+        var definition = AttributeDefinition.parameterDefinitions[index];
 
         var text = new TextObject(ResourceManager.font, this.parameterValues[index].toString(), definition.color);
         text.mesh.position.copy(definition.position);
@@ -57,7 +57,7 @@ export class Character extends Card {
     }
 
     private findIndex(parameterName: string): number {
-        return CharacterParameterDefinition.parameterDefinitions.findIndex(p => p.name === parameterName);
+        return AttributeDefinition.parameterDefinitions.findIndex(p => p.name === parameterName);
     }
 
 }

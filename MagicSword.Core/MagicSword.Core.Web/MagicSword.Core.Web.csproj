@@ -103,7 +103,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\Message.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CharacterParameterDefinition.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\AttributeDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventBus.ts" />
