@@ -111,7 +111,11 @@ export class CardStack extends ActorBase {
 
     public disposeCard = (card: Card) => {
         this.drawnCards = this.drawnCards.filter(obj => obj !== card);
-        this.disposedCards.push(card);
+        if (this.definition.eventLike) {
+            this.disposedCards.push(card);
+        } else {
+            this.cards.push(card);
+        }
         //card.unload();
     }
 

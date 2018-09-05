@@ -6,8 +6,8 @@
     <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}" />
     <div [hidden]="!(selectedActor?.isCardStack)">
       <button class="btn" (click)="drawCard()">Wyciągnij kartę</button>
-      <button class="btn" (click)="drawCard(false)">Zdejmij kartę</button>
-      <button class="btn" (click)="pickCard(content)">Wybierz kartę</button>
+      <!--<button class="btn" (click)="drawCard(false)">Zdejmij kartę</button>-->
+      <button class="btn" (click)="pickCard(content)">Zobacz karty</button>
     </div>
     <div [hidden]="!(selectedActor?.isCard)">
       <!--<button class="btn" (click)="toggleCovered()">{{selectedActor?.isCovered ? "Odkryj ": "Zakryj " }}kartę</button>-->
