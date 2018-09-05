@@ -108,6 +108,7 @@ export class ClientSerializer {
         dto.definitionId = card.definition.id;
         //dto.loaded = card.loaded;
         dto.isCovered = card.isCovered;
+        dto.attributes = card.attributes;
         dto.originStackDefinitionId = card.originStack.definition.id;
         if (card.loaded) {
             dto.object3D = this.serializeObject3D(card.object3D);
@@ -121,6 +122,7 @@ export class ClientSerializer {
         var card = stack.createCard(cardDto.definitionId, !loadCard);
         card.id = cardDto.id;
         card.isCovered = cardDto.isCovered;
+        card.attributes = cardDto.attributes;
         if (loadCard) {
             world.addNewCard(card);
             this.deserializeObject3D(cardDto.object3D, card.object3D);
