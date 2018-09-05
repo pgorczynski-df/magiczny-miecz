@@ -28,15 +28,9 @@ export class CardSetAttributeClientEventHandler extends ClientEventHandlerBase {
         }
     }
 
-    increment(card: Card, attributeName: string) {
+    increment(card: Card, attributeName: string, value: number) {
         var currentValue = card.getAttribute(attributeName);
-        currentValue = currentValue ? currentValue + 1 : 1;
-        this.setValue(card, attributeName, currentValue);
-    }
-
-    decrement(card: Card, attributeName: string) {
-        var currentValue = card.getAttribute(attributeName);
-        currentValue = currentValue ? currentValue - 1 : 1;
+        currentValue = currentValue ? currentValue + value : 1;
         this.setValue(card, attributeName, currentValue);
     }
 

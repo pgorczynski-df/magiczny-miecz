@@ -8,6 +8,8 @@ import { ResourceManager } from "@App/game/ResourceManager";
 
 export class Card extends BoxObject implements IActor {
 
+    public static readonly attributeData = "__attributeData";
+
     selectable: boolean = true;
     draggable: boolean = true;
 
@@ -90,7 +92,7 @@ export class Card extends BoxObject implements IActor {
             var definition = AttributeDefinition.find(attrName);
             textObject = new TextObject(ResourceManager.font, value.toString(), definition.color);
             textObject.mesh.position.copy(definition.position);
-            textObject.mesh.userData["aa"] = attrName;
+            textObject.mesh.userData[Card.attributeData] = attrName;
             this.attributeTexts[attrName] = textObject;
             this.addChild(textObject.mesh);
         }

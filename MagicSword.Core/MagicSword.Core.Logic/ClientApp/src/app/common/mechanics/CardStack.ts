@@ -3,9 +3,8 @@ import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStack
 import { CardType } from "@App/common/mechanics/definitions/CardType";
 import { Collections } from "@App/common/utils/Collections";
 import { ActorBase } from "@App/common/mechanics/ActorBase";
-import { Object3D } from "@App/common/mechanics/Object3D";
 import { Card } from "@App/common/mechanics/Card";
-import { Character } from "@App/common/mechanics/Character";
+import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
 
 
 export class CardStack extends ActorBase {
@@ -76,11 +75,15 @@ export class CardStack extends ActorBase {
             depth = this.width;
         }
 
-        var card = this.definition.type === CardType.Character ?
-            new Character(cardDefinition, this.definition.resourcePath, width, height, depth, delay) :
-            new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
+        var card = new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
+        card.originStack = this;
 
-        card.originStack = this as any;
+        if (this.definition.type === CardType.Character) {
+            for (var def of AttributeDefinition.attributeDefinitions) {
+                card.setAttribute(def.name, def.initialValue);
+            }
+        }
+
         return card;
     }
 

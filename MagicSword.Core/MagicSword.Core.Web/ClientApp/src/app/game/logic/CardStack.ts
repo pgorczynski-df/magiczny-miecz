@@ -78,11 +78,9 @@ export class CardStack extends BoxObject implements IActor {
             depth = this.width;
         }
 
-        var card = this.definition.type === CardType.Character ?
-            new Character(cardDefinition, this.definition.resourcePath, width, height, depth, delay) :
-            new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
-
+        var card = new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
         card.originStack = this;
+
         return card;
     }
 
