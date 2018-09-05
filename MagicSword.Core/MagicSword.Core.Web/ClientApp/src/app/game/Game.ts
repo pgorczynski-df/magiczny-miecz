@@ -18,6 +18,7 @@ import { Player } from "@App/common/mechanics/Player";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 
 import { DiceManager, DiceD6 } from "app/../modules/threejs-dice";
+import {Character} from "@App/game/logic/Character";
 
 export class Game {
 
@@ -274,6 +275,12 @@ export class Game {
 
             var hitMesh = intersects[0].object;
             var hitActor = <IActor>hitMesh.userData["parent"];
+
+            var parameter = hitMesh.userData[Character.parameter];
+            if (parameter) {
+                var character = hitActor as Character;
+                character.increase(parameter, event.buttons === 2 ? -1 : 1);
+            }
 
             if (hitActor.selectable) {
                 this.world.selectActor(hitActor);

@@ -6,6 +6,8 @@ import { Card } from "@App/game/logic/Card";
 
 export class Character extends Card {
 
+    public static readonly parameter = "game_parameter";
+
     parameterValues: number[];
     textObjects: TextObject[];
 
@@ -49,6 +51,8 @@ export class Character extends Card {
 
         var text = new TextObject(ResourceManager.font, this.parameterValues[index].toString(), definition.color);
         text.mesh.position.copy(definition.position);
+        text.mesh.userData[Character.parameter] = parameterName;
+        this.textObjects[index] = text;
         this.addChild(text.mesh);
     }
 
