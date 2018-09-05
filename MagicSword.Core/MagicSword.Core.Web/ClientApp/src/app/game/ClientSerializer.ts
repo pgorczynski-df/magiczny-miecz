@@ -125,6 +125,7 @@ export class ClientSerializer {
         card.attributes = cardDto.attributes;
         if (loadCard) {
             world.addNewCard(card);
+            card.syncAttributeTexts();
             this.deserializeObject3D(cardDto.object3D, card.object3D);
         }
         return card;

@@ -3,7 +3,7 @@ import * as THREE from "three";
 export class AttributeDefinition {
 
     static readonly Strength = "Strength";
-    static readonly Power = "Magia";
+    static readonly Power = "Power";
     static readonly Gold = "Gold";
     static readonly Life = "Life";
 
@@ -14,6 +14,10 @@ export class AttributeDefinition {
 
     static nameToIndex(parameterName: string): number {
         return AttributeDefinition.attributeDefinitions.findIndex(p => p.name === parameterName);
+    }
+
+    static find(name: string): AttributeDefinition {
+        return AttributeDefinition.attributeDefinitions.find(p => p.name === name);
     }
 
     static attributeDefinitions: AttributeDefinition[] = [

@@ -1,6 +1,6 @@
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
 import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
-import { TextObject } from "App/game/TextObject";
+import { TextObject } from "@App/game/TextObject";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { Card } from "@App/game/logic/Card";
 

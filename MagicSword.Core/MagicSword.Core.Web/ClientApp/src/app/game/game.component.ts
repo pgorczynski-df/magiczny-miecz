@@ -142,7 +142,7 @@ export class GameComponent implements AfterViewInit {
 
     attrDdText(attribute: AttributeDefinition) {
         var card = this.selectedActor as Card;
-        if (!card) {
+        if (!card || !card.isCard) {
             return "";
         }
         var attr = card.getAttribute(attribute.name);
