@@ -7,104 +7,108 @@
 
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
 }
 
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }
 
-  .form-signin .checkbox {
-    font-weight: 400;
-  }
-
-  .form-signin .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-  }
-
-    .form-signin .form-control:focus {
-      z-index: 2;
+    .form-signin .checkbox {
+        font-weight: 400;
     }
 
-  .form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
 
-  .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
 
 .local-game-box {
-  width: 200px;
-  height: 300px;
+    width: 200px;
+    height: 300px;
 }
 
 .viewport {
-  height: 99vh;
-  width: 200vh /*?*/
+    height: 99vh;
+    width: 200vh /*?*/
 }
 
 .card-display {
-  max-width:100%;
-  max-height:100%;
-  margin: 2px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 2px;
 }
 
 .controls-panel {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-  width: 200px;
-  height: 300px;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    width: 200px;
+    height: 300px;
 }
 
 
 .events-panel {
-  color: azure;
-  background-color: dimgray;
-  opacity: 0.7;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  width: 300px;
-  height: 300px;
-  overflow: auto;
-  /*border: 3px solid #73AD21;*/
+    color: black;
+    /*background-color: dimgray;*/
+    opacity: 0.8;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 300px;
+    height: 300px;
+    overflow: auto;
+    /*border: 3px solid #73AD21;*/
 }
 
+    .dropdown-toggle::after {
+        display: none;
+    }
+
 .menu-panel {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 200px;
-  height: 100px;
-  /*border: 3px solid #73AD21;*/
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    height: 100px;
+    /*border: 3px solid #73AD21;*/
 }
 
 .card-picker-box {
-  width: 150px;
-  height: 200px;
-  float: left;
-  margin: 2px;
+    width: 150px;
+    height: 200px;
+    float: left;
+    margin: 2px;
 }

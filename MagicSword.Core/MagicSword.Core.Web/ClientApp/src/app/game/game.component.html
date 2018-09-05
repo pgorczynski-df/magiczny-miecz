@@ -1,47 +1,52 @@
 
 <div>
-  <div #viewport class="viewport">
-  </div>
-  <div class="controls-panel" [hidden]="!selectedActor">
-    <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}" />
-    <div [hidden]="!(selectedActor?.isCardStack)">
-      <button class="btn" (click)="drawCard()">Wyciągnij kartę</button>
-      <!--<button class="btn" (click)="drawCard(false)">Zdejmij kartę</button>-->
-      <button class="btn" (click)="pickCard(content)">Zobacz karty</button>
+    <div #viewport class="viewport">
     </div>
-    <div [hidden]="!(selectedActor?.isCard)">
-      <!--<button class="btn" (click)="toggleCovered()">{{selectedActor?.isCovered ? "Odkryj ": "Zakryj " }}kartę</button>-->
-      <button class="btn" (click)="disposeCard()">Odłóż kartę</button>
+    <div class="controls-panel" [hidden]="!selectedActor">
+        <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}" />
+        <div [hidden]="!(selectedActor?.isCardStack)">
+            <div class="btn-group btn-group-vertical" role="group" aria-label="Basic example">
+                <button class="btn btn-secondary" (click)="drawCard()">Wyciągnij kartę</button>
+                <button class="btn btn-secondary" (click)="pickCard(content)">Zobacz karty</button>
+            </div>
+        </div>
+        <div [hidden]="!(selectedActor?.isCard)">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <div ngbDropdown>
+                    <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>...</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="btn btn-secondary" (click)="toggleAttribute(attr)" *ngFor="let attr of attributes; index as i;" class="dropdown-item">{{attr.name}}</button>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" (click)="disposeCard()">Odłóż kartę</button>
+            </div>
+        </div>
     </div>
-  </div>
-  <div #eventsPanel class="events-panel">
-    <ul>
-      <li *ngFor="let message of messages; index as i;">{{message.text}}</li>
-    </ul>
-  </div>
-  <div class="menu-panel">
-    <!--<button class="btn" (click)="new()">Nowa gra</button>
-    <button class="btn" (click)="save()">Zapisz</button>
-    <button class="btn" (click)="load()">Wczytaj</button>-->
-    <button class="btn" (click)="diceThrow()">Rzuć kostką</button>
-  </div>
+    <div #eventsPanel class="events-panel">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-info" *ngFor="let message of messages; index as i;">{{message.text}}</li>
+        </ul>
+    </div>
+    <div class="menu-panel">
+        <button class="btn btn-secondary" (click)="diceThrow()">Rzuć kostką</button>
+    </div>
 </div>
 
 
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Wybierz kartę</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div *ngFor="let card of cardsToPick; index as i;" class="card-picker-box">
-      <a href="#" (click)="c(card); false;">
-        <img class="card-display" alt="{{card.name}}" src="{{card.contentUrl}}"/>
-      </a>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Wybierz kartę</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-  </div>
-  <div class="modal-footer">
-  </div>
+    <div class="modal-body">
+        <div *ngFor="let card of cardsToPick; index as i;" class="card-picker-box">
+            <a href="#" (click)="c(card); false;">
+                <img class="card-display" alt="{{card.name}}" src="{{card.contentUrl}}" />
+            </a>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
 </ng-template>

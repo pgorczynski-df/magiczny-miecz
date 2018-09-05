@@ -17,6 +17,8 @@ import { EventKind } from "@App/common/events/EventKind";
 import { EventType } from "@App/common/events/EventType";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { ClientGameService } from "@App/game/local/ClientGameService";
+import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
+
 
 @Component({
     selector: "app-game",
@@ -43,6 +45,10 @@ export class GameComponent implements AfterViewInit {
 
     messages: Message[] = [];
     cardsToPick: Card[] = [];
+
+    get attributes(): AttributeDefinition[] {
+        return AttributeDefinition.parameterDefinitions;
+    }
 
     ngAfterViewInit() {
 
@@ -127,14 +133,9 @@ export class GameComponent implements AfterViewInit {
         objDiv.scrollTop = objDiv.scrollHeight;
     }
 
-    //new = () => {
-    //}
-
-    //save = () => {
-    //};
-
-    //load = () => {
-    //};
+    toggleAttribute(attribute: AttributeDefinition) {
+        console.log(attribute);
+    }
 
     drawCard(uncover: boolean) {
         this.dispatcher.drawCardHandler.drawCard(uncover);
