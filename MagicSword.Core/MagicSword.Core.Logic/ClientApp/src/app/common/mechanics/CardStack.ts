@@ -9,11 +9,6 @@ import { AttributeDefinition } from "@App/common/mechanics/definitions/Attribute
 
 export class CardStack extends ActorBase {
 
-    static cardWidth = 0.5;
-
-    selectable: boolean = true;
-    draggable: boolean = true;
-
     get name() { return this.definition.name; }
     get type() { return this.definition.type; }
 
@@ -25,7 +20,6 @@ export class CardStack extends ActorBase {
 
     constructor(public definition: CardStackDefinition, private width: number, private height: number, private depth: number) {
         super();
-        //super(definition.resourcePath + "/" + definition.imageUrl, width, aspect, height);
     }
 
     public buildStack = () => {
@@ -35,7 +29,7 @@ export class CardStack extends ActorBase {
 
         for (var cardDefinition of this.definition.cardDefinitions) {
             for (let i = 0; i < cardDefinition.multiplicity; i++) {
-                var card = this.createCardInternal(cardDefinition, true);
+                var card = this.createCardInternal(cardDefinition);
                 this.cards.push(card);
             }
         }
@@ -49,9 +43,9 @@ export class CardStack extends ActorBase {
         this.cards = Collections.shuffle(this.cards);
     }
 
-    public createCard = (definitionId: number, delay: boolean) => {
+    public createCard = (definitionId: number) => {
         var definition = this.findDefinition(definitionId);
-        var card = this.createCardInternal(definition, delay);
+        var card = this.createCardInternal(definition);
         return card;
     }
 
@@ -59,23 +53,9 @@ export class CardStack extends ActorBase {
         return this.definition.cardDefinitions.find(s => s.id === definitionId);
     }
 
-    private createCardInternal = (cardDefinition: CardDefinition, delay: boolean) => {
+    private createCardInternal = (cardDefinition: CardDefinition) => {
 
-        //for most cards we transpose width and height
-        var width = this.height;
-        var height = this.width;
-        var depth = CardStack.cardWidth;
-
-        //for pawns everything is switched
-        var isPawn = this.definition.type === CardType.Pawn;
-
-        if (isPawn) {
-            width = this.height;
-            height = CardStack.cardWidth;
-            depth = this.width;
-        }
-
-        var card = new Card(cardDefinition, this.definition.resourcePath, width, height, depth, delay, isPawn);
+        var card = new Card(cardDefinition);
         card.originStack = this;
 
         if (this.definition.type === CardType.Character) {

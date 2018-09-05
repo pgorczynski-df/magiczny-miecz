@@ -48,7 +48,6 @@ export class CommonSerializer {
             target.players.push(playerDto);
         }
 
-        //this.deserializeObject3D(source.camera, target.camera);
         this.deserializeWorld(source.world, target.world);
     }
 
@@ -154,7 +153,7 @@ export class CommonSerializer {
     }
 
     deserializeCard = (world: World, stack: CardStack, cardDto: CardDto): Card => {
-        var card = stack.createCard(cardDto.definitionId, true /*!cardDto.loaded*/);
+        var card = stack.createCard(cardDto.definitionId);
         card.id = cardDto.id;
         card.isCovered = cardDto.isCovered;
         if (cardDto.attributes) {

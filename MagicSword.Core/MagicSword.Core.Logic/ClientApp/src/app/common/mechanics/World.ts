@@ -1,7 +1,7 @@
 import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
-import { CardType } from "@App/common/mechanics/definitions/CardType";
 import { CardStack } from "@App/common/mechanics/CardStack";
 import { Card } from "@App/common/mechanics/Card";
+import { CardType } from "@App/common/mechanics/definitions/CardType";
 
 
 export class World {
@@ -29,7 +29,6 @@ export class World {
     }
 
     newGame() {
-
         this.cleanup();
         for (var stack of this.cardStacks) {
             stack.buildStack();
@@ -41,7 +40,6 @@ export class World {
             stack.cleanup();
         }
     }
-
 
     drawCard(stackId: string, uncover: boolean): Card {
         var stack = this.findStack(stackId);
@@ -70,36 +68,6 @@ export class World {
         }
         return stack;
     }
-
-    //drawCardOld(card: Card = null, uncover = true): Card {
-    //    let stack = card !== null ? card.originStack : <CardStack>this.selectedActor;
-    //    card = stack.drawCard(card, uncover);
-    //    //this.addNewCard(card);
-    //    return card;
-    //}
-
-    //addNewCard(card: Card) {
-    //    this.game.addActor(card);
-    //}
-
-    //disposeCard = () => {
-    //    let card = <Card>this.selectedActor;
-    //    this.clearSelectedActor();
-    //    this.disposeCardInternal(card);
-    //}
-
-    //selectActor(actor: IActor) {
-    //    this.clearSelectedActor();
-    //    this.selectedActor = actor;
-    //    this.selectedActor.isSelected = true;
-    //}
-
-    //clearSelectedActor = () => {
-    //    if (this.selectedActor) {
-    //        this.selectedActor.isSelected = false;
-    //    }
-    //    this.selectedActor = null;
-    //}
 
     private disposeCardInternal(card: Card) {
         card.dispose();

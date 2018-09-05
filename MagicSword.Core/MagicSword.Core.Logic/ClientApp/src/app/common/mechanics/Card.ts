@@ -4,16 +4,13 @@ import { ActorBase } from "@App/common/mechanics/ActorBase";
 
 export class Card extends ActorBase {
 
-    selectable: boolean = true;
-    draggable: boolean = true;
-
     originStack: CardStack;
 
     isCovered = true;
 
     attributes: { [name: string]: number } = {};
 
-    constructor(public definition: CardDefinition, resourcePath: string, width: number, height: number, depth: number, delay = false, isPawn = false) {
+    constructor(public definition: CardDefinition) {
         super();
     }
 
