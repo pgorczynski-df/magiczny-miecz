@@ -1,9 +1,8 @@
-
-import { Game } from "../Game";
-import { GameBoard } from "./GameBoard";
-import { Card } from "./Card";
-import { CardStack } from "./CardStack";
-import { IActor } from "./IActor";
+import { Game } from "@App/game/Game";
+import { GameBoard } from "@App/game/logic/GameBoard";
+import { Card } from "@App/game/logic/Card";
+import { CardStack } from "@App/game/logic/CardStack";
+import { IActor } from "@App/game/logic/IActor";
 import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
 import { CardType } from "@App/common/mechanics/definitions/CardType";
 

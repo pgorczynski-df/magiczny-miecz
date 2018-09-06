@@ -1,5 +1,5 @@
-import { BoxObject } from "../BoxObject";
-import { IActor } from "./IActor";
+import { BoxObject } from "@App/game/BoxObject";
+import { IActor } from "@App/game/logic/IActor";
 
 export class GameBoard extends BoxObject implements IActor {
 

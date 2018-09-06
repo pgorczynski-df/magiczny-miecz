@@ -1,7 +1,7 @@
-import { BoxObject } from "../BoxObject";
+import { BoxObject } from "@App/game/BoxObject";
+import { IActor } from "@App/game/logic/IActor";
 import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { Card } from "./Card";
-import { IActor } from "./IActor";
+import { Card } from "@App/game/logic/Card";
 import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
 import { CardType } from "@App/common/mechanics/definitions/CardType";
 import { Collections } from "@App/common/utils/Collections";

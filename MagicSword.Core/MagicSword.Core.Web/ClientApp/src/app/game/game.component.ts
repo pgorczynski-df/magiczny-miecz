@@ -2,14 +2,13 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
-import { Game } from "../game/Game";
+import { Game } from "@App/game/Game";
 import { Event } from "@App/common/events/Event";
-import { IActor } from "../game/logic/IActor";
-import { Services } from "app/Services";
-import { CardStack } from "./logic/CardStack";
-import { Card } from "./logic/Card";
+import { IActor } from "@App/game/logic/IActor";
+import { Services } from "@App/Services";
+import { CardStack } from "@App/game/logic/CardStack";
+import { Card } from "@App/game/logic/Card";
 import { SocketClient } from "@App/SocketClient";
-import { Player } from "@App/common/mechanics/Player";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
@@ -18,7 +17,7 @@ import { EventType } from "@App/common/events/EventType";
 import { GameStateDto } from "@App/common/dto/GameStateDto";
 import { ClientGameService } from "@App/game/local/ClientGameService";
 import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
-import {StringUtils} from "@App/common/utils/StringUtils";
+import { StringUtils } from "@App/common/utils/StringUtils";
 
 
 @Component({
@@ -43,7 +42,7 @@ export class GameComponent implements AfterViewInit {
 
     constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services, private resourceManager: ResourceManager) {
         this.socketClient = new SocketClient(this.services);
-        
+
     }
 
     messages: Message[] = [];
