@@ -1,42 +1,43 @@
 {
-  "name": "magic-sword.core.logic",
-  "version": "1.0.0",
-  "description": "logic project",
-  "main": "index.js",
-  "repository": "https://github.com/pablonautic/magiczny-miecz",
-  "scripts": {
-    "build": "tsc",
-    "test": "tsc && mocha dist/**/*.spec.js",
-    "lint": "eslint src --ext ts",
-    "tsc": "tsc",
-    "start": "tsc-watch --onSuccess \"node ./dist/out-tsc \""
-  },
-  "author": "",
-  "license": "ISC",
-  "_moduleAliases": {
-    "@App": "dist/out-tsc/app"
-  },
-  "dependencies": {
-    "@aspnet/signalr": "^1.0.2",
-    "axios": "^0.18.0",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "js-logger": "^1.4.1",
-    "module-alias": "^2.1.0",
-    "rxjs": "^6.2.2",
-    "socket.io": "^2.1.1",
-    "three": "^0.95.0",
-    "websocket": "^1.0.26",
-    "xmlhttprequest": "^1.8.0"
-  },
-  "devDependencies": {
-    "@types/express": "^4.16.0",
-    "@types/node": "^10.5.8",
-    "@types/socket.io": "^1.4.36",
-    "@types/three": "^0.92.17",
-    "ts-node": "~7.0.0",
-    "tsc-watch": "^1.0.26",
-    "tslint": "~5.11.0",
-    "typescript": "^2.7.2"
-  }
+    "name": "magic-sword.core.logic",
+    "version": "1.0.0",
+    "description": "logic project",
+    "main": "index.js",
+    "repository": "https://github.com/pablonautic/magiczny-miecz",
+    "scripts": {
+        "build": "tsc",
+        "test": "tsc && mocha dist/**/*.spec.js",
+        "lint": "eslint src --ext ts",
+        "tsc": "tsc",
+        "start": "tsc-watch --onSuccess \"node ./dist/out-tsc \"",
+        "run": "node ./dist/out-tsc"
+    },
+    "author": "",
+    "license": "ISC",
+    "_moduleAliases": {
+        "@App": "dist/out-tsc/app"
+    },
+    "dependencies": {
+        "@aspnet/signalr": "^1.0.2",
+        "axios": "^0.18.0",
+        "cors": "^2.8.4",
+        "express": "^4.16.3",
+        "js-logger": "^1.4.1",
+        "module-alias": "^2.1.0",
+        "rxjs": "^6.2.2",
+        "socket.io": "^2.1.1",
+        "three": "^0.95.0",
+        "websocket": "^1.0.26",
+        "xmlhttprequest": "^1.8.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.16.0",
+        "@types/node": "^10.5.8",
+        "@types/socket.io": "^1.4.36",
+        "@types/three": "^0.92.17",
+        "ts-node": "~7.0.0",
+        "tsc-watch": "^1.0.26",
+        "tslint": "~5.11.0",
+        "typescript": "^2.7.2"
+    }
 }
