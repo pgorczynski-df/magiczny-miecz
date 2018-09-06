@@ -136,7 +136,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\common\mechanics\events\drawcard\" />
     <Folder Include="ClientApp\src\assets\3d\" />
     <Folder Include="ClientApp\src\modules\threejs-dice\lib\" />
   </ItemGroup>
