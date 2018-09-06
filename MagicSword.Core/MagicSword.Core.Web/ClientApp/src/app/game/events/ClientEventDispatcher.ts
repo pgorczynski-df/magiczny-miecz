@@ -15,6 +15,7 @@ import { DisposeCardClientEventHandler } from "@App/game/events/handlers/Dispose
 import { CameraChangeEventHandler } from "@App/game/events/handlers/CameraChangeEventHandler";
 import { DiceThrowClientEventHandler } from "@App/game/events/handlers/DiceThrowClientEventHandler";
 import { CardSetAttributeClientEventHandler } from "@App/game/events/handlers/CardSetAttributeClientEventHandler";
+import { PlayerMessageClientEventHandler } from "@App/game/events/handlers/PlayerMessageClientEventHandler";
 
 export class ClientEventDispatcher {
 
@@ -28,6 +29,7 @@ export class ClientEventDispatcher {
     cameraChangeEventHandler = new CameraChangeEventHandler();
     diceThrowClientEventHandler = new DiceThrowClientEventHandler();
     cardSetAttributeClientEventHandler = new CardSetAttributeClientEventHandler();
+    playerMessageClientEventHandler = new PlayerMessageClientEventHandler();
 
     private eventHandlers: { [eventType: string]: IClientEventHandler; } = {};
     private context = new ClientEventHandlerContext();
@@ -47,6 +49,7 @@ export class ClientEventDispatcher {
         this.register(this.cameraChangeEventHandler);
         this.register(this.diceThrowClientEventHandler);
         this.register(this.cardSetAttributeClientEventHandler);
+        this.register(this.playerMessageClientEventHandler);
     }
 
     process(event: Event) {

@@ -96,8 +96,9 @@ export class GameComponent implements AfterViewInit {
                 var rdto = e.data as GameStateDto;
                 for (var event of rdto.notificationEvents) {
                     var message2 = this.eventToMessage(event);
-                    this.addMessage(message2);
+                    this.addMessage(message2, false);
                 }
+                this.scrollEventsPanel();
             }
         });
 
@@ -127,10 +128,18 @@ export class GameComponent implements AfterViewInit {
         return message;
     }
 
-    private addMessage(message: Message) {
+    private addMessage(message: Message, scrollDown = true) {
         this.messages.push(message);
-        var objDiv = this.eventsPanel.nativeElement as any;
-        objDiv.scrollTop = objDiv.scrollHeight;
+        if (scrollDown) {
+            this.scrollEventsPanel();
+        }
+    }
+
+    private scrollEventsPanel() {
+        var div = this.eventsPanel.nativeElement as any;
+        setTimeout(() => {
+            div.scrollTop = div.scrollHeight;
+        }, 200);
     }
 
     toggleAttribute(attribute: AttributeDefinition) {
@@ -152,9 +161,7 @@ export class GameComponent implements AfterViewInit {
         if (!this.chatMessage || this.chatMessage.length === 0) {
             return;
         }
-
-        console.log(this.chatMessage);
-
+        this.dispatcher.playerMessageClientEventHandler.sendMessage(this.chatMessage);
         this.chatMessage = "";
     }
 

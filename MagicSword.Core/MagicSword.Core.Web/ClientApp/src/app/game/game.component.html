@@ -31,7 +31,8 @@
         </div>
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <div class="input-group">
-                <input [(ngModel)]="chatMessage" (keydown.enter)="sendMessage()" type="text" class="form-control" placeholder="Wiadomość" aria-label="Input group example" aria-describedby="btnGroupAddon" autofocus>
+                <input [(ngModel)]="chatMessage" (keydown.enter)="sendMessage()" type="text" class="form-control" placeholder="Wiadomość" maxlength="400"
+                       aria-label="Input group example" aria-describedby="btnGroupAddon" autofocus>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-secondary" (click)="sendMessage()">Wyślij</button>

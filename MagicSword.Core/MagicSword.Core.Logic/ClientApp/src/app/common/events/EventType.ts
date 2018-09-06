@@ -11,5 +11,6 @@ export class EventType {
     public static CameraChange: string = "CameraChange";
     public static DiceThrow: string = "DiceThrow";
     public static CardSetAttribute: string = "CardSetAttribute";
+    public static PlayerMessage: string = "PlayerMessage";
 }
 

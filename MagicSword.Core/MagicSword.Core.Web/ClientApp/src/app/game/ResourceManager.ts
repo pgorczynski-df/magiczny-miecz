@@ -57,6 +57,7 @@ export class ResourceManager {
         d[EventType.PickCard] = "Gracz {0} wyłożył kartę {1}";
         d[EventType.DisposeCard] = "Gracz {0} odłożył kartę {1}";
         d[EventType.DiceThrow] = "Gracz {0} wyrzucił kostką: {1}";
+        d[EventType.PlayerMessage] = "Gracz {0} wysłał wiadomość: \"{1}\"";
         d[EventType.CardSetAttribute] = "Gracz {0} nadał karcie {1} atrybut {2} o wartości {3}";
         d[AttributeDefinition.Strength] = "Miecz";
         d[AttributeDefinition.Power] = "Magia";
