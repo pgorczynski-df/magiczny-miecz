@@ -37,6 +37,10 @@
     <None Remove="ClientApp\src\app\common\events\pickcard\PickCardRequestDto.ts" />
     <None Remove="ClientApp\src\app\common\events\pickcard\PickCardServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\ServerEventHandlerBase.ts" />
+    <None Remove="ClientApp\src\app\common\events\stackpushdisposedcards\StackPushDisposedCardsRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\stackpushdisposedcards\StackPushDisposedCardsServerEventHandler.ts" />
+    <None Remove="ClientApp\src\app\common\events\stackshuffle\StackShuffleRequestDto.ts" />
+    <None Remove="ClientApp\src\app\common\events\stackshuffle\StackShuffleServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
     <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
@@ -99,6 +103,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\pickcard\PickCardServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\ServerEventHandlerBase.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\stackpushdisposedcards\StackPushDisposedCardsRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\stackpushdisposedcards\StackPushDisposedCardsServerEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\stackshuffle\StackShuffleRequestDto.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\events\stackshuffle\StackShuffleServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />

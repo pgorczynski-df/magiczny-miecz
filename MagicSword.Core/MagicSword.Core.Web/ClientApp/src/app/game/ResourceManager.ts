@@ -46,6 +46,12 @@ export class ResourceManager {
 
     private addMessages() {
         var d = ResourceManager.localization;
+        d[AttributeDefinition.Strength] = "Miecz";
+        d[AttributeDefinition.Power] = "Magia";
+        d[AttributeDefinition.Gold] = "Złoto";
+        d[AttributeDefinition.Life] = "Życie";
+        d["attribute_give"] = "Nadaj atrybut: {0}";
+        d["attribute_remove"] = "Usuń atrybut: {0}";
         d[EventType.Error] = "Wystąpił błąd: {0}";
         d[EventType.JoinGame] = "Gracz {0} dołączył do gry";
         d[EventType.ActorMove] = "Gracz {0} przesunął kartę {1}";
@@ -59,12 +65,8 @@ export class ResourceManager {
         d[EventType.DiceThrow] = "Gracz {0} wyrzucił kostką: {1}";
         d[EventType.PlayerMessage] = "Gracz {0} wysłał wiadomość: \"{1}\"";
         d[EventType.CardSetAttribute] = "Gracz {0} nadał karcie {1} atrybut {2} o wartości {3}";
-        d[AttributeDefinition.Strength] = "Miecz";
-        d[AttributeDefinition.Power] = "Magia";
-        d[AttributeDefinition.Gold] = "Złoto";
-        d[AttributeDefinition.Life] = "Życie";
-        d["attribute_give"] = "Nadaj atrybut: {0}";
-        d["attribute_remove"] = "Usuń atrybut: {0}";
+        d[EventType.StackShuffle] = "Gracz {0} potasował stos {1}";
+        d[EventType.StackPushDisposedCards] = "Gracz {0} dołożył odłożone karty do stosu {1}";
     }
 
 }

@@ -12,5 +12,7 @@ export class EventType {
     public static DiceThrow: string = "DiceThrow";
     public static CardSetAttribute: string = "CardSetAttribute";
     public static PlayerMessage: string = "PlayerMessage";
+    public static StackShuffle: string = "StackShuffle";
+    public static StackPushDisposedCards: string = "StackPushDisposedCards";
 }
 

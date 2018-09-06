@@ -16,6 +16,8 @@ import { CameraChangeEventHandler } from "@App/game/events/handlers/CameraChange
 import { DiceThrowClientEventHandler } from "@App/game/events/handlers/DiceThrowClientEventHandler";
 import { CardSetAttributeClientEventHandler } from "@App/game/events/handlers/CardSetAttributeClientEventHandler";
 import { PlayerMessageClientEventHandler } from "@App/game/events/handlers/PlayerMessageClientEventHandler";
+import { StackShuffleClientEventHandler } from "@App/game/events/handlers/StackShuffleClientEventHandler";
+import { StackPushDisposedCardsClientEventHandler } from "@App/game/events/handlers/StackPushDisposedCardsClientEventHandler";
 
 export class ClientEventDispatcher {
 
@@ -30,6 +32,8 @@ export class ClientEventDispatcher {
     diceThrowClientEventHandler = new DiceThrowClientEventHandler();
     cardSetAttributeClientEventHandler = new CardSetAttributeClientEventHandler();
     playerMessageClientEventHandler = new PlayerMessageClientEventHandler();
+    stackShuffleClientEventHandler = new StackShuffleClientEventHandler();
+    stackPushDisposedCardsClientEventHandler = new StackPushDisposedCardsClientEventHandler();
 
     private eventHandlers: { [eventType: string]: IClientEventHandler; } = {};
     private context = new ClientEventHandlerContext();
@@ -50,6 +54,8 @@ export class ClientEventDispatcher {
         this.register(this.diceThrowClientEventHandler);
         this.register(this.cardSetAttributeClientEventHandler);
         this.register(this.playerMessageClientEventHandler);
+        this.register(this.stackShuffleClientEventHandler);
+        this.register(this.stackPushDisposedCardsClientEventHandler);
     }
 
     process(event: Event) {

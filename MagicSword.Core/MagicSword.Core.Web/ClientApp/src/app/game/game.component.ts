@@ -178,11 +178,13 @@ export class GameComponent implements AfterViewInit {
     }
 
     shuffleStack() {
-
+        var stack = this.selectedActor as CardStack;
+        this.dispatcher.stackShuffleClientEventHandler.shuffle(stack);
     }
 
     putBackDisposed() {
-
+        var stack = this.selectedActor as CardStack;
+        this.dispatcher.stackPushDisposedCardsClientEventHandler.putCards(stack);
     }
 
     res(key: string) {
@@ -190,20 +192,12 @@ export class GameComponent implements AfterViewInit {
     }
 
     async viewCards(content) {
-        if (!confirm("Jesteś pewien?")) {
-            return;
-        }
-
         var stack = this.selectedActor as CardStack;
         var cards = await this.dispatcher.viewStackHandler.viewCards(stack);
         this.showModal(content, cards);
     }
 
     async viewDisposedCards(content) {
-        if (!confirm("Jesteś pewien?")) {
-            return;
-        }
-
         var stack = this.selectedActor as CardStack;
         var cards = await this.dispatcher.viewStackHandler.viewDisposedCards(stack);
         this.showModal(content, cards);

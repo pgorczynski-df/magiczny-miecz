@@ -22,7 +22,7 @@ export class CardStack extends ActorBase {
         super();
     }
 
-    public buildStack = () => {
+    buildStack() {
         if (!this.definition.cardDefinitions) {
             throw new Error("cardDefinitions not set");
         }
@@ -39,8 +39,13 @@ export class CardStack extends ActorBase {
         }
     }
 
-    public shuffle = () => {
+    shuffle() {
         this.cards = Collections.shuffle(this.cards);
+    }
+
+    pushDisposedCards() {
+        this.cards = this.cards.concat(this.disposedCards);
+        this.disposedCards = [];
     }
 
     public createCard = (definitionId: number) => {
