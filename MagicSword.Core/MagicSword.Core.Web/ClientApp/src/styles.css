@@ -81,16 +81,20 @@ body {
 
 
 .events-panel {
-    color: black;
     /*background-color: dimgray;*/
-    opacity: 0.8;
     position: absolute;
     bottom: 20px;
     left: 20px;
     width: 300px;
     height: 300px;
-    overflow: auto;
     /*border: 3px solid #73AD21;*/
+}
+
+.events-box {
+    color: black;
+    opacity: 0.9;
+    overflow: auto;
+    height: 270px;
 }
 
     .dropdown-toggle::after {

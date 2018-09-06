@@ -23,10 +23,20 @@
             </div>
         </div>
     </div>
-    <div #eventsPanel class="events-panel">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item list-group-item-info" *ngFor="let message of messages; index as i;">{{message.text}}</li>
-        </ul>
+    <div class="events-panel">
+        <div #eventsPanel class="events-box">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-info" *ngFor="let message of messages; index as i;">{{message.text}}</li>
+            </ul>
+        </div>
+        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="input-group">
+                <input [(ngModel)]="chatMessage" (keydown.enter)="sendMessage()" type="text" class="form-control" placeholder="Wiadomość" aria-label="Input group example" aria-describedby="btnGroupAddon" autofocus>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary" (click)="sendMessage()">Wyślij</button>
+            </div>
+        </div>
     </div>
     <div class="menu-panel">
         <button class="btn btn-secondary" (click)="diceThrow()">Rzuć kostką</button>

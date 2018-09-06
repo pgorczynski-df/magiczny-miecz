@@ -35,6 +35,8 @@ export class GameComponent implements AfterViewInit {
     dispatcher: ClientEventDispatcher;
     clientGameService: ClientGameService;
 
+    chatMessage = "";
+
     get selectedActor(): IActor {
         return this.game ? this.game.world.selectedActor : null;
     }
@@ -144,6 +146,16 @@ export class GameComponent implements AfterViewInit {
         var attr = card.getAttribute(attribute.name);
         var msg = this.res(attr ? "attribute_remove" : "attribute_give");
         return StringUtils.format(msg, this.res(attribute.name));
+    }
+
+    sendMessage() {
+        if (!this.chatMessage || this.chatMessage.length === 0) {
+            return;
+        }
+
+        console.log(this.chatMessage);
+
+        this.chatMessage = "";
     }
 
     drawCard(uncover: boolean) {
