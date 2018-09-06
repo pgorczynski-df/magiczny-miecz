@@ -14,12 +14,18 @@ export class DrawCardServerEventHandler extends ServerEventHandlerBase {
 
         var args = data as DrawCardRequestDto;
         var card = context.game.world.drawCard(args.stackId, args.uncover);
-        var cardDto = context.serializer.serializeCard(card);
+
         var res = new DrawCardNotificationDto();
-        res.cardDto = cardDto;
+        if (card !== null) {
+            var cardDto = context.serializer.serializeCard(card);
+            res.cardDto = cardDto;
+            res.success = true;
+        } else {
+            res.stackId = args.stackId;
+            res.success = false;
+        }
 
         this.notifyAll(context, res);
-
     }
 
 }

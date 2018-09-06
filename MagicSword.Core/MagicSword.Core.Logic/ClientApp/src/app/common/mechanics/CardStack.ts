@@ -77,7 +77,7 @@ export class CardStack extends ActorBase {
         if (card == null) {
 
             if (this.cards.length === 0) {
-                throw new Error("Stack " + name + " is empty!");
+                return null;
             }
 
             card = this.cards.pop();

@@ -60,6 +60,7 @@ export class ResourceManager {
         d["cards"] = "kart";
         d["disposedCards"] = "odłożonych kart";
         d[EventType.DrawCard] = "Gracz {0} wyciągnął kartę {1}";
+        d[EventType.DrawCard + "_fail"] = "Na stosie {0} zabrakło kart. Dołóż zużyte i potasuj.";
         d[EventType.PickCard] = "Gracz {0} wyłożył kartę {1}";
         d[EventType.DisposeCard] = "Gracz {0} odłożył kartę {1}";
         d[EventType.DiceThrow] = "Gracz {0} wyrzucił kostką: {1}";
