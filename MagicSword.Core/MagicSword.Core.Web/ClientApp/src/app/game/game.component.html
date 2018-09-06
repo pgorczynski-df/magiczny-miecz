@@ -5,17 +5,24 @@
     <div class="controls-panel" [hidden]="!selectedActor">
         <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}" />
         <div [hidden]="!(selectedActor?.isCardStack)">
-            <div class="btn-group btn-group-vertical" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <div ngbDropdown>
+                    <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>...</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="btn btn-secondary dropdown-item" (click)="shuffleStack()">Potasuj stos</button>
+                        <button class="btn btn-secondary dropdown-item" (click)="putBackDisposed()">Dołóż karty odłożone</button>
+                        <button class="btn btn-secondary dropdown-item" (click)="viewCards(content)">Zobacz karty</button>
+                        <button class="btn btn-secondary dropdown-item" (click)="viewDisposedCards(content)">Zobacz karty odłożone</button>
+                    </div>
+                </div>
                 <button class="btn btn-secondary" (click)="drawCard()">Wyciągnij kartę</button>
-                <button class="btn btn-secondary" (click)="viewCards(content)">Zobacz karty</button>
-                <button class="btn btn-secondary" (click)="viewDisposedCards(content)">Zobacz karty odłożone</button>
             </div>
         </div>
         <div [hidden]="!(selectedActor?.isCard)">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <div ngbDropdown>
-                    <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>...</button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button class="btn btn-secondary" id="dropdownBasic2" ngbDropdownToggle>...</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                         <button class="btn btn-secondary dropdown-item" (click)="toggleAttribute(attr)" *ngFor="let attr of attributes; index as i;">{{attrDdText(attr)}}</button>
                     </div>
                 </div>

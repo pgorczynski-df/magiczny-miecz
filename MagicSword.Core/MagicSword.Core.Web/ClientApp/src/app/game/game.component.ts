@@ -177,6 +177,14 @@ export class GameComponent implements AfterViewInit {
         this.dispatcher.diceThrowClientEventHandler.throwDice();
     }
 
+    shuffleStack() {
+
+    }
+
+    putBackDisposed() {
+
+    }
+
     res(key: string) {
         return ResourceManager.getLocalizationMessage(key);
     }
