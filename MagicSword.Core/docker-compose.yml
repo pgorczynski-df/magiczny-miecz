@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  magicsword.core.api:
+    image: ${DOCKER_REGISTRY}magicsword.core.api
+    build:
+      context: ./MagicSword.Core.Api
+  magicsword.core.logic:
+    image: ${DOCKER_REGISTRY}magicsword.core.logic
+    build:
+      context: ./MagicSword.Core.Logic/ClientApp
+    

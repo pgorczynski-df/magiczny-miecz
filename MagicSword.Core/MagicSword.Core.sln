@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicSword.Core.Api", "Magi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicSword.Core.Logic", "MagicSword.Core.Logic\MagicSword.Core.Logic.csproj", "{29A11199-843A-4654-80DA-CD41459A55C6}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{719A9392-0D3D-486B-B380-7019DDE89871}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{29A11199-843A-4654-80DA-CD41459A55C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29A11199-843A-4654-80DA-CD41459A55C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29A11199-843A-4654-80DA-CD41459A55C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719A9392-0D3D-486B-B380-7019DDE89871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719A9392-0D3D-486B-B380-7019DDE89871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719A9392-0D3D-486B-B380-7019DDE89871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719A9392-0D3D-486B-B380-7019DDE89871}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
