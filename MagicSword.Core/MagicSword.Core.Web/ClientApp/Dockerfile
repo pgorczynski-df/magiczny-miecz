@@ -7,10 +7,10 @@ RUN npm install
 
 COPY ./src ./src
 COPY tsconfig.json ./
-#RUN npm run-script build
+COPY angular.json ./
 
-RUN ls
+RUN npm install -g @angular/cli@^6.2.1
 
 EXPOSE 4200
 
-CMD [ "ng", "serve" ]
+CMD [ "npm", "start" ]
