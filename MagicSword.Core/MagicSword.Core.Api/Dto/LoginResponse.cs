@@ -1,5 +1,5 @@
 ﻿
-namespace MagicSword.Core.Api.Model
+namespace MagicSword.Core.Api.Dto
 {
     public class LoginResponse
     {

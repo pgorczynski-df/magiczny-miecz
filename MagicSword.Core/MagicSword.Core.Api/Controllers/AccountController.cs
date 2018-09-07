@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MagicSword.Core.Api.Dto;
 using MagicSword.Core.Api.Model;
 using MagicSword.Core.Api.Security;
 using Microsoft.AspNetCore.Authorization;

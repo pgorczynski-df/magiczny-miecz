@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MagicSword.Core.Api.Hubs;
 using MagicSword.Core.Api.Model;
-using MagicSword.Core.Api.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -132,17 +128,6 @@ namespace MagicSword.Core.Api
             // using Microsoft.AspNetCore.Identity.UI.Services;
             //services.AddSingleton<IEmailSender, EmailSender>();
 
-            void SetHubOptions(HubOptions options)
-            {
-                options.EnableDetailedErrors = true;
-            }
-
-            services.AddSignalR()
-                .AddHubOptions<PlayerHub>(SetHubOptions)
-                .AddHubOptions<GameHub>(SetHubOptions);
-
-            services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
-
             services.AddLogging(logging =>
             {
                 logging.AddConfiguration(Configuration.GetSection("Logging"));
@@ -171,17 +156,6 @@ namespace MagicSword.Core.Api
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseAuthentication();
-
-            void SetHubOptions(HttpConnectionDispatcherOptions options)
-            {
-                options.ApplicationMaxBufferSize = 10 * 1024 * 1024;
-            }
-
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<GameHub>("/gameHub", SetHubOptions);
-                routes.MapHub<PlayerHub>("/playerHub", SetHubOptions);
-            });
 
             app.UseMvc();
         }

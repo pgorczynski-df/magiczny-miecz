@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MagicSword.Core.Api.Hubs.Game;
+using MagicSword.Core.Api.Dto;
 using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
