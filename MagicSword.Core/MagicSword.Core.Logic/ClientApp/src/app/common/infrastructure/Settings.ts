@@ -18,6 +18,7 @@ export class Settings {
         if (process && process.env) {
             return process.env[varName];
         }
+        return varName;
     }
 
 }
