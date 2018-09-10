@@ -13,7 +13,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
       #- ASPNETCORE_HTTPS_PORT=44383
-      - MagicSwordCoreApiContextConnection=Server=localhost,1433;Database=MagicSword;User Id=sa;Password=Pass@wordIsSecret;
+      - MagicSwordCoreApiContextConnection=${IDENTITY_DB:-Server=sql.data;Database=MagicSword;User Id=sa;Password=Pass@wordIsSecret}
 
     ports:
       - "55888:5000"

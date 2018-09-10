@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -33,17 +34,6 @@ namespace MagicSword.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //var connection = @"Server=.\SQLEXPRESS;Initial Catalog=MagicSword;Trusted_Connection=True;ConnectRetryCount=0;Integrated Security=True";
-            //services.AddDbContext<GameServerContext>(options => options.UseSqlServer(connection));
-
-            //services.AddDbContext<MagicSwordCoreApiContext>(options =>
-            //    options.UseSqlServer(
-            //        context.Configuration.GetConnectionString("MagicSwordCoreApiContextConnection")));
-
-            //services.AddDefaultIdentity<MagicSwordCoreApiUser>()
-            //    .AddEntityFrameworkStores<MagicSwordCoreApiContext>();
-
             var policy = new CorsPolicy();
             policy.Headers.Add("*");
             policy.Methods.Add("*");
@@ -54,7 +44,13 @@ namespace MagicSword.Core.Api
 
             services.AddDbContext<MagicSwordCoreApiContext>(options =>
                 options.UseSqlServer(
-                    Configuration["MagicSwordCoreApiContextConnection"]));
+                    Configuration["MagicSwordCoreApiContextConnection"],
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
+                        //Configuring Connection Resiliency: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency 
+                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                    }));
 
             services.AddDefaultIdentity<Player>(o =>
                 {
@@ -141,6 +137,8 @@ namespace MagicSword.Core.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            InitDatabase(app);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -158,6 +156,15 @@ namespace MagicSword.Core.Api
             app.UseAuthentication();
 
             app.UseMvc();
+        }
+
+        private static void InitDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<MagicSwordCoreApiContext>();
+                dbContext.Database.Migrate();
+            }
         }
     }
 }
