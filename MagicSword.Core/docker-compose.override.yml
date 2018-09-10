@@ -32,6 +32,8 @@ services:
     build:
       args:
         - AUTH_SERVER_URL=http://${EXTERNAL_DNS_NAME_OR_IP}:55888/
+        - GAME_SERVER_URL=http://${EXTERNAL_DNS_NAME_OR_IP}:55889/
+        - GUI_SERVER_URL=http://${EXTERNAL_DNS_NAME_OR_IP}:55890/ # =self
     environment:
     #TODO setting this value this way doesn't make sense since we are running the client in the browser
     #one idea to solve it would be to make it an image build time variable 

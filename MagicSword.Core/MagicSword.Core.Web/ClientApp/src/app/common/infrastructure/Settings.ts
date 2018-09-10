@@ -1,4 +1,4 @@
-declare var process;
+export declare var process;
 
 export class Settings {
 

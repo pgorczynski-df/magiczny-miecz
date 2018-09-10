@@ -1,6 +1,8 @@
 FROM node:10
 
 ARG AUTH_SERVER_URL
+ARG GAME_SERVER_URL
+ARG GUI_SERVER_URL
 
 WORKDIR /app
 
@@ -9,14 +11,17 @@ WORKDIR /app
 #https://docs.docker.com/compose/compose-file/#args
 
 COPY package*.json ./
-RUN npm install
-
-COPY ./src ./src
 COPY tsconfig.json ./
 COPY angular.json ./
 
+COPY ./src ./src
+
+RUN apt-get update && apt-get install -y gettext
+RUN envsubst < ./src/environments/environment.prod.ts
+
+RUN npm install
 RUN npm install -g @angular/cli@^6.2.1
 
 EXPOSE 4200
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "start", "--prod" ]
