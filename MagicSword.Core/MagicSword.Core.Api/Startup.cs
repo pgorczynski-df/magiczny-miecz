@@ -54,7 +54,7 @@ namespace MagicSword.Core.Api
 
             services.AddDbContext<MagicSwordCoreApiContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("MagicSwordCoreApiContextConnection")));
+                    Configuration["MagicSwordCoreApiContextConnection"]));
 
             services.AddDefaultIdentity<Player>(o =>
                 {

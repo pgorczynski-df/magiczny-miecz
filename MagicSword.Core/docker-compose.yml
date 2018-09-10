@@ -1,12 +1,26 @@
 version: '3.4'
 
 services:
+  sql.data:
+    image: microsoft/mssql-server-linux:2017-latest
+
   magicsword.core.api:
     image: ${DOCKER_REGISTRY}magicsword.core.api
     build:
       context: ./MagicSword.Core.Api
+    depends_on:
+      - sql.data
+
   magicsword.core.logic:
     image: ${DOCKER_REGISTRY}magicsword.core.logic
     build:
       context: ./MagicSword.Core.Logic/ClientApp
-    
+    depends_on:
+      - magicsword.core.api
+
+  magicsword.core.web:
+    image: ${DOCKER_REGISTRY}magicsword.core.web
+    build:
+      context: ./MagicSword.Core.Web/ClientApp
+    depends_on:
+      - magicsword.core.logic

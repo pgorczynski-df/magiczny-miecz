@@ -1,14 +1,38 @@
 version: '3.4'
 
 services:
+  sql.data:
+    environment:
+      - SA_PASSWORD=Pass@wordIsSecret
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"    # Important: In a production environment your should remove the external port
+
   magicsword.core.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
       #- ASPNETCORE_HTTPS_PORT=44383
+      - MagicSwordCoreApiContextConnection=Server=localhost,1433;Database=MagicSword;User Id=sa;Password=Pass@wordIsSecret;
+
     ports:
       - "55888:5000"
       #- "44383:443"
     #volumes:
       #- ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       #- ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  magicsword.core.logic:
+    environment:
+      - AUTH_SERVER_URL=http://localhost:5000/
+    ports:
+      - "55889:3000"
+
+  magicsword.core.web:
+    environment:
+    #TODO setting this value this way doesn't make sense since we are running the client in the browser
+    #one idea to solve it would be to make it an image build time variable 
+    #other idea is to use environment.ts
+      - AUTH_SERVER_URL=http://${EXTERNAL_DNS_NAME_OR_IP}:55888/ 
+    ports:
+      - "55890:4200"
