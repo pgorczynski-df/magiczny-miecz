@@ -15,10 +15,12 @@ export class Settings {
     }
 
     private getEnv(varName: string) {
-        if (process && process.env) {
-            return process.env[varName];
+
+        if (typeof process === "undefined" || typeof process.env === "undefined") {
+            return null;
         }
-        return varName;
+
+        return process.env[varName];
     }
 
 }
