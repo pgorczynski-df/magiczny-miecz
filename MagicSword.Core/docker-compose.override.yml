@@ -25,6 +25,7 @@ services:
   magicsword.core.logic:
     environment:
       - AUTH_SERVER_URL=http://localhost:5000/
+    #command: ["./wait-for-it.sh", "sql.data"]
     ports:
       - "55889:3000"
 
