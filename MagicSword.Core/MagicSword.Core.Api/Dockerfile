@@ -12,6 +12,8 @@ COPY *.csproj ./
 RUN dotnet restore 
 COPY . ./
 
+COPY ./wait-for-it.sh ./
+
 RUN dotnet build MagicSword.Core.Api.csproj -c Release -o /app
 
 FROM build AS publish
