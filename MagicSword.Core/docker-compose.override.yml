@@ -7,11 +7,6 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "5433:1433"    # Important: In a production environment your should remove the external port
-    healthcheck:
-        test: ["CMD", "sqlcmd", "-S sql.data", "-U SA", "-P 'Pass@wordIsSecret'", "-Q 'select 1'"]
-        interval: 30s
-        timeout: 10s
-        retries: 5
 
   magicsword.core.api:
     environment:
@@ -30,7 +25,6 @@ services:
   magicsword.core.logic:
     environment:
       - AUTH_SERVER_URL=http://localhost:5000/
-    #command: ["./wait-for-it.sh", "sql.data"]
     ports:
       - "55889:3000"
 
