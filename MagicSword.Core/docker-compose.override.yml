@@ -24,7 +24,7 @@ services:
 
   magicsword.core.logic:
     environment:
-      - AUTH_SERVER_URL=http://localhost:5000/
+      - AUTH_SERVER_URL=http://magicsword.core.api:5000
     ports:
       - "55889:3000"
 
