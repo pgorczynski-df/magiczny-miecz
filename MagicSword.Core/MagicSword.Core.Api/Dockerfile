@@ -23,7 +23,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 
-RUN chmod +x ./wait-for-it.sh
-RUN ./wait-for-it.sh localhost:1433  --echo "sql is up"
+#RUN chmod +x ./wait-for-it.sh
+#RUN ./wait-for-it.sh localhost:1433  --echo "sql is up"
 
 ENTRYPOINT ["dotnet", "MagicSword.Core.Api.dll"]

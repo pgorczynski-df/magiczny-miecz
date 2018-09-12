@@ -3,6 +3,8 @@ version: '3.4'
 services:
   sql.data:
     image: microsoft/mssql-server-linux:2017-latest
+    build:
+      context: ./SqlServer
 
   magicsword.core.api:
     image: ${DOCKER_REGISTRY}magicsword.core.api
