@@ -1,4 +1,4 @@
-export declare var process;
+declare var process;
 
 export class Settings {
 
@@ -20,7 +20,11 @@ export class Settings {
             return null;
         }
 
-        return process.env[varName];
+        var val = process.env[varName];
+        if (!val || (val as string).startsWith("$")) {
+            return null;
+        }
+        return val;
     }
 
 }

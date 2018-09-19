@@ -7,10 +7,10 @@ export const environment = {
 
     production: false,
 
-    GAME_SERVER_URL: "http://localhost:3000",
+    GAME_SERVER_URL: "$GAME_SERVER_URL",
 
-    GUI_SERVER_URL: "http://localhost:4200",
+    GUI_SERVER_URL: "$GUI_SERVER_URL",
 
-    AUTH_SERVER_URL: "http://localhost:53048/"
+    AUTH_SERVER_URL: "$AUTH_SERVER_URL"
 
 };

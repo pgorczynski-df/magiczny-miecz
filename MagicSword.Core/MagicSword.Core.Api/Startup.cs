@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using MagicSword.Core.Api.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,6 +19,7 @@ namespace MagicSword.Core.Api
 {
     public class Startup
     {
+
         //TODO change
         // We use a key generated on this server during startup to secure our tokens.
         // This means that if the app restarts, existing tokens become invalid. It also won't work
@@ -24,12 +27,15 @@ namespace MagicSword.Core.Api
         //public static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray());
         public static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.Empty.ToByteArray());
 
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly ILogger<Startup> _logger;
 
         public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+        {
+            _logger = logger;
+            Configuration = configuration;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -137,7 +143,33 @@ namespace MagicSword.Core.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            InitDatabase(app);
+            const int attempts = 5;
+            const int sleepTime = 10;
+
+            SqlException lastException = null;
+
+            for (int i = 0; i < attempts; i++)
+            {
+                _logger.LogInformation($"Validating database, attempt {i}/{attempts}");
+
+                try
+                {
+                    InitDatabase(app);
+                    lastException = null;
+                    break;
+                }
+                catch (SqlException e)
+                {
+                    lastException = e;
+                    _logger.LogInformation($"Could not connect, going to sleep for {sleepTime} seconds");
+                    Thread.Sleep(sleepTime * 1000);
+                }
+            }
+
+            if (lastException != null)
+            {
+                throw lastException;
+            }
 
             if (env.IsDevelopment())
             {

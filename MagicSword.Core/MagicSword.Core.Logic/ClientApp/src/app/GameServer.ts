@@ -6,7 +6,9 @@ import * as cors from "cors";
 import { Services } from "@App/Services";
 import { SocketResponseProcessor } from "@App/SocketResponseProcessor";
 import { Event } from "@App/common/events/Event";
-import { GameService} from "@App/GameService";
+import { GameService } from "@App/GameService";
+
+declare var process;
 
 export class GameServer {
 
@@ -21,7 +23,18 @@ export class GameServer {
     private gameManager: GameService;
 
     constructor() {
+
+        this.services = new Services(null);
         this.port = (<any>process.env).PORT || GameServer.PORT;
+
+        this.services.logger.info("Starting game server");
+
+
+        this.services.logger.info("Environment variables: ");
+        for (const key of Object.keys(process.env)) {
+            const val = process.env[key];
+            this.services.logger.info(`'${key}': '${val}'`);
+        }
 
         this.app = express();
 
@@ -47,7 +60,6 @@ export class GameServer {
         this.server = createServer(this.app);
         this.io = socketIo(this.server);
 
-        this.services = new Services(null);
         this.gameManager = new GameService(this.services);
         this.gameManager.init();
 
