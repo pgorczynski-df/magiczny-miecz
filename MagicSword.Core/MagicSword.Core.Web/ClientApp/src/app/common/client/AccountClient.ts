@@ -1,4 +1,4 @@
-﻿import { HttpClient } from "@App/common/client/HttpClient";
+import { HttpClient } from "@App/common/client/HttpClient";
 import { Services } from "@App/Services";
 
 export class AccountClient extends HttpClient {
@@ -14,7 +14,7 @@ export class AccountClient extends HttpClient {
     }
 
     public login(email: string, password: string): Promise<any> {
-        return super.post(`${this.controller}/Login?email=${email}&password=${password}`);
+        return super.post(`${this.controller}/Login`, { email: email, password: password });
     }
 
 }

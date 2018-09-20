@@ -23,8 +23,11 @@ namespace MagicSword.Core.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<IActionResult> Login([FromBody]LoginRequest loginRequest)
         {
+            var email = loginRequest.Email;
+            var password = loginRequest.Password;
+
             if (String.IsNullOrEmpty(email))
             {
                 return BadRequest("email cannot be empty");
