@@ -1,12 +1,15 @@
 import { createServer, Server } from "http";
 import * as express from "express";
+import * as bodyParser from "body-parser";
 import * as socketIo from "socket.io";
 import * as cors from "cors";
+import * as mongoose from 'mongoose';
 
 import { Services } from "@App/Services";
 import { SocketResponseProcessor } from "@App/SocketResponseProcessor";
 import { Event } from "@App/common/events/Event";
 import { GameService } from "@App/GameService";
+import { GameController } from "@App/gameapi/GameController";
 
 declare var process;
 
@@ -20,12 +23,13 @@ export class GameServer {
     private port: string | number;
 
     private services: Services;
-    private gameManager: GameService;
+    private gameService: GameService;
+    private gameController: GameController;
 
     constructor() {
 
         this.services = new Services(null);
-        this.port = (<any>process.env).PORT || GameServer.PORT;
+        this.port = GameServer.PORT;
 
         this.services.logger.info("Starting game server");
 
@@ -39,6 +43,7 @@ export class GameServer {
         this.app = express();
 
         this.app.use(cors());
+        this.app.use(bodyParser.json());
 
         const router = express.Router();
         //router.get("/game/:id", (req, res) => {
@@ -50,20 +55,41 @@ export class GameServer {
         //    res.json(this.gameManager.getGameDto(gameId));
         //});
         router.get("/game_evictcache", (req, res) => {
-            this.gameManager.evictCache();
+            this.gameService.evictCache();
             res.json("OK");
         });
         this.app.use("/api", router);
 
         this.app.use("/", express.static("./src"));
 
+        this.gameController = new GameController();
+        this.gameController.init(this.app);
+
         this.server = createServer(this.app);
         this.io = socketIo(this.server);
 
-        this.gameManager = new GameService(this.services);
-        this.gameManager.init();
+        this.gameService = new GameService(this.services);
+        this.gameService.init();
 
-        this.listen();
+        var mongoUrl = this.services.settings.noSqlConnectionString;
+
+        this.services.logger.info(`Attempting to connect to Mongo at: ${mongoUrl}`);
+
+        const options = {
+            useNewUrlParser: true,
+            reconnectTries: 5, // Never stop trying to reconnect
+            reconnectInterval: 10000, // Reconnect every 500ms
+            connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+        };
+        mongoose.connect(mongoUrl, options).then(
+            () => {
+                this.services.logger.info("Successfully connected to db");
+                this.listen();
+
+            },
+            err => {
+                this.services.logger.error("Connection to db failed");
+            });
 
     }
 
@@ -80,7 +106,7 @@ export class GameServer {
                 var responseProcessor = new SocketResponseProcessor(this.services, this.io, socket);
                 responseProcessor.registerCaller(event);
 
-                this.gameManager.handleEvent(responseProcessor, event);
+                this.gameService.handleEvent(responseProcessor, event);
             });
 
             socket.on("disconnect", () => {

@@ -4,6 +4,9 @@ services:
   sql.data:
     image: microsoft/mssql-server-linux:2017-latest
 
+  nosql.data:
+    image: mongo
+
   magicsword.core.api:
     image: ${DOCKER_REGISTRY}magicsword.core.api
     build:
@@ -16,6 +19,7 @@ services:
     build:
       context: ./MagicSword.Core.Logic/ClientApp
     depends_on:
+      - nosql.data
       - magicsword.core.api
 
   magicsword.core.web:

@@ -65,10 +65,12 @@
     <None Remove="ClientApp\src\app\common\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\common\utils\Guid.ts" />
     <None Remove="ClientApp\src\app\common\utils\StringUtils.ts" />
+    <None Remove="ClientApp\src\app\gameapi\GameController.ts" />
     <None Remove="ClientApp\src\app\GameProvider.ts" />
     <None Remove="ClientApp\src\app\GameService.ts" />
     <None Remove="ClientApp\src\app\common\repository\GamesApiClient.ts" />
     <None Remove="ClientApp\src\app\common\repository\IGamesRepository.ts" />
+    <None Remove="ClientApp\src\app\gameapi\GameSchema.ts" />
     <None Remove="ClientApp\src\app\UserProvider.ts" />
     <None Remove="ClientApp\src\GameServer.ts" />
     <None Remove="ClientApp\src\index.ts" />
@@ -112,6 +114,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\GameProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\LocalStorageGamesRepository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\gameapi\GameController.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\gameapi\GameSchema.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\UserProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\AccountClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\client\GamesApiClient.ts" />
