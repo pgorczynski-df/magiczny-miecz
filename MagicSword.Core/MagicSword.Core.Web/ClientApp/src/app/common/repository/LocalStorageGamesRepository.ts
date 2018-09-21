@@ -29,6 +29,10 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         return Promise.resolve(id);
     }
 
+    save(dto: any): Promise<any> {
+        throw new Error("not supported");
+    }
+
     private getUserGames(repo = null) {
         if (repo === null) {
             repo = this.getRepo();

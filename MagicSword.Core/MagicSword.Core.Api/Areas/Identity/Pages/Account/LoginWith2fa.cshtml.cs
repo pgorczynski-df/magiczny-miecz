@@ -15,10 +15,10 @@ namespace MagicSword.Core.Api.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginWith2faModel : PageModel
     {
-        private readonly SignInManager<Player> _signInManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginWith2faModel> _logger;
 
-        public LoginWith2faModel(SignInManager<Player> signInManager, ILogger<LoginWith2faModel> logger)
+        public LoginWith2faModel(SignInManager<User> signInManager, ILogger<LoginWith2faModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

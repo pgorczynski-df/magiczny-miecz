@@ -13,10 +13,10 @@ namespace MagicSword.Core.Api.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly SignInManager<Player> _signInManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger _logger;
 
-        public AccountController(SignInManager<Player> signInManager, ILogger<AccountController> logger)
+        public AccountController(SignInManager<User> signInManager, ILogger<AccountController> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MagicSword.Core.Api.Migrations
 {
     [DbContext(typeof(MagicSwordCoreApiContext))]
-    [Migration("20180719124721_InitialCreate")]
+    [Migration("20180921152111_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace MagicSword.Core.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MagicSword.Core.Api.Areas.Identity.Data.MagicSwordCoreApiUser", b =>
+            modelBuilder.Entity("MagicSword.Core.Api.Model.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,36 +71,6 @@ namespace MagicSword.Core.Api.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("MagicSword.Core.Api.Model.Game", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Data");
-
-                    b.Property<int>("OwnerId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("MagicSword.Core.Api.Model.GamePlayer", b =>
-                {
-                    b.Property<int>("GameId");
-
-                    b.Property<int>("PlayerId");
-
-                    b.HasKey("GameId", "PlayerId");
-
-                    b.HasIndex("PlayerId");
-
-                    b.ToTable("GamePlayer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -215,49 +185,28 @@ namespace MagicSword.Core.Api.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MagicSword.Core.Api.Model.Game", b =>
-                {
-                    b.HasOne("MagicSword.Core.Api.Areas.Identity.Data.MagicSwordCoreApiUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("MagicSword.Core.Api.Model.GamePlayer", b =>
-                {
-                    b.HasOne("MagicSword.Core.Api.Model.Game", "Game")
-                        .WithMany("Participants")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MagicSword.Core.Api.Areas.Identity.Data.MagicSwordCoreApiUser", "Player")
-                        .WithMany("ParticipatedGames")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>")
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("MagicSword.Core.Api.Areas.Identity.Data.MagicSwordCoreApiUser")
+                    b.HasOne("MagicSword.Core.Api.Model.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("MagicSword.Core.Api.Areas.Identity.Data.MagicSwordCoreApiUser")
+                    b.HasOne("MagicSword.Core.Api.Model.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
@@ -265,20 +214,20 @@ namespace MagicSword.Core.Api.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>")
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MagicSword.Core.Api.Areas.Identity.Data.MagicSwordCoreApiUser")
+                    b.HasOne("MagicSword.Core.Api.Model.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("MagicSword.Core.Api.Areas.Identity.Data.MagicSwordCoreApiUser")
+                    b.HasOne("MagicSword.Core.Api.Model.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

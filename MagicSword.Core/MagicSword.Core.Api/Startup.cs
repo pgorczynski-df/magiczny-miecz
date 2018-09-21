@@ -58,7 +58,7 @@ namespace MagicSword.Core.Api
                         sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                     }));
 
-            services.AddDefaultIdentity<Player>(o =>
+            services.AddDefaultIdentity<User>(o =>
                 {
                     o.SignIn.RequireConfirmedEmail = false;
                     o.Password.RequireNonAlphanumeric = false;
