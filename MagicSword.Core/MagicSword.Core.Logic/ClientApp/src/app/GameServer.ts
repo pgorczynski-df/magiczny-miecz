@@ -3,13 +3,14 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as socketIo from "socket.io";
 import * as cors from "cors";
-import * as mongoose from 'mongoose';
+import * as mongoose from "mongoose";
 
 import { Services } from "@App/Services";
 import { SocketResponseProcessor } from "@App/SocketResponseProcessor";
 import { Event } from "@App/common/events/Event";
 import { GameService } from "@App/GameService";
 import { GameController } from "@App/gameapi/GameController";
+import { NoSqlGamesRepository } from "@App/gameapi/NoSqlGamesRepository";
 
 declare var process;
 
@@ -25,6 +26,7 @@ export class GameServer {
     private services: Services;
     private gameService: GameService;
     private gameController: GameController;
+    private repository: NoSqlGamesRepository;
 
     constructor() {
 
@@ -62,13 +64,14 @@ export class GameServer {
 
         this.app.use("/", express.static("./src"));
 
-        this.gameController = new GameController();
+        this.repository = new NoSqlGamesRepository(this.services);
+        this.gameController = new GameController(this.services, this.repository);
         this.gameController.init(this.app);
 
         this.server = createServer(this.app);
         this.io = socketIo(this.server);
 
-        this.gameService = new GameService(this.services);
+        this.gameService = new GameService(this.services, this.repository);
         this.gameService.init();
 
         var mongoUrl = this.services.settings.noSqlConnectionString;

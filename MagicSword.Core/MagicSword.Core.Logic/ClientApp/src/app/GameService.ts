@@ -7,16 +7,16 @@ import { UserProvider } from "@App/UserProvider";
 import { GameProvider } from "@App/common/repository/GameProvider";
 import { EventDispatcher } from "@App/common/events/EventDispatcher";
 import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
-import { GamesApiClient } from "@App/common/client/GamesApiClient";
+import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 
 export class GameService {
 
     private commonSerializer = new CommonSerializer();
     private userProvider = new UserProvider();
-    private gameProvider = new GameProvider(this.commonSerializer, services => new GamesApiClient(services));
+    private gameProvider = new GameProvider(this.commonSerializer, services => this.repository);
     private eventDispatcher = new EventDispatcher(this.gameProvider, this.commonSerializer);
 
-    constructor(private services: Services) {
+    constructor(private services: Services, private repository: IGamesRepository) {
     }
 
     public init() {

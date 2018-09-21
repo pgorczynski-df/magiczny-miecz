@@ -19,16 +19,16 @@ export class GameProvider {
         var game = this.getGame(id);
         if (!game) {
             services.logger.debug(`Cache did not contain game id = ${id}`);
-            var gamesApiClient = this.repositoryFactory(services);
-            return gamesApiClient.getGame(id).then(
-                gameDto => {
+            var repository = this.repositoryFactory(services);
+            return repository.getGame(id).then(
+                (gameDto: GameDto) => {
 
                     services.logger.debug(`Fetching game id = ${id} completed`);
                     services.logger.debug(gameDto);
 
                     game = this.createGame(services, id, callingPlayerId);
 
-                    if (!gameDto) {
+                    if (!gameDto || !gameDto.players) {
 
                         services.logger.debug(`Game id = ${id} didn't contain data, creating new game`);
                         game.init();
@@ -53,8 +53,8 @@ export class GameProvider {
 
     persistGame(services: Services, game: Game) : GameDto {
         var gameDto = this.serializer.serializeGame(game);
-        var gamesApiClient = this.repositoryFactory(services);
-        gamesApiClient.update(game.id, gameDto).then(resId => {
+        var repository = this.repositoryFactory(services);
+        repository.update(game.id, gameDto).then(resId => {
             services.logger.debug(`Game id = ${resId} updated successfully`);
         });
         return gameDto;

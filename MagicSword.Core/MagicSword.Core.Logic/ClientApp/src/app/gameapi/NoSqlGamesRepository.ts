@@ -14,15 +14,21 @@ export class NoSqlGamesRepository implements IGamesRepository {
     }
 
     public getGame(id: string): Promise<any> {
-        return Game.findById(id).exec();
+        return Game.findById(id).exec().then(g => g.data);
     }
 
     public save(dto: any): Promise<any> {
+        this.services.logger.debug("Attepting to save game");
+        this.services.logger.debug(dto);
+
         let newGame = new Game({ data: dto });
-        return newGame.save().exec().then(g => { return g.id; });
+        return newGame.save().then(g => { return g.id; });
     }
 
     public update(id: string, dto: any): Promise<string> {
+        this.services.logger.debug("Attepting to update game");
+        this.services.logger.debug(dto);
+
         return Game.findByIdAndUpdate(id, { data: dto }).exec();
     }
 
@@ -30,7 +36,7 @@ export class NoSqlGamesRepository implements IGamesRepository {
         return Game.find({}).exec().then(collection => {
             var res = [];
             for (var game of collection) {
-                res.push(this.createDto(game));
+                res.push(this.createListDto(game));
             }
             return res;
         });
@@ -41,10 +47,10 @@ export class NoSqlGamesRepository implements IGamesRepository {
     }
 
     public createGame(): Promise<GameListDto> {
-        return this.save(null).then(r => this.createDto(r));
+        return this.save(null).then(r => this.createListDto(r));
     }
 
-    private createDto(game: any): GameListDto {
+    private createListDto(game: any): GameListDto {
         var dto = new GameListDto();
         dto.id = game.id;
         return dto;

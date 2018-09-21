@@ -7,4 +7,6 @@ export interface IGamesRepository {
     getMyGames(): Promise<GameListDto[]>;
 
     update(id: string, dto: any): Promise<string>;
+
+    save(dto: any): Promise<any>;
 }

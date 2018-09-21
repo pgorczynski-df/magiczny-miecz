@@ -5,10 +5,10 @@ import { GameListDto } from "@App/common/dto/GameListDto";
 
 export class GamesApiClient extends HttpClient implements IGamesRepository {
 
-    private readonly apiUrl = "/api/Games";
+    private readonly apiUrl = "/game";
 
     constructor(services: Services) {
-        super(services, services.settings.authServerUrl);
+        super(services, services.settings.gameServerUrl);
     }
 
     public getGame(id: string): Promise<any> {
@@ -37,7 +37,7 @@ export class GamesApiClient extends HttpClient implements IGamesRepository {
     }
 
     public createGame(): Promise<GameListDto> {
-        var url = `${this.apiUrl}/CreateGame`;
+        var url = `${this.apiUrl}`;
         return this.post(url);
     }
 
