@@ -2,6 +2,10 @@ declare var process;
 
 export class Settings {
 
+    public get noSqlConnectionString() {
+        return this.getEnv("NO_SQL_CONNECTION_STRING") || "mongodb://localhost:27017/game";
+    }
+
     public get gameServerUrl() {
         return this.getEnv("GAME_SERVER_URL") || "http://localhost:3000";
     }
