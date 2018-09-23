@@ -39,6 +39,8 @@ namespace MagicSword.Core.Api.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
+                    b.Property<string>("Nickname");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
