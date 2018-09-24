@@ -30,11 +30,11 @@ namespace MagicSword.Core.Api.Controllers
 
             if (String.IsNullOrEmpty(email))
             {
-                return BadRequest("email cannot be empty");
+                return BadRequest("login_email_cannot_be_empty");
             }
             if (String.IsNullOrEmpty(password))
             {
-                return BadRequest("password cannot be empty");
+                return BadRequest("login_password_cannot_be_empty");
             }
 
             var user = await _signInManager.UserManager.FindByEmailAsync(email);
@@ -43,7 +43,7 @@ namespace MagicSword.Core.Api.Controllers
                 return Json(new LoginResponse
                 {
                     Success = false,
-                    Error = "Nieznany użytkownik",
+                    Error = "login_unknown_user_password",
                 });
             }
 
@@ -62,7 +62,7 @@ namespace MagicSword.Core.Api.Controllers
                 return Json(new LoginResponse
                 {
                     Success = false,
-                    Error = result.IsLockedOut ? "User is locked out" : "Login failed",
+                    Error = result.IsLockedOut ? "login_account_locked" : "login_unknown_user_password",
                 });
             }
         }

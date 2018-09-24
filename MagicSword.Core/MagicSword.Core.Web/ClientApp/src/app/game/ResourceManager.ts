@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 import { Services } from "@App/Services";
 import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { EventType } from "@App/common/events/EventType";
-import {AttributeDefinition} from "@App/common/mechanics/definitions/AttributeDefinition";
+import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
 
 @Injectable()
 export class ResourceManager {
@@ -25,7 +25,7 @@ export class ResourceManager {
 
     public load(): Promise<any> {
 
-        var promises : Promise<any>[] = [];
+        var promises: Promise<any>[] = [];
 
         promises.push(new Promise(resolve => {
             this.fontLoader.load("/assets/fonts/helvetiker_regular.typeface.json", (font) => {
@@ -36,7 +36,7 @@ export class ResourceManager {
 
         promises.push(this.cardDefinitionLoader.load());
 
-        return Promise.all(promises); 
+        return Promise.all(promises);
     }
 
     public static getLocalizationMessage(key: string) {
@@ -68,6 +68,9 @@ export class ResourceManager {
         d[EventType.CardSetAttribute] = "Gracz {0} nadał karcie {1} atrybut {2} o wartości {3}";
         d[EventType.StackShuffle] = "Gracz {0} potasował stos {1}";
         d[EventType.StackPushDisposedCards] = "Gracz {0} dołożył odłożone karty do stosu {1}";
+        d["login_unknown_user_password"] = "Niepoprawny email/hasło";
+        d["login_account_locked"] = "Konto zablokowane";
+        d["login_email_password_required"] = "Email/hasło wymagane";
     }
 
 }

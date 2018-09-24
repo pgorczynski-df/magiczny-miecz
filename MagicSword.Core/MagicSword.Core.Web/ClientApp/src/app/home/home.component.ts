@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 
 import { Services } from "app/Services";
 import { AccountClient } from "@App/common/client/AccountClient";
+import { ResourceManager } from "@App/game/ResourceManager";
 
 @Component({
     selector: "app-home",
@@ -17,7 +18,8 @@ export class HomeComponent implements AfterViewInit {
 
     accountClient: AccountClient;
 
-    constructor(private services: Services, private router: Router) {
+    //workaround: we inject the resourceManager only to force it to be initialized
+    constructor(private services: Services, private router: Router, private resourceManager: ResourceManager) {
         this.accountClient = new AccountClient(this.services);
     }
 
@@ -31,14 +33,17 @@ export class HomeComponent implements AfterViewInit {
                     this.services.authService.token = r.token;
                     this.router.navigate(['/lobby']);
                 } else {
-                    this.loginResult = r.error;
+                    this.loginResult = this.res(r.error);
                 }
             });
         } else {
-            this.loginResult = "Email/hasło wymagane";
+            this.loginResult = this.res("login_email_password_required");
         }
 
     }
 
+    res(key: string) {
+        return ResourceManager.getLocalizationMessage(key);
+    }
 }
 
