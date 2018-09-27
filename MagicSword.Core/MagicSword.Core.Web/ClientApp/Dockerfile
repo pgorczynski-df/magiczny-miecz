@@ -13,7 +13,7 @@ COPY angular.json ./
 COPY ./src ./src
 
 RUN apt-get update && apt-get install -y gettext
-RUN envsubst < ./src/environments/environment.ts > ./src/environments/environment.ts
+RUN envsubst < ./src/environments/environment.ts > ./src/environments/environment.ts.tmp && mv ./src/environments/environment.ts.tmp ./src/environments/environment.ts
 
 RUN npm install
 RUN npm install -g @angular/cli@^6.2.1
