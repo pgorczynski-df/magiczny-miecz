@@ -1,11 +1,14 @@
-version: '3.4'
+version: '3'
 
 services:
   sql.data:
     image: microsoft/mssql-server-linux:2017-latest
-
+    volumes:
+      - sql-volume:/var/opt/mssql
   nosql.data:
     image: mongo
+    volumes:
+      - nosql-volume:/data/db
 
   magicsword.core.api:
     image: ${DOCKER_REGISTRY}magicsword.core.api
@@ -28,3 +31,7 @@ services:
       context: ./MagicSword.Core.Web/ClientApp
     depends_on:
       - magicsword.core.logic
+      
+volumes:
+  sql-volume:
+  nosql-volume:
