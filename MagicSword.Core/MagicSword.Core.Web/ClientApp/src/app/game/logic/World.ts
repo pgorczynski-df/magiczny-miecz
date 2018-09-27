@@ -16,7 +16,7 @@ export class World {
 
     constructor(private game: Game) {
 
-        this.mmBoard = new GameBoard("/assets/img/World.png", 138.3238405207486, 100, 1);
+        this.mmBoard = new GameBoard("/assets/img/World.jpg", 138.3238405207486, 100, 1);
         this.game.addActor(this.mmBoard);
 
         for (var definition of CardStackDefinition.cardStackDefinitions) {
