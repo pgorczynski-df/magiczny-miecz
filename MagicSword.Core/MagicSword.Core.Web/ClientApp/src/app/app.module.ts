@@ -11,6 +11,7 @@ import { HomeComponent } from "./home/home.component";
 import { GameComponent } from "./game/game.component";
 import { CounterComponent } from "./counter/counter.component";
 import { LobbyComponent } from "./lobby/lobby.component";
+import { LoginComponent } from "./login/login.component";
 
 import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
@@ -25,6 +26,7 @@ import { ResourceManager } from "@App/game/ResourceManager";
         GameComponent,
         CounterComponent,
         LobbyComponent,
+        LoginComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -36,6 +38,7 @@ import { ResourceManager } from "@App/game/ResourceManager";
             { path: "game/:mode", component: GameComponent },
             { path: "counter", component: CounterComponent },
             { path: "lobby", component: LobbyComponent },
+            { path: "login", component: LoginComponent },
         ]),
         NgbModule.forRoot()
     ],
