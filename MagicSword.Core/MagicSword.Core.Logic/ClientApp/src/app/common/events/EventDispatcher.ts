@@ -3,6 +3,8 @@ import { EventKind } from "@App/common/events/EventKind";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
 import { UserDto } from "@App/common/client/UserDto";
+import { Game } from "@App/common/mechanics/Game";
+import { Player } from "@App/common/mechanics/Player";
 import { GameProvider } from "@App/common/repository/GameProvider";
 import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
@@ -60,7 +62,11 @@ export class EventDispatcher {
 
         var gameId = event.gameId;
         var sourceUserId = sourceUser.id;
-        this.gameProvider.getOrLoadGame(services, gameId, sourceUserId).then(game => {
+        this.gameProvider.getOrLoadGame(services, gameId).then(game => {
+
+            this.ensureGameInitialized(services, game, sourceUser);
+
+            //TODO check if game is open (?)
 
             var callingPlayer = game.findPlayer(sourceUserId);
             if (!callingPlayer) {
@@ -85,6 +91,17 @@ export class EventDispatcher {
             this.gameProvider.persistGame(services, game);
         });
 
+    }
+
+    private ensureGameInitialized(services: Services, game: Game, sourceUser: UserDto): void {
+        if (!game.owner) {
+            var p = new Player();
+            p.id = sourceUser.id;
+            p.name = sourceUser.nickname;
+            game.owner = p;
+            game.players.push(p);
+            services.logger.debug(`Setting owner of gameId = ${game.id} to ownerId = ${game.owner.id}`);
+        }
     }
 
     private register(handler: IServerEventHandler) {

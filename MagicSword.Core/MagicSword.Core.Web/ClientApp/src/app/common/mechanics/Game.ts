@@ -15,11 +15,6 @@ export class Game {
 
     world = new World();
 
-    constructor(owner: Player) {
-        this.owner = owner;
-        this.players.push(this.owner);
-    }
-
     init() {
         this.world.newGame();
     }

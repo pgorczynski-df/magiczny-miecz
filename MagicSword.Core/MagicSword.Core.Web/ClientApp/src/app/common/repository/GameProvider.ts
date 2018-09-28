@@ -3,19 +3,16 @@ import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { Player } from "@App/common/mechanics/Player";
 import { Game } from "@App/common/mechanics/Game";
 import { GameDto } from "@App/common/dto/GameDto";
-import {IGamesRepository} from "@App/common/repository/IGamesRepository";
+import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 
 export class GameProvider {
 
     private cache: { [gameId: string]: Game } = {};
-     
+
     constructor(private serializer: CommonSerializer, private repositoryFactory: (services: Services) => IGamesRepository) {
     }
 
-    getOrLoadGame(services: Services, id: string, callingPlayerId: string): Promise<Game> {
-
-        //TODO check if player is on the list
-
+    getOrLoadGame(services: Services, id: string): Promise<Game> {
         var game = this.getGame(id);
         if (!game) {
             services.logger.debug(`Cache did not contain game id = ${id}`);
@@ -26,7 +23,8 @@ export class GameProvider {
                     services.logger.debug(`Fetching game id = ${id} completed`);
                     services.logger.debug(gameDto);
 
-                    game = this.createGame(services, id, callingPlayerId);
+                    game = new Game();
+                    game.id = id;
 
                     if (!gameDto || !gameDto.players) {
 
@@ -51,19 +49,13 @@ export class GameProvider {
         return Promise.resolve(game);
     }
 
-    persistGame(services: Services, game: Game) : GameDto {
+    persistGame(services: Services, game: Game): GameDto {
         var gameDto = this.serializer.serializeGame(game);
         var repository = this.repositoryFactory(services);
         repository.update(game.id, gameDto).then(resId => {
             services.logger.debug(`Game id = ${resId} updated successfully`);
         });
         return gameDto;
-    }
-
-    getOrLoadDto(services: Services, id: string, callingPlayerId: string): Promise<GameDto> {
-        return this.getOrLoadGame(services, id, callingPlayerId).then(game => {
-            return this.serializer.serializeGame(game);
-        });;
     }
 
     getGame(id: string): Game {
@@ -86,12 +78,4 @@ export class GameProvider {
         this.cache = {};
     }
 
-    private createGame(services: Services, id: string, ownerId: string): Game {
-        services.logger.info(`Creating new game, ownerId = ${ownerId}`);
-        var owner = new Player();
-        owner.id = owner.name = ownerId;
-        var game = new Game(owner);
-        game.id = id;
-        return game;
-    }
 }
