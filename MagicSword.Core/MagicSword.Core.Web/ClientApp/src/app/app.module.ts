@@ -12,6 +12,7 @@ import { GameComponent } from "./game/game.component";
 import { CounterComponent } from "./counter/counter.component";
 import { LobbyComponent } from "./lobby/lobby.component";
 import { LoginComponent } from "./login/login.component";
+import { LogoutComponent } from "./login/logout.component";
 
 import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
@@ -27,6 +28,7 @@ import { ResourceManager } from "@App/game/ResourceManager";
         CounterComponent,
         LobbyComponent,
         LoginComponent,
+        LogoutComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
