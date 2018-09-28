@@ -37,7 +37,7 @@ namespace MagicSword.Core.Api.Controllers
             var user = await _signInManager.UserManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return Json(new LoginResponse
+                return Json(new AuthResponse
                 {
                     Success = false,
                     Error = "login_unknown_user_password",
@@ -47,16 +47,18 @@ namespace MagicSword.Core.Api.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, password, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                var token = await _signInManager.GetJwtToken(user);
-                return Json(new LoginResponse
+                var userDto = CreateUserDto(user);
+                userDto.Token = await _signInManager.GetJwtToken(user);
+
+                return Json(new AuthResponse
                 {
                     Success = true,
-                    Token = token,
+                    User = userDto,
                 });
             }
             else
             {
-                return Json(new LoginResponse
+                return Json(new AuthResponse
                 {
                     Success = false,
                     Error = result.IsLockedOut ? "login_account_locked" : "login_unknown_user_password",
@@ -64,6 +66,7 @@ namespace MagicSword.Core.Api.Controllers
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> Register([FromBody]RegisterRequest registerRequest)
         {
             if (!ModelState.IsValid)
@@ -82,7 +85,7 @@ namespace MagicSword.Core.Api.Controllers
                 Nickname = nickname,
             };
 
-            var result = await _signInManager.UserManager.CreateAsync(user, password);
+            var result = await _signInManager.UserManager.CreateAsync(user, password);           
             if (result.Succeeded)
             {
                 //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -94,17 +97,21 @@ namespace MagicSword.Core.Api.Controllers
 
                 //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                 //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+       
+                user = await _signInManager.UserManager.FindByEmailAsync(email); //make sure we have the Id set
 
-                var token = await _signInManager.GetJwtToken(user);
-                return Json(new LoginResponse
+                var userDto = CreateUserDto(user);
+                userDto.Token = await _signInManager.GetJwtToken(user);
+
+                return Json(new AuthResponse
                 {
                     Success = true,
-                    Token = token,
+                    User = userDto,
                 });
             }
             else
             {
-                return Json(new LoginResponse
+                return Json(new AuthResponse
                 {
                     Success = false,
                     Error = string.Join("<br/>", result.Errors.Select(e => e.Description)),
@@ -113,8 +120,16 @@ namespace MagicSword.Core.Api.Controllers
 
         }
 
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> ValidateToken()
+        {
+            var user = await _signInManager.UserManager.GetUserAsync(User);
+            var dto = CreateUserDto(user);
+            return Json(dto);
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -122,20 +137,16 @@ namespace MagicSword.Core.Api.Controllers
             return RedirectToPage("/Index");
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> ValidateToken()
+        private UserDto CreateUserDto(User user)
         {
-            return Json(new { userId = CallingUserId });
-        }
-
-        private int CallingUserId
-        {
-            get
+            var dto = new UserDto
             {
-                var id = int.Parse(_signInManager.UserManager.GetUserId(User));
-                return id;
-            }
+                Id = user.Id,
+                Email = user.Email,
+                Nickname = user.Nickname,
+            };
+            return dto;
         }
+        
     }
 }

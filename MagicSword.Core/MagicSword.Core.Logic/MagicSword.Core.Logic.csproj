@@ -16,7 +16,9 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\AccountClient.ts" />
     <None Remove="ClientApp\src\app\AuthService.ts" />
+    <None Remove="ClientApp\src\app\common\client\AuthResponse.ts" />
     <None Remove="ClientApp\src\app\common\client\GamesApiClient.ts" />
+    <None Remove="ClientApp\src\app\common\client\UserDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\ActorDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\CardDto.ts" />
     <None Remove="ClientApp\src\app\common\dto\CardStackDto.ts" />
@@ -94,6 +96,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\common\client\AuthResponse.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\client\UserDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\cardsetattribute\CardSetAttributeRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\cardsetattribute\CardSetAttributeServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\EventHandlerContext.ts" />

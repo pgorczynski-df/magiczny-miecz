@@ -32,7 +32,7 @@ export class HomeComponent implements AfterViewInit {
         if (this.email.length > 1 && this.password.length > 1) {
             this.accountClient.login(this.email, this.password).then(r => {
                 if (r.success) {
-                    this.services.authService.token = r.token;
+                    this.services.authService.token = r.user.token;
                     this.router.navigate(['/lobby']);
                 } else {
                     this.loginResult = this.res(r.error);
@@ -51,7 +51,7 @@ export class HomeComponent implements AfterViewInit {
         if (this.email.length > 1 && this.password.length > 1 && this.nickname.length > 1) {
             this.accountClient.register(this.email, this.password, this.nickname).then(r => {
                 if (r.success) {
-                    this.services.authService.token = r.token;
+                    this.services.authService.token = r.user.token;
                     this.router.navigate(['/lobby']);
                 } else {
                     this.loginResult = this.res(r.error);

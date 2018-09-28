@@ -13,7 +13,7 @@ export class UserProvider {
             var accountClient = new AccountClient(services);
             return accountClient.validateToken(token).then(
                 r => {
-                    user = r.userId;
+                    user = r.id;
                     this.cache[token] = user;
                     return user;
                 });
