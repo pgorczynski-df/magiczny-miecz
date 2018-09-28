@@ -17,4 +17,8 @@ export class AccountClient extends HttpClient {
         return super.post(`${this.controller}/Login`, { email: email, password: password });
     }
 
+    public register(email: string, password: string, nickname: string): Promise<any> {
+        return super.post(`${this.controller}/Register`, { email: email, password: password, nickname: nickname });
+    }
+
 }

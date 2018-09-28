@@ -13,6 +13,8 @@ export class HomeComponent implements AfterViewInit {
 
     email: string = "";
     password: string = "";
+    password2: string = "";
+    nickname: string = "";
 
     loginResult = "";
 
@@ -40,6 +42,21 @@ export class HomeComponent implements AfterViewInit {
             this.loginResult = this.res("login_email_password_required");
         }
 
+    }
+
+    register() {
+        if (this.email.length > 1 && this.password.length > 1 && this.nickname.length > 1) {
+            this.accountClient.register(this.email, this.password, this.nickname).then(r => {
+                if (r.success) {
+                    this.services.authService.token = r.token;
+                    this.router.navigate(['/lobby']);
+                } else {
+                    this.loginResult = this.res(r.error);
+                }
+            });
+        } else {
+            this.loginResult = this.res("login_email_password_required");
+        }
     }
 
     res(key: string) {
