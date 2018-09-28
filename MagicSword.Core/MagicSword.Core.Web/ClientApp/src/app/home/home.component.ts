@@ -37,6 +37,9 @@ export class HomeComponent implements AfterViewInit {
                 } else {
                     this.loginResult = this.res(r.error);
                 }
+            }, e => {
+                this.loginResult = "Error";
+                this.services.logger.error(e);
             });
         } else {
             this.loginResult = this.res("login_email_password_required");
@@ -53,6 +56,9 @@ export class HomeComponent implements AfterViewInit {
                 } else {
                     this.loginResult = this.res(r.error);
                 }
+            }, e => {
+                this.loginResult = "Error";
+                this.services.logger.error(e);
             });
         } else {
             this.loginResult = this.res("login_email_password_required");

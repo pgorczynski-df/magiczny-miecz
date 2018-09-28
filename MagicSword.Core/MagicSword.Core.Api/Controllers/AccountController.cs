@@ -26,17 +26,13 @@ namespace MagicSword.Core.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromBody]LoginRequest loginRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var email = loginRequest.Email;
             var password = loginRequest.Password;
-
-            if (String.IsNullOrEmpty(email))
-            {
-                return BadRequest("login_email_cannot_be_empty");
-            }
-            if (String.IsNullOrEmpty(password))
-            {
-                return BadRequest("login_password_cannot_be_empty");
-            }
 
             var user = await _signInManager.UserManager.FindByEmailAsync(email);
             if (user == null)
@@ -70,22 +66,14 @@ namespace MagicSword.Core.Api.Controllers
 
         public async Task<IActionResult> Register([FromBody]RegisterRequest registerRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var email = registerRequest.Email;
             var password = registerRequest.Password;
             var nickname = registerRequest.Nickname;
-
-            if (String.IsNullOrEmpty(email))
-            {
-                return BadRequest("login_email_cannot_be_empty");
-            }
-            if (String.IsNullOrEmpty(password))
-            {
-                return BadRequest("login_password_cannot_be_empty");
-            }
-            if (String.IsNullOrEmpty(password))
-            {
-                return BadRequest("login_nickname_cannot_be_empty");
-            }
 
             var user = new User
             {
