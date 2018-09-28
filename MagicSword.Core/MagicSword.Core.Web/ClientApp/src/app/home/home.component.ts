@@ -28,25 +28,6 @@ export class HomeComponent implements AfterViewInit {
     ngAfterViewInit() {
     }
 
-    login() {
-        if (this.email.length > 1 && this.password.length > 1) {
-            this.accountClient.login(this.email, this.password).then(r => {
-                if (r.success) {
-                    this.services.authService.token = r.user.token;
-                    this.router.navigate(['/lobby']);
-                } else {
-                    this.loginResult = this.res(r.error);
-                }
-            }, e => {
-                this.loginResult = "Error";
-                this.services.logger.error(e);
-            });
-        } else {
-            this.loginResult = this.res("login_email_password_required");
-        }
-
-    }
-
     register() {
         if (this.email.length > 1 && this.password.length > 1 && this.nickname.length > 1) {
             this.accountClient.register(this.email, this.password, this.nickname).then(r => {
