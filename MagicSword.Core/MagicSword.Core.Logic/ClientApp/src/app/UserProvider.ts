@@ -17,6 +17,11 @@ export class UserProvider {
                     user = r;
                     this.cache[token] = user;
                     return user;
+                },
+                e => {
+                    services.logger.debug("token validation error");
+                    services.logger.debug(e);
+                    return null;
                 });
         }
 

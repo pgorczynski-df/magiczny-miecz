@@ -47,25 +47,12 @@ export class GameServer {
         this.app.use(cors());
         this.app.use(bodyParser.json());
 
-        const router = express.Router();
-        //router.get("/game/:id", (req, res) => {
-        //    var gameId = req.params.id;
-        //    res.json(this.gameManager.getGame(gameId));
-        //});
-        //router.get("/gamedto/:id", (req, res) => {
-        //    var gameId = req.params.id;
-        //    res.json(this.gameManager.getGameDto(gameId));
-        //});
-        router.get("/game_evictcache", (req, res) => {
-            this.gameService.evictCache();
-            res.json("OK");
-        });
-        this.app.use("/api", router);
-
         this.app.use("/", express.static("./src"));
 
         this.repository = new NoSqlGamesRepository(this.services);
         this.gameController = new GameController(this.services, this.repository);
+        this.secureRoute(this.gameController.route);
+
         this.gameController.init(this.app);
 
         this.server = createServer(this.app);
@@ -116,6 +103,44 @@ export class GameServer {
                 this.services.logger.info("Client disconnected");
             });
         });
+    }
+
+    private secureRoute(route: string) {
+
+        this.app.route(new RegExp(`^${route}`, "i")).all(async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+
+            var auth = req.get("Authorization");
+            if (!auth) {
+                res.status(401).send("Missing auth header");
+                return;
+            }
+
+            if (!auth.startsWith("Bearer ")) {
+                res.status(401).send("Unsupported auth method");
+                return;
+            }
+
+            var split = auth.split(" ");
+            if (split.length !== 2) {
+                res.status(401).send("Invalid auth header");
+                return;
+            }
+
+            var token = split[1];
+
+            var user = await this.gameService.userProvider.getUser(this.services, token);
+            if (user === null) {
+                res.status(401).send("Invalid token");
+                return;
+            }
+
+            req["requestingUser"] = user;
+            this.services.logger.debug(`User ${user.id} authorized successfully`);
+
+            next();
+
+        });
+
     }
 
     public getApp(): express.Application {

@@ -11,8 +11,9 @@ import { IGamesRepository } from "@App/common/repository/IGamesRepository";
 
 export class GameService {
 
+    public userProvider = new UserProvider();
+
     private commonSerializer = new CommonSerializer();
-    private userProvider = new UserProvider();
     private gameProvider = new GameProvider(this.commonSerializer, services => this.repository);
     private eventDispatcher = new EventDispatcher(this.gameProvider, this.commonSerializer);
 
@@ -37,6 +38,12 @@ export class GameService {
 
         this.userProvider.getUser(services, token).then(
             user => {
+
+                if (user === null) {
+                    responseProcessor.respondError("User not found, probably token is invalid");
+                    return;
+                }
+
                 event.sourcePlayerId = user.id;
                 event.token = null;
                 this.eventDispatcher.process(services, responseProcessor, event, user);

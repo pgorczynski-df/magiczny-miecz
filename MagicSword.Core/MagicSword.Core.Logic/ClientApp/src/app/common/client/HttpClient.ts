@@ -36,14 +36,18 @@ export class HttpClient {
     }
 
     private getConfig(method: string, url: string, data: any): AxiosRequestConfig {
-        return {
+        var obj = {
             url: url,
             method: method,
             data: data,
-            headers: {
-                "Authorization": `Bearer ${this.services.authService.token}`,
-            }
+            headers: {}
         };
+
+        if (this.services.authService && this.services.authService.token) {
+            obj.headers["Authorization"] = `Bearer ${this.services.authService.token}`;
+        }
+
+        return obj;
     }
 
 }

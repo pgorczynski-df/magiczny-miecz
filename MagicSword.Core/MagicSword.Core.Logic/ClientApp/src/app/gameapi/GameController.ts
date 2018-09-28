@@ -5,29 +5,24 @@ import { Services } from "@App/Services";
 
 export class GameController {
 
+    public readonly route = "/game";
+
     constructor(private services: Services, private repository: IGamesRepository) {
     }
 
     public init(app: Application): void {
 
-        app.route("/game")
-            .get((req: Request, res: Response, next: NextFunction) => {
-                //if (req.query.key !== '78942ef2c1c98bf10fca09c808d718fa3734703e') {
-                //    res.status(401).send('You shall not pass!');
-                //} else {
-                next();
-                //}
-            }, this.get)
-
+        app.route(this.route)
+            .get(this.get)
             .post(this.post);
 
-        app.route("/game/MyGames")
+        app.route(this.route + "/MyGames")
             .get(this.get);
 
-        app.route("/game/OpenGames")
+        app.route(this.route + "/OpenGames")
             .get(this.get);
 
-        app.route("/game/:gameId")
+        app.route(this.route + "/:gameId")
             .get(this.getById)
             .patch(this.patch)
             .delete(this.delete);
