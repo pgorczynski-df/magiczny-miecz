@@ -18,6 +18,7 @@ import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
 import { SocketClient } from "@App/SocketClient"
 import { ResourceManager } from "@App/game/ResourceManager";
+import { AuthGuard } from "@App/AuthGuard";
 
 @NgModule({
     declarations: [
@@ -39,17 +40,18 @@ import { ResourceManager } from "@App/game/ResourceManager";
             { path: "game/:mode/:gameId", component: GameComponent },
             { path: "game/:mode", component: GameComponent },
             { path: "counter", component: CounterComponent },
-            { path: "lobby", component: LobbyComponent },
+            { path: "lobby", component: LobbyComponent, canActivate: [AuthGuard] },
             { path: "login", component: LoginComponent },
         ]),
         NgbModule.forRoot()
     ],
     providers: [
         { provide: LOCALE_ID, useValue: "en-US" },
+        AuthGuard,
         AuthService,
         Services,
         SocketClient,
-        ResourceManager
+        ResourceManager,
     ],
     bootstrap: [AppComponent]
 })
