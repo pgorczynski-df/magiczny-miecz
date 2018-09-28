@@ -1,13 +1,11 @@
 import { Services } from "@App/Services";
-import { AuthService } from "@App/AuthService";
-import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
 import { Event } from "@App/common/events/Event";
-import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { GameProvider } from "@App/common/repository/GameProvider";
 import { EventDispatcher } from "@App/common/events/EventDispatcher";
 import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { EventBusResponseProcessor } from "@App/game/local/EventBusResponseProcessor";
 import { LocalStorageGamesRepository } from "@App/common/repository/LocalStorageGamesRepository";
+import { UserDto } from "@App/common/client/UserDto";
 
 export class ClientGameService {
 
@@ -20,8 +18,12 @@ export class ClientGameService {
     }
 
     public handleEvent(event: Event) {
-        event.sourcePlayerId = "1";
-        this.eventDispatcher.process(this.services, this.responseProcessor, event);
+        var localPlayer = new UserDto();
+        localPlayer.id = "1";
+        localPlayer.nickname = "Samotny poszukiwacz";
+
+        event.sourcePlayerId = localPlayer.id;
+        this.eventDispatcher.process(this.services, this.responseProcessor, event, localPlayer);
     }
 
 

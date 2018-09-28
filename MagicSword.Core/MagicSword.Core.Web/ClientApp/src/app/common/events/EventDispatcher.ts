@@ -2,6 +2,7 @@ import { Event } from "@App/common/events/Event";
 import { EventKind } from "@App/common/events/EventKind";
 import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
 import { Services } from "@App/Services";
+import { UserDto } from "@App/common/client/UserDto";
 import { GameProvider } from "@App/common/repository/GameProvider";
 import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
 import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
@@ -40,7 +41,7 @@ export class EventDispatcher {
         this.register(new StackPushDisposedCardsServerEventHandler());
     }
 
-    process(services: Services, responseProcessor: IResponseProcessor, event: Event) {
+    process(services: Services, responseProcessor: IResponseProcessor, event: Event, sourceUser: UserDto) {
 
         services.logger.debug("EventDispatcher: processing event");
         services.logger.debug(event);
@@ -58,12 +59,12 @@ export class EventDispatcher {
         }
 
         var gameId = event.gameId;
-        this.gameProvider.getOrLoadGame(services, gameId, event.sourcePlayerId).then(game => {
+        var sourceUserId = sourceUser.id;
+        this.gameProvider.getOrLoadGame(services, gameId, sourceUserId).then(game => {
 
-            var callingPlayer = game.findPlayer(event.sourcePlayerId);
+            var callingPlayer = game.findPlayer(sourceUserId);
             if (!callingPlayer) {
-                //TODO name
-                callingPlayer = game.addPlayer(event.sourcePlayerId, event.sourcePlayerId);
+                callingPlayer = game.addPlayer(sourceUserId, sourceUser.nickname);
             }
 
             if (!handler.isTransient()) {

@@ -35,11 +35,11 @@ export class GameService {
 
         var services = this.createServices(token);
 
-        this.userProvider.getUserId(services, token).then(
-            r => {
-                event.sourcePlayerId = r;
+        this.userProvider.getUser(services, token).then(
+            user => {
+                event.sourcePlayerId = user.id;
                 event.token = null;
-                this.eventDispatcher.process(services, responseProcessor, event);
+                this.eventDispatcher.process(services, responseProcessor, event, user);
             },
             e => {
                 responseProcessor.respondError(e);

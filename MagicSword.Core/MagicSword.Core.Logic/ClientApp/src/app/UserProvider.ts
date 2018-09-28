@@ -1,11 +1,12 @@
 import { Services } from "@App/Services";
 import { AccountClient } from "@App/common/client/AccountClient";
+import { UserDto } from "@App/common/client/UserDto";
 
 export class UserProvider {
 
-    private cache: { [token: string]: any } = {};
+    private cache: { [token: string]: UserDto } = {};
 
-    getUserId(services: Services, token: string): Promise<any> {
+    getUser(services: Services, token: string): Promise<UserDto> {
 
         var user = this.cache[token];
         if (!user) {
@@ -13,7 +14,7 @@ export class UserProvider {
             var accountClient = new AccountClient(services);
             return accountClient.validateToken(token).then(
                 r => {
-                    user = r.id;
+                    user = r;
                     this.cache[token] = user;
                     return user;
                 });
