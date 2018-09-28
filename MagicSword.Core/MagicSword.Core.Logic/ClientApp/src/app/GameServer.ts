@@ -59,8 +59,10 @@ export class GameServer {
         this.io = socketIo(this.server);
 
         this.gameService = new GameService(this.services, this.repository);
-        this.gameService.init();
+        this.connectDb();
+    }
 
+    private connectDb() {
         var mongoUrl = this.services.settings.noSqlConnectionString;
 
         this.services.logger.info(`Attempting to connect to Mongo at: ${mongoUrl}`);
@@ -80,12 +82,12 @@ export class GameServer {
             err => {
                 this.services.logger.error("Connection to db failed");
             });
-
     }
 
     private listen(): void {
         this.server.listen(this.port, () => {
             this.services.logger.info("Running server on port %s", this.port);
+            this.gameService.init(); //fetch resources - after server starts
         });
 
         this.io.on("connect", (socket: socketIo.Socket) => {

@@ -66,6 +66,8 @@ export class NoSqlGamesRepository implements IGamesRepository {
     private createListDto(game: any): GameListDto {
         var dto = new GameListDto();
         dto.id = game.id;
+        dto.createdOn = game.createdOn;
+        dto.updatedOn = game.updatedOn;
         return dto;
     }
 }

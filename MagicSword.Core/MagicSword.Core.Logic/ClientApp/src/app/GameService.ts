@@ -20,8 +20,8 @@ export class GameService {
     constructor(private services: Services, private repository: IGamesRepository) {
     }
 
-    public init() {
-        this.loadResources();
+    public init(): Promise<any>{
+        return this.loadResources();
     }
 
     public handleEvent(responseProcessor: IResponseProcessor, event: Event) {
@@ -72,11 +72,12 @@ export class GameService {
         return new Services(auth);
     }
 
-    private loadResources() {
+    private loadResources() : Promise<any> {
         var services = this.createServices("");
         var cardLoader = new CardDefinitionLoader(services);
-        cardLoader.load().then(_ => {
+        return cardLoader.load().then(_ => {
             services.logger.info("Card definitions loaded successfully");
+            return true;
         });
     }
 

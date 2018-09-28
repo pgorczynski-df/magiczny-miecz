@@ -3,6 +3,8 @@ export class GameListDto {
 
     id: string;
 
-    isOwner: boolean;
+    createdOn: Date;
+
+    updatedOn: Date;
 
 }

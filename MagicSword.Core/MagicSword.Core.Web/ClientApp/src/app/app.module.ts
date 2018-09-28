@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -40,6 +40,7 @@ import { ResourceManager } from "@App/game/ResourceManager";
         NgbModule.forRoot()
     ],
     providers: [
+        { provide: LOCALE_ID, useValue: "en-US" },
         AuthService,
         Services,
         SocketClient,
