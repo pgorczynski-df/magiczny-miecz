@@ -29,7 +29,11 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         return Promise.resolve(id);
     }
 
-    save(dto: any): Promise<any> {
+    save(ownerId: string, dto: any): Promise<any> {
+        throw new Error("not supported");
+    }
+
+    createGame(ownerId: string): Promise<GameListDto> {
         throw new Error("not supported");
     }
 

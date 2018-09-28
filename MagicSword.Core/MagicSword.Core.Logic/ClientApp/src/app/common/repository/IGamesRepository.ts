@@ -8,5 +8,7 @@ export interface IGamesRepository {
 
     update(id: string, dto: any): Promise<string>;
 
-    save(dto: any): Promise<any>;
+    save(ownerId: string, dto: any): Promise<any>;
+
+    createGame(ownerId: string): Promise<GameListDto>;
 }

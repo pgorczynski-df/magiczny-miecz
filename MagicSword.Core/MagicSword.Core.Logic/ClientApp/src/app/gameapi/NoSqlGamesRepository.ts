@@ -17,19 +17,36 @@ export class NoSqlGamesRepository implements IGamesRepository {
         return Game.findById(id).exec().then(g => g.data);
     }
 
-    public save(dto: any): Promise<any> {
+    public createGame(ownerId: string): Promise<GameListDto> {
+        return this.saveInternal(ownerId, null).then(r => this.createListDto(r));
+    }
+
+    public save(ownerId: string, dto: any): Promise<any> {
+        return this.saveInternal(ownerId, dto).then(g => { return g.id; });
+    }
+
+    private saveInternal(ownerId: string, dto: any): Promise<any> {
         this.services.logger.debug("Attepting to save game");
         this.services.logger.debug(dto);
 
-        let newGame = new Game({ data: dto });
-        return newGame.save().then(g => { return g.id; });
+        let newGame = new Game({
+            data: dto,
+            ownerId: ownerId,
+            createdOn: Date.now(),
+            updatedOn: Date.now(),
+        });
+        return newGame.save();
     }
 
     public update(id: string, dto: any): Promise<string> {
         this.services.logger.debug("Attepting to update game");
         this.services.logger.debug(dto);
 
-        return Game.findByIdAndUpdate(id, { data: dto }).exec();
+        return Game.findByIdAndUpdate(id,
+            {
+                data: dto,
+                updatedOn: Date.now(),
+            }).exec();
     }
 
     public getMyGames(): Promise<GameListDto[]> {
@@ -44,10 +61,6 @@ export class NoSqlGamesRepository implements IGamesRepository {
 
     public getOpenGames(): Promise<GameListDto[]> {
         return this.getMyGames();
-    }
-
-    public createGame(): Promise<GameListDto> {
-        return this.save(null).then(r => this.createListDto(r));
     }
 
     private createListDto(game: any): GameListDto {

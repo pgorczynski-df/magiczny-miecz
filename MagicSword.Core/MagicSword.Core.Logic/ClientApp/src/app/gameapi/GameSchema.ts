@@ -4,6 +4,10 @@ export const GameSchema = new mongoose.Schema({
 
     ownerId: String,
 
-    data: Object
+    data: Object,
+
+    createdOn: Date,
+
+    updatedOn: Date,
 
 });
