@@ -1,4 +1,4 @@
-import { EventType } from "@App/common/events/EventType";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 
 export class CameraChangeEventHandler extends ClientEventHandlerBase {

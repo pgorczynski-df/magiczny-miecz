@@ -1,13 +1,13 @@
 import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
-import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
-import { Event } from "@App/common/events/Event";
-import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
+import { CardDefinitionLoader } from "@Common/mechanics/loaders/CardDefinitionLoader";
+import { Event } from "@Common/events/Event";
+import { IResponseProcessor } from "@Common/events/IResponseProcessor";
 import { UserProvider } from "@App/UserProvider";
-import { GameProvider } from "@App/common/repository/GameProvider";
-import { EventDispatcher } from "@App/common/events/EventDispatcher";
-import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
-import { IGamesRepository } from "@App/common/repository/IGamesRepository";
+import { GameProvider } from "@Common/repository/GameProvider";
+import { EventDispatcher } from "@Common/events/EventDispatcher";
+import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
+import { IGamesRepository } from "@Common/repository/IGamesRepository";
 
 export class GameService {
 

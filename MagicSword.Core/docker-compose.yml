@@ -28,7 +28,8 @@ services:
   magicsword.core.web:
     image: ${DOCKER_REGISTRY}magicsword.core.web
     build:
-      context: ./MagicSword.Core.Web/ClientApp
+      context: ./
+      dockerfile: MagicSword.Core.Web/ClientApp/Dockerfile
     depends_on:
       - magicsword.core.logic
       

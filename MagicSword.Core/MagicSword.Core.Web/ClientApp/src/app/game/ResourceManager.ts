@@ -2,9 +2,9 @@ import * as THREE from "three";
 import { Injectable } from "@angular/core";
 
 import { Services } from "@App/Services";
-import { CardDefinitionLoader } from "@App/common/mechanics/loaders/CardDefinitionLoader";
-import { EventType } from "@App/common/events/EventType";
-import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
+import { CardDefinitionLoader } from "@Common/mechanics/loaders/CardDefinitionLoader";
+import { EventType } from "@Common/events/EventType";
+import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";
 
 @Injectable()
 export class ResourceManager {

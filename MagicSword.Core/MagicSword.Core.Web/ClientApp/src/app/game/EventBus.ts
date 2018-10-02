@@ -2,8 +2,8 @@ import { Observable, Subject } from "rxjs";
 import { filter } from "rxjs/operators";
 import { Injectable } from "@angular/core";
 
-import { Event } from "@App/common/events/Event";
-import { Guid } from "@App/common/utils/Guid";
+import { Event } from "@Common/events/Event";
+import { Guid } from "@Common/utils/Guid";
 
 @Injectable()
 export class EventBus {

@@ -7,7 +7,7 @@ import * as mongoose from "mongoose";
 
 import { Services } from "@App/Services";
 import { SocketResponseProcessor } from "@App/SocketResponseProcessor";
-import { Event } from "@App/common/events/Event";
+import { Event } from "@Common/events/Event";
 import { GameService } from "@App/GameService";
 import { GameController } from "@App/gameapi/GameController";
 import { NoSqlGamesRepository } from "@App/gameapi/NoSqlGamesRepository";

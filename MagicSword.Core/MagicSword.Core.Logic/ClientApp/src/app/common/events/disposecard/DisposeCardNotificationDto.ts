@@ -1,4 +1,4 @@
-import { CardDto } from "@App/common/dto/CardDto";
+import { CardDto } from "@Common/dto/CardDto";
 
 export class DisposeCardNotificationDto {
 

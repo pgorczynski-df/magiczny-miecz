@@ -1,11 +1,11 @@
-import { Event } from "@App/common/events/Event";
-import { ViewStackRequestDto } from "@App/common/events/viewstack/ViewStackRequestDto";
+import { Event } from "@Common/events/Event";
+import { ViewStackRequestDto } from "@Common/events/viewstack/ViewStackRequestDto";
 import { CardStack } from "@App/game/logic/CardStack";
-import { EventType } from "@App/common/events/EventType";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 import { Card } from "@App/game/logic/Card";
-import { CardDto } from "@App/common/dto/CardDto";
+import { CardDto } from "@Common/dto/CardDto";
 
 export class ViewStackClientEventHandler extends ClientEventHandlerBase {
 

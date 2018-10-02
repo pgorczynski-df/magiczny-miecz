@@ -1,7 +1,7 @@
-import { Event } from "@App/common/events/Event";
-import { World } from "@App/common/mechanics/World";
-import { Player } from "@App/common/mechanics/Player";
-import { IActorBase } from "@App/common/mechanics/IActorBase";
+import { Event } from "@Common/events/Event";
+import { World } from "@Common/mechanics/World";
+import { Player } from "@Common/mechanics/Player";
+import { IActorBase } from "@Common/mechanics/IActorBase";
 
 export class Game {
 

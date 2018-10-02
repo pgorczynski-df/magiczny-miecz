@@ -1,4 +1,4 @@
-﻿import { Event } from "@App/common/events/Event";
+﻿import { Event } from "@Common/events/Event";
 
 export interface IResponseProcessor {
 

@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { DisposeCardRequestDto } from "@App/common/events/disposecard/DisposeCardRequestDto";
-import { DisposeCardNotificationDto } from "@App/common/events/disposecard/DisposeCardNotificationDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
+import { EventType } from "@Common/events/EventType";
+import { DisposeCardRequestDto } from "@Common/events/disposecard/DisposeCardRequestDto";
+import { DisposeCardNotificationDto } from "@Common/events/disposecard/DisposeCardNotificationDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
 
 export class DisposeCardServerEventHandler extends ServerEventHandlerBase {
 

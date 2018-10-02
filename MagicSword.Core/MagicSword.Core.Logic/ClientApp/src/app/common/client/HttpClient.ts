@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AxiosRequestConfig } from "axios";
 import { Services } from "@App/Services";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class HttpClient {
 

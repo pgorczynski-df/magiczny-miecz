@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
-import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
+import { EventType } from "@Common/events/EventType";
+import { DrawCardRequestDto } from "@Common/events/drawcard/DrawCardRequestDto";
+import { DrawCardNotificationDto } from "@Common/events/drawcard/DrawCardNotificationDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
 
 export class DrawCardServerEventHandler extends ServerEventHandlerBase {
 

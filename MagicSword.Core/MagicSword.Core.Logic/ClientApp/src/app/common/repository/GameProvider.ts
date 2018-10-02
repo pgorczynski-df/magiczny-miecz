@@ -1,9 +1,9 @@
 import { Services } from "@App/Services";
-import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
-import { Player } from "@App/common/mechanics/Player";
-import { Game } from "@App/common/mechanics/Game";
-import { GameDto } from "@App/common/dto/GameDto";
-import { IGamesRepository } from "@App/common/repository/IGamesRepository";
+import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
+import { Player } from "@Common/mechanics/Player";
+import { Game } from "@Common/mechanics/Game";
+import { GameDto } from "@Common/dto/GameDto";
+import { IGamesRepository } from "@Common/repository/IGamesRepository";
 
 export class GameProvider {
 

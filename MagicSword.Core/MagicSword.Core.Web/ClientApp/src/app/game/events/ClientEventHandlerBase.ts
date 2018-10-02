@@ -1,7 +1,7 @@
-import { Event } from "@App/common/events/Event";
+import { Event } from "@Common/events/Event";
 import { ClientEventHandlerContext } from "@App/game/events/ClientEventHandlerContext";
 import { IClientEventHandler } from "@App/game/events/IClientEventHandler";
-import { EventKind } from "@App/common/events/EventKind";
+import { EventKind } from "@Common/events/EventKind";
 import { ResourceManager } from "@App/game/ResourceManager";
 
 export abstract class ClientEventHandlerBase implements IClientEventHandler {

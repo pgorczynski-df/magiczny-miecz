@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { StackPushDisposedCardsRequestDto } from "@App/common/events/stackpushdisposedcards/StackPushDisposedCardsRequestDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
-import { CardStack } from "@App/common/mechanics/CardStack";
+import { EventType } from "@Common/events/EventType";
+import { StackPushDisposedCardsRequestDto } from "@Common/events/stackpushdisposedcards/StackPushDisposedCardsRequestDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
+import { CardStack } from "@Common/mechanics/CardStack";
 
 export class StackPushDisposedCardsServerEventHandler extends ServerEventHandlerBase {
 

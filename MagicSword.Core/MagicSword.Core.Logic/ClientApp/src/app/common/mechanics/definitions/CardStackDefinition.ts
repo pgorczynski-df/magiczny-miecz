@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
-import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { CardType } from "@App/common/mechanics/definitions//CardType";
+import { CardDefinition } from "@Common/mechanics/definitions/CardDefinition";
+import { CardType } from "@Common/mechanics/definitions//CardType";
 
 export class CardStackDefinition {
 

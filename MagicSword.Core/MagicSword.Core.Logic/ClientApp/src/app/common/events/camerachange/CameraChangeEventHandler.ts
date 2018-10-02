@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
-import { Object3D } from "@App/common/mechanics/Object3D";
-import { Object3DDto } from "@App/common/dto/Object3DDto";
+import { EventType } from "@Common/events/EventType";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
+import { Object3D } from "@Common/mechanics/Object3D";
+import { Object3DDto } from "@Common/dto/Object3DDto";
 
 export class CameraChangeEventHandler extends ServerEventHandlerBase {
 

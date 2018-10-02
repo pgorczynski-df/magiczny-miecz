@@ -13,10 +13,10 @@ import { DiceManager, DiceD6 } from "@App/../modules/threejs-dice";
 import { Skybox } from "@App/game/Skybox";
 import { World } from "@App/game/logic/World";
 import { IActor } from "@App/game/logic/IActor";
-import { Collections } from "@App/common/utils/Collections";
+import { Collections } from "@Common/utils/Collections";
 import { Services } from "@App/Services";
-import { Event } from "@App/common/events/Event";
-import { Player } from "@App/common/mechanics/Player";
+import { Event } from "@Common/events/Event";
+import { Player } from "@Common/mechanics/Player";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Card } from "@App/game/logic/Card";
 

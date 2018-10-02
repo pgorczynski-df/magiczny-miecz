@@ -1,4 +1,4 @@
-import {GameListDto} from "@App/common/dto/GameListDto";
+import {GameListDto} from "@Common/dto/GameListDto";
 
 export interface IGamesRepository {
 

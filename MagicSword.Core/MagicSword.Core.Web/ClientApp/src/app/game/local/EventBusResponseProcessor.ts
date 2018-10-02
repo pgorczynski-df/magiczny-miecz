@@ -1,8 +1,8 @@
-import { IResponseProcessor } from "@App/common/events/IResponseProcessor";
+import { IResponseProcessor } from "@Common/events/IResponseProcessor";
 import { Services } from "@App/Services";
-import { Event } from "@App/common/events/Event";
-import { EventType } from "@App/common/events/EventType";
-import { EventKind } from "@App/common/events/EventKind";
+import { Event } from "@Common/events/Event";
+import { EventType } from "@Common/events/EventType";
+import { EventKind } from "@Common/events/EventKind";
 
 export class EventBusResponseProcessor implements IResponseProcessor {
 

@@ -5,7 +5,7 @@ import * as Logger from "js-logger";
 
 import { EventBus } from "app/game/EventBus";
 import { AuthService } from "@App/AuthService";
-import { Settings } from "@App/common/infrastructure/Settings";
+import { Settings } from "@Common/infrastructure/Settings";
 
 @Injectable()
 export class Services {

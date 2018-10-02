@@ -1,6 +1,6 @@
-import { IGamesRepository } from "@App/common/repository/IGamesRepository";
+import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { Services } from "@App/Services";
-import { GameListDto } from "@App/common/dto/GameListDto";
+import { GameListDto } from "@Common/dto/GameListDto";
 
 export class LocalStorageGamesRepository implements IGamesRepository {
 

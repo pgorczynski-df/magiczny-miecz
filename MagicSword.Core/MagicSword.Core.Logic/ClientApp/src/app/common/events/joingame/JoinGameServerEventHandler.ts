@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { GameStateDto } from "@App/common/dto/GameStateDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
-import { EventKind } from "@App/common/events/EventKind";
+import { EventType } from "@Common/events/EventType";
+import { GameStateDto } from "@Common/dto/GameStateDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
+import { EventKind } from "@Common/events/EventKind";
 
 export class JoinGameServerEventHandler extends ServerEventHandlerBase {
 

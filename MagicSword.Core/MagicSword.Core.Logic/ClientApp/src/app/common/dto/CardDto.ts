@@ -1,4 +1,4 @@
-import { ActorDto } from "@App/common/dto/ActorDto";
+import { ActorDto } from "@Common/dto/ActorDto";
 
 export class CardDto extends ActorDto {
 

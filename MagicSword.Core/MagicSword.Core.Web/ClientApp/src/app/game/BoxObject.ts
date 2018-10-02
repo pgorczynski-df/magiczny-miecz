@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Guid } from "@App/common/utils/Guid";
+import { Guid } from "@Common/utils/Guid";
 
 export class BoxObject {
 

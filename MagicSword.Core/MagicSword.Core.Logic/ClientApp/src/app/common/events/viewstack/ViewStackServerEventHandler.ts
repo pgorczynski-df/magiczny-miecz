@@ -1,10 +1,10 @@
-import { EventType } from "@App/common/events/EventType";
-import { ViewStackRequestDto } from "@App/common/events/viewstack/ViewStackRequestDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
-import { CardStack } from "@App/common/mechanics/CardStack";
-import { CardDto } from "@App/common/dto/CardDto";
-import { Card } from "@App/common/mechanics/Card";
+import { EventType } from "@Common/events/EventType";
+import { ViewStackRequestDto } from "@Common/events/viewstack/ViewStackRequestDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
+import { CardStack } from "@Common/mechanics/CardStack";
+import { CardDto } from "@Common/dto/CardDto";
+import { Card } from "@Common/mechanics/Card";
 
 export class ViewStackServerEventHandler extends ServerEventHandlerBase {
 

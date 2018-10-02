@@ -1,9 +1,9 @@
-import { Event } from "@App/common/events/Event";
-import { EventType } from "@App/common/events/EventType";
+import { Event } from "@Common/events/Event";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
-import { GameDto } from "@App/common/dto/GameDto";
-import { GameStateDto } from "@App/common/dto/GameStateDto";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { GameDto } from "@Common/dto/GameDto";
+import { GameStateDto } from "@Common/dto/GameStateDto";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class JoinGameEventHandler extends ClientEventHandlerBase {
 

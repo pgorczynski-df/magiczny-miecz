@@ -1,10 +1,10 @@
-import { Event } from "@App/common/events/Event";
-import { PickCardNotificationDto } from "@App/common/events/pickcard/PickCardNotificationDto";
-import { PickCardRequestDto } from "@App/common/events/pickcard/PickCardRequestDto";
-import { EventType } from "@App/common/events/EventType";
+import { Event } from "@Common/events/Event";
+import { PickCardNotificationDto } from "@Common/events/pickcard/PickCardNotificationDto";
+import { PickCardRequestDto } from "@Common/events/pickcard/PickCardRequestDto";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 import { Card } from "@App/game/logic/Card";
-import {StringUtils} from "@App/common/utils/StringUtils";
+import {StringUtils} from "@Common/utils/StringUtils";
 
 export class PickCardClientEventHandler extends ClientEventHandlerBase {
 

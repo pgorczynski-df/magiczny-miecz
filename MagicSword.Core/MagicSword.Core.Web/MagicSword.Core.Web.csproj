@@ -26,12 +26,6 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\AuthGuard.ts" />
     <None Remove="ClientApp\src\app\AuthService.ts" />
-    <None Remove="ClientApp\src\app\common\dto\GameListDto.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\CardStack.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\Game.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\IActorBase.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\Object3D.ts" />
-    <None Remove="ClientApp\src\app\common\mechanics\World.ts" />
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\ClientGameService.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
@@ -81,13 +75,6 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\AuthGuard.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameListDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\CardStack.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Game.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\IActorBase.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\Object3D.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\World.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\PlayerDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventDispatcher.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\ClientEventHandlerBase.ts" />
@@ -109,24 +96,14 @@
     <TypeScriptCompile Include="ClientApp\src\app\game\Message.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ResourceManager.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\events\handlers\DrawCardClientEventHandler.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\AttributeDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\SocketClient.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\TextObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\EventBus.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\BoxObject.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\ActorDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\Object3DDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardStackDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\CardDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\ClientSerializer.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\GameDto.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\dto\WorldDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\Dice.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\Card.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardStackDefinition.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardDefinition.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\CardStack.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\definitions\CardType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\GameBoard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\IActor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\game\logic\World.ts" />
@@ -138,12 +115,6 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\assets\3d\" />
     <Folder Include="ClientApp\src\modules\threejs-dice\lib\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="ClientApp\src\app\common\dto\GameStateDto.ts">
-      <CustomToolNamespace>..\MagicSword.Core.Api\Dto\GameStateDto.cs</CustomToolNamespace>
-    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -188,9 +159,5 @@
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
   </PropertyGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy $(SolutionDir)MagicSword.Core.Logic\ClientApp\src\app\common  $(ProjectDir)ClientApp\src\app\common /s /e /y" />
-  </Target>
 
 </Project>

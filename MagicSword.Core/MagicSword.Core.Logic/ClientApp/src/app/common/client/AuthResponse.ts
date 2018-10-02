@@ -1,4 +1,4 @@
-import { UserDto } from "@App/common/client/UserDto";
+import { UserDto } from "@Common/client/UserDto";
 
 export class AuthResponse {
 

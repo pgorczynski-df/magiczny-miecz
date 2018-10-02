@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 import { Game } from "@App/game/Game";
-import { Event } from "@App/common/events/Event";
+import { Event } from "@Common/events/Event";
 import { IActor } from "@App/game/logic/IActor";
 import { Services } from "@App/Services";
 import { CardStack } from "@App/game/logic/CardStack";
@@ -12,12 +12,12 @@ import { SocketClient } from "@App/SocketClient";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
-import { EventKind } from "@App/common/events/EventKind";
-import { EventType } from "@App/common/events/EventType";
-import { GameStateDto } from "@App/common/dto/GameStateDto";
+import { EventKind } from "@Common/events/EventKind";
+import { EventType } from "@Common/events/EventType";
+import { GameStateDto } from "@Common/dto/GameStateDto";
 import { ClientGameService } from "@App/game/local/ClientGameService";
-import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 
 @Component({

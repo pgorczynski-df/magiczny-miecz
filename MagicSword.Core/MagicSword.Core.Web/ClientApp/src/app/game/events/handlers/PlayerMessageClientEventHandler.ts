@@ -1,7 +1,7 @@
-import { Event } from "@App/common/events/Event";
-import { EventType } from "@App/common/events/EventType";
+import { Event } from "@Common/events/Event";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class PlayerMessageClientEventHandler extends ClientEventHandlerBase {
 

@@ -1,10 +1,10 @@
-import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
-import { CardType } from "@App/common/mechanics/definitions/CardType";
-import { Collections } from "@App/common/utils/Collections";
-import { ActorBase } from "@App/common/mechanics/ActorBase";
-import { Card } from "@App/common/mechanics/Card";
-import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
+import { CardDefinition } from "@Common/mechanics/definitions/CardDefinition";
+import { CardStackDefinition } from "@Common/mechanics/definitions/CardStackDefinition";
+import { CardType } from "@Common/mechanics/definitions/CardType";
+import { Collections } from "@Common/utils/Collections";
+import { ActorBase } from "@Common/mechanics/ActorBase";
+import { Card } from "@Common/mechanics/Card";
+import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";
 
 
 export class CardStack extends ActorBase {

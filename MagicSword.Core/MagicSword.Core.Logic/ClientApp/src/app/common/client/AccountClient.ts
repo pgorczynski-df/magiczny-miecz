@@ -1,7 +1,7 @@
-import { HttpClient } from "@App/common/client/HttpClient";
+import { HttpClient } from "@Common/client/HttpClient";
 import { Services } from "@App/Services";
-import { UserDto } from "@App/common/client/UserDto";
-import { AuthResponse } from "@App/common/client/AuthResponse";
+import { UserDto } from "@Common/client/UserDto";
+import { AuthResponse } from "@Common/client/AuthResponse";
 
 export class AccountClient extends HttpClient {
 

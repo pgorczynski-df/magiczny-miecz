@@ -1,9 +1,9 @@
-import { Event } from "@App/common/events/Event";
-import { EventType } from "@App/common/events/EventType";
+import { Event } from "@Common/events/Event";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
-import { ActorDto } from "@App/common/dto/ActorDto";
+import { ActorDto } from "@Common/dto/ActorDto";
 import { IActor } from "@App/game/logic/IActor";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class ActorMoveClientEventHandler extends ClientEventHandlerBase {
 

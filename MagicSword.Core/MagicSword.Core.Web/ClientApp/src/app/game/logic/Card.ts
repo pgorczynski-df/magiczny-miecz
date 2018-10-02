@@ -1,9 +1,9 @@
 import { BoxObject } from "@App/game/BoxObject";
 import { TextObject } from "@App/game/TextObject";
 import { CardStack } from "@App/game/logic/CardStack";
-import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
+import { CardDefinition } from "@Common/mechanics/definitions/CardDefinition";
 import { IActor } from "@App/game/logic/IActor";
-import { AttributeDefinition } from "@App/common/mechanics/definitions/AttributeDefinition";
+import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";
 import { ResourceManager } from "@App/game/ResourceManager";
 
 export class Card extends BoxObject implements IActor {

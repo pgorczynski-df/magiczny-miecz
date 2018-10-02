@@ -1,11 +1,11 @@
 import { Services } from "@App/Services";
-import { Event } from "@App/common/events/Event";
-import { GameProvider } from "@App/common/repository/GameProvider";
-import { EventDispatcher } from "@App/common/events/EventDispatcher";
-import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
+import { Event } from "@Common/events/Event";
+import { GameProvider } from "@Common/repository/GameProvider";
+import { EventDispatcher } from "@Common/events/EventDispatcher";
+import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
 import { EventBusResponseProcessor } from "@App/game/local/EventBusResponseProcessor";
-import { LocalStorageGamesRepository } from "@App/common/repository/LocalStorageGamesRepository";
-import { UserDto } from "@App/common/client/UserDto";
+import { LocalStorageGamesRepository } from "@Common/repository/LocalStorageGamesRepository";
+import { UserDto } from "@Common/client/UserDto";
 
 export class ClientGameService {
 

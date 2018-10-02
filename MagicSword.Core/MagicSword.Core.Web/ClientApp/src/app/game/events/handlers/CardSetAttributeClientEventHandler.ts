@@ -1,9 +1,9 @@
-import { Event } from "@App/common/events/Event";
-import { CardSetAttributeRequestDto } from "@App/common/events/cardsetattribute/CardSetAttributeRequestDto";
-import { EventType } from "@App/common/events/EventType";
+import { Event } from "@Common/events/Event";
+import { CardSetAttributeRequestDto } from "@Common/events/cardsetattribute/CardSetAttributeRequestDto";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 import { Card } from "@App/game/logic/Card";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class CardSetAttributeClientEventHandler extends ClientEventHandlerBase {
 

@@ -1,9 +1,9 @@
-import { Event } from "@App/common/events/Event";
-import { StackShuffleRequestDto } from "@App/common/events/stackshuffle/StackShuffleRequestDto";
+import { Event } from "@Common/events/Event";
+import { StackShuffleRequestDto } from "@Common/events/stackshuffle/StackShuffleRequestDto";
 import { CardStack } from "@App/game/logic/CardStack";
-import { EventType } from "@App/common/events/EventType";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class StackShuffleClientEventHandler extends ClientEventHandlerBase {
 

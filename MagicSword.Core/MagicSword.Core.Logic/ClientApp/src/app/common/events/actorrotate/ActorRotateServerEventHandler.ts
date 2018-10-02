@@ -1,5 +1,5 @@
-import { EventType } from "@App/common/events/EventType";
-import { ActorMoveServerEventHandler } from "@App/common/events/actormove/ActorMoveServerEventHandler";
+import { EventType } from "@Common/events/EventType";
+import { ActorMoveServerEventHandler } from "@Common/events/actormove/ActorMoveServerEventHandler";
 
 export class ActorRotateServerEventHandler extends ActorMoveServerEventHandler {
 

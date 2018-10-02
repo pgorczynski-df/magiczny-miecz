@@ -1,10 +1,10 @@
-import { Event } from "@App/common/events/Event";
-import { DrawCardNotificationDto } from "@App/common/events/drawcard/DrawCardNotificationDto";
+import { Event } from "@Common/events/Event";
+import { DrawCardNotificationDto } from "@Common/events/drawcard/DrawCardNotificationDto";
 import { CardStack } from "@App/game/logic/CardStack";
-import { DrawCardRequestDto } from "@App/common/events/drawcard/DrawCardRequestDto";
-import { EventType } from "@App/common/events/EventType";
+import { DrawCardRequestDto } from "@Common/events/drawcard/DrawCardRequestDto";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class DrawCardClientEventHandler extends ClientEventHandlerBase {
 

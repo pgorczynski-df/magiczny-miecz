@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { CardSetAttributeRequestDto } from "@App/common/events/cardsetattribute/CardSetAttributeRequestDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
-import {Card} from "@App/common/mechanics/Card";
+import { EventType } from "@Common/events/EventType";
+import { CardSetAttributeRequestDto } from "@Common/events/cardsetattribute/CardSetAttributeRequestDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
+import {Card} from "@Common/mechanics/Card";
 
 export class CardSetAttributeServerEventHandler extends ServerEventHandlerBase {
 

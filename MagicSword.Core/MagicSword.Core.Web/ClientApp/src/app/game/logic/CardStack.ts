@@ -1,10 +1,10 @@
 import { BoxObject } from "@App/game/BoxObject";
 import { IActor } from "@App/game/logic/IActor";
-import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
+import { CardDefinition } from "@Common/mechanics/definitions/CardDefinition";
 import { Card } from "@App/game/logic/Card";
-import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
-import { CardType } from "@App/common/mechanics/definitions/CardType";
-import { Collections } from "@App/common/utils/Collections";
+import { CardStackDefinition } from "@Common/mechanics/definitions/CardStackDefinition";
+import { CardType } from "@Common/mechanics/definitions/CardType";
+import { Collections } from "@Common/utils/Collections";
 
 export class CardStack extends BoxObject implements IActor {
 

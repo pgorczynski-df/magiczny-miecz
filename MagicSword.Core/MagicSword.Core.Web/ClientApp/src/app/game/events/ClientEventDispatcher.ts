@@ -1,5 +1,5 @@
-import { Event } from "@App/common/events/Event";
-import { EventKind } from "@App/common/events/EventKind";
+import { Event } from "@Common/events/Event";
+import { EventKind } from "@Common/events/EventKind";
 import { Services } from "@App/Services";
 import { IClientEventHandler } from "@App/game/events/IClientEventHandler";
 import { ClientEventHandlerContext } from "@App/game/events/ClientEventHandlerContext";

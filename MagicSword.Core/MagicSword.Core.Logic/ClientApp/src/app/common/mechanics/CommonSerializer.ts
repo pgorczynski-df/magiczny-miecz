@@ -1,17 +1,17 @@
-import { CardDto } from "@App/common/dto/CardDto";
-import { Card } from "@App/common/mechanics/Card";
-import { Game } from "@App/common/mechanics/Game";
-import { GameDto } from "@App/common/dto/GameDto";
-import { World } from "@App/common/mechanics/World";
-import { WorldDto } from "@App/common/dto/WorldDto";
-import { CardStack } from "@App/common/mechanics/CardStack";
-import { CardStackDto } from "@App/common/dto/CardStackDto";
-import { Object3DDto } from "@App/common/dto/Object3DDto";
-import { IActorBase } from "@App/common/mechanics/IActorBase";
-import { ActorDto } from "@App/common/dto/ActorDto";
-import { Player } from "@App/common/mechanics/Player";
-import { PlayerDto } from "@App/common/dto/PlayerDto";
-import { Object3D } from "@App/common/mechanics/Object3D";
+import { CardDto } from "@Common/dto/CardDto";
+import { Card } from "@Common/mechanics/Card";
+import { Game } from "@Common/mechanics/Game";
+import { GameDto } from "@Common/dto/GameDto";
+import { World } from "@Common/mechanics/World";
+import { WorldDto } from "@Common/dto/WorldDto";
+import { CardStack } from "@Common/mechanics/CardStack";
+import { CardStackDto } from "@Common/dto/CardStackDto";
+import { Object3DDto } from "@Common/dto/Object3DDto";
+import { IActorBase } from "@Common/mechanics/IActorBase";
+import { ActorDto } from "@Common/dto/ActorDto";
+import { Player } from "@Common/mechanics/Player";
+import { PlayerDto } from "@Common/dto/PlayerDto";
+import { Object3D } from "@Common/mechanics/Object3D";
 
 export class CommonSerializer {
 

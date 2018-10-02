@@ -1,10 +1,10 @@
-import { Event } from "@App/common/events/Event";
-import { DisposeCardNotificationDto } from "@App/common/events/disposecard/DisposeCardNotificationDto";
-import { DisposeCardRequestDto } from "@App/common/events/disposecard/DisposeCardRequestDto";
-import { EventType } from "@App/common/events/EventType";
+import { Event } from "@Common/events/Event";
+import { DisposeCardNotificationDto } from "@Common/events/disposecard/DisposeCardNotificationDto";
+import { DisposeCardRequestDto } from "@Common/events/disposecard/DisposeCardRequestDto";
+import { EventType } from "@Common/events/EventType";
 import { ClientEventHandlerBase } from "@App/game/events/ClientEventHandlerBase";
 import { Card } from "@App/game/logic/Card";
-import { StringUtils } from "@App/common/utils/StringUtils";
+import { StringUtils } from "@Common/utils/StringUtils";
 
 export class DisposeCardClientEventHandler extends ClientEventHandlerBase {
 

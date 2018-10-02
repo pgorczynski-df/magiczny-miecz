@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { StackShuffleRequestDto } from "@App/common/events/stackshuffle/StackShuffleRequestDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
-import { CardStack } from "@App/common/mechanics/CardStack";
+import { EventType } from "@Common/events/EventType";
+import { StackShuffleRequestDto } from "@Common/events/stackshuffle/StackShuffleRequestDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
+import { CardStack } from "@Common/mechanics/CardStack";
 
 export class StackShuffleServerEventHandler extends ServerEventHandlerBase {
 

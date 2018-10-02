@@ -1,5 +1,5 @@
-import { Object3D } from "@App/common/mechanics/Object3D";
-import { Event } from "@App/common/events/Event";
+import { Object3D } from "@Common/mechanics/Object3D";
+import { Event } from "@Common/events/Event";
 
 export class Player {
 

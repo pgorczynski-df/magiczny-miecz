@@ -1,6 +1,6 @@
 import { Services } from "@App/Services";
-import { HttpClient } from "@App/common/client/HttpClient";
-import { GameListDto } from "@App/common/dto/GameListDto";
+import { HttpClient } from "@Common/client/HttpClient";
+import { GameListDto } from "@Common/dto/GameListDto";
 
 export class GamesApiClient extends HttpClient {
 

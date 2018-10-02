@@ -1,6 +1,6 @@
-import { CardStack } from "@App/common/mechanics/CardStack";
-import { CardDefinition } from "@App/common/mechanics/definitions/CardDefinition";
-import { ActorBase } from "@App/common/mechanics/ActorBase";
+import { CardStack } from "@Common/mechanics/CardStack";
+import { CardDefinition } from "@Common/mechanics/definitions/CardDefinition";
+import { ActorBase } from "@Common/mechanics/ActorBase";
 
 export class Card extends ActorBase {
 

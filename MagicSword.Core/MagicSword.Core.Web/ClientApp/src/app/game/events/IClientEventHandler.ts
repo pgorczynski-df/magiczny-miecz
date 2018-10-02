@@ -1,4 +1,4 @@
-import { Event } from "@App/common/events/Event";
+import { Event } from "@Common/events/Event";
 import {ClientEventHandlerContext} from "@App/game/events/ClientEventHandlerContext";
 
 export interface IClientEventHandler {

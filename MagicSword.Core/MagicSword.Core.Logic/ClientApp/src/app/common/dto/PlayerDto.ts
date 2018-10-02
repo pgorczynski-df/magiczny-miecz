@@ -1,5 +1,5 @@
-import { Event } from "@App/common/events/Event";
-import { Object3DDto } from "@App/common/dto/Object3DDto";
+import { Event } from "@Common/events/Event";
+import { Object3DDto } from "@Common/dto/Object3DDto";
 
 export class PlayerDto {
 

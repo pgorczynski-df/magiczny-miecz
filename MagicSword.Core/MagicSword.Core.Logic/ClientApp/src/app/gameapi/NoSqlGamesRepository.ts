@@ -2,8 +2,8 @@ import * as mongoose from "mongoose";
 import { Model } from "mongoose";
 
 import { Services } from "@App/Services";
-import { IGamesRepository } from "@App/common/repository/IGamesRepository";
-import { GameListDto } from "@App/common/dto/GameListDto";
+import { IGamesRepository } from "@Common/repository/IGamesRepository";
+import { GameListDto } from "@Common/dto/GameListDto";
 import { GameSchema } from "@App/gameapi/GameSchema";
 
 const Game = mongoose.model('Game', GameSchema) as Model;

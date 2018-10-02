@@ -1,6 +1,6 @@
-import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
+import { CardStackDefinition } from "@Common/mechanics/definitions/CardStackDefinition";
 import { Services } from "@App/Services";
-import { HttpClient } from "@App/common/client/HttpClient";
+import { HttpClient } from "@Common/client/HttpClient";
 
 export class CardDefinitionLoader {
 

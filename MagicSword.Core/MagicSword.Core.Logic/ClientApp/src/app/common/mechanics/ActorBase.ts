@@ -1,6 +1,6 @@
-import { Object3D } from "@App/common/mechanics/Object3D";
-import { IActorBase } from "@App/common/mechanics/IActorBase";
-import { Guid } from "@App/common/utils/Guid";
+import { Object3D } from "@Common/mechanics/Object3D";
+import { IActorBase } from "@Common/mechanics/IActorBase";
+import { Guid } from "@Common/utils/Guid";
 
 export class ActorBase implements IActorBase {
 

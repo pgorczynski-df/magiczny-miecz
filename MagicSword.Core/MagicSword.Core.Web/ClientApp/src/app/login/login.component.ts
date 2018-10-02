@@ -2,7 +2,7 @@ import { AfterViewInit, Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { Services } from "app/Services";
-import { AccountClient } from "@App/common/client/AccountClient";
+import { AccountClient } from "@Common/client/AccountClient";
 import { ResourceManager } from "@App/game/ResourceManager";
 
 @Component({

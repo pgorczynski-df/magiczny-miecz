@@ -1,4 +1,4 @@
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
 
 export interface IServerEventHandler {
 

@@ -1,8 +1,8 @@
-import { EventType } from "@App/common/events/EventType";
-import { PickCardRequestDto } from "@App/common/events/pickcard/PickCardRequestDto";
-import { PickCardNotificationDto } from "@App/common/events/pickcard/PickCardNotificationDto";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
+import { EventType } from "@Common/events/EventType";
+import { PickCardRequestDto } from "@Common/events/pickcard/PickCardRequestDto";
+import { PickCardNotificationDto } from "@Common/events/pickcard/PickCardNotificationDto";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
 
 export class PickCardServerEventHandler extends ServerEventHandlerBase {
 

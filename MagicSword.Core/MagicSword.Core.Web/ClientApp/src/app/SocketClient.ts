@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import * as socketIo from "socket.io-client";
 
-import { Event } from "@App/common/events/Event";
+import { Event } from "@Common/events/Event";
 import { Services } from "@App/Services";
 
 @Injectable()

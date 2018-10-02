@@ -1,7 +1,7 @@
-import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
-import { CardStack } from "@App/common/mechanics/CardStack";
-import { Card } from "@App/common/mechanics/Card";
-import { CardType } from "@App/common/mechanics/definitions/CardType";
+import { CardStackDefinition } from "@Common/mechanics/definitions/CardStackDefinition";
+import { CardStack } from "@Common/mechanics/CardStack";
+import { Card } from "@Common/mechanics/Card";
+import { CardType } from "@Common/mechanics/definitions/CardType";
 
 
 export class World {

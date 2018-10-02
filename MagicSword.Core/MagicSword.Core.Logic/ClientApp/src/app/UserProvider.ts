@@ -1,6 +1,6 @@
 import { Services } from "@App/Services";
-import { AccountClient } from "@App/common/client/AccountClient";
-import { UserDto } from "@App/common/client/UserDto";
+import { AccountClient } from "@Common/client/AccountClient";
+import { UserDto } from "@Common/client/UserDto";
 
 export class UserProvider {
 

@@ -1,6 +1,6 @@
-import { Event } from "@App/common/events/Event";
-import { WorldDto } from "@App/common/dto/WorldDto";
-import { PlayerDto } from "@App/common/dto/PlayerDto";
+import { Event } from "@Common/events/Event";
+import { WorldDto } from "@Common/dto/WorldDto";
+import { PlayerDto } from "@Common/dto/PlayerDto";
 
 export class GameDto {
 

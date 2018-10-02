@@ -1,7 +1,7 @@
-import { EventType } from "@App/common/events/EventType";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { ServerEventHandlerBase } from "@App/common/events/ServerEventHandlerBase";
-import { ActorDto } from "@App/common/dto/ActorDto";
+import { EventType } from "@Common/events/EventType";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { ServerEventHandlerBase } from "@Common/events/ServerEventHandlerBase";
+import { ActorDto } from "@Common/dto/ActorDto";
 
 export class ActorMoveServerEventHandler extends ServerEventHandlerBase {
 

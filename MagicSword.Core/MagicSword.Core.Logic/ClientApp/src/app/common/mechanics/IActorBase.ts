@@ -1,4 +1,4 @@
-import { Object3D } from "@App/common/mechanics/Object3D";
+import { Object3D } from "@Common/mechanics/Object3D";
 
 export interface IActorBase {
 

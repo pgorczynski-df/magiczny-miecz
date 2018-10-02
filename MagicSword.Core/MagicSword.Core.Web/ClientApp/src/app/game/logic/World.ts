@@ -3,8 +3,8 @@ import { GameBoard } from "@App/game/logic/GameBoard";
 import { Card } from "@App/game/logic/Card";
 import { CardStack } from "@App/game/logic/CardStack";
 import { IActor } from "@App/game/logic/IActor";
-import { CardStackDefinition } from "@App/common/mechanics/definitions/CardStackDefinition";
-import { CardType } from "@App/common/mechanics/definitions/CardType";
+import { CardStackDefinition } from "@Common/mechanics/definitions/CardStackDefinition";
+import { CardType } from "@Common/mechanics/definitions/CardType";
 
 export class World {
 

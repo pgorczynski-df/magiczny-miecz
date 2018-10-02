@@ -1,4 +1,4 @@
-import {Object3DDto} from "@App/common/dto/Object3DDto";
+import {Object3DDto} from "@Common/dto/Object3DDto";
 
 export class ActorDto {
 

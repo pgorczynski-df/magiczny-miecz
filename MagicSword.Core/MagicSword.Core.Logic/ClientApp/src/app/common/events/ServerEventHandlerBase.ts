@@ -1,9 +1,9 @@
-import { IServerEventHandler } from "@App/common/events/IServerEventHandler";
-import { EventHandlerContext } from "@App/common/events/EventHandlerContext";
-import { Event } from "@App/common/events/Event";
-import { EventKind } from "@App/common/events/EventKind";
-import { EventType } from "@App/common/events/EventType";
-import { Guid } from "@App/common/utils/Guid";
+import { IServerEventHandler } from "@Common/events/IServerEventHandler";
+import { EventHandlerContext } from "@Common/events/EventHandlerContext";
+import { Event } from "@Common/events/Event";
+import { EventKind } from "@Common/events/EventKind";
+import { EventType } from "@Common/events/EventType";
+import { Guid } from "@Common/utils/Guid";
 
 export abstract class ServerEventHandlerBase implements IServerEventHandler {
 

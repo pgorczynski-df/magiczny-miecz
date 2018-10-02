@@ -1,15 +1,15 @@
-import { CardDto } from "@App/common/dto/CardDto";
+import { CardDto } from "@Common/dto/CardDto";
 import { Card } from "@App/game/logic/Card";
 import { Game } from "@App/game/Game";
-import { GameDto } from "@App/common/dto/GameDto";
+import { GameDto } from "@Common/dto/GameDto";
 import { World } from "@App/game/logic/World";
-import { WorldDto } from "@App/common/dto/WorldDto";
+import { WorldDto } from "@Common/dto/WorldDto";
 import { CardStack } from "@App/game/logic/CardStack";
-import { CardStackDto } from "@App/common/dto/CardStackDto";
-import { Object3DDto as Object3dDto } from "@App/common/dto/Object3DDto";
+import { CardStackDto } from "@Common/dto/CardStackDto";
+import { Object3DDto as Object3dDto } from "@Common/dto/Object3DDto";
 import { IActor } from "@App/game/logic/IActor";
-import { ActorDto } from "@App/common/dto/ActorDto";
-import { CommonSerializer } from "@App/common/mechanics/CommonSerializer";
+import { ActorDto } from "@Common/dto/ActorDto";
+import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
 
 export class ClientSerializer {
 
