@@ -5,6 +5,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { JwtModule } from '@auth0/angular-jwt';
+
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
@@ -43,7 +45,14 @@ import { AuthGuard } from "@App/AuthGuard";
             { path: "lobby", component: LobbyComponent, canActivate: [AuthGuard] },
             { path: "login", component: LoginComponent },
         ]),
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: null,
+                whitelistedDomains: [],
+                blacklistedRoutes: []
+            }
+        })
     ],
     providers: [
         { provide: LOCALE_ID, useValue: "en-US" },
