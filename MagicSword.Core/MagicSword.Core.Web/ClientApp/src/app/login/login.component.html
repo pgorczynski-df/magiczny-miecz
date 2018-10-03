@@ -13,8 +13,12 @@
                 </div>
                 <button type="submit" (click)="login()" class="btn btn-primary">Zaloguj</button>
             </form>
-
             <span class="error">{{loginResult}}</span>
+
+            <a [routerLink]='["/home", ""]' [queryParams]="{returnUrl: returnUrl}">
+                Nie mam jeszcze konta - zarejestruj
+            </a>
+
         </div>
     </div>
 </div>

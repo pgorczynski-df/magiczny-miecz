@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { Services } from "app/Services";
 import { AccountClient } from "@Common/client/AccountClient";
@@ -18,11 +18,15 @@ export class HomeComponent implements AfterViewInit {
 
     loginResult = "";
 
+    returnUrl = "";
+
     accountClient: AccountClient;
 
     //workaround: we inject the resourceManager only to force it to be initialized
-    constructor(private services: Services, private router: Router, private resourceManager: ResourceManager) {
+    constructor(private services: Services, private router: Router, private route: ActivatedRoute, private resourceManager: ResourceManager) {
         this.accountClient = new AccountClient(this.services);
+
+        this.route.queryParams.subscribe(params => this.returnUrl = params['returnUrl'] || '/lobby');
     }
 
     ngAfterViewInit() {
@@ -33,7 +37,7 @@ export class HomeComponent implements AfterViewInit {
             this.accountClient.register(this.email, this.password, this.nickname).then(r => {
                 if (r.success) {
                     this.services.authService.token = r.user.token;
-                    this.router.navigate(['/lobby']);
+                    this.router.navigateByUrl(this.returnUrl);
                 } else {
                     this.loginResult = this.res(r.error);
                 }

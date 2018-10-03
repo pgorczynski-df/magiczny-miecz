@@ -32,7 +32,7 @@
                 <button type="submit" (click)="register()" class="btn btn-primary">Zarejestruj</button>
             </form>
 
-            <a [routerLink]='["/login"]'>
+            <a [routerLink]='["/login"]' [queryParams]="{returnUrl: returnUrl}">
                 Mam już konto - zaloguj
             </a>
 

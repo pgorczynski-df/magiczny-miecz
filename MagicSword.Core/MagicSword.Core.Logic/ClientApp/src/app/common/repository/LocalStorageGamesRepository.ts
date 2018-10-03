@@ -41,10 +41,10 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         if (repo === null) {
             repo = this.getRepo();
         }
-        var games = repo[this.services.authService.token];
+        var games = repo["local_user"];
         if (!games) {
             games = {};
-            repo[this.services.authService.token] = games;
+            repo["local_user"] = games;
         }
         return games;
     }

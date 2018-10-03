@@ -37,8 +37,8 @@ import { AuthGuard } from "@App/AuthGuard";
         FormsModule,
         RouterModule.forRoot([
             { path: "", component: HomeComponent, pathMatch: "full" },
-            { path: "game/:mode/:gameId", component: GameComponent },
-            { path: "game/:mode", component: GameComponent },
+            { path: "game/online/:gameId", component: GameComponent, canActivate: [AuthGuard] },
+            { path: "game/local/:gameId", component: GameComponent },
             { path: "counter", component: CounterComponent },
             { path: "lobby", component: LobbyComponent, canActivate: [AuthGuard] },
             { path: "login", component: LoginComponent },

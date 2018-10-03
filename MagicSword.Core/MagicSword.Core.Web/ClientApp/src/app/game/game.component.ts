@@ -49,7 +49,7 @@ export class GameComponent implements AfterViewInit {
     cardsToPick: Card[] = [];
     attributes: AttributeDefinition[] = AttributeDefinition.attributeDefinitions;
 
-    ngAfterViewInit() {
+    async ngAfterViewInit() {
 
         var consoleHandler = this.services.logger.createDefaultHandler();
         var myHandler = (messages, context) => {
@@ -65,18 +65,20 @@ export class GameComponent implements AfterViewInit {
             myHandler(messages, context);
         });
 
-        this.resourceManager.load().then(_ => {
-            this.route.paramMap.subscribe(d => {
-                var mode = d.get("mode");
-                var gameId = d.get("gameId");
-                this.startGame(gameId, mode);
-            });
+        await this.resourceManager.load();
+
+        var mode = "local";
+        if (location.pathname.indexOf("/online/") > 0) {
+            mode = "online";
+        }
+
+        this.route.paramMap.subscribe(d => {
+            var gameId = d.get("gameId");
+            this.startGame(gameId, mode);
         });
     }
 
     private startGame(gameId: string, mode: string) {
-
-        //this.services.logger.info("Starting game in " + mode + " mode");
 
         this.game = new Game(this.viewport.nativeElement, this.services);
         this.game.id = gameId;
@@ -104,9 +106,6 @@ export class GameComponent implements AfterViewInit {
         switch (mode) {
             case "local":
                 this.clientGameService = new ClientGameService(this.services);
-                if (!this.services.authService.token) {
-                    this.services.authService.token = "dummy";
-                }
                 this.services.outboundBus.of().subscribe((e: Event) => {
                     this.clientGameService.handleEvent(e);
                 });
