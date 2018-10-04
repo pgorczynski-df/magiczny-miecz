@@ -42,7 +42,17 @@
         "socket.io": "^2.1.1",
         "three": "^0.94.0",
         "tslib": "^1.9.3",
-        "zone.js": "^0.8.19"
+        "classlist.js": "1.1.20150312",
+        "intl": "1.2.5",
+        "ionicons": "2.0.1",
+        "nebular-icons": "1.0.8",
+        "normalize.css": "6.0.0",
+        "pace-js": "1.0.2",
+        "roboto-fontface": "0.8.0",
+        "socicon": "3.0.5",
+        "typeface-exo": "0.0.22",
+        "web-animations-js": "2.2.5",
+        "zone.js": "^0.8.26"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.6.8",
