@@ -15,8 +15,6 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 
-import { GameComponent } from "@App/game/game.component";
-
 import { Services } from "@App/Services";
 import { AuthService } from "@App/AuthService";
 import { SocketClient } from "@App/SocketClient"
