@@ -23,6 +23,7 @@ import { StringUtils } from "@Common/utils/StringUtils";
 @Component({
     selector: "app-game",
     templateUrl: "./game.component.html",
+    styleUrls: ["./game.component.scss"],
 })
 export class GameComponent implements AfterViewInit {
 
@@ -118,6 +119,8 @@ export class GameComponent implements AfterViewInit {
             default:
                 throw new Error("unknown mode: " + mode);
         }
+
+        this.game.init();
     }
 
     private eventToMessage(event: Event) {

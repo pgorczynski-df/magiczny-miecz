@@ -80,7 +80,6 @@ export class Game {
         this.scene.add(this.camera);
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
-        this.renderer.setSize(this.width, this.height);
         this.renderer.setClearColor(this.scene.fog.color);
 
         this.container.appendChild(this.renderer.domElement);
@@ -158,6 +157,11 @@ export class Game {
         this.dice = new DiceD6({ backColor: "#1A6481", fontColor: "#FFFFFF", size: 5 });
         this.scene.add(this.dice.getObject());
         this.throwDice(5);
+    }
+
+    public init() {
+
+        this.renderer.setSize(this.width, this.height);
 
         var dt = 1 / 60;
 
@@ -165,7 +169,7 @@ export class Game {
 
             this.physicsScene.step(dt);
 
-            this.dice.updateMeshFromBody(); 
+            this.dice.updateMeshFromBody();
 
             this.renderer.render(this.scene, this.camera);
             this.controls.update();

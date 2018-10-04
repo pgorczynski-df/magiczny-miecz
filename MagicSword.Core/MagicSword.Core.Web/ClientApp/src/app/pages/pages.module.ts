@@ -6,20 +6,24 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
+import { GameComponent } from "@App/game/game.component";
+
 const PAGES_COMPONENTS = [
-  PagesComponent,
+    PagesComponent,
+    GameComponent,
 ];
 
 @NgModule({
-  imports: [
-    PagesRoutingModule,
-    ThemeModule,
-    DashboardModule,
-    MiscellaneousModule,
-  ],
-  declarations: [
-    ...PAGES_COMPONENTS,
-  ],
+    imports: [
+        PagesRoutingModule,
+        ThemeModule,
+        DashboardModule,
+        MiscellaneousModule,
+
+    ],
+    declarations: [
+        ...PAGES_COMPONENTS,
+    ],
 })
 export class PagesModule {
 }
