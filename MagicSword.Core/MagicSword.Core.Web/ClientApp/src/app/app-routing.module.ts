@@ -7,7 +7,7 @@ import {
   NbRegisterComponent,
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
-} from '@nebular/auth';
+} from 'app/modules/@nebular/auth';
 
 const routes: Routes = [
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },

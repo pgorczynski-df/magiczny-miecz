@@ -3,7 +3,8 @@
 
 // framework component themes (styles tied to theme variables)
 @import '~@nebular/theme/styles/globals';
-@import '~@nebular/auth/styles/all';
+//@import '~@nebular/auth/styles/all';
+@import '../../modules/@nebular/auth/styles/all';
 
 // global app font size
 @import './font-size';

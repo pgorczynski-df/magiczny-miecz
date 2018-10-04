@@ -8,7 +8,7 @@ import "app/../assets/js/EnableThreeExamples";
 import "three/examples/js/controls/OrbitControls";
 import "three/examples/js/loaders/GLTFLoader";
 
-import { DiceManager, DiceD6 } from "@App/../modules/threejs-dice";
+import { DiceManager, DiceD6 } from "app/modules/threejs-dice";
 
 import { Skybox } from "@App/game/Skybox";
 import { World } from "@App/game/logic/World";
