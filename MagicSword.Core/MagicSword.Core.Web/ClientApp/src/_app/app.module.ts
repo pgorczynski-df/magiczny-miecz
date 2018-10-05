@@ -10,7 +10,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { GameComponent } from "./game/game.component";
+import { GameComponent } from "@App/game/game.component";
 import { CounterComponent } from "./counter/counter.component";
 import { LobbyComponent } from "./lobby/lobby.component";
 import { LoginComponent } from "./login/login.component";

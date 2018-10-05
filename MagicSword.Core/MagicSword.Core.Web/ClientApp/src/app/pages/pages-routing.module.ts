@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { GameComponent } from "@App/game/game.component";
+import { AuthGuard } from "@App/AuthGuard";
 
 const routes: Routes = [{
     path: '',
@@ -25,7 +26,8 @@ const routes: Routes = [{
         },
         {
             path: "game/online/:gameId",
-            component: GameComponent
+            component: GameComponent,
+            canActivate: [AuthGuard] 
         },
     ],
 }];
