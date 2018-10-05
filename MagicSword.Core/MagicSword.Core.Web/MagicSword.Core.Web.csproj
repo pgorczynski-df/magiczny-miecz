@@ -80,6 +80,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ClientApp\src\app\modules\%40nebular\auth\components\login\login.component.html" />
     <Content Include="ClientApp\src\app\modules\%40nebular\auth\LICENSE.txt" />
     <Content Include="ClientApp\src\app\modules\%40nebular\auth\package.json" />
     <Content Include="ClientApp\src\tsconfig.app.json" />
