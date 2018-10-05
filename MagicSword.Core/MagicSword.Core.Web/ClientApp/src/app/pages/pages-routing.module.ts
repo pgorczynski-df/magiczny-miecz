@@ -23,6 +23,10 @@ const routes: Routes = [{
             path: "game/local/:gameId",
             component: GameComponent
         },
+        {
+            path: "game/online/:gameId",
+            component: GameComponent
+        },
     ],
 }];
 

@@ -1,87 +1,40 @@
-import {Component, OnDestroy} from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators/takeWhile' ;
+import { Component, AfterViewInit } from '@angular/core';
+import { Router } from "@angular/router";
 
-interface CardSettings {
-  title: string;
-  iconClass: string;
-  type: string;
-}
+import { Services } from "@App/Services";
+import { GamesApiClient } from "@Common/client/GamesApiClient";
+import { GameListDto } from "@Common/dto/GameListDto";
 
 @Component({
-  selector: 'ngx-dashboard',
-  templateUrl: './dashboard.component.html',
+    selector: 'ngx-dashboard',
+    templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent implements OnDestroy {
+export class DashboardComponent implements AfterViewInit {
 
-  private alive = true;
+    public myGames: GameListDto[] = [];
+    public openGames: GameListDto[] = [];
 
-  lightCard: CardSettings = {
-    title: 'Light',
-    iconClass: 'nb-lightbulb',
-    type: 'primary',
-  };
-  rollerShadesCard: CardSettings = {
-    title: 'Roller Shades',
-    iconClass: 'nb-roller-shades',
-    type: 'success',
-  };
-  wirelessAudioCard: CardSettings = {
-    title: 'Wireless Audio',
-    iconClass: 'nb-audio',
-    type: 'info',
-  };
-  coffeeMakerCard: CardSettings = {
-    title: 'Coffee Maker',
-    iconClass: 'nb-coffee-maker',
-    type: 'warning',
-  };
+    private gamesApiClient: GamesApiClient;
 
-  statusCards: string;
+    constructor(private router: Router, private services: Services) {
+        this.gamesApiClient = new GamesApiClient(this.services);
+    }
 
-  commonStatusCardsSet: CardSettings[] = [
-    this.lightCard,
-    this.rollerShadesCard,
-    this.wirelessAudioCard,
-    this.coffeeMakerCard,
-  ];
+    ngAfterViewInit(): void {
+        setTimeout(() => this.load(), 500);
+    }
 
-  statusCardsByThemes: {
-    default: CardSettings[];
-    cosmic: CardSettings[];
-    corporate: CardSettings[];
-  } = {
-    default: this.commonStatusCardsSet,
-    cosmic: this.commonStatusCardsSet,
-    corporate: [
-      {
-        ...this.lightCard,
-        type: 'warning',
-      },
-      {
-        ...this.rollerShadesCard,
-        type: 'primary',
-      },
-      {
-        ...this.wirelessAudioCard,
-        type: 'danger',
-      },
-      {
-        ...this.coffeeMakerCard,
-        type: 'secondary',
-      },
-    ],
-  };
+    load(): void {
+        this.gamesApiClient.getMyGames().then(res => this.myGames = res);
+        this.gamesApiClient.getOpenGames().then(res => this.openGames = res);
+    }
 
-  constructor(private themeService: NbThemeService) {
-    this.themeService.getJsTheme()
-      .pipe(takeWhile(() => this.alive))
-      .subscribe(theme => {
-        this.statusCards = this.statusCardsByThemes[theme.name];
-    });
-  }
+    create(): void {
+        this.gamesApiClient.createGame().then(res => this.myGames.push(res));
+    }
 
-  ngOnDestroy() {
-    this.alive = false;
-  }
+    join(game: GameListDto): void {
+        this.router.navigate(["pages", "game", "online", game.id]);
+    }
+
 }
