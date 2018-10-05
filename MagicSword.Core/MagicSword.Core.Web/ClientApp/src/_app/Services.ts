@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 
 import * as Logger from "js-logger";
 
@@ -16,7 +15,7 @@ export class Services {
 
     public settings = new Settings();
 
-    constructor(public httpClient: HttpClient, public authService: AuthService) {
+    constructor(public authService: AuthService) {
 
         Logger.useDefaults({ logLevel: Logger.DEBUG });
 
