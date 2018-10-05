@@ -2,7 +2,7 @@
 <div >
     <div #viewport class="viewport" style="align-items: stretch;">
     </div>
-    <div class="controls-panel" [hidden]="!selectedActor" hidden>
+    <div class="controls-panel" [hidden]="!selectedActor">
         <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}" />
         <div [hidden]="!(selectedActor?.isCardStack)">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="events-panel" hidden>
+    <div class="events-panel">
         <div #eventsPanel class="events-box">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item list-group-item-info" *ngFor="let message of messages; index as i;">{{message.text}}</li>
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div class="menu-panel" hidden>
+    <div class="menu-panel">
         <button class="btn btn-secondary" (click)="diceThrow()">Rzuć kostką</button>
     </div>
 </div>
