@@ -20,18 +20,14 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Compile Remove="ClientApp\src\app\modules\%2540nebular\**" />
-    <Compile Remove="ClientApp\src\app\modules\%40nebular\auth\strategies\oauth2\**" />
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="ClientApp\src\app\modules\%2540nebular\**" />
-    <Content Remove="ClientApp\src\app\modules\%40nebular\auth\strategies\oauth2\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="ClientApp\src\app\modules\%2540nebular\**" />
-    <EmbeddedResource Remove="ClientApp\src\app\modules\%40nebular\auth\strategies\oauth2\**" />
     <None Remove="ClientApp\src\app\modules\%2540nebular\**" />
-    <None Remove="ClientApp\src\app\modules\%40nebular\auth\strategies\oauth2\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,51 +76,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ClientApp\src\app\modules\%40nebular\auth\components\login\login.component.html" />
-    <Content Include="ClientApp\src\app\modules\%40nebular\auth\components\register\register.component.html" />
-    <Content Include="ClientApp\src\app\modules\%40nebular\auth\LICENSE.txt" />
-    <Content Include="ClientApp\src\app\modules\%40nebular\auth\package.json" />
     <Content Include="ClientApp\src\tsconfig.app.json" />
     <Content Include="ClientApp\tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\auth.module.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\auth.options.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\auth.routes.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\auth-block\auth-block.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\auth.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\login\login.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\logout\logout.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\register\register.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\request-password\request-password.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\components\reset-password\reset-password.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\helpers.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\models\user.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\auth-result.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\auth.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\auth.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\interceptors\jwt-interceptor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\interceptors\simple-interceptor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token-parceler.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token-parceler.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token-service.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token-storage.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token-storage.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\services\token\token.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\auth-strategy-options.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\auth-strategy.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\dummy\dummy-strategy-options.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\dummy\dummy-strategy.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\password\password-strategy-options.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\password\password-strategy.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modules\%40nebular\auth\strategies\password\password-strategy.ts" />
     <TypeScriptCompile Include="ClientApp\src\_app\AuthGuard.ts" />
     <TypeScriptCompile Include="ClientApp\src\_app\game\events\ClientEventDispatcher.ts" />
     <TypeScriptCompile Include="ClientApp\src\_app\game\events\ClientEventHandlerContext.ts" />
@@ -166,25 +122,6 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\modules\threejs-dice\lib\" />
     <Folder Include="ClientApp\src\assets\3d\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\components\auth-block\auth-block.component.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\components\auth-block\_auth-block.component.theme.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\components\auth.component.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\components\register\register.component.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\components\request-password\request-password.component.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\components\reset-password\reset-password.component.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\README.md" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\global\_components.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\prebuilt\cosmic.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\prebuilt\default.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\themes\_cosmic.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\themes\_default.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\_all.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\_globals.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\styles\_themes.scss" />
-    <None Include="ClientApp\src\app\modules\%40nebular\auth\UPGRADE.md" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
