@@ -33,6 +33,15 @@ export class AuthService {
         return this._user.token;
     }
 
+    logout() {
+        this._user = null;
+        localStorage.removeItem("user");
+    }
+
+    isLoggedIn() {
+        return this.user !== null;
+    }
+
     private loadUser() {
         var user = localStorage.getItem("user");
         if (user) {

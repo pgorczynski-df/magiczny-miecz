@@ -31,6 +31,15 @@ export class HeaderComponent implements OnInit {
         return user ? user.nickname : "Niezalogowany";
     }
 
+    userLoggedIn(): boolean {
+        return this.services.authService.isLoggedIn();
+    }
+
+    logout() {
+        this.services.authService.logout();
+        this.menuService.navigateHome();
+    }
+
     ngOnInit() {
         this.userService.getUsers()
             .subscribe((users: any) => this.user = users.nick);

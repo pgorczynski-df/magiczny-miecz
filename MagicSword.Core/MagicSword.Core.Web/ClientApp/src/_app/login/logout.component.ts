@@ -14,7 +14,7 @@ export class LogoutComponent {
     }
 
     logout() {
-        this.services.authService.token = null;
+        this.services.authService.logout();
         this.router.navigate(['/']);
     }
 
