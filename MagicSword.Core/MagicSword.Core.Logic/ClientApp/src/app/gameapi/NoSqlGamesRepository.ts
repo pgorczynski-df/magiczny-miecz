@@ -51,18 +51,26 @@ export class NoSqlGamesRepository implements IGamesRepository {
             }).exec();
     }
 
-    public getMyGames(): Promise<GameListDto[]> {
-        return Game.find({}).exec().then(collection => {
-            var res = [];
-            for (var game of collection) {
-                res.push(this.createListDto(game));
-            }
+    public getUserGames(userId: string): Promise<GameListDto[]> {
+        return Game.find({ ownerId: userId}).exec().then(collection => {
+            var res = this.createDtoList(collection);
             return res;
         });
     }
 
     public getOpenGames(): Promise<GameListDto[]> {
-        return this.getMyGames();
+        return Game.find({}).exec().then(collection => {
+            var res = this.createDtoList(collection);
+            return res;
+        });
+    }
+
+    private createDtoList(collection: any): GameListDto[] {
+        var res = [];
+        for (var game of collection) {
+            res.push(this.createListDto(game));
+        }
+        return res;
     }
 
     private createListDto(game: any): GameListDto {

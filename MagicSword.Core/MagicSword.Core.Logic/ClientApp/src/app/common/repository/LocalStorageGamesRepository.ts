@@ -10,12 +10,16 @@ export class LocalStorageGamesRepository implements IGamesRepository {
     constructor(private services: Services) {
     }
 
-    getMyGames(): Promise<GameListDto[]> {
+    getUserGames(userId: string): Promise<GameListDto[]> {
+        throw new Error("not supported");
+    }
+
+    getOpenGames(): Promise<GameListDto[]> {
         throw new Error("not supported");
     }
 
     getGame(id: string): Promise<any> {
-        var games = this.getUserGames();
+        var games = this.getUsersGames();
         if (!games) {
             return Promise.resolve(null);
         }
@@ -24,7 +28,7 @@ export class LocalStorageGamesRepository implements IGamesRepository {
 
     update(id: string, dto: any): Promise<any> {
         var repo = this.getRepo();
-        var games = this.getUserGames(repo);
+        var games = this.getUsersGames(repo);
         games[id] = dto;
         this.saveRepo(repo);
         return Promise.resolve(id);
@@ -38,7 +42,7 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         throw new Error("not supported");
     }
 
-    private getUserGames(repo = null) {
+    private getUsersGames(repo = null) {
         if (repo === null) {
             repo = this.getRepo();
         }
