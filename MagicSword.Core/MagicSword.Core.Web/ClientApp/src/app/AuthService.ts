@@ -1,31 +1,53 @@
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { UserDto } from "@Common/client/UserDto";
 
 @Injectable()
 export class AuthService {
 
-    private _token: string = null;
+    private _user: UserDto = null;
 
     constructor(private jwtHelper: JwtHelperService) {
 
-        var t = localStorage.getItem("token");
-        if (t) {
-            this._token = t;
+        this.loadUser();
+    }
+
+    get user(): UserDto {
+        return this._user;
+    }
+
+    set user(val: UserDto) {
+        if (!val) {
+            return;
         }
+        this._user = val;
+        this.saveUser();
     }
 
     get token(): string {
 
-        if (this._token === "null") { //WTF?
-            this._token = null;
+        if (this._user === null) {
+            return null;
         }
 
-        return this._token;
+        return this._user.token;
     }
 
-    set token(val: string) {
-        this._token = val;
-        localStorage.setItem("token", this._token);
+    private loadUser() {
+        var user = localStorage.getItem("user");
+        if (user) {
+            try {
+                this._user = JSON.parse(user);
+            } catch (e) {
+                console.warn(e);
+                this._user = null;
+            }
+        }
+    }
+
+    private saveUser() {
+        var user = JSON.stringify(this._user);
+        localStorage.setItem("user", user);
     }
 
     isValid() {

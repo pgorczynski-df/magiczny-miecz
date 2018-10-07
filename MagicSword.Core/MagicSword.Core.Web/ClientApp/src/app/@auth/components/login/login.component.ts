@@ -64,7 +64,7 @@ export class NbLoginComponent {
             this.submitted = false;
 
             if (r.success) {
-                this.services.authService.token = r.user.token;
+                this.services.authService.user = r.user;
                 this.router.navigateByUrl(this.returnUrl);
             } else {
                 this.errors.push(this.res(r.error));

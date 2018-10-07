@@ -69,7 +69,7 @@ export class GameComponent implements AfterViewInit {
         await this.resourceManager.load();
 
         var mode = "local";
-        if (location.pathname.indexOf("/online/") > 0) {
+        if (location.href.indexOf("/online/") > 0) {
             mode = "online";
         }
 

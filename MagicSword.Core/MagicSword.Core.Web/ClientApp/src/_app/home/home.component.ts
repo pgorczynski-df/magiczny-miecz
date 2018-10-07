@@ -36,7 +36,7 @@ export class HomeComponent implements AfterViewInit {
         if (this.email.length > 1 && this.password.length > 1 && this.nickname.length > 1) {
             this.accountClient.register(this.email, this.password, this.nickname).then(r => {
                 if (r.success) {
-                    this.services.authService.token = r.user.token;
+                    this.services.authService.user = r.user;
                     this.router.navigateByUrl(this.returnUrl);
                 } else {
                     this.loginResult = this.res(r.error);
