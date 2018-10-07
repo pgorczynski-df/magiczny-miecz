@@ -36,6 +36,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Host</th>
                         <th>Utworzona</th>
                         <th>Ostatnio używana</th>
                     </tr>
@@ -43,6 +44,7 @@
                 <tbody>
                     <tr *ngFor="let game of openGames">
                         <td>{{ game.id }}</td>
+                        <td>{{ game.ownerName }}</td>
                         <td>{{ game.createdOn | date:'medium'  }}</td>
                         <td>{{ game.updatedOn | date:'medium' }}</td>
                         <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>

@@ -1,6 +1,7 @@
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { Services } from "@App/Services";
 import { GameListDto } from "@Common/dto/GameListDto";
+import { UserDto } from "@Common/client/UserDto";
 
 export class LocalStorageGamesRepository implements IGamesRepository {
 
@@ -29,11 +30,11 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         return Promise.resolve(id);
     }
 
-    save(ownerId: string, dto: any): Promise<any> {
+    save(owner: UserDto, dto: any): Promise<any> {
         throw new Error("not supported");
     }
 
-    createGame(ownerId: string): Promise<GameListDto> {
+    createGame(owner: UserDto): Promise<GameListDto> {
         throw new Error("not supported");
     }
 

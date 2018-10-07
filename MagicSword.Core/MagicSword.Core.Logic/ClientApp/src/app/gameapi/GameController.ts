@@ -31,7 +31,7 @@ export class GameController {
             .post((req: Request, res: Response) => {
                 this.services.logger.debug(`Attepting to POST ${req.url}`);
                 var user = req["requestingUser"];
-                this.promiseToResponse(this.repository.createGame(user.id), res);
+                this.promiseToResponse(this.repository.createGame(user), res);
             });
 
     }

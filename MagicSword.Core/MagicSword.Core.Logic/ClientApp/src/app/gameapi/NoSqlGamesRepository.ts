@@ -5,6 +5,7 @@ import { Services } from "@App/Services";
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { GameListDto } from "@Common/dto/GameListDto";
 import { GameSchema } from "@App/gameapi/GameSchema";
+import { UserDto } from "@Common/client/UserDto";
 
 const Game = mongoose.model('Game', GameSchema) as Model;
 
@@ -17,21 +18,22 @@ export class NoSqlGamesRepository implements IGamesRepository {
         return Game.findById(id).exec().then(g => g.data);
     }
 
-    public createGame(ownerId: string): Promise<GameListDto> {
-        return this.saveInternal(ownerId, null).then(r => this.createListDto(r));
+    public createGame(owner: UserDto): Promise<GameListDto> {
+        return this.saveInternal(owner, null).then(r => this.createListDto(r));
     }
 
-    public save(ownerId: string, dto: any): Promise<any> {
-        return this.saveInternal(ownerId, dto).then(g => { return g.id; });
+    public save(owner: UserDto, dto: any): Promise<any> {
+        return this.saveInternal(owner, dto).then(g => { return g.id; });
     }
 
-    private saveInternal(ownerId: string, dto: any): Promise<any> {
+    private saveInternal(owner: UserDto, dto: any): Promise<any> {
         this.services.logger.debug("Attepting to save game");
         this.services.logger.debug(dto);
 
         let newGame = new Game({
             data: dto,
-            ownerId: ownerId,
+            ownerId: owner.id,
+            ownerName: owner.nickname,
             createdOn: Date.now(),
             updatedOn: Date.now(),
         });
@@ -66,6 +68,7 @@ export class NoSqlGamesRepository implements IGamesRepository {
     private createListDto(game: any): GameListDto {
         var dto = new GameListDto();
         dto.id = game.id;
+        dto.ownerName = game.ownerName;
         dto.createdOn = game.createdOn;
         dto.updatedOn = game.updatedOn;
         return dto;

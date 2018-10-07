@@ -1,4 +1,5 @@
-import {GameListDto} from "@Common/dto/GameListDto";
+import { GameListDto } from "@Common/dto/GameListDto";
+import { UserDto } from "@Common/client/UserDto";
 
 export interface IGamesRepository {
 
@@ -8,7 +9,7 @@ export interface IGamesRepository {
 
     update(id: string, dto: any): Promise<string>;
 
-    save(ownerId: string, dto: any): Promise<any>;
+    save(owner: UserDto, dto: any): Promise<any>;
 
-    createGame(ownerId: string): Promise<GameListDto>;
+    createGame(owner: UserDto): Promise<GameListDto>;
 }
