@@ -7,6 +7,8 @@ export class GameController {
 
     public readonly route = "/game";
 
+    public secureRoutes: string[] = [this.route + "/MyGames", this.route + "/CreateGame"];
+
     constructor(private services: Services, private repository: IGamesRepository) {
     }
 

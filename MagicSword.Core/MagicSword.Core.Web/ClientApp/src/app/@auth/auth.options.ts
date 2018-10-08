@@ -41,7 +41,7 @@ export const defaultAuthOptions: any = {
         success: true,
         error: true,
       },
-      terms: true,
+      terms: false,
       socialLinks: socialLinks,
     },
     requestPassword: {

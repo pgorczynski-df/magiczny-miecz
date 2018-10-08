@@ -1,5 +1,17 @@
 <div class="row">
+
     <nb-card>
+        <nb-card-body>
+            <a href="#" routerLink='["pages", "game", "local", "1"]'>
+                <div class="local-game-box">
+                    <img class="card-display" src="/assets/img/okladka.jpg" alt="Hot-set bez logowania">
+                </div>
+                <span class='glyphicon glyphicon-home'></span> Hot-seat (bez logowania)
+            </a>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="isUserLoggedIn()">
         <nb-card-body>
 
             <h2>Moje gry</h2>
@@ -8,27 +20,33 @@
 
             <button (click)="create()" class="btn btn-primary">Nowa gra</button>
 
-            <br />
+            <br/>
 
             <table class='table' *ngIf="myGames">
                 <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Host</th>
-                        <th>Utworzona</th>
-                        <th>Ostatnio używana</th>
-                    </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Host</th>
+                    <th>Utworzona</th>
+                    <th>Ostatnia aktywność</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let game of myGames">
-                        <td>{{ game.id }}</td>
-                        <td>{{ game.ownerName }}</td>
-                        <td>{{ game.createdOn | date:'medium' }}</td>
-                        <td>{{ game.updatedOn | date:'medium' }}</td>
-                        <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>
-                    </tr>
+                <tr *ngFor="let game of myGames">
+                    <td>{{ game.id }}</td>
+                    <td>{{ game.ownerName }}</td>
+                    <td>{{ game.createdOn | date:'medium' }}</td>
+                    <td>{{ game.updatedOn | date:'medium' }}</td>
+                    <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>
+                </tr>
                 </tbody>
             </table>
+
+            <button (click)="loadMyGames()" class="btn btn-primary">Odśwież</button>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-body>
 
             <h2>Otwarte gry</h2>
 
@@ -36,25 +54,25 @@
 
             <table class='table' *ngIf="openGames">
                 <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Host</th>
-                        <th>Utworzona</th>
-                        <th>Ostatnio używana</th>
-                    </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Host</th>
+                    <th>Utworzona</th>
+                    <th>Ostatnia aktywność</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let game of openGames">
-                        <td>{{ game.id }}</td>
-                        <td>{{ game.ownerName }}</td>
-                        <td>{{ game.createdOn | date:'medium'  }}</td>
-                        <td>{{ game.updatedOn | date:'medium' }}</td>
-                        <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>
-                    </tr>
+                <tr *ngFor="let game of openGames">
+                    <td>{{ game.id }}</td>
+                    <td>{{ game.ownerName }}</td>
+                    <td>{{ game.createdOn | date:'medium' }}</td>
+                    <td>{{ game.updatedOn | date:'medium' }}</td>
+                    <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>
+                </tr>
                 </tbody>
             </table>
 
-            <button (click)="load()" class="btn btn-primary">Odśwież</button>
+            <button (click)="loadOpenGames()" class="btn btn-primary">Odśwież</button>
         </nb-card-body>
     </nb-card>
 </div>

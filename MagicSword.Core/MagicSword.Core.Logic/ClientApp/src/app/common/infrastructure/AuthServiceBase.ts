@@ -5,4 +5,8 @@ export class AuthServiceBase {
     getToken(): string {
         throw new Error("not implemented");
     }
+
+    isLoggedIn(): boolean {
+        throw new Error("not implemented");
+    }
 }

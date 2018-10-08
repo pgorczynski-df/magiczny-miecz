@@ -40,7 +40,7 @@ export class AuthService extends AuthServiceBase {
         localStorage.removeItem("user");
     }
 
-    isLoggedIn() {
+    isLoggedIn() : boolean {
         return this.user !== null;
     }
 

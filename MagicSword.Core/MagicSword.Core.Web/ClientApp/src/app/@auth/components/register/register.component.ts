@@ -42,7 +42,9 @@ export class NbRegisterComponent {
     constructor(@Inject(NB_AUTH_OPTIONS) protected options = {}, private services: ClientServices, private router: Router, private route: ActivatedRoute, private resourceManager: ResourceManager) {
         this.accountClient = new AccountClient(this.services);
 
-        this.route.queryParams.subscribe(params => this.returnUrl = params['returnUrl'] || '/lobby');
+        this.route.queryParams.subscribe(params => this.returnUrl = params['returnUrl'] || '/pages');
+
+        this.showMessages = this.getConfigValue('forms.register.showMessages');
     }
 
     ngAfterViewInit() {
@@ -50,10 +52,13 @@ export class NbRegisterComponent {
 
     register() {
 
-        this.errors = this.messages = [];
+        this.errors = [];
         this.submitted = true;
 
         this.accountClient.register(this.user.email, this.user.password, this.user.fullName).then(r => {
+
+            this.submitted = false;
+
             if (r.success) {
                 this.services.clientAuthService.user = r.user;
                 this.router.navigateByUrl(this.returnUrl);
@@ -61,6 +66,9 @@ export class NbRegisterComponent {
                 this.errors.push(this.res(r.error));
             }
         }, e => {
+
+            this.submitted = false;
+
             this.errors.push("Server error");
             this.services.logger.error(e);
         });

@@ -51,7 +51,9 @@ export class GameServer {
 
         this.repository = new NoSqlGamesRepository(this.services);
         this.gameController = new GameController(this.services, this.repository);
-        this.secureRoute(this.gameController.route);
+        for (var route of this.gameController.secureRoutes) {
+            this.secureRoute(route);
+        }
 
         this.gameController.init(this.app);
 

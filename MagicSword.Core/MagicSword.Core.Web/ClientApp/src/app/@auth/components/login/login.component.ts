@@ -5,27 +5,27 @@
  */
 
 import { Router, ActivatedRoute } from "@angular/router";
-import { Component, Inject } from '@angular/core';
-import { NB_AUTH_OPTIONS, NbAuthSocialLink } from '../../auth.options';
-import { getDeepFromObject } from '../../helpers';
+import { Component, Inject } from "@angular/core";
+import { NB_AUTH_OPTIONS, NbAuthSocialLink } from "../../auth.options";
+import { getDeepFromObject } from "../../helpers";
 
 
-import { NbAuthService } from '../../services/auth.service';
-import { NbAuthResult } from '../../services/auth-result';
+import { NbAuthService } from "../../services/auth.service";
+import { NbAuthResult } from "../../services/auth-result";
 
 import { AccountClient } from "@Common/client/AccountClient";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientServices } from "@App/ClientServices";
 
 @Component({
-    selector: 'nb-login',
+    selector: "nb-login",
     templateUrl: "./login.component.html",
 })
 export class NbLoginComponent {
 
     redirectDelay: number = 0;
     showMessages: any = {};
-    strategy: string = '';
+    strategy: string = "";
 
     errors: string[] = [];
     messages: string[] = [];
@@ -50,26 +50,36 @@ export class NbLoginComponent {
     //workaround: we inject the resourceManager only to force it to be initialized
     constructor(@Inject(NB_AUTH_OPTIONS) protected options = {}, private services: ClientServices, private router: Router, private route: ActivatedRoute, private resourceManager: ResourceManager) {
         this.accountClient = new AccountClient(this.services);
-        this.route.queryParams.subscribe(params => this.returnUrl = params['returnUrl'] || '/lobby');
+        this.route.queryParams.subscribe(params => this.returnUrl = params["returnUrl"] || "/pages");
 
+        this.showMessages = this.getConfigValue('forms.login.showMessages');
     }
 
     login() {
 
-        this.errors = this.messages = [];
+        this.errors = [];
         this.submitted = true;
 
         this.accountClient.login(this.user.email, this.user.password).then(r => {
 
             this.submitted = false;
 
+            console.log("adas");
+
+
             if (r.success) {
+
+                console.log("dadasdad");
+
                 this.services.clientAuthService.user = r.user;
                 this.router.navigateByUrl(this.returnUrl);
             } else {
                 this.errors.push(this.res(r.error));
             }
         }, e => {
+
+            this.submitted = false;
+
             this.errors.push("Server error");
             this.services.logger.error(e);
         });
