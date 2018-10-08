@@ -1,13 +1,10 @@
-import * as mongoose from "mongoose";
-import { Model } from "mongoose";
-
 import { Services } from "@Common/infrastructure/Services";
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { GameListDto } from "@Common/dto/GameListDto";
-import { GameSchema } from "@App/gameapi/GameSchema";
 import { UserDto } from "@Common/client/UserDto";
+import { DbGame } from "@App/gameapi/DbGame";
 
-const Game = mongoose.model('Game', GameSchema) as Model;
+const Game = new DbGame().getModelForClass(DbGame);
 
 export class NoSqlGamesRepository implements IGamesRepository {
 
@@ -52,7 +49,7 @@ export class NoSqlGamesRepository implements IGamesRepository {
     }
 
     public getUserGames(userId: string): Promise<GameListDto[]> {
-        return Game.find({ ownerId: userId}).exec().then(collection => {
+        return Game.find({ ownerId: userId }).exec().then(collection => {
             var res = this.createDtoList(collection);
             return res;
         });

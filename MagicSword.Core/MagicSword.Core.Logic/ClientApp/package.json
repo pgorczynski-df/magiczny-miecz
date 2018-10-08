@@ -29,6 +29,7 @@
         "rxjs": "^6.2.2",
         "socket.io": "^2.1.1",
         "three": "^0.95.0",
+        "typegoose": "^5.4.1",
         "websocket": "^1.0.26",
         "xmlhttprequest": "^1.8.0"
     },
