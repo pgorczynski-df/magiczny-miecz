@@ -119,7 +119,7 @@
         </ng-container>
 
         <small class="form-text">
-            Already have an account? <a routerLink="../login"><strong>Sign in</strong></a>
+            Already have an account? <a routerLink="../login" [queryParams]="{returnUrl: returnUrl}"><strong>Sign in</strong></a>
         </small>
     </div>
 </nb-auth-block>
