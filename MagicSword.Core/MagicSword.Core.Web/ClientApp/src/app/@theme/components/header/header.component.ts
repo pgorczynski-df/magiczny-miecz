@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
-import { Services } from "@App/Services";
+import { ClientServices } from "@App/ClientServices";
 
 @Component({
     selector: 'ngx-header',
@@ -23,20 +23,20 @@ export class HeaderComponent implements OnInit {
         private menuService: NbMenuService,
         private userService: UserService,
         private analyticsService: AnalyticsService,
-        private services: Services) {
+        private services: ClientServices) {
     }
 
     userName(): string {
-        var user = this.services.authService.user;
+        var user = this.services.clientAuthService.user;
         return user ? user.nickname : "Niezalogowany";
     }
 
     userLoggedIn(): boolean {
-        return this.services.authService.isLoggedIn();
+        return this.services.clientAuthService.isLoggedIn();
     }
 
     logout() {
-        this.services.authService.logout();
+        this.services.clientAuthService.logout();
         this.menuService.navigateHome();
     }
 

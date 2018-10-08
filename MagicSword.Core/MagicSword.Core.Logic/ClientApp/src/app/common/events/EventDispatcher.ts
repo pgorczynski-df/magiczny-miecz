@@ -1,7 +1,7 @@
 import { Event } from "@Common/events/Event";
 import { EventKind } from "@Common/events/EventKind";
 import { IResponseProcessor } from "@Common/events/IResponseProcessor";
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { UserDto } from "@Common/client/UserDto";
 import { Game } from "@Common/mechanics/Game";
 import { Player } from "@Common/mechanics/Player";

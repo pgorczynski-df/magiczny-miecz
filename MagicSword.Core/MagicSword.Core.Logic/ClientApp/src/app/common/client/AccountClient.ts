@@ -1,5 +1,5 @@
 import { HttpClient } from "@Common/client/HttpClient";
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { UserDto } from "@Common/client/UserDto";
 import { AuthResponse } from "@Common/client/AuthResponse";
 

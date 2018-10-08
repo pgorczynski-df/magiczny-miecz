@@ -1,11 +1,11 @@
-import { Services } from "@App/Services";
 import { Event } from "@Common/events/Event";
 import { GameProvider } from "@Common/repository/GameProvider";
 import { EventDispatcher } from "@Common/events/EventDispatcher";
 import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
-import { EventBusResponseProcessor } from "@App/game/local/EventBusResponseProcessor";
 import { LocalStorageGamesRepository } from "@Common/repository/LocalStorageGamesRepository";
 import { UserDto } from "@Common/client/UserDto";
+import { EventBusResponseProcessor } from "@App/game/local/EventBusResponseProcessor";
+import { ClientServices } from "@App/ClientServices";
 
 export class ClientGameService {
 
@@ -14,7 +14,7 @@ export class ClientGameService {
     private eventDispatcher = new EventDispatcher(this.gameProvider, this.commonSerializer);
     private responseProcessor = new EventBusResponseProcessor(this.services);
 
-    constructor(private services: Services) {
+    constructor(private services: ClientServices) {
     }
 
     public handleEvent(event: Event) {

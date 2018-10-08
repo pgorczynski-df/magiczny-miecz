@@ -5,7 +5,7 @@ import * as socketIo from "socket.io";
 import * as cors from "cors";
 import * as mongoose from "mongoose";
 
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { SocketResponseProcessor } from "@App/SocketResponseProcessor";
 import { Event } from "@Common/events/Event";
 import { GameService } from "@App/GameService";

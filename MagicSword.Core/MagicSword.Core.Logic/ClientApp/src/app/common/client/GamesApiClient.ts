@@ -1,4 +1,4 @@
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { HttpClient } from "@Common/client/HttpClient";
 import { GameListDto } from "@Common/dto/GameListDto";
 

@@ -16,7 +16,7 @@ import { LobbyComponent } from "./lobby/lobby.component";
 import { LoginComponent } from "./login/login.component";
 import { LogoutComponent } from "./login/logout.component";
 
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { AuthService } from "@App/AuthService";
 import { SocketClient } from "@App/SocketClient"
 import { ResourceManager } from "@App/game/ResourceManager";

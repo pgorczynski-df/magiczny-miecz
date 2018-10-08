@@ -1,23 +1,14 @@
+import { AuthServiceBase } from "@Common/infrastructure/AuthServiceBase";
 
+export class AuthService extends AuthServiceBase {
 
-export class AuthService {
+    private _token: string = null;
 
-  private _token: string = null;
+    getToken(): string {
+        return this._token;
+    }
 
-  constructor() {
-    //var t = localStorage.getItem("token");
-    //if (t) {
-    //  this._token = t;
-    //}
-  }
-
-  get token(): string {
-    return this._token;
-  }
-
-  set token(val: string) {
-    this._token = val;
-    //localStorage.setItem("token", this._token);
-  }
-
+    setToken(val: string) {
+        this._token = val;
+    }
 }

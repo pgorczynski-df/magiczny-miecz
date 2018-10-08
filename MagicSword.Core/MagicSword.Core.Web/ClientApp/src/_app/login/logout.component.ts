@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { Services } from "@App/Services";
 import { ResourceManager } from "@App/game/ResourceManager";
+import { ClientServices } from "@App/ClientServices";
 
 @Component({
     selector: "app-logout",
@@ -10,11 +10,11 @@ import { ResourceManager } from "@App/game/ResourceManager";
 })
 export class LogoutComponent {
 
-    constructor(private services: Services, private router: Router) {
+    constructor(private services: ClientServices, private router: Router) {
     }
 
     logout() {
-        this.services.authService.logout();
+        this.services.clientAuthService.logout();
         this.router.navigate(['/']);
     }
 

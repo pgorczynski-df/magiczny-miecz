@@ -1,5 +1,5 @@
 import { IResponseProcessor } from "@Common/events/IResponseProcessor";
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { GameProvider } from "@Common/repository/GameProvider";
 import { Game } from "@Common/mechanics/Game";
 import { Event } from "@Common/events/Event";

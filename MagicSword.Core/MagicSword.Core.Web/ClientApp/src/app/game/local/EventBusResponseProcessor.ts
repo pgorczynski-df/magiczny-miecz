@@ -1,12 +1,12 @@
 import { IResponseProcessor } from "@Common/events/IResponseProcessor";
-import { Services } from "@App/Services";
 import { Event } from "@Common/events/Event";
 import { EventType } from "@Common/events/EventType";
 import { EventKind } from "@Common/events/EventKind";
+import { ClientServices } from "@App/ClientServices";
 
 export class EventBusResponseProcessor implements IResponseProcessor {
 
-    constructor(private services: Services) {
+    constructor(private services: ClientServices) {
     }
 
     respondCaller(event: Event) {

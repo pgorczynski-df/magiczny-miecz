@@ -1,4 +1,4 @@
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
 import { Player } from "@Common/mechanics/Player";
 import { Game } from "@Common/mechanics/Game";

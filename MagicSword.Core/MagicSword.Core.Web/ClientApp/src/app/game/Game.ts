@@ -14,7 +14,7 @@ import { Skybox } from "@App/game/Skybox";
 import { World } from "@App/game/logic/World";
 import { IActor } from "@App/game/logic/IActor";
 import { Collections } from "@Common/utils/Collections";
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { Event } from "@Common/events/Event";
 import { Player } from "@Common/mechanics/Player";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";

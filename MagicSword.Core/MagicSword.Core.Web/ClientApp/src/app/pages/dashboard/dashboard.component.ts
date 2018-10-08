@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { GamesApiClient } from "@Common/client/GamesApiClient";
 import { GameListDto } from "@Common/dto/GameListDto";
 

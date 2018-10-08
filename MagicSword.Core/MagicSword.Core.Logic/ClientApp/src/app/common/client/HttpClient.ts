@@ -1,6 +1,7 @@
 import axios from "axios";
 import { AxiosRequestConfig } from "axios";
-import { Services } from "@App/Services";
+
+import { Services } from "@Common/infrastructure/Services";
 import { StringUtils } from "@Common/utils/StringUtils";
 
 export class HttpClient {
@@ -43,8 +44,8 @@ export class HttpClient {
             headers: {}
         };
 
-        if (this.services.authService && this.services.authService.token) {
-            obj.headers["Authorization"] = `Bearer ${this.services.authService.token}`;
+        if (this.services.authService && this.services.authService.getToken()) {
+            obj.headers["Authorization"] = `Bearer ${this.services.authService.getToken()}`;
         }
 
         return obj;

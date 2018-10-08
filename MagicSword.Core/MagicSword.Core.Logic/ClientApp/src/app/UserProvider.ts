@@ -1,4 +1,4 @@
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { AccountClient } from "@Common/client/AccountClient";
 import { UserDto } from "@Common/client/UserDto";
 

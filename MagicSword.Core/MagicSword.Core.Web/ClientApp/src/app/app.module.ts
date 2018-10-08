@@ -15,11 +15,13 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 
-import { Services } from "@App/Services";
+import { AuthServiceBase } from "@Common/infrastructure/AuthServiceBase";
+import { Services } from "@Common/infrastructure/Services";
 import { AuthService } from "@App/AuthService";
 import { SocketClient } from "@App/SocketClient"
 import { ResourceManager } from "@App/game/ResourceManager";
 import { AuthGuard } from "@App/AuthGuard";
+import { ClientServices } from "@App/ClientServices";
 
 @NgModule({
     declarations: [
@@ -45,9 +47,11 @@ import { AuthGuard } from "@App/AuthGuard";
     bootstrap: [AppComponent],
     providers: [
         { provide: LOCALE_ID, useValue: "en-US" },
-        AuthGuard,
+        ClientServices,
         AuthService,
-        Services,
+        AuthGuard,
+        { provide: AuthServiceBase, useClass: AuthService },
+        { provide: Services, useClass: ClientServices },
         SocketClient,
         ResourceManager,
     ],

@@ -1,7 +1,7 @@
 import { Request, Response, Application } from "express";
 
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 
 export class GameController {
 

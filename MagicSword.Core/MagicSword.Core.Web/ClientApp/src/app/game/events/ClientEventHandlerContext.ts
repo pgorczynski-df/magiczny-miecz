@@ -1,18 +1,13 @@
-import { Services } from "@App/Services";
 import { Game } from "@App/game/Game";
 import { ClientSerializer } from "@App/game/ClientSerializer";
+import { ClientServices } from "@App/ClientServices";
 
 export class ClientEventHandlerContext {
 
-    services: Services;
+    services: ClientServices;
 
     game: Game;
 
     serializer = new ClientSerializer();
-
-    //var sender = this.findPlayer(ev.sourcePlayerId);
-    //if (sender) {
-    //    senderName = sender.name;
-    //}
 
 }

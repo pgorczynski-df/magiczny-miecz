@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 import { Model } from "mongoose";
 
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { GameListDto } from "@Common/dto/GameListDto";
 import { GameSchema } from "@App/gameapi/GameSchema";

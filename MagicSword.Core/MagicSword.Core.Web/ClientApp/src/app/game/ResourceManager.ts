@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { Injectable } from "@angular/core";
 
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { CardDefinitionLoader } from "@Common/mechanics/loaders/CardDefinitionLoader";
 import { EventType } from "@Common/events/EventType";
 import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";

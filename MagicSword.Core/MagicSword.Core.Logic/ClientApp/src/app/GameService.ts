@@ -1,13 +1,14 @@
-import { Services } from "@App/Services";
-import { AuthService } from "@App/AuthService";
+import { Services } from "@Common/infrastructure/Services";
 import { CardDefinitionLoader } from "@Common/mechanics/loaders/CardDefinitionLoader";
-import { Event } from "@Common/events/Event";
+import { Event as Ev } from "@Common/events/Event";
 import { IResponseProcessor } from "@Common/events/IResponseProcessor";
-import { UserProvider } from "@App/UserProvider";
 import { GameProvider } from "@Common/repository/GameProvider";
 import { EventDispatcher } from "@Common/events/EventDispatcher";
 import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
+import { UserDto } from "@App/common/client/UserDto";
+import { AuthService } from "@App/AuthService";
+import { UserProvider } from "@App/UserProvider";
 
 export class GameService {
 
@@ -20,11 +21,11 @@ export class GameService {
     constructor(private services: Services, private repository: IGamesRepository) {
     }
 
-    public init(): Promise<any>{
+    public init(): Promise<any> {
         return this.loadResources();
     }
 
-    public handleEvent(responseProcessor: IResponseProcessor, event: Event) {
+    public async handleEvent(responseProcessor: IResponseProcessor, event: Ev) {
 
         this.services.logger.debug("incoming event: %s", JSON.stringify(event));
 
@@ -36,21 +37,24 @@ export class GameService {
 
         var services = this.createServices(token);
 
-        this.userProvider.getUser(services, token).then(
-            user => {
-
-                if (user === null) {
-                    responseProcessor.respondError("User not found, probably token is invalid");
-                    return;
-                }
-
-                event.sourcePlayerId = user.id;
-                event.token = null;
-                this.eventDispatcher.process(services, responseProcessor, event, user);
-            },
-            e => {
+        var user: UserDto = await this.userProvider.getUser(services, token)
+            .catch(e => {
                 responseProcessor.respondError(e);
+                return undefined;
             });
+
+        if (user === undefined) {
+            return;
+        }
+
+        if (user === null) {
+            responseProcessor.respondError("User not found, probably token is invalid");
+            return;
+        }
+
+        event.sourcePlayerId = user.id;
+        event.token = null;
+        this.eventDispatcher.process(services, responseProcessor, event, user);
     }
 
     public getGame(id: string) {
@@ -68,12 +72,12 @@ export class GameService {
 
     private createServices(token: string): Services {
         var auth = new AuthService();
-        auth.token = token;
+        auth.setToken(token);
         return new Services(auth);
     }
 
-    private loadResources() : Promise<any> {
-        var services = this.createServices("");
+    private loadResources(): Promise<any> {
+        var services = this.createServices(null);
         var cardLoader = new CardDefinitionLoader(services);
         return cardLoader.load().then(_ => {
             services.logger.info("Card definitions loaded successfully");

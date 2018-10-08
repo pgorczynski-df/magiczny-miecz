@@ -2,23 +2,23 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
-import { Game } from "@App/game/Game";
+import { EventKind } from "@Common/events/EventKind";
+import { EventType } from "@Common/events/EventType";
 import { Event } from "@Common/events/Event";
+import { GameStateDto } from "@Common/dto/GameStateDto";
+import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";
+import { StringUtils } from "@Common/utils/StringUtils";
+
+import { ClientServices } from "@App/ClientServices";
+import { Game } from "@App/game/Game";
 import { IActor } from "@App/game/logic/IActor";
-import { Services } from "@App/Services";
 import { CardStack } from "@App/game/logic/CardStack";
 import { Card } from "@App/game/logic/Card";
 import { SocketClient } from "@App/SocketClient";
 import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
-import { EventKind } from "@Common/events/EventKind";
-import { EventType } from "@Common/events/EventType";
-import { GameStateDto } from "@Common/dto/GameStateDto";
 import { ClientGameService } from "@App/game/local/ClientGameService";
-import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";
-import { StringUtils } from "@Common/utils/StringUtils";
-
 
 @Component({
     selector: "app-game",
@@ -41,7 +41,7 @@ export class GameComponent implements AfterViewInit {
         return this.game ? this.game.world.selectedActor : null;
     }
 
-    constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: Services, private resourceManager: ResourceManager) {
+    constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: ClientServices, private resourceManager: ResourceManager) {
         this.socketClient = new SocketClient(this.services);
 
     }

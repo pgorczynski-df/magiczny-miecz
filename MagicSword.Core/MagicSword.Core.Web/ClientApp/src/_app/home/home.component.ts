@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { AccountClient } from "@Common/client/AccountClient";
 import { ResourceManager } from "@App/game/ResourceManager";
 

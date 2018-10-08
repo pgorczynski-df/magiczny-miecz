@@ -15,8 +15,8 @@
     "author": "",
     "license": "ISC",
     "_moduleAliases": {
-        "@App": "dist/out-tsc/app",
-        "@Common": "dist/out-tsc/app/common"
+        "@Common": "dist/out-tsc/app/common",
+        "@App": "dist/out-tsc/app"
     },
     "dependencies": {
         "axios": "^0.18.0",

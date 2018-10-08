@@ -1,5 +1,5 @@
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { GameListDto } from "@Common/dto/GameListDto";
 import { UserDto } from "@Common/client/UserDto";
 

@@ -1,6 +1,6 @@
 ﻿import * as socketIo from "socket.io";
 import { IResponseProcessor } from "@Common/events/IResponseProcessor";
-import { Services } from "@App/Services";
+import { Services } from "@Common/infrastructure/Services";
 import { Event } from "@Common/events/Event";
 import { EventType } from "@Common/events/EventType";
 import { EventKind } from "@Common/events/EventKind";

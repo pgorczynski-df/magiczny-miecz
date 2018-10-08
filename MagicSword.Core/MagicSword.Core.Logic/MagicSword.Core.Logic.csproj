@@ -45,6 +45,7 @@
     <None Remove="ClientApp\src\app\common\events\stackshuffle\StackShuffleServerEventHandler.ts" />
     <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
     <None Remove="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />
+    <None Remove="ClientApp\src\app\common\infrastructure\AuthServiceBase.ts" />
     <None Remove="ClientApp\src\app\common\infrastructure\Settings.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\Card.ts" />
@@ -116,6 +117,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\events\stackshuffle\StackShuffleServerEventHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackRequestDto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\events\viewstack\ViewStackServerEventHandler.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\infrastructure\AuthServiceBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\GameProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\LocalStorageGamesRepository.ts" />

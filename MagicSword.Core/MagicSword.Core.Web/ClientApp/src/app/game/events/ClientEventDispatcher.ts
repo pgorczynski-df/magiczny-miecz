@@ -1,6 +1,6 @@
 import { Event } from "@Common/events/Event";
 import { EventKind } from "@Common/events/EventKind";
-import { Services } from "@App/Services";
+import { ClientServices } from "@App/ClientServices";
 import { IClientEventHandler } from "@App/game/events/IClientEventHandler";
 import { ClientEventHandlerContext } from "@App/game/events/ClientEventHandlerContext";
 import { Game } from "@App/game/Game";
@@ -38,7 +38,7 @@ export class ClientEventDispatcher {
     private eventHandlers: { [eventType: string]: IClientEventHandler; } = {};
     private context = new ClientEventHandlerContext();
 
-    constructor(private services: Services, private game: Game) {
+    constructor(private services: ClientServices, private game: Game) {
         this.context.game = this.game;
         this.context.services = this.services;
 

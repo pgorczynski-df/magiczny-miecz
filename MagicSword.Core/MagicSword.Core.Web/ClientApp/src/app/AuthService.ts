@@ -1,14 +1,16 @@
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
+
 import { UserDto } from "@Common/client/UserDto";
+import { AuthServiceBase } from "@Common/infrastructure/AuthServiceBase";
 
 @Injectable()
-export class AuthService {
+export class AuthService extends AuthServiceBase {
 
     private _user: UserDto = null;
 
     constructor(private jwtHelper: JwtHelperService) {
-
+        super();
         this.loadUser();
     }
 
@@ -24,7 +26,7 @@ export class AuthService {
         this.saveUser();
     }
 
-    get token(): string {
+    getToken(): string {
 
         if (this._user === null) {
             return null;
@@ -60,9 +62,10 @@ export class AuthService {
     }
 
     isValid() {
-        if (this.token !== null && this.token.length > 0) {
+        var token = this.getToken();
+        if (token && token.length && token.length > 0) {
             try {
-                return !this.jwtHelper.isTokenExpired(this.token);
+                return !this.jwtHelper.isTokenExpired(token);
             }
             catch (e) {
                 if ((e as string).indexOf("The inspected token doesn't appear to be a JWT") > 0) {

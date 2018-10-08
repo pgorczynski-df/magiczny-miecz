@@ -1,26 +1,22 @@
 import { Injectable } from "@angular/core";
 
-import * as Logger from "js-logger";
+import { Services } from "@Common/infrastructure/Services";
 
 import { EventBus } from "@App/game/EventBus";
 import { AuthService } from "@App/AuthService";
-import { Settings } from "@Common/infrastructure/Settings";
 
 @Injectable()
-export class Services {
+export class ClientServices extends Services {
 
-    public logger: any;
     public inboundBus = new EventBus();
     public outboundBus = new EventBus();
 
-    public settings = new Settings();
+    get clientAuthService() {
+        return this.authService as AuthService;
+    }
 
     constructor(public authService: AuthService) {
-
-        Logger.useDefaults({ logLevel: Logger.DEBUG });
-
-        this.logger = Logger;
-
+        super(authService);
     }
 
 }

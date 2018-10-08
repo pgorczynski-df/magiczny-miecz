@@ -12,10 +12,9 @@ import { getDeepFromObject } from '../../helpers';
 import { NbAuthService } from '../../services/auth.service';
 import { NbAuthResult } from '../../services/auth-result';
 
-
-import { Services } from "@App/Services";
 import { AccountClient } from "@Common/client/AccountClient";
 import { ResourceManager } from "@App/game/ResourceManager";
+import { ClientServices } from "@App/ClientServices";
 
 
 @Component({
@@ -40,7 +39,7 @@ export class NbRegisterComponent {
     accountClient: AccountClient;
 
     //workaround: we inject the resourceManager only to force it to be initialized
-    constructor(@Inject(NB_AUTH_OPTIONS) protected options = {}, private services: Services, private router: Router, private route: ActivatedRoute, private resourceManager: ResourceManager) {
+    constructor(@Inject(NB_AUTH_OPTIONS) protected options = {}, private services: ClientServices, private router: Router, private route: ActivatedRoute, private resourceManager: ResourceManager) {
         this.accountClient = new AccountClient(this.services);
 
         this.route.queryParams.subscribe(params => this.returnUrl = params['returnUrl'] || '/lobby');
@@ -56,7 +55,7 @@ export class NbRegisterComponent {
 
         this.accountClient.register(this.user.email, this.user.password, this.user.fullName).then(r => {
             if (r.success) {
-                this.services.authService.user = r.user;
+                this.services.clientAuthService.user = r.user;
                 this.router.navigateByUrl(this.returnUrl);
             } else {
                 this.errors.push(this.res(r.error));

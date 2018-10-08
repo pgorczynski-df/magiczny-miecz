@@ -3,14 +3,14 @@ import { Injectable } from "@angular/core";
 import * as socketIo from "socket.io-client";
 
 import { Event } from "@Common/events/Event";
-import { Services } from "@App/Services";
+import { ClientServices } from "@App/ClientServices";
 
 @Injectable()
 export class SocketClient {
 
     private socket: SocketIOClient.Socket;
 
-    constructor(private services: Services) {
+    constructor(private services: ClientServices) {
     }
 
     public init(): void {
@@ -23,11 +23,11 @@ export class SocketClient {
             this.services.inboundBus.publish2(event);
         });
 
-        this.services.outboundBus.of().subscribe((e : Event) => {
+        this.services.outboundBus.of().subscribe((e: Event) => {
             this.services.logger.debug("sending outbound event:");
             this.services.logger.debug(e);
 
-            e.token = this.services.authService.token;
+            e.token = this.services.authService.getToken();
             this.socket.emit("Publish", e);
         });
 
