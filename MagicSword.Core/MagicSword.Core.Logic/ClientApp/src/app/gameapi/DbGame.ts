@@ -16,4 +16,7 @@ export class DbGame extends Typegoose {
 
     @prop()
     updatedOn: Date;
+
+    @prop()
+    visibility: string;
 }

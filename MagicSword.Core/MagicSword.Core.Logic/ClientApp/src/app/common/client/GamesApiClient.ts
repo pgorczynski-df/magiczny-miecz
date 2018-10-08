@@ -16,7 +16,7 @@ export class GamesApiClient extends HttpClient {
     }
 
     public getOpenGames(): Promise<GameListDto[]> {
-        var url = `${this.apiUrl}/OpenGames`;
+        var url = `${this.apiUrl}/PublicGames`;
         return this.get<GameListDto[]>(url);
     }
 

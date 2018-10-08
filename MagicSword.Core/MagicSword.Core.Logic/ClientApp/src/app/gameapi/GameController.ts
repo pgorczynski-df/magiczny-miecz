@@ -14,10 +14,10 @@ export class GameController {
 
     public init(app: Application): void {
 
-        app.route(this.route + "/OpenGames")
+        app.route(this.route + "/PublicGames")
             .get((req: Request, res: Response) => {
                 this.services.logger.debug(`Attepting to GET ${req.url}`);
-                this.promiseToResponse(this.repository.getOpenGames(), res);
+                this.promiseToResponse(this.repository.getPublicGames(), res);
             });
 
         app.route(this.route + "/MyGames")

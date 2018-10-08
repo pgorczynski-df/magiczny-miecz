@@ -2,6 +2,7 @@ import { Services } from "@Common/infrastructure/Services";
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { GameListDto } from "@Common/dto/GameListDto";
 import { UserDto } from "@Common/client/UserDto";
+import { GameVisibility } from "@Common/model/GameVisibility";
 import { DbGame } from "@App/gameapi/DbGame";
 
 const Game = new DbGame().getModelForClass(DbGame);
@@ -33,6 +34,7 @@ export class NoSqlGamesRepository implements IGamesRepository {
             ownerName: owner.nickname,
             createdOn: Date.now(),
             updatedOn: Date.now(),
+            visibility: GameVisibility.Public,
         });
         return newGame.save();
     }
@@ -55,8 +57,8 @@ export class NoSqlGamesRepository implements IGamesRepository {
         });
     }
 
-    public getOpenGames(): Promise<GameListDto[]> {
-        return Game.find({}).exec().then(collection => {
+    public getPublicGames(): Promise<GameListDto[]> {
+        return Game.find({ visibility: GameVisibility.Public }).exec().then(collection => {
             var res = this.createDtoList(collection);
             return res;
         });

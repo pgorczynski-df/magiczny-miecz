@@ -14,7 +14,7 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         throw new Error("not supported");
     }
 
-    getOpenGames(): Promise<GameListDto[]> {
+    getPublicGames(): Promise<GameListDto[]> {
         throw new Error("not supported");
     }
 
