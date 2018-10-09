@@ -26,7 +26,7 @@
                         <td>{{ game.createdOn | date:'medium' }}</td>
                         <td>{{ game.updatedOn | date:'medium' }}</td>
                         <td>
-                            <select class="form-control" [(ngModel)]="game.visibility" (change)="onItemChange($event.target.value, game)">
+                            <select class="form-control" [(ngModel)]="game.visibility" (change)="onItemChange(game)">
                                 <option *ngFor="let item of itemsList">{{item}}</option>
                             </select>
                         </td>

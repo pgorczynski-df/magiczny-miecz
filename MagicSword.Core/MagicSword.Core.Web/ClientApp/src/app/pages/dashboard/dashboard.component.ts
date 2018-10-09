@@ -58,16 +58,6 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
 
     create(): void {
         this.gamesApiClient.createGame().then(res => this.myGames.push(res));
-
-        const toast: Toast = {
-            type: "success",
-            title: "hello",
-            body: "world",
-            timeout: 1000,
-            showCloseButton: true,
-            bodyOutputType: BodyOutputType.TrustedHtml,
-        };
-        this.toasterService.popAsync("success", "hello", "world");
     }
 
     join(game: GameListDto): void {
@@ -92,8 +82,9 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
         return GameVisibility.all;
     }
 
-    onItemChange(newItem: string, game: GameListDto) {
-        console.log(newItem + " " + game.id);
+    async onItemChange(game: GameListDto) {
+        await this.gamesApiClient.updateGameMetadata(game);
+        this.toasterService.popAsync("success", "Hurra", "Zmiany zapisane");
     }
 
 }

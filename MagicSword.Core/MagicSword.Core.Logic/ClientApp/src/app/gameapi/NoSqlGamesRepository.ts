@@ -51,7 +51,24 @@ export class NoSqlGamesRepository implements IGamesRepository {
             {
                 data: dto,
                 updatedOn: Date.now(),
-            }).exec();
+            })
+            .exec()
+            .then(g => g.id);
+    }
+
+    public updateMetadata(id: string, dto: GameListDto): Promise<string> {
+        this.services.logger.debug("Attepting to update metadata of game " + id);
+
+        if (GameVisibility.all.indexOf(dto.visibility) < 0) {
+            throw new Error(`Invalid visibility value: ${dto.visibility}`);
+        }
+
+        return Game.findByIdAndUpdate(id,
+            {
+                visibility: dto.visibility,
+            })
+            .exec()
+            .then(g => g.id);
     }
 
     public delete(id: string): Promise<string> {

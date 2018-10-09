@@ -46,13 +46,13 @@ export class GameController {
                 }
 
                 var body = req.body;
-                //this.promiseToResponse(this.repository.update(gameId, body), res);
+                this.promiseToResponse((this.repository as any).updateMetadata(gameId, body), res);
             })
             .delete(async (req: Request, res: Response) => {
                 this.services.logger.debug(`Attepting to DELETE ${req.url}`);
                 var gameId = req.params.gameId;
                 var user = req["requestingUser"];
-                console.log(user);
+
                 if (!await this.verifyIsOwner(res, user.id, gameId)) {
                     return;
                 }
