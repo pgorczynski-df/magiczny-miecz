@@ -12,7 +12,11 @@ export class AccountClient extends HttpClient {
     }
 
     public validateToken(token: string): Promise<UserDto> {
-        return this.get<UserDto>(`/${this.controller}/ValidateToken?access_token=${token}`);
+        return this.get<UserDto>(`/${this.controller}/ValidateToken?access_token=${token}`)
+            .then(u => {
+                u.id = u.id.toString(); //seems that in some cases a number is returned, but we want to stick to string
+                return u;
+            });
     }
 
     public login(email: string, password: string, rememberMe: boolean): Promise<AuthResponse> {

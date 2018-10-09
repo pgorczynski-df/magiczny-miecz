@@ -3,31 +3,40 @@
     <nb-card *ngIf="isUserLoggedIn()">
         <nb-card-body>
 
-            <h2>Moje gry</h2>
+            <h2>Moje gry <button (click)="create()" class="btn btn-primary">Nowa gra</button></h2>
 
             <p *ngIf="!myGames"><em>Ładowanie...</em></p>
 
-            <button (click)="create()" class="btn btn-primary">Nowa gra</button>
-
-            <br/>
-
             <table class='table' *ngIf="myGames">
                 <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Host</th>
-                    <th>Utworzona</th>
-                    <th>Ostatnia aktywność</th>
-                </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Host</th>
+                        <th>Utworzona</th>
+                        <th>Ostatnia aktywność</th>
+                        <th>Widoczność</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let game of myGames">
-                    <td>{{ game.id }}</td>
-                    <td>{{ game.ownerName }}</td>
-                    <td>{{ game.createdOn | date:'medium' }}</td>
-                    <td>{{ game.updatedOn | date:'medium' }}</td>
-                    <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>
-                </tr>
+                    <tr *ngFor="let game of myGames">
+                        <td>{{ game.id }}</td>
+                        <td>{{ game.ownerName }}</td>
+                        <td>{{ game.createdOn | date:'medium' }}</td>
+                        <td>{{ game.updatedOn | date:'medium' }}</td>
+                        <td>
+                            <select class="form-control" [(ngModel)]="game.visibility" (change)="onItemChange($event.target.value, game)">
+                                <option *ngFor="let item of itemsList">{{item}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button (click)="join(game)" class="btn btn-primary">Dołącz</button>
+                        </td>
+                        <td>
+                            <button (click)="delete(game)" class="btn btn-danger">X</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -43,21 +52,22 @@
 
             <table class='table' *ngIf="openGames">
                 <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Host</th>
-                    <th>Utworzona</th>
-                    <th>Ostatnia aktywność</th>
-                </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Host</th>
+                        <th>Utworzona</th>
+                        <th>Ostatnia aktywność</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let game of openGames">
-                    <td>{{ game.id }}</td>
-                    <td>{{ game.ownerName }}</td>
-                    <td>{{ game.createdOn | date:'medium' }}</td>
-                    <td>{{ game.updatedOn | date:'medium' }}</td>
-                    <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>
-                </tr>
+                    <tr *ngFor="let game of openGames">
+                        <td>{{ game.id }}</td>
+                        <td>{{ game.ownerName }}</td>
+                        <td>{{ game.createdOn | date:'medium' }}</td>
+                        <td>{{ game.updatedOn | date:'medium' }}</td>
+                        <td><button (click)="join(game)" class="btn btn-primary">Dołącz</button></td>
+                    </tr>
                 </tbody>
             </table>
 

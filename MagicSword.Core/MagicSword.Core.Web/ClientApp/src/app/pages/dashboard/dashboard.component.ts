@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Services } from "@Common/infrastructure/Services";
 import { GamesApiClient } from "@Common/client/GamesApiClient";
 import { GameListDto } from "@Common/dto/GameListDto";
+import { GameVisibility } from "@Common/model/GameVisibility";
 
 @Component({
     selector: 'ngx-dashboard',
@@ -28,7 +29,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
         setTimeout(() => {
             this.load();
         }, 500);
-        this.timer = setInterval(async () => await this.load(), 5000);
+        //this.timer = setInterval(async () => await this.load(), 5000);
     }
 
     ngOnDestroy(): void {
@@ -59,8 +60,26 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
         this.router.navigate(["pages", "game", "online", game.id]);
     }
 
+
+    delete(game: GameListDto): void {
+        if (confirm("Czy na pewno usunąć grę?")) {
+            this.gamesApiClient.deleteGame(game.id)
+                .then(_ => {
+                    this.myGames = this.myGames.filter(g => g.id !== game.id);
+                });
+        }
+    }
+
     isUserLoggedIn() {
         return this.services.authService.isLoggedIn();
+    }
+
+    get itemsList() {
+        return GameVisibility.all;
+    }
+
+    onItemChange(newItem: string, game: GameListDto) {
+        console.log(newItem + " " + game.id);
     }
 
 }

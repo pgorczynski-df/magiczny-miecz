@@ -25,5 +25,8 @@ export class GamesApiClient extends HttpClient {
         return this.post(url);
     }
 
-
+    public deleteGame(id: string): Promise<GameListDto> {
+        var url = `${this.apiUrl}/REST/${id}`;
+        return this.delete(url);
+    }
 }

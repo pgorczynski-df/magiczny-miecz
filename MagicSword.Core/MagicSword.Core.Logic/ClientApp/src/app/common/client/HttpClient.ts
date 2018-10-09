@@ -22,6 +22,10 @@ export class HttpClient {
         return this.request<T>("PATCH", url, data);
     }
 
+    public delete<T = any>(url: string): Promise<T> {
+        return this.request<T>("DELETE", url, null);
+    }
+
     protected request<T>(method: string, url: string, data: any): Promise<T> {
 
         if (url.startsWith("/")) {

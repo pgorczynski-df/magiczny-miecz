@@ -16,5 +16,10 @@ export class GameVisibility {
      */
     public static readonly Closed: string = "Closed";
 
+    public static readonly all = [
+        GameVisibility.Public,
+        GameVisibility.Open,
+        GameVisibility.Closed
+    ];
 }
 
