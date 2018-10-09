@@ -4,16 +4,17 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 import { NgModule, LOCALE_ID } from "@angular/core";
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { CoreModule } from './@core/core.module';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from "@angular/common/http";
+import { CoreModule } from "./@core/core.module";
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { ThemeModule } from './@theme/theme.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { JwtModule } from '@auth0/angular-jwt';
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { ThemeModule } from "./@theme/theme.module";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { JwtModule } from "@auth0/angular-jwt";
+import { ToasterModule } from "angular2-toaster";
 
 import { AuthServiceBase } from "@Common/infrastructure/AuthServiceBase";
 import { Services } from "@Common/infrastructure/Services";
@@ -42,7 +43,8 @@ import { ClientServices } from "@App/ClientServices";
                 whitelistedDomains: [],
                 blacklistedRoutes: []
             }
-        })
+        }),
+        ToasterModule.forRoot()
     ],
     bootstrap: [AppComponent],
     providers: [

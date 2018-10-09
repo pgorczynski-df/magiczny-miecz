@@ -29,6 +29,7 @@
         "@nebular/theme": "^2.0.0-rc.9",
         "@ng-bootstrap/ng-bootstrap": "^2.2.0",
         "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
+        "angular2-toaster": "^6.1.0",
         "aspnet-prerendering": "^3.0.1",
         "axios": "^0.18.0",
         "bootstrap": "^4.1.3",

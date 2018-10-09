@@ -1,10 +1,14 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { Services } from "@Common/infrastructure/Services";
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+
+import 'style-loader!angular2-toaster/toaster.css';
+
 import { GamesApiClient } from "@Common/client/GamesApiClient";
 import { GameListDto } from "@Common/dto/GameListDto";
 import { GameVisibility } from "@Common/model/GameVisibility";
+import { ClientServices } from "@App/ClientServices";
 
 @Component({
     selector: 'ngx-dashboard',
@@ -21,7 +25,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
 
     private timer: any;
 
-    constructor(private router: Router, private services: Services) {
+    constructor(private router: Router, private toasterService: ToasterService, private services: ClientServices) {
         this.gamesApiClient = new GamesApiClient(this.services);
     }
 
@@ -54,6 +58,16 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
 
     create(): void {
         this.gamesApiClient.createGame().then(res => this.myGames.push(res));
+
+        const toast: Toast = {
+            type: "success",
+            title: "hello",
+            body: "world",
+            timeout: 1000,
+            showCloseButton: true,
+            bodyOutputType: BodyOutputType.TrustedHtml,
+        };
+        this.toasterService.popAsync("success", "hello", "world");
     }
 
     join(game: GameListDto): void {
@@ -71,7 +85,7 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
     }
 
     isUserLoggedIn() {
-        return this.services.authService.isLoggedIn();
+        return this.services.clientAuthService.isLoggedIn();
     }
 
     get itemsList() {
