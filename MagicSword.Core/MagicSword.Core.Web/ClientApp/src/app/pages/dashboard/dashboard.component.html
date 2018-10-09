@@ -1,16 +1,5 @@
 <div class="row">
 
-    <nb-card>
-        <nb-card-body>
-            <a href="#" routerLink='["pages", "game", "local", "1"]'>
-                <div class="local-game-box">
-                    <img class="card-display" src="/assets/img/okladka.jpg" alt="Hot-set bez logowania">
-                </div>
-                <span class='glyphicon glyphicon-home'></span> Hot-seat (bez logowania)
-            </a>
-        </nb-card-body>
-    </nb-card>
-
     <nb-card *ngIf="isUserLoggedIn()">
         <nb-card-body>
 

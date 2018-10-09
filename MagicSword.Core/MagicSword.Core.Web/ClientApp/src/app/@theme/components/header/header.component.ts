@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
         private menuService: NbMenuService,
         private userService: UserService,
         private analyticsService: AnalyticsService,
+        private router: Router,
         private services: ClientServices) {
     }
 
@@ -61,5 +63,9 @@ export class HeaderComponent implements OnInit {
 
     startSearch() {
         this.analyticsService.trackEvent('startSearch');
+    }
+
+    localGame(): void {
+        this.router.navigate(["pages", "game", "local", "1"]);
     }
 }
