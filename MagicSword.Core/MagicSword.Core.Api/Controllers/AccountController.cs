@@ -47,8 +47,7 @@ namespace MagicSword.Core.Api.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, password, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                var userDto = CreateUserDto(user);
-                userDto.Token = await _signInManager.GetJwtToken(user);
+                var userDto = await CreateDtoWithToken(user, loginRequest.RememberMe);
 
                 return Json(new AuthResponse
                 {
@@ -100,8 +99,7 @@ namespace MagicSword.Core.Api.Controllers
        
                 user = await _signInManager.UserManager.FindByEmailAsync(email); //make sure we have the Id set
 
-                var userDto = CreateUserDto(user);
-                userDto.Token = await _signInManager.GetJwtToken(user);
+                var userDto = await CreateDtoWithToken(user, false);
 
                 return Json(new AuthResponse
                 {
@@ -118,6 +116,13 @@ namespace MagicSword.Core.Api.Controllers
                 });
             }
 
+        }
+
+        private async Task<UserDto> CreateDtoWithToken(User user, bool rememberMe)
+        {
+            var userDto = CreateUserDto(user);
+            userDto.Token = await _signInManager.GetJwtToken(user, DateTime.Now.AddDays(rememberMe ? 30 : 1));
+            return userDto;
         }
 
         [Authorize]

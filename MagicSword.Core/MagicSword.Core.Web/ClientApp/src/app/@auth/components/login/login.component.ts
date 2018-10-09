@@ -60,17 +60,11 @@ export class NbLoginComponent {
         this.errors = [];
         this.submitted = true;
 
-        this.accountClient.login(this.user.email, this.user.password).then(r => {
+        this.accountClient.login(this.user.email, this.user.password, this.user.rememberMe).then(r => {
 
             this.submitted = false;
 
-            console.log("adas");
-
-
             if (r.success) {
-
-                console.log("dadasdad");
-
                 this.services.clientAuthService.user = r.user;
                 this.router.navigateByUrl(this.returnUrl);
             } else {

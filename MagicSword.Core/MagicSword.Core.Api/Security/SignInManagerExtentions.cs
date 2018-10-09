@@ -11,14 +11,14 @@ namespace MagicSword.Core.Api.Security
         private static readonly SigningCredentials SigningCreds = new SigningCredentials(Startup.SecurityKey, SecurityAlgorithms.HmacSha256);
         private static readonly JwtSecurityTokenHandler TokenHandler = new JwtSecurityTokenHandler();
 
-        public static async Task<string> GetJwtToken<TUser>(this SignInManager<TUser> signInManager, TUser user) where TUser : class
+        public static async Task<string> GetJwtToken<TUser>(this SignInManager<TUser> signInManager, TUser user, DateTime expires) where TUser : class
         {
             var principal = await signInManager.CreateUserPrincipalAsync(user);
             var token = new JwtSecurityToken(
                 "SignalRAuthenticationSample",
                 "SignalRAuthenticationSample",
                 principal.Claims,
-                expires: DateTime.UtcNow.AddDays(30),
+                expires: expires,
                 signingCredentials: SigningCreds);
             return TokenHandler.WriteToken(token);
         }

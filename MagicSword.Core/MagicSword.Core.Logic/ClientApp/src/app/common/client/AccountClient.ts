@@ -15,8 +15,8 @@ export class AccountClient extends HttpClient {
         return this.get<UserDto>(`/${this.controller}/ValidateToken?access_token=${token}`);
     }
 
-    public login(email: string, password: string): Promise<AuthResponse> {
-        return this.post<AuthResponse>(`${this.controller}/Login`, { email: email, password: password });
+    public login(email: string, password: string, rememberMe: boolean): Promise<AuthResponse> {
+        return this.post<AuthResponse>(`${this.controller}/Login`, { email: email, password: password, rememberMe: rememberMe });
     }
 
     public register(email: string, password: string, nickname: string): Promise<AuthResponse> {
