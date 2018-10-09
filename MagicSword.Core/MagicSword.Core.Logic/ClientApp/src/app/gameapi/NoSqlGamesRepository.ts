@@ -64,7 +64,7 @@ export class NoSqlGamesRepository implements IGamesRepository {
         });
     }
 
-    private createDtoList(collection: any): GameListDto[] {
+    private createDtoList(collection: DbGame[]): GameListDto[] {
         var res = [];
         for (var game of collection) {
             res.push(this.createListDto(game));
@@ -72,12 +72,13 @@ export class NoSqlGamesRepository implements IGamesRepository {
         return res;
     }
 
-    private createListDto(game: any): GameListDto {
+    private createListDto(game: DbGame): GameListDto {
         var dto = new GameListDto();
-        dto.id = game.id;
+        dto.id = (game as any).id; //impicit property from mongo
         dto.ownerName = game.ownerName;
         dto.createdOn = game.createdOn;
         dto.updatedOn = game.updatedOn;
+        dto.visibility = game.visibility;
         return dto;
     }
 }

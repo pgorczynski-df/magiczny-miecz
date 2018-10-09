@@ -9,4 +9,5 @@ export class GameListDto {
 
     updatedOn: Date;
 
+    visibility: string;
 }
