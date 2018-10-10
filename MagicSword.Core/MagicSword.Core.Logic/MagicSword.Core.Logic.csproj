@@ -66,6 +66,7 @@
     <None Remove="ClientApp\src\app\common\mechanics\Player.ts" />
     <None Remove="ClientApp\src\app\common\mechanics\World.ts" />
     <None Remove="ClientApp\src\app\common\model\GameVisibility.ts" />
+    <None Remove="ClientApp\src\app\common\repository\IDbGame.ts" />
     <None Remove="ClientApp\src\app\common\repository\LocalStorageGamesRepository.ts" />
     <None Remove="ClientApp\src\app\common\utils\Collections.ts" />
     <None Remove="ClientApp\src\app\common\utils\Guid.ts" />
@@ -123,6 +124,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\infrastructure\AuthServiceBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\model\GameVisibility.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\repository\IDbGame.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\GameProvider.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\LocalStorageGamesRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\gameapi\GameController.ts" />

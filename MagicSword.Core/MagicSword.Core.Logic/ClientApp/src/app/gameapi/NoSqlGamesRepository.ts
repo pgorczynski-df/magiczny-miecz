@@ -5,6 +5,7 @@ import { UserDto } from "@Common/client/UserDto";
 import { GameVisibility } from "@Common/model/GameVisibility";
 import { DbGame } from "@App/gameapi/DbGame";
 import { GameDto } from "@Common/dto/GameDto";
+import { IDbGame } from "@Common/repository/IDbGame";
 
 const Game = new DbGame().getModelForClass(DbGame);
 
@@ -13,21 +14,12 @@ export class NoSqlGamesRepository implements IGamesRepository {
     constructor(private services: Services) {
     }
 
-    //TODO simplify
-    public getGame(id: string): Promise<any> {
-        return Game.findById(id).exec().then(g => g.data);
-    }
-
-    public getGameFull(id: string): Promise<DbGame> {
+    public getGame(id: string): Promise<IDbGame> {
         return Game.findById(id).exec();
     }
 
     public createGame(owner: UserDto): Promise<GameListDto> {
         return this.saveInternal(owner, null).then(r => this.createListDto(r));
-    }
-
-    public save(owner: UserDto, dto: GameDto): Promise<any> {
-        return this.saveInternal(owner, dto).then(g => { return g.id; });
     }
 
     private saveInternal(owner: UserDto, dto: GameDto): Promise<any> {
@@ -44,7 +36,7 @@ export class NoSqlGamesRepository implements IGamesRepository {
         return newGame.save();
     }
 
-    public update(id: string, dto: GameDto): Promise<string> {
+    public updateGameData(id: string, dto: GameDto): Promise<string> {
         this.services.logger.debug("Attepting to update game " + id);
 
         return Game.findByIdAndUpdate(id,

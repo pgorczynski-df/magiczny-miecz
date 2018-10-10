@@ -12,47 +12,47 @@ export class GameProvider {
     constructor(private serializer: CommonSerializer, private repositoryFactory: (services: Services) => IGamesRepository) {
     }
 
-    getOrLoadGame(services: Services, id: string): Promise<Game> {
+    async getOrLoadGame(services: Services, id: string): Promise<Game> {
         var game = this.getGame(id);
-        if (!game) {
-            services.logger.debug(`Cache did not contain game id = ${id}`);
-            var repository = this.repositoryFactory(services);
-            return repository.getGame(id).then(
-                (gameDto: GameDto) => {
 
-                    services.logger.debug(`Fetching game id = ${id} completed`);
-                    services.logger.debug(gameDto);
-
-                    game = new Game();
-                    game.id = id;
-
-                    if (!gameDto || !gameDto.players) {
-
-                        services.logger.debug(`Game id = ${id} didn't contain data, creating new game`);
-                        game.init();
-                        this.persistGame(services, game);
-
-                    } else {
-
-                        services.logger.debug(`Game id = ${id} existed, deserializing`);
-                        this.serializer.deserializeGame(gameDto, game);
-                    }
-
-                    services.logger.debug(`Adding game id = ${id} to cache`);
-
-                    this.cache[id] = game;
-                    return game;
-                });
+        if (game) {
+            services.logger.debug(`Found game id = ${id} in cache`);
+            return Promise.resolve(game);
         }
 
-        services.logger.debug(`Found game id = ${id} in cache`);
-        return Promise.resolve(game);
+        services.logger.debug(`Cache did not contain game id = ${id}`);
+        var repository = this.repositoryFactory(services);
+        var dbGame = await repository.getGame(id);
+
+        services.logger.debug(`Retrieved game id = ${id} from repository`);
+
+        var gameDto: GameDto = dbGame.data;
+
+        game = new Game();
+        game.id = id;
+
+        if (!gameDto || !gameDto.players) {
+
+            services.logger.debug(`Game id = ${id} didn't contain real data, creating new game`);
+            game.init();
+            this.persistGame(services, game);
+
+        } else {
+
+            services.logger.debug(`Game id = ${id} existed, deserializing`);
+            this.serializer.deserializeGame(gameDto, game);
+        }
+
+        services.logger.debug(`Adding game id = ${id} to cache`);
+
+        this.cache[id] = game;
+        return game;
     }
 
     persistGame(services: Services, game: Game): GameDto {
         var gameDto = this.serializer.serializeGame(game);
         var repository = this.repositoryFactory(services);
-        repository.update(game.id, gameDto).then(resId => {
+        repository.updateGameData(game.id, gameDto).then(resId => {
             services.logger.debug(`Game id = ${resId} updated successfully`);
         });
         return gameDto;

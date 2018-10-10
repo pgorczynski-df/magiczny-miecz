@@ -2,6 +2,7 @@ import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { Services } from "@Common/infrastructure/Services";
 import { GameListDto } from "@Common/dto/GameListDto";
 import { UserDto } from "@Common/client/UserDto";
+import { IDbGame } from "@Common/repository/IDbGame";
 
 export class LocalStorageGamesRepository implements IGamesRepository {
 
@@ -18,7 +19,7 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         throw new Error("not supported");
     }
 
-    getGame(id: string): Promise<any> {
+    getGame(id: string): Promise<IDbGame> {
         var games = this.getUsersGames();
         if (!games) {
             return Promise.resolve(null);
@@ -26,16 +27,12 @@ export class LocalStorageGamesRepository implements IGamesRepository {
         return Promise.resolve(games[id]);
     }
 
-    update(id: string, dto: any): Promise<any> {
+    updateGameData(id: string, dto: any): Promise<any> {
         var repo = this.getRepo();
         var games = this.getUsersGames(repo);
-        games[id] = dto;
+        games[id] = { data: dto };
         this.saveRepo(repo);
         return Promise.resolve(id);
-    }
-
-    save(owner: UserDto, dto: any): Promise<any> {
-        throw new Error("not supported");
     }
 
     createGame(owner: UserDto): Promise<GameListDto> {
@@ -66,5 +63,9 @@ export class LocalStorageGamesRepository implements IGamesRepository {
     private saveRepo(repo) {
         var jsString = JSON.stringify(repo);
         localStorage.setItem(this.key, jsString);
+    }
+
+    delete(id: string): Promise<string> {
+        throw new Error("not supported");
     }
 }

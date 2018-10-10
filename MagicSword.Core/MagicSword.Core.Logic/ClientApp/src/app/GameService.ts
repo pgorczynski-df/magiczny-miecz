@@ -43,7 +43,10 @@ export class GameService {
 
         var user: UserDto = await this.userProvider.getUser(services, token)
             .catch(e => {
-                responseProcessor.respondError(e);
+                responseProcessor.respondError({
+                    code: 500,
+                    reason: e,
+                });
                 return undefined;
             });
 

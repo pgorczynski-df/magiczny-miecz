@@ -57,12 +57,12 @@ export class GameController {
                     return;
                 }
 
-                this.promiseToResponse((this.repository as any).delete(gameId), res);
+                this.promiseToResponse(this.repository.delete(gameId), res);
             });
     }
 
     private async verifyIsOwner(res: Response, userId: string, gameId: string) {
-        var game = await (this.repository as any).getGameFull(gameId) as DbGame;
+        var game = await this.repository.getGame(gameId);
 
         if (!game) {
             res.status(404).send(`Game ${gameId} not found`);

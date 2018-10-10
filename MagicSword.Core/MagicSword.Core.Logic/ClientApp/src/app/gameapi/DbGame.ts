@@ -1,6 +1,7 @@
 import { prop, Typegoose } from "typegoose";
+import { IDbGame } from "@Common/repository/IDbGame";
 
-export class DbGame extends Typegoose {
+export class DbGame extends Typegoose implements IDbGame {
 
     @prop()
     ownerId: string;
