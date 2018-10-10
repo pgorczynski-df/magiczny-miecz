@@ -1,4 +1,5 @@
-﻿import { Event } from "@Common/events/Event";
+import { Event } from "@Common/events/Event";
+import { ErrorDto } from "@Common/dto/ErrorDto";
 
 export interface IResponseProcessor {
 
@@ -6,5 +7,5 @@ export interface IResponseProcessor {
 
     respondAll(event: Event);
 
-    respondError(data: any);
+    respondError(data: ErrorDto);
 }

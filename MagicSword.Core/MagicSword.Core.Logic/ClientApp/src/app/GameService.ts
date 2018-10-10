@@ -31,7 +31,11 @@ export class GameService {
 
         var token = event.token;
         if (!token) {
-            responseProcessor.respondError("No token in request");
+
+            responseProcessor.respondError({
+                code: 401,
+                reason: "Missing auth token",
+            });
             return;
         }
 
@@ -48,7 +52,10 @@ export class GameService {
         }
 
         if (user === null) {
-            responseProcessor.respondError("User not found, probably token is invalid");
+            responseProcessor.respondError({
+                code: 401,
+                reason: "Invalid token",
+            });
             return;
         }
 

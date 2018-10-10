@@ -52,7 +52,10 @@ export class EventDispatcher {
 
         var handler = this.eventHandlers[type];
         if (!handler) {
-            responseProcessor.respondError("Unknown request event type: " + event.eventType);
+            responseProcessor.respondError({
+                code: 400,
+                reason: "Unknown request event type: " + event.eventType
+            });
             return;
         }
 

@@ -2,6 +2,7 @@ import { IResponseProcessor } from "@Common/events/IResponseProcessor";
 import { Event } from "@Common/events/Event";
 import { EventType } from "@Common/events/EventType";
 import { EventKind } from "@Common/events/EventKind";
+import { ErrorDto } from "@Common/dto/ErrorDto";
 import { ClientServices } from "@App/ClientServices";
 
 export class EventBusResponseProcessor implements IResponseProcessor {
@@ -15,7 +16,7 @@ export class EventBusResponseProcessor implements IResponseProcessor {
         this.services.inboundBus.publish2(event);
     }
 
-    respondError(data: any) {
+    respondError(data: ErrorDto) {
         this.services.logger.error(data);
         this.respondCaller({
             eventType: EventType.Error,
