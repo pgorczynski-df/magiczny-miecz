@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotFoundComponent } from "@App/pages/miscellaneous/not-found/not-found.component";
 
 import { GameComponent } from "@App/game/game.component";
 import { AuthGuard } from "@App/AuthGuard";
@@ -19,6 +20,10 @@ const routes: Routes = [{
             path: '',
             redirectTo: 'dashboard',
             pathMatch: 'full',
+        },
+        {
+            path: 'error/:message',
+            component: NotFoundComponent,
         },
         {
             path: "game/local/:gameId",
