@@ -92,7 +92,7 @@ export class NoSqlGamesRepository implements IGamesRepository {
 
     private createListDto(game: DbGame): GameListDto {
         var dto = new GameListDto();
-        dto.id = (game as any).id; //impicit property from mongo
+        dto.id = (game as any).id; //implicit property from mongo
         dto.ownerName = game.ownerName;
         dto.createdOn = game.createdOn;
         dto.updatedOn = game.updatedOn;

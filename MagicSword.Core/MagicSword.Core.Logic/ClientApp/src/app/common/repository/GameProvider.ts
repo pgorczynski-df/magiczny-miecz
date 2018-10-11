@@ -58,20 +58,12 @@ export class GameProvider {
         return gameDto;
     }
 
-    getGame(id: string): Game {
+    private getGame(id: string): Game {
         var game = this.cache[id] as Game;
         if (!game) {
             return null;
         }
         return game;
-    }
-
-    getDto(id: string) {
-        var game = this.getGame(id);
-        if (!game) {
-            return null;
-        }
-        return this.serializer.serializeGame(game);
     }
 
     evictCache() {

@@ -67,8 +67,6 @@ export class EventDispatcher {
         var sourceUserId = sourceUser.id;
         this.gameProvider.getOrLoadGame(services, gameId).then(game => {
 
-            this.ensureGameInitialized(services, game, sourceUser);
-
             //TODO check if game is open (?)
 
             var callingPlayer = game.findPlayer(sourceUserId);
@@ -93,19 +91,8 @@ export class EventDispatcher {
 
             this.gameProvider.persistGame(services, game);
         });
-
     }
 
-    private ensureGameInitialized(services: Services, game: Game, sourceUser: UserDto): void {
-        if (!game.owner) {
-            var p = new Player();
-            p.id = sourceUser.id;
-            p.name = sourceUser.nickname;
-            game.owner = p;
-            game.players.push(p);
-            services.logger.debug(`Setting owner of gameId = ${game.id} to ownerId = ${game.owner.id}`);
-        }
-    }
 
     private register(handler: IServerEventHandler) {
         this.eventHandlers[handler.getEventType()] = handler;

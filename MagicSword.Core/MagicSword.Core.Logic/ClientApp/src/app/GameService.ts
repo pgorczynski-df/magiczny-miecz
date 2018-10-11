@@ -67,19 +67,6 @@ export class GameService {
         this.eventDispatcher.process(services, responseProcessor, event, user);
     }
 
-    public getGame(id: string) {
-        return this.gameProvider.getGame(id);
-    }
-
-    public getGameDto(id: string) {
-        return this.gameProvider.getDto(id);
-    }
-
-    public evictCache() {
-        this.services.logger.info("Clearing game cache");
-        this.gameProvider.evictCache();
-    }
-
     private createServices(token: string): Services {
         var auth = new AuthService();
         auth.setToken(token);

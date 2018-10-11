@@ -7,8 +7,6 @@ export class Game {
 
     id: string;
 
-    owner: Player;
-
     players: Player[] = [];
 
     outBoundEvents: Event[] = [];
