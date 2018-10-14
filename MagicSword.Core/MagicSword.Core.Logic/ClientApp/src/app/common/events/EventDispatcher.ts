@@ -4,7 +4,8 @@ import { IResponseProcessor } from "@Common/events/IResponseProcessor";
 import { Services } from "@Common/infrastructure/Services";
 import { UserDto } from "@Common/client/UserDto";
 import { Game } from "@Common/mechanics/Game";
-import { Player } from "@Common/mechanics/Player";
+import { GameDto } from "@Common/dto/GameDto";
+import { GameVisibility } from "@Common/model/GameVisibility";
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
 import { IServerEventHandler } from "@Common/events/IServerEventHandler";
@@ -22,7 +23,7 @@ import { CardSetAttributeServerEventHandler } from "@Common/events/cardsetattrib
 import { PlayerMessageServerEventHandler } from "@Common/events/playermessage/PlayerMessageServerEventHandler";
 import { StackShuffleServerEventHandler } from "@Common/events/stackshuffle/StackShuffleServerEventHandler";
 import { StackPushDisposedCardsServerEventHandler } from "@Common/events/stackpushdisposedcards/StackPushDisposedCardsServerEventHandler";
-import {GameDto} from "@Common/dto/GameDto";
+
 
 export class EventDispatcher {
 
@@ -76,11 +77,18 @@ export class EventDispatcher {
 
         this.commonSerializer.deserializeGame(gameDto, game);
 
-        //TODO check if game is open (?)
-
         var callingPlayer = game.findPlayer(sourceUserId);
         if (!callingPlayer) {
-            callingPlayer = game.addPlayer(sourceUserId, sourceUser.nickname);
+            if (dbGame.visibility !== GameVisibility.Closed) {
+                callingPlayer = game.addPlayer(sourceUserId, sourceUser.nickname);
+            }
+            else {
+                responseProcessor.respondError({
+                    code: 403,
+                    reason: `Game id = ${gameId} is closed and cannot be joined`
+                });
+                return;
+            }
         }
 
         if (!handler.isTransient()) {
@@ -97,15 +105,9 @@ export class EventDispatcher {
 
         handler.process(context, event.data);
 
-        this.persistGame(services, game);
-    }
-
-    persistGame(services: Services, game: Game): GameDto {
-        var gameDto = this.commonSerializer.serializeGame(game);
-        this.repository.updateGameData(game.id, gameDto).then(resId => {
-            services.logger.debug(`Game id = ${resId} updated successfully`);
-        });
-        return gameDto;
+        var gameDto2 = this.commonSerializer.serializeGame(game);
+        await this.repository.updateGameData(game.id, gameDto2);
+        services.logger.debug(`Game id = ${game.id} updated successfully`);
     }
 
 
