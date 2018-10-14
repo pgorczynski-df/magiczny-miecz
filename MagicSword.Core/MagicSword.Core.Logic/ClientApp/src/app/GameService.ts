@@ -2,7 +2,6 @@ import { Services } from "@Common/infrastructure/Services";
 import { CardDefinitionLoader } from "@Common/mechanics/loaders/CardDefinitionLoader";
 import { Event as Ev } from "@Common/events/Event";
 import { IResponseProcessor } from "@Common/events/IResponseProcessor";
-import { GameProvider } from "@Common/repository/GameProvider";
 import { EventDispatcher } from "@Common/events/EventDispatcher";
 import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
@@ -15,8 +14,7 @@ export class GameService {
     public userProvider = new UserProvider();
 
     private commonSerializer = new CommonSerializer();
-    private gameProvider = new GameProvider(this.commonSerializer, services => this.repository);
-    private eventDispatcher = new EventDispatcher(this.gameProvider, this.commonSerializer);
+    private eventDispatcher = new EventDispatcher(this.repository, this.commonSerializer);
 
     constructor(private services: Services, private repository: IGamesRepository) {
     }

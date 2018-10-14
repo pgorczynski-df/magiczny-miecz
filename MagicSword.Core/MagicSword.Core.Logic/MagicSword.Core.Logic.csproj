@@ -125,7 +125,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\mechanics\ActorBase.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\model\GameVisibility.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\IDbGame.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\repository\GameProvider.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\model\GameInitializer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\repository\LocalStorageGamesRepository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\gameapi\GameController.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\gameapi\NoSqlGamesRepository.ts" />

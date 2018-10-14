@@ -1,6 +1,5 @@
 import { IResponseProcessor } from "@Common/events/IResponseProcessor";
 import { Services } from "@Common/infrastructure/Services";
-import { GameProvider } from "@Common/repository/GameProvider";
 import { Game } from "@Common/mechanics/Game";
 import { Event } from "@Common/events/Event";
 import { CommonSerializer } from "@Common/mechanics/CommonSerializer";
@@ -13,8 +12,6 @@ export class EventHandlerContext {
     services: Services;
 
     responseProcessor: IResponseProcessor;
-
-    gameProvider: GameProvider;
 
     game: Game;
 

@@ -2,13 +2,15 @@ import { Request, Response, Application } from "express";
 
 import { IGamesRepository } from "@Common/repository/IGamesRepository";
 import { Services } from "@Common/infrastructure/Services";
-import {DbGame} from "@App/gameapi/DbGame";
+import { GameInitializer } from "@Common/model/GameInitializer";
 
 export class GameController {
 
     public readonly route = "/game";
 
     public secureRoutes: string[] = [this.route + "/MyGames", this.route + "/CreateGame", this.route + "/REST"];
+
+    private gameInitializer = new GameInitializer(this.services, this.repository);
 
     constructor(private services: Services, private repository: IGamesRepository) {
     }
@@ -29,10 +31,15 @@ export class GameController {
             });
 
         app.route(this.route + "/CreateGame")
-            .post((req: Request, res: Response) => {
+            .post(async (req: Request, res: Response) => {
                 this.services.logger.debug(`Attepting to POST ${req.url}`);
                 var user = req["requestingUser"];
-                this.promiseToResponse(this.repository.createGame(user), res);
+
+                var listDto = await this.repository.createGame(user);
+
+                await this.gameInitializer.initGame(listDto.id, user);
+
+                this.promiseToResponse(Promise.resolve(listDto), res);
             });
 
         app.route(this.route + "/REST/:gameId")

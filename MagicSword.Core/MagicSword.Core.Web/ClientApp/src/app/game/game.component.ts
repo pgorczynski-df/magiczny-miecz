@@ -19,6 +19,7 @@ import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
 import { ClientGameService } from "@App/game/local/ClientGameService";
+import {UserDto} from "@Common/client/UserDto";
 
 @Component({
     selector: "app-game",
@@ -106,11 +107,20 @@ export class GameComponent implements AfterViewInit {
 
         switch (mode) {
             case "local":
-                this.clientGameService = new ClientGameService(this.services);
+
+                var localPlayer = new UserDto();
+                localPlayer.id = "1";
+                localPlayer.nickname = "Samotny poszukiwacz";
+
                 this.services.outboundBus.of().subscribe((e: Event) => {
                     this.clientGameService.handleEvent(e);
                 });
-                this.dispatcher.joinGameHandler.request();
+
+                this.clientGameService = new ClientGameService(this.services, localPlayer);
+                this.clientGameService.initGame(this.game.id).then(_ => {
+                    this.dispatcher.joinGameHandler.request();
+                });
+
                 break;
             case "online":
                 this.socketClient.init();
