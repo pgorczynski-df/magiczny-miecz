@@ -7,28 +7,18 @@ import { IGamesRepository } from "@Common/repository/IGamesRepository";
 
 export class GameProvider {
 
-    private cache: { [gameId: string]: Game } = {};
 
     constructor(private serializer: CommonSerializer, private repositoryFactory: (services: Services) => IGamesRepository) {
     }
 
     async getOrLoadGame(services: Services, id: string): Promise<Game> {
-        var game = this.getGame(id);
 
-        if (game) {
-            services.logger.debug(`Found game id = ${id} in cache`);
-            return Promise.resolve(game);
-        }
-
-        services.logger.debug(`Cache did not contain game id = ${id}`);
         var repository = this.repositoryFactory(services);
         var dbGame = await repository.getGame(id);
 
-        services.logger.debug(`Retrieved game id = ${id} from repository`);
-
         var gameDto: GameDto = dbGame.data;
 
-        game = new Game();
+        var game = new Game();
         game.id = id;
 
         if (!gameDto || !gameDto.players) {
@@ -43,9 +33,6 @@ export class GameProvider {
             this.serializer.deserializeGame(gameDto, game);
         }
 
-        services.logger.debug(`Adding game id = ${id} to cache`);
-
-        this.cache[id] = game;
         return game;
     }
 
@@ -58,16 +45,5 @@ export class GameProvider {
         return gameDto;
     }
 
-    private getGame(id: string): Game {
-        var game = this.cache[id] as Game;
-        if (!game) {
-            return null;
-        }
-        return game;
-    }
-
-    evictCache() {
-        this.cache = {};
-    }
 
 }

@@ -11,11 +11,31 @@ const Game = new DbGame().getModelForClass(DbGame);
 
 export class NoSqlGamesRepository implements IGamesRepository {
 
+    private cache: { [gameId: string]: IDbGame } = {};
+
     constructor(private services: Services) {
     }
 
     public getGame(id: string): Promise<IDbGame> {
-        return Game.findById(id).exec();
+
+        var game = this.cache[id] as IDbGame;
+
+        if (game) {
+            this.services.logger.debug(`Game id = ${id} returned from cache`);
+            return Promise.resolve(game);
+        }
+
+        game = Game.findById(id).exec();
+        this.services.logger.debug(`Game id = ${id} fetched from repository and cached`);
+
+        //TODO there's something wrong with this cache - investigate
+        //this.cache[id] = game; 
+
+        return Promise.resolve(game);
+    }
+
+    evictCache() {
+        this.cache = {};
     }
 
     public createGame(owner: UserDto): Promise<GameListDto> {
@@ -65,6 +85,11 @@ export class NoSqlGamesRepository implements IGamesRepository {
 
     public delete(id: string): Promise<string> {
         this.services.logger.debug("Attepting to delete game " + id);
+
+        if (this.cache[id]) {
+            this.cache[id] = null;
+        }
+
         return Game.findByIdAndDelete(id).exec().then(g => g.id);
     }
 
