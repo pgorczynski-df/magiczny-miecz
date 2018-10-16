@@ -9,6 +9,7 @@ import { GamesApiClient } from "@Common/client/GamesApiClient";
 import { GameListDto } from "@Common/dto/GameListDto";
 import { GameVisibility } from "@Common/model/GameVisibility";
 import { ClientServices } from "@App/ClientServices";
+import { ResourceManager } from "@App/game/ResourceManager";
 
 @Component({
     selector: 'ngx-dashboard',
@@ -25,7 +26,8 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
 
     private timer: any;
 
-    constructor(private router: Router, private toasterService: ToasterService, private services: ClientServices) {
+    //workaround: we inject the resourceManager only to force it to be initialized
+    constructor(private router: Router, private toasterService: ToasterService, private services: ClientServices, private resourceManager: ResourceManager) {
         this.gamesApiClient = new GamesApiClient(this.services);
     }
 
@@ -85,6 +87,10 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
     async onItemChange(game: GameListDto) {
         await this.gamesApiClient.updateGameMetadata(game);
         this.toasterService.popAsync("success", "Hurra", "Zmiany zapisane");
+    }
+
+    res(key: string) {
+        return ResourceManager.getLocalizationMessage(key);
     }
 
 }

@@ -27,7 +27,7 @@
                         <td>{{ game.updatedOn | date:'medium' }}</td>
                         <td>
                             <select class="form-control" [(ngModel)]="game.visibility" (change)="onItemChange(game)">
-                                <option *ngFor="let item of itemsList">{{item}}</option>
+                                <option value="{{item}}" *ngFor="let item of itemsList">{{res("game_visibility_" + item)}}</option>
                             </select>
                         </td>
                         <td>
@@ -39,8 +39,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <button (click)="loadMyGames()" class="btn btn-primary">Odśwież</button>
         </nb-card-body>
     </nb-card>
     <nb-card>
@@ -70,8 +68,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <button (click)="loadOpenGames()" class="btn btn-primary">Odśwież</button>
         </nb-card-body>
     </nb-card>
 </div>

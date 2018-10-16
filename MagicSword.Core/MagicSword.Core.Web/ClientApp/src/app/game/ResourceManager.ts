@@ -5,6 +5,7 @@ import { Services } from "@Common/infrastructure/Services";
 import { CardDefinitionLoader } from "@Common/mechanics/loaders/CardDefinitionLoader";
 import { EventType } from "@Common/events/EventType";
 import { AttributeDefinition } from "@Common/mechanics/definitions/AttributeDefinition";
+import { GameVisibility } from "@Common/model/GameVisibility";
 
 @Injectable()
 export class ResourceManager {
@@ -20,7 +21,7 @@ export class ResourceManager {
         this.cardDefinitionLoader = new CardDefinitionLoader(this.services);
         this.fontLoader = new THREE.FontLoader();
 
-        this.addMessages();
+        this.addTranslations();
     }
 
     public load(): Promise<any> {
@@ -44,7 +45,7 @@ export class ResourceManager {
         return msg ? msg : key;
     }
 
-    private addMessages() {
+    private addTranslations() {
         var d = ResourceManager.localization;
         d[AttributeDefinition.Strength] = "Miecz";
         d[AttributeDefinition.Power] = "Magia";
@@ -71,6 +72,9 @@ export class ResourceManager {
         d["login_unknown_user_password"] = "Niepoprawny email/hasło";
         d["login_account_locked"] = "Konto zablokowane";
         d["login_email_password_required"] = "Email/hasło wymagane";
+        d["game_visibility_" + GameVisibility.Public] = "Publiczna";
+        d["game_visibility_" + GameVisibility.Open] = "Otwarta";
+        d["game_visibility_" + GameVisibility.Closed] = "Zamknięta";
     }
 
 }
