@@ -19,7 +19,7 @@ import { ResourceManager } from "@App/game/ResourceManager";
 import { ClientEventDispatcher } from "@App/game/events/ClientEventDispatcher";
 import { Message } from "@App/game/Message";
 import { ClientGameService } from "@App/game/local/ClientGameService";
-import {UserDto} from "@Common/client/UserDto";
+import { UserDto } from "@Common/client/UserDto";
 
 @Component({
     selector: "app-game",
@@ -30,6 +30,8 @@ export class GameComponent implements AfterViewInit {
 
     @ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
     @ViewChild("eventsPanel", { read: ElementRef }) eventsPanel: ElementRef;
+
+    static routerHandle: Router;
 
     game: Game;
     socketClient: SocketClient;
@@ -42,9 +44,9 @@ export class GameComponent implements AfterViewInit {
         return this.game ? this.game.world.selectedActor : null;
     }
 
-    constructor(private modalService: NgbModal, private route: ActivatedRoute, private services: ClientServices, private resourceManager: ResourceManager) {
+    constructor(private modalService: NgbModal, private router: Router, private route: ActivatedRoute, private services: ClientServices, private resourceManager: ResourceManager) {
         this.socketClient = new SocketClient(this.services);
-
+        GameComponent.routerHandle = this.router;
     }
 
     messages: Message[] = [];
