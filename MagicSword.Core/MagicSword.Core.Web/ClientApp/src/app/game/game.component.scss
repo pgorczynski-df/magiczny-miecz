@@ -14,18 +14,38 @@ $black: black;
 .controls-panel {
     position: absolute;
     top: 20px;
-    right: 10px;
+    right: 20px;
     width: 200px;
     height: 300px;
+    z-index: 10;
 }
 
 .events-panel {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 20px;
     width: 300px;
     height: 300px;
+    z-index: 10;
 }
+
+.menu-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    height: 100px;
+    z-index: 10;
+}
+
+.card-picker-box {
+    width: 150px;
+    height: 200px;
+    float: left;
+    margin: 2px;
+    z-index: 10;
+}
+
 
 .events-box {
     color: $black;
@@ -38,17 +58,3 @@ $black: black;
     display: none;
 }
 
-.menu-panel {
-    position: absolute;
-    top: 100px;
-    left: 200px;
-    width: 200px;
-    height: 100px;
-}
-
-.card-picker-box {
-    width: 150px;
-    height: 200px;
-    float: left;
-    margin: 2px;
-}

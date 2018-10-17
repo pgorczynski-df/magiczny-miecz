@@ -1,54 +1,59 @@
 
 <div >
-    <div #viewport class="viewport" style="align-items: stretch;">
-    </div>
-    <div class="controls-panel" [hidden]="!selectedActor">
-        <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}" />
-        <div [hidden]="!(selectedActor?.isCardStack)">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <div ngbDropdown>
-                    <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>...</button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <button class="btn btn-secondary dropdown-item" (click)="shuffleStack()">Potasuj stos</button>
-                        <button class="btn btn-secondary dropdown-item" (click)="putBackDisposed()">Dołóż karty odłożone</button>
-                        <button class="btn btn-secondary dropdown-item" (click)="viewCards(content)">Zobacz karty</button>
-                        <button class="btn btn-secondary dropdown-item" (click)="viewDisposedCards(content)">Zobacz karty odłożone</button>
-                    </div>
+    <div #viewport class="viewport" style="align-items: stretch; position: relative">
+
+        <div class="events-panel">
+            <div #eventsPanel class="events-box">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-info" *ngFor="let message of messages; index as i;">{{message.text}}</li>
+                </ul>
+            </div>
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="input-group">
+                    <input [(ngModel)]="chatMessage" (keydown.enter)="sendMessage()" type="text" class="form-control" placeholder="Wiadomość" maxlength="400"
+                           aria-label="Input group example" aria-describedby="btnGroupAddon" autofocus>
                 </div>
-                <button class="btn btn-secondary" (click)="drawCard()">Wyciągnij kartę</button>
-            </div>
-        </div>
-        <div [hidden]="!(selectedActor?.isCard)">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <div ngbDropdown>
-                    <button class="btn btn-secondary" id="dropdownBasic2" ngbDropdownToggle>...</button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                        <button class="btn btn-secondary dropdown-item" (click)="toggleAttribute(attr)" *ngFor="let attr of attributes; index as i;">{{attrDdText(attr)}}</button>
-                    </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary" (click)="sendMessage()">Wyślij</button>
                 </div>
-                <button class="btn btn-secondary" (click)="disposeCard()">Odłóż kartę</button>
             </div>
         </div>
-    </div>
-    <div class="events-panel">
-        <div #eventsPanel class="events-box">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-info" *ngFor="let message of messages; index as i;">{{message.text}}</li>
-            </ul>
-        </div>
-        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="input-group">
-                <input [(ngModel)]="chatMessage" (keydown.enter)="sendMessage()" type="text" class="form-control" placeholder="Wiadomość" maxlength="400"
-                       aria-label="Input group example" aria-describedby="btnGroupAddon" autofocus>
+
+        <div class="controls-panel" [hidden]="!selectedActor">
+            <img class="card-display" src="{{selectedActor?.faceUrl}}" alt="{{selectedActor?.name}}" />
+            <div [hidden]="!(selectedActor?.isCardStack)">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <div ngbDropdown>
+                        <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>...</button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button class="btn btn-secondary dropdown-item" (click)="shuffleStack()">Potasuj stos</button>
+                            <button class="btn btn-secondary dropdown-item" (click)="putBackDisposed()">Dołóż karty odłożone</button>
+                            <button class="btn btn-secondary dropdown-item" (click)="viewCards(content)">Zobacz karty</button>
+                            <button class="btn btn-secondary dropdown-item" (click)="viewDisposedCards(content)">Zobacz karty odłożone</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" (click)="drawCard()">Wyciągnij kartę</button>
+                </div>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary" (click)="sendMessage()">Wyślij</button>
+            <div [hidden]="!(selectedActor?.isCard)">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <div ngbDropdown>
+                        <button class="btn btn-secondary" id="dropdownBasic2" ngbDropdownToggle>...</button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                            <button class="btn btn-secondary dropdown-item" (click)="toggleAttribute(attr)" *ngFor="let attr of attributes; index as i;">{{attrDdText(attr)}}</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" (click)="disposeCard()">Odłóż kartę</button>
+                </div>
             </div>
         </div>
+
+        <div class="menu-panel">
+            <button class="btn btn-secondary" (click)="diceThrow()">Rzuć kostką</button>
+        </div>
+
     </div>
-    <div class="menu-panel">
-        <button class="btn btn-secondary" (click)="diceThrow()">Rzuć kostką</button>
-    </div>
+
 </div>
 
 
