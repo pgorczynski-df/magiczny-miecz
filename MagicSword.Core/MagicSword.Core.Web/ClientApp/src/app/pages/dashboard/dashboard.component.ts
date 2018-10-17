@@ -76,6 +76,10 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
         }
     }
 
+    getGameUrl(game: GameListDto): string {
+        return location.origin + '/#/pages/game/online/' + game.id;
+    }
+
     isUserLoggedIn() {
         return this.services.clientAuthService.isLoggedIn();
     }
@@ -93,4 +97,16 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
         return ResourceManager.getLocalizationMessage(key);
     }
 
+    copyToClp(txt) {
+        txt = document.createTextNode(txt);
+        document.body.appendChild(txt);
+        var d = document.createRange();
+        d.selectNodeContents(txt);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(d);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        txt.remove();
+        this.toasterService.popAsync("success", ":)", "Link skopiowany do schowka");
+    } 
 }
