@@ -31,8 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\_app\AuthGuard.ts" />
-    <None Remove="ClientApp\src\_app\AuthService.ts" />
     <None Remove="ClientApp\src\app\game\BoxObject.ts" />
     <None Remove="ClientApp\src\app\game\ClientGameService.ts" />
     <None Remove="ClientApp\src\app\game\Dice.ts" />
