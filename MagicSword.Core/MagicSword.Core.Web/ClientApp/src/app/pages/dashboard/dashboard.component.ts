@@ -51,7 +51,14 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
     }
 
     async loadMyGames() {
-        this.myGames = await this.gamesApiClient.getMyGames();
+        this.myGames = await this.gamesApiClient.getMyGames().catch(r => {
+            if ((r as Error).message.includes("401")) {
+                this.services.clientAuthService.logoutAndNavigateToLogin(location);
+            } else {
+                this.services.logger.error(r);
+            }
+            return [];
+        });
     }
 
     async loadOpenGames() {
@@ -108,5 +115,5 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
         window.getSelection().removeAllRanges();
         txt.remove();
         this.toasterService.popAsync("success", ":)", "Link skopiowany do schowka");
-    } 
+    }
 }

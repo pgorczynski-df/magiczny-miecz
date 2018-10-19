@@ -31,8 +31,6 @@ export class GameComponent implements AfterViewInit {
     @ViewChild("viewport", { read: ElementRef }) viewport: ElementRef;
     @ViewChild("eventsPanel", { read: ElementRef }) eventsPanel: ElementRef;
 
-    static routerHandle: Router;
-
     game: Game;
     socketClient: SocketClient;
     dispatcher: ClientEventDispatcher;
@@ -46,7 +44,6 @@ export class GameComponent implements AfterViewInit {
 
     constructor(private modalService: NgbModal, private router: Router, private route: ActivatedRoute, private services: ClientServices, private resourceManager: ResourceManager) {
         this.socketClient = new SocketClient(this.services);
-        GameComponent.routerHandle = this.router;
     }
 
     messages: Message[] = [];

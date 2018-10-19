@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { Router, NavigationExtras } from "@angular/router";
+
 import { JwtHelperService } from "@auth0/angular-jwt";
 
 import { UserDto } from "@Common/client/UserDto";
@@ -9,7 +11,7 @@ export class AuthService extends AuthServiceBase {
 
     private _user: UserDto = null;
 
-    constructor(private jwtHelper: JwtHelperService) {
+    constructor(private jwtHelper: JwtHelperService, private router: Router) {
         super();
         this.loadUser();
     }
@@ -40,8 +42,18 @@ export class AuthService extends AuthServiceBase {
         localStorage.removeItem("user");
     }
 
-    isLoggedIn() : boolean {
+    isLoggedIn(): boolean {
         return this.user !== null;
+    }
+
+    logoutAndNavigateToLogin(returnUrl: any) {
+        this.logout();
+        this.router.navigate(["auth", "login"], { queryParams: { returnUrl: location } });
+    }
+
+    //TODO move to separate service
+    navigate(commands: any[], extras?: NavigationExtras): Promise<boolean> {
+        return this.router.navigate(commands, extras);
     }
 
     private loadUser() {
