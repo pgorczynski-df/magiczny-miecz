@@ -19,15 +19,15 @@
         <div class="form-group">
             <label for="input-email" class="sr-only">Email</label>
             <input name="email" [(ngModel)]="user.email" id="input-email" pattern=".+@.+\..+"
-            class="form-control" placeholder="Email" #email="ngModel"
-            [class.form-control-danger]="email.invalid && email.touched" autofocus
-            [required]="getConfigValue('forms.validation.email.required')">
+                   class="form-control" placeholder="Email" #email="ngModel"
+                   [class.form-control-danger]="email.invalid && email.touched" autofocus
+                   [required]="getConfigValue('forms.validation.email.required')">
             <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
                 Pole wymagane
             </small>
             <small class="form-text error"
                    *ngIf="email.invalid && email.touched && email.errors?.pattern">
-                Email should be the real one!
+                Niepoprawny format adresu email
             </small>
         </div>
 
@@ -43,11 +43,11 @@
                 Pole wymagane
             </small>
             <small class="form-text error"
-            *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
-            Password should contains
-            from {{ getConfigValue('forms.validation.password.minLength') }}
-            to {{ getConfigValue('forms.validation.password.maxLength') }}
-            characters
+                   *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
+                Pole powinno mieć
+                między {{getConfigValue('forms.validation.password.minLength')}}
+                a {{getConfigValue('forms.validation.password.maxLength')}}
+                znaków
             </small>
         </div>
 
