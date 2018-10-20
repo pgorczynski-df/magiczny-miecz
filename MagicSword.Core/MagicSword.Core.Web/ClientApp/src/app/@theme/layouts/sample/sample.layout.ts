@@ -21,7 +21,7 @@ import { StateService } from '../../../@core/data/state.service';
         <ngx-header [position]="sidebar.id === 'start' ? 'normal': 'inverse'"></ngx-header>
       </nb-layout-header>
 
-      <nb-sidebar class="menu-sidebar"
+      <!--<nb-sidebar class="menu-sidebar"
                    tag="menu-sidebar"
                    responsive
                    [end]="sidebar.id === 'end'" state="collapsed">
@@ -31,7 +31,7 @@ import { StateService } from '../../../@core/data/state.service';
           </a>
         </nb-sidebar-header>
         <ng-content select="nb-menu"></ng-content>
-      </nb-sidebar>
+      </nb-sidebar>-->
 
       <nb-layout-column class="main-content">
         <ng-content select="router-outlet"></ng-content>

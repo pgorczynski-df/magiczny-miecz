@@ -2,11 +2,10 @@
      [class.left]="position === 'normal'"
      [class.right]="position === 'inverse'">
     <div class="logo-containter">
-        <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
-        <div class="logo" (click)="goToHome()">Magiczny<span> Miecz Online</span></div>
+        <div class="logo" (click)="goToHome()"><a href="#">Magiczny<span> Miecz Online</span></a></div>
         <div class="logo"><button class="btn btn-danger" (click)="localGame()">Single player (bez logowania)</button></div>
+        <div class="logo"><a href="#/auth/register" class="btn btn-primary">Rejestracja</a></div>
     </div>
-    <!--<ngx-theme-switcher></ngx-theme-switcher>-->
 </div>
 
 <div class="header-container">
@@ -15,7 +14,10 @@
                 [class.right]="position === 'normal'"
                 [class.left]="position === 'inverse'">
         <nb-action *ngIf="userLoggedIn()" (click)="logout()" class="control-item" icon="ion-log-out"></nb-action>
-        <nb-action>
+        <nb-action *ngIf="!userLoggedIn()">
+            <a title="Logowanie" href="#/auth/login" class="ng-star-inserted"><span class="menu-title">Logowanie</span></a>
+        </nb-action>
+        <nb-action *ngIf="userLoggedIn()">
             <div class="user-name">{{userName()}}</div>
         </nb-action>
     </nb-actions>
